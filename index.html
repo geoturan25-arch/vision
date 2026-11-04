@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vision Electronics — CCTV, Ağ & Güvenlik Çözümleri</title>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#090c10;
+  --card:#121721;
+  --card-hover:#18202e;
+  --card-active:#16243b;
+  --line:#1f2838;
+  --line-light:#2c374b;
+  --tx:#f3f6fa;
+  --mu:#8b99ae;
+  --bl:#2f80ff;
+  --bl-glow:rgba(47,128,255,.35);
+  --cyan:#00d2ff;
+  --green:#25d366;
+  --red:#ff3b30;
+  --hik-red:#E60012;
+  --yellow:#ffb703;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font:14.5px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font-family:inherit;color:inherit}
+button{cursor:pointer}
+
+/* HEADER */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:120;
+  display:flex;align-items:center;gap:16px;padding:12px 28px;
+  background:rgba(9,12,16,.92);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+}
+.brand-link{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-logo-svg{width:40px;height:40px;flex:none;filter:drop-shadow(0 0 10px var(--bl-glow))}
+.brand-titles{display:flex;flex-direction:column;line-height:1}
+.brand-main{font-size:19px;font-weight:900;letter-spacing:.12em;color:#fff}
+.brand-main b{color:var(--bl);text-shadow:0 0 10px var(--bl-glow)}
+.brand-sub{font-size:9px;font-weight:800;letter-spacing:.28em;color:var(--cyan);text-transform:uppercase;margin-top:3px}
+
+nav{display:flex;gap:22px;margin-left:auto;font-size:13.5px;color:var(--mu);font-weight:600}
+nav a:hover{color:#fff}
+
+.lang{display:flex;gap:4px}
+.lang button{background:none;border:1px solid var(--line);color:var(--mu);border-radius:6px;padding:4px 8px;font-size:11.5px;font-weight:700}
+.lang button.on{background:var(--bl);border-color:var(--bl);color:#fff}
+
+.cart-trigger{
+  position:relative;background:var(--card);border:1px solid var(--line);
+  color:#fff;border-radius:10px;padding:8px 14px;display:flex;align-items:center;gap:8px;font-weight:700;font-size:13px;
+  transition:.2s;
+}
+.cart-trigger:hover{border-color:var(--bl);transform:scale(1.02)}
+.badge{background:var(--bl);color:#fff;font-size:11px;font-weight:900;border-radius:20px;padding:2px 7px;min-width:18px;text-align:center}
+@media(max-width:880px){nav{display:none}}
+
+/* HERO */
+.hero{
+  position:relative;min-height:480px;display:flex;align-items:center;padding:120px 24px 60px;
+  background:radial-gradient(circle at 80% 20%, rgba(47,128,255,.12) 0%, transparent 60%),
+             linear-gradient(180deg, #0d121a 0%, var(--bg) 100%);
+  border-bottom:1px solid var(--line);
+}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%}
+.tag-badge{
+  display:inline-flex;align-items:center;gap:8px;background:rgba(47,128,255,.12);
+  border:1px solid rgba(47,128,255,.4);border-radius:30px;padding:5px 14px;margin-bottom:16px;
+}
+.tag-badge .live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+.tag-text{font-size:11.5px;font-weight:800;letter-spacing:.12em;color:#fff;text-transform:uppercase}
+h1{font-size:clamp(28px,4.5vw,48px);line-height:1.2;margin-bottom:14px;font-weight:900}
+.hero p{color:var(--mu);font-size:16px;max-width:680px;margin-bottom:24px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+
+/* GENEL BUTONLAR */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  background:var(--bl);color:#fff;padding:11px 20px;border-radius:9px;font-weight:700;
+  font-size:13.5px;border:0;transition:.2s;text-align:center;
+}
+.btn:hover{filter:brightness(1.15);transform:translateY(-1px)}
+.btn.g{background:#171e2b;border:1px solid var(--line-light);color:var(--tx)}
+.btn.g:hover{background:#1f2838;border-color:var(--bl)}
+.btn.green{background:var(--green);color:#fff}
+
+/* LOGO STİLLERİ */
+.logo-hikvision{font-family:'Arial Black', Impact, sans-serif;font-weight:900;letter-spacing:-0.5px;text-transform:uppercase}
+.logo-hikvision .h{color:#fff}.logo-hikvision .v{color:var(--hik-red)}
+.logo-prolook{font-weight:900;letter-spacing:.5px;color:#fff}
+.logo-prolook b{color:var(--bl)}
+.logo-microtik{font-family:ui-monospace, monospace;font-weight:900;color:var(--cyan)}
+.logo-microtik span{color:#fff}
+.logo-tvt{font-weight:900;letter-spacing:1px;color:var(--yellow)}
+
+/* =========================================================
+   PENCERELİ / KOMPAKT KATALOG TERMİNALİ (ANA BÖLÜM)
+   ========================================================= */
+.catalog-section{padding:50px 24px 70px;max-width:1300px;margin:0 auto}
+.sec-head{margin-bottom:24px}
+.sec-tag{color:var(--bl);font-size:11.5px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;margin-bottom:6px;display:block}
+.sec-title{font-size:28px;font-weight:900;margin-bottom:6px}
+.sec-desc{color:var(--mu);font-size:14px}
+
+/* Marka & Segment Seçim Kontrol Paneli */
+.unified-filter-panel{
+  background:var(--card);border:1px solid var(--line);border-radius:18px;
+  padding:20px;margin-bottom:20px;box-shadow:0 8px 30px rgba(0,0,0,.4);
+}
+.filter-row-label{
+  font-size:11.5px;font-weight:800;color:var(--mu);text-transform:uppercase;
+  letter-spacing:.1em;margin-bottom:10px;display:flex;align-items:center;gap:6px;
+}
+.filter-row-label span{color:var(--bl)}
+
+/* 1. SEVİYE: MARKA BUTONLARI (TEK MERKEZDEN SEÇİM) */
+.brand-selector-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:20px;
+}
+.b-btn{
+  background:#0b0f16;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  transition:.2s;cursor:pointer;
+}
+.b-btn:hover{border-color:var(--bl);background:#101622}
+.b-btn.active{
+  border-color:var(--bl);background:var(--card-active);
+  box-shadow:0 0 16px var(--bl-glow);transform:scale(1.02);
+}
+.b-btn .b-subtext{font-size:10.5px;color:var(--mu);font-weight:600}
+
+/* 2. SEVİYE: SEGMENT / KATEGORİ SEÇİMİ (ALTTA DİNAMİK BELİRİR) */
+.segment-pills-row{
+  display:flex;flex-wrap:wrap;gap:8px;padding-top:14px;border-top:1px dashed var(--line);
+}
+.seg-pill{
+  background:#0c1017;border:1px solid var(--line);color:var(--tx);
+  border-radius:10px;padding:9px 16px;font-size:13px;font-weight:700;
+  display:inline-flex;align-items:center;gap:8px;transition:.2s;
+}
+.seg-pill:hover{border-color:var(--bl);background:#131a26}
+.seg-pill.active{
+  background:rgba(47,128,255,.2);border-color:var(--bl);color:#fff;
+  box-shadow:0 0 10px rgba(47,128,255,.3);
+}
+.seg-pill .count{
+  background:rgba(255,255,255,.1);border-radius:12px;padding:2px 7px;font-size:11px;
+}
+
+/* KATALOG PENCERESİ (Dahili Kaydırmalı Kutu) */
+.catalog-window{
+  background:#0c1017;border:1.5px solid var(--line);border-radius:18px;
+  overflow:hidden;display:flex;flex-direction:column;
+  box-shadow:0 12px 40px rgba(0,0,0,.6);
+}
+.window-topbar{
+  background:#131824;padding:14px 20px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+}
+.window-info{display:flex;align-items:center;gap:12px}
+.status-pill{background:#1c2436;border:1px solid var(--line-light);padding:4px 10px;border-radius:20px;font-size:12px;font-weight:700}
+.status-pill b{color:var(--bl)}
+
+.window-search{
+  display:flex;align-items:center;background:#090d14;border:1px solid var(--line);
+  border-radius:8px;padding:6px 12px;width:240px;
+}
+.window-search input{background:none;border:none;outline:none;font-size:12.5px;width:100%}
+
+/* PENCERE İÇİ KAYDIRILABİLİR ALAN */
+.window-scrollable-body{
+  max-height:680px;overflow-y:auto;padding:22px;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px;
+  scrollbar-width:thin;scrollbar-color:var(--line-light) transparent;
+}
+.window-scrollable-body::-webkit-scrollbar{width:8px}
+.window-scrollable-body::-webkit-scrollbar-thumb{background:var(--line-light);border-radius:4px}
+
+/* ÜRÜN KARTLARI */
+.p-card{
+  background:var(--card);border:1.5px solid var(--line);border-radius:14px;
+  padding:15px;display:flex;flex-direction:column;transition:all .2s ease;
+  position:relative;cursor:pointer;user-select:none;
+}
+.p-card:hover{border-color:rgba(47,128,255,.7);transform:translateY(-2px);background:var(--card-hover)}
+.p-card.selected{border-color:var(--bl);background:var(--card-active);box-shadow:0 0 16px rgba(47,128,255,.3)}
+
+.sel-badge{
+  position:absolute;top:10px;right:10px;z-index:2;
+  background:var(--bl);color:#fff;font-size:10px;font-weight:900;
+  padding:3px 8px;border-radius:12px;display:none;
+}
+.p-card.selected .sel-badge{display:inline-block}
+
+/* Ürünün Görsel Alanı (SVG İllüstrasyonlar) */
+.p-img-box{
+  height:130px;border-radius:10px;background:#080b10;
+  display:flex;align-items:center;justify-content:center;margin-bottom:12px;
+  border:1px solid rgba(255,255,255,.05);position:relative;
+}
+.p-img-box svg{width:68px;height:68px;filter:drop-shadow(0 4px 10px rgba(47,128,255,.2))}
+.card-brand-tag{
+  position:absolute;top:8px;left:8px;background:rgba(18,23,33,.9);
+  border:1px solid var(--line);border-radius:6px;padding:3px 7px;font-size:10px;
+}
+
+.p-title{font-size:14px;font-weight:800;margin-bottom:8px;line-height:1.3}
+.p-specs{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
+.spec-item{display:flex;justify-content:space-between;font-size:11.5px;color:var(--mu);border-bottom:1px dashed rgba(255,255,255,.06);padding-bottom:2px}
+.spec-item span:last-child{color:var(--tx);font-weight:600}
+.p-price-row{
+  margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:10px;
+}
+.p-price{font-size:18px;font-weight:900;color:var(--green)}
+.p-actions{display:flex;gap:6px}
+.p-actions .btn{padding:8px 12px;font-size:12px}
+
+/* ÇOKLU SEÇİM & TOPLU AKSİYON ALTI BARI */
+.selection-bar{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(140%);
+  background:rgba(18,23,33,.96);backdrop-filter:blur(16px);
+  border:2px solid var(--bl);border-radius:16px;padding:12px 24px;
+  display:flex;align-items:center;gap:20px;z-index:110;box-shadow:0 12px 40px rgba(0,0,0,.8);
+  transition:transform .3s cubic-bezier(.2,.9,.3,1);
+}
+.selection-bar.show{transform:translateX(-50%) translateY(0)}
+.sel-info b{color:var(--bl);font-size:15px}
+.sel-info span{color:var(--green);font-size:18px;font-weight:900;margin-left:6px}
+
+/* TOAST */
+.toast-msg{
+  position:fixed;bottom:28px;right:28px;z-index:300;
+  background:#141d2d;border:1.5px solid var(--green);color:#fff;
+  padding:12px 20px;border-radius:10px;font-size:13.5px;font-weight:800;
+  box-shadow:0 8px 24px rgba(0,0,0,.8);display:flex;align-items:center;gap:8px;
+  transform:translateY(150%);opacity:0;transition:.3s;
+}
+.toast-msg.show{transform:translateY(0);opacity:1}
+
+/* SEPET */
+.cart-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(5px);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s}
+.cart-backdrop.open{opacity:1;pointer-events:auto}
+.cart-panel{
+  position:fixed;top:0;right:0;bottom:0;width:min(480px,94vw);
+  background:#10141d;border-left:1px solid var(--line);z-index:201;
+  display:flex;flex-direction:column;transform:translateX(100%);transition:transform .35s;
+}
+.cart-panel.open{transform:translateX(0)}
+.cart-head{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-bottom:1px solid var(--line)}
+.close-btn{background:none;border:0;color:var(--mu);font-size:22px}
+.cart-body{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:16px}
+.cart-items{display:flex;flex-direction:column;gap:10px}
+.cart-item{display:flex;align-items:center;gap:10px;background:var(--card);padding:10px 12px;border-radius:10px;border:1px solid var(--line)}
+.cart-item-info{flex:1}
+.cart-item-title{font-size:13px;font-weight:700}
+.cart-item-price{font-size:12px;color:var(--bl);font-weight:700}
+.qty-ctrls{display:flex;align-items:center;gap:6px;margin-top:4px}
+.qty-btn{width:22px;height:22px;border-radius:5px;background:#090d14;border:1px solid var(--line);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px}
+.del-btn{background:none;border:0;color:var(--red);padding:2px 6px;font-size:12px}
+.checkout-form{background:#0a0e16;border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.checkout-form h4{font-size:13px;font-weight:800;border-bottom:1px solid var(--line);padding-bottom:6px}
+.checkout-form input,.checkout-form textarea{background:var(--card);border:1px solid var(--line);padding:8px 10px;border-radius:6px;font-size:12.5px}
+.cart-foot{padding:16px 22px;border-top:1px solid var(--line);background:#0d1118}
+.total-row{display:flex;justify-content:space-between;align-items:center;font-size:16px;font-weight:800;margin-bottom:12px}
+.total-val{font-size:24px;color:var(--green)}
+
+footer{border-top:1px solid var(--line);padding:28px 20px;text-align:center;color:var(--mu);font-size:13px}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="#top" class="brand-link">
+    <svg class="brand-logo-svg" viewBox="0 0 48 48">
+      <defs>
+        <linearGradient id="shdGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#2f80ff"/><stop offset="100%" stop-color="#0a1f4d"/></linearGradient>
+        <linearGradient id="irisGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00d2ff"/><stop offset="100%" stop-color="#2f80ff"/></linearGradient>
+      </defs>
+      <rect width="48" height="48" rx="12" fill="url(#shdGrad)"/>
+      <path d="M24 6 L40 12 V24 C40 33 33 40 24 43 C15 40 8 33 8 24 V12 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5"/>
+      <circle cx="24" cy="24" r="11" fill="#0b101c" stroke="url(#irisGrad)" stroke-width="2"/>
+      <circle cx="24" cy="24" r="4" fill="#00d2ff"/>
+      <circle cx="36" cy="12" r="2.2" fill="#ff385c"/>
+    </svg>
+    <div class="brand-titles">
+      <div class="brand-main">VISION<b>.</b></div>
+      <div class="brand-sub">ELECTRONICS</div>
+    </div>
+  </a>
+
+  <nav>
+    <a href="#catalog" data-i="n2">Katalog & Sistem Seçimi</a>
+    <a href="#contact" data-i="n5">Mühendis İletişim</a>
+  </nav>
+
+  <div class="lang" id="lang"></div>
+
+  <button class="cart-trigger" onclick="toggleCart()">
+    <span>🛒</span>
+    <span class="badge" id="cartBadge">0</span>
+  </button>
+</header>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <div class="hero-inner">
+    <div class="tag-badge">
+      <span class="live-dot"></span>
+      <span class="tag-text">CCTV · NETWORK POE · WI-FI · ALARM</span>
+    </div>
+    <h1>Profesyonel Güvenlik ve Ağ Donanımları</h1>
+    <p>Hikvision, MikroTik, Pro Look ve TVT markalı orijinal IP/Analog kameralar, NVR sunucuları, PoE switchler, Wi-Fi 6 altyapısı ve kablosuz alarm çözümleri.</p>
+    <div class="hero-btns">
+      <a class="btn" href="#catalog">Katalog Terminaline Git ⬇</a>
+      <a class="btn green" href="https://wa.me/995557030033" target="_blank">WhatsApp Mühendis Hattı</a>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+   PENCERELİ / KOMPAKT KATALOG TERMİNALİ
+   ========================================================= -->
+<section class="catalog-section" id="catalog">
+  <div class="sec-head">
+    <span class="sec-tag">EKİPMAN TERMİNALİ</span>
+    <h2 class="sec-title">Marka ve Donanım Seçim Paneli</h2>
+    <p class="sec-desc">Aşağıdan bir marka seçin; altındaki kamera, kayıt cihazı, switch, wi-fi veya alarm kategorilerinden istediğiniz donanımı pratikçe listeleyin.</p>
+  </div>
+
+  <!-- KONTROL PANELİ (MARKA + SEGMENT) -->
+  <div class="unified-filter-panel">
+    
+    <!-- 1. SEVİYE: MARKA SEÇİCİ -->
+    <div class="filter-row-label">
+      <span>1. ADIM</span> MARKA SEÇİMİ (TÜM SİSTEMLER TEK MERKEZDE)
+    </div>
+    <div class="brand-selector-grid">
+      <div class="b-btn active" onclick="setBrand('all', this)">
+        <b style="font-size:14px;color:#fff">TÜMÜ</b>
+        <span class="b-subtext">Tüm Markalar</span>
+      </div>
+      <div class="b-btn" onclick="setBrand('hikvision', this)">
+        <span class="logo-hikvision" style="font-size:15px"><span class="h">HIK</span><span class="v">VISION</span></span>
+        <span class="b-subtext">CCTV, PoE, Alarm</span>
+      </div>
+      <div class="b-btn" onclick="setBrand('microtik', this)">
+        <span class="logo-microtik" style="font-size:15px">Mikro<span>Tik</span></span>
+        <span class="b-subtext">Router, PoE, Wi-Fi</span>
+      </div>
+      <div class="b-btn" onclick="setBrand('prolook', this)">
+        <span class="logo-prolook" style="font-size:15px">PRO<b>LOOK</b></span>
+        <span class="b-subtext">Metal Kasa CCTV</span>
+      </div>
+      <div class="b-btn" onclick="setBrand('tvt', this)">
+        <span class="logo-tvt" style="font-size:15px">TVT</span>
+        <span class="b-subtext">AI Smart CCTV</span>
+      </div>
+    </div>
+
+    <!-- 2. SEVİYE: ALT SEGMENTLER / TİP SEÇİMİ -->
+    <div class="filter-row-label">
+      <span>2. ADIM</span> DONANIM TÜRÜ SEÇİN (KAMERA, AĞ VEYA GÜVENLİK)
+    </div>
+    <div class="segment-pills-row" id="segmentPills">
+      <!-- Dinamik Olarak JavaScript Doldurur -->
+    </div>
+  </div>
+
+  <!-- PENCERELİ KATALOG TERMİNALİ (AŞAĞIYA UZAYIP GİTMEZ) -->
+  <div class="catalog-window">
+    <div class="window-topbar">
+      <div class="window-info">
+        <span class="status-pill">Filtre: <b id="lblCurrentFilter">Tümü / Tümü</b></span>
+        <span class="status-pill">Mevcut Donanım: <b id="lblItemCount">0</b> Ürün</span>
+      </div>
+      <div class="window-search">
+        <span style="margin-right:6px">🔍</span>
+        <input type="text" id="searchInput" placeholder="Model, çözünürlük veya özellik ara..." oninput="handleSearch()">
+      </div>
+    </div>
+
+    <!-- İç Kaydırmalı Kart Alanı -->
+    <div class="window-scrollable-body" id="catalogCards"></div>
+  </div>
+</section>
+
+<!-- İLETİŞİM -->
+<section id="contact" style="padding:40px 24px 80px;max-width:1300px;margin:0 auto">
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:18px;padding:36px;text-align:center">
+    <h2>Mühendislik ve Proje Danışmanlığı</h2>
+    <p style="color:var(--mu);margin-bottom:20px">Tiflis ve Gürcistan genelinde yerinde ücretsiz keşif ve anahtar teslim kurulum teklifi için doğrudan iletişime geçin.</p>
+    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap">
+      <a class="btn" href="tel:+995557030033" style="font-size:15px;padding:12px 24px">📞 +995 557 030 033</a>
+      <a class="btn g" href="mailto:visionel@gmail.com" style="font-size:15px;padding:12px 24px">✉️ visionel@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇİLENLER BARI (STICKY BOTTOM) -->
+<div class="selection-bar" id="selectionBar">
+  <div class="sel-info">
+    <b id="selCountText">0 Ürün Seçildi</b>:
+    <span id="selTotalText">0 GEL</span>
+  </div>
+  <div style="display:flex;gap:10px">
+    <button class="btn" onclick="addSelectedToCart()">🛒 Seçilenleri Sepete Ekle</button>
+    <button class="btn green" onclick="sendSelectedWhatsApp()">💬 WhatsApp'tan Toplu Fiyat İste</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast-msg" id="toastMsg">
+  <span>✓</span> <span id="toastText">Ürün sepete eklendi!</span>
+</div>
+
+<!-- SEPET PANELİ -->
+<div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart()"></div>
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-head">
+    <h3>Alışveriş Sepeti & Teklif</h3>
+    <button class="close-btn" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-body">
+    <div class="cart-items" id="cartItems"></div>
+    <div class="checkout-form">
+      <h4>Müşteri Bilgileri</h4>
+      <input type="text" id="custName" placeholder="Adınız Soyadınız">
+      <input type="tel" id="custPhone" placeholder="Telefon Numaranız (+995 ...)">
+      <input type="text" id="custCity" placeholder="Şehir / İlçe">
+      <textarea id="custNotes" rows="2" placeholder="Montaj veya sipariş notu..."></textarea>
+    </div>
+  </div>
+  <div class="cart-foot">
+    <div class="total-row">
+      <span>Toplam Tutar:</span>
+      <span class="total-val" id="cartTotal">0 GEL</span>
+    </div>
+    <button class="btn green" style="width:100%;justify-content:center;font-size:15px" onclick="checkoutWhatsApp()">
+      Siparişi WhatsApp ile Gönder 🚀
+    </button>
+  </div>
+</div>
+
+<footer>© Vision Electronics · Profesyonel Güvenlik ve Ağ Sistemleri · Tiflis, Gürcistan</footer>
+
+<script>
+/* DİL SÖZLÜĞÜ */
+const T = {
+  tr: { n2:"Katalog & Sistem Seçimi", n5:"Mühendis İletişim" },
+  en: { n2:"Catalog & Systems", n5:"Contact Engineer" },
+  ka: { n2:"კატალოგი", n5:"კონტაქტი" },
+  az: { n2:"Kataloq", n5:"Əlaqə" }
+};
+let lang = localStorage.getItem("vl") || "tr";
+
+/* =========================================================
+   ÜRÜNLERE ÖZEL AYIRT EDİCİ VEKTÖREL ÇİZİMLER (SVG)
+   ========================================================= */
+const SVG_ICONS = {
+  bullet: `<svg viewBox="0 0 64 64" fill="none"><rect x="10" y="24" width="38" height="18" rx="6" fill="#1b2332" stroke="#2f80ff" stroke-width="2"/><path d="M46 22l10-5v30l-10-5z" fill="#2f80ff"/><circle cx="19" cy="33" r="5" fill="#00d2ff"/><circle cx="19" cy="33" r="2" fill="#fff"/><rect x="22" y="42" width="6" height="12" rx="2" fill="#475569"/><path d="M16 54h18" stroke="#475569" stroke-width="3" stroke-linecap="round"/></svg>`,
+  dome: `<svg viewBox="0 0 64 64" fill="none"><path d="M12 40h40v4a4 4 0 01-4 4H16a4 4 0 01-4-4v-4z" fill="#1b2332" stroke="#2f80ff" stroke-width="2"/><path d="M16 40a16 16 0 0132 0z" fill="rgba(47,128,255,0.2)" stroke="#2f80ff" stroke-width="2"/><circle cx="32" cy="36" r="8" fill="#0e131d"/><circle cx="32" cy="36" r="4" fill="#00d2ff"/></svg>`,
+  nvr: `<svg viewBox="0 0 64 64" fill="none"><rect x="8" y="22" width="48" height="20" rx="4" fill="#161f2e" stroke="#2f80ff" stroke-width="2"/><line x1="8" y1="34" x2="56" y2="34" stroke="#28374f" stroke-width="1.5"/><circle cx="15" cy="28" r="2" fill="#25d366"/><circle cx="21" cy="28" r="2" fill="#00d2ff"/><circle cx="27" cy="28" r="2" fill="#ff3b30"/><rect x="42" y="26" width="8" height="4" rx="1" fill="#475569"/></svg>`,
+  switch: `<svg viewBox="0 0 64 64" fill="none"><rect x="6" y="24" width="52" height="16" rx="3" fill="#131b26" stroke="#00d2ff" stroke-width="2"/><rect x="12" y="28" width="5" height="7" rx="1" fill="#2f80ff"/><rect x="20" y="28" width="5" height="7" rx="1" fill="#2f80ff"/><rect x="28" y="28" width="5" height="7" rx="1" fill="#2f80ff"/><rect x="36" y="28" width="5" height="7" rx="1" fill="#2f80ff"/><circle cx="48" cy="31" r="2" fill="#25d366"/><circle cx="53" cy="31" r="2" fill="#ffb703"/></svg>`,
+  wifi: `<svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="34" r="16" fill="#16202f" stroke="#2f80ff" stroke-width="2"/><circle cx="32" cy="34" r="4" fill="#00d2ff"/><path d="M22 22a14 14 0 0120 0" stroke="#00d2ff" stroke-width="2.5" stroke-linecap="round"/><path d="M16 16a22 22 0 0132 0" stroke="rgba(0,210,255,0.4)" stroke-width="2.5" stroke-linecap="round"/></svg>`,
+  alarm: `<svg viewBox="0 0 64 64" fill="none"><rect x="14" y="16" width="36" height="34" rx="6" fill="#1a2332" stroke="#ff3b30" stroke-width="2"/><circle cx="32" cy="30" r="7" fill="#ff3b30" opacity=".3"/><circle cx="32" cy="30" r="4" fill="#ff3b30"/><rect x="22" y="42" width="20" height="2" fill="#fff" opacity=".4"/><path d="M32 10v4" stroke="#ff3b30" stroke-width="2" stroke-linecap="round"/></svg>`
+};
+
+/* =========================================================
+   GENİŞLETİLMİŞ VE MARKA BAZLI ÜRÜN VERİTABANI
+   ========================================================= */
+const PRODUCTS = [
+  /* HIKVISION */
+  {id:'hk_ip1', brand:'hikvision', seg:'cam_ip', icon:'dome', name:'Hikvision 2MP Dome Pro', spec:'1080p · 2.8mm · IR30m', hw:'2MP Full HD', port:'PoE IP', extra:'IP67 Vandal', price:245},
+  {id:'hk_ip2', brand:'hikvision', seg:'cam_ip', icon:'bullet', name:'Hikvision 4MP AcuSense Bullet', spec:'4MP 2K · Akıllı İnsan/Araç', hw:'4MP QHD', port:'PoE IP', extra:'40m EXIR', price:285},
+  {id:'hk_ip3', brand:'hikvision', seg:'cam_ip', icon:'bullet', name:'Hikvision 8MP 4K ColorVu', spec:'4K UltraHD · 7/24 Renkli Gece', hw:'8MP 4K', port:'PoE IP', extra:'60m Renkli', price:380},
+  {id:'hk_ahd1', brand:'hikvision', seg:'cam_ahd', icon:'bullet', name:'Hikvision 2MP Turbo HD Bullet', spec:'1080p Analog · EXIR 20m', hw:'2MP Analog HD', port:'BNC Coax', extra:'IP66 Dış Mekan', price:95},
+  {id:'hk_ahd2', brand:'hikvision', seg:'cam_ahd', icon:'dome', name:'Hikvision 5MP Turbo HD Dome', spec:'5MP Super HD · Dahili Mikrofon', hw:'5MP Coaxial', port:'BNC Coax', extra:'30m IR Gece', price:140},
+  {id:'hk_nvr1', brand:'hikvision', seg:'nvr', icon:'nvr', name:'Hikvision 4 Kanal 4K PoE NVR', spec:'4x PoE Port · 1x SATA 8TB', hw:'4 Kanal 4K', port:'4x PoE', extra:'80 Mbps Bant', price:240},
+  {id:'hk_nvr2', brand:'hikvision', seg:'nvr', icon:'nvr', name:'Hikvision 8 Kanal 4K PoE NVR', spec:'8x Bağımsız PoE · 2x SATA 16TB', hw:'8 Kanal 4K', port:'8x PoE', extra:'160 Mbps Bant', price:380},
+  {id:'hk_sw1', brand:'hikvision', seg:'switch', icon:'switch', name:'Hikvision 8-Port Gigabit PoE Switch', spec:'8x PoE + 2x Uplink (120W)', hw:'8x PoE 100/1000', port:'8 Port PoE', extra:'120W Güç', price:185},
+  {id:'hk_wf1', brand:'hikvision', seg:'wifi', icon:'wifi', name:'Hikvision Tavan Tipi Wi-Fi AP', spec:'Dual-Band Gigabit Access Point', hw:'AC1200 Wi-Fi', port:'PoE Giriş', extra:'Geniş Kapsama', price:190},
+  {id:'hk_al1', brand:'hikvision', seg:'alarm', icon:'alarm', name:'Hikvision AX PRO Kablosuz Alarm Seti', spec:'Panel + PIR Dedektör + Kapı Sensörü', hw:'Kablosuz 868MHz', port:'Wi-Fi / 4G SIM', extra:'Mobil Bildirim', price:540},
+
+  /* MIKROTIK */
+  {id:'mc_ip1', brand:'microtik', seg:'cam_ip', icon:'dome', name:'MikroTik 2MP RouterOS IP Cam', spec:'1080p · L2 Şifreli Veri Akışı', hw:'2MP Full HD', port:'Gigabit PoE', extra:'Metal Gövde', price:250},
+  {id:'mc_ip2', brand:'microtik', seg:'cam_ip', icon:'bullet', name:'MikroTik 4MP Outdoor ProCam', spec:'2K QHD · Endüstriyel IP67', hw:'4MP 2K', port:'Gigabit PoE', extra:'40m Akıllı IR', price:290},
+  {id:'mc_nvr1', brand:'microtik', seg:'nvr', icon:'nvr', name:'MikroTik Cloud Core NVR 8-Port', spec:'8x Gigabit PoE · RouterOS v7', hw:'8 Kanal Cloud', port:'8x Gigabit PoE', extra:'NVMe & SATA', price:390},
+  {id:'mc_sw1', brand:'microtik', seg:'switch', icon:'switch', name:'MikroTik netPOWER 16P PoE Switch', spec:'16x Gigabit PoE+ ve 2x SFP+ 10G', hw:'16 Port Gigabit', port:'PoE+ / SFP+', extra:'Dış Ortam IP55', price:480},
+  {id:'mc_sw2', brand:'microtik', seg:'switch', icon:'switch', name:'MikroTik CRS305 4x SFP+ 10G Fiber', spec:'Yüksek Hızlı Fiber Omurga Anahtar', hw:'4x 10G SFP+', port:'SFP+ Fiber', extra:'RouterOS / SwOS', price:320},
+  {id:'mc_wf1', brand:'microtik', seg:'wifi', icon:'wifi', name:'MikroTik cAP ax Wi-Fi 6 Access Point', spec:'Wi-Fi 6 (802.11ax) Tavan Tipi AP', hw:'Wi-Fi 6 AX1800', port:'PoE Giriş', extra:'Yüksek Yoğunluk', price:240},
+  {id:'mc_wf2', brand:'microtik', seg:'wifi', icon:'wifi', name:'MikroTik Wireless Wire Noktadan Noktaya', spec:'60GHz 1Gbps 200m+ Kablosuz Köprü', hw:'60 GHz Gigabit', port:'1G Duplex', extra:'200m+ Hat Koruması', price:490},
+
+  /* PRO LOOK */
+  {id:'pl_ip1', brand:'prolook', seg:'cam_ip', icon:'dome', name:'Pro Look 2MP Vandal Dome', spec:'1080p · IK10 Darbeye Dayanıklı', hw:'2MP 1080p', port:'PoE IP', extra:'IK10 Metal', price:240},
+  {id:'pl_ip2', brand:'prolook', seg:'cam_ip', icon:'bullet', name:'Pro Look 4MP Smart IR Bullet', spec:'2K QHD · 40m Gece Görüşü', hw:'4MP 2K', port:'PoE IP', extra:'IP67 Su Geçirmez', price:275},
+  {id:'pl_ahd1', brand:'prolook', seg:'cam_ahd', icon:'bullet', name:'Pro Look 2MP AHD Metal Bullet', spec:'1080p AHD/TVI/CVI/CVBS Hibrit', hw:'2MP AHD', port:'BNC Coax', extra:'IP66 Dış Mekan', price:90},
+  {id:'pl_ahd2', brand:'prolook', seg:'cam_ahd', icon:'dome', name:'Pro Look 5MP AHD Metal Dome', spec:'5MP Super HD · Smart EXIR IR', hw:'5MP AHD', port:'BNC Coax', extra:'25m IR Gece', price:135},
+  {id:'pl_nvr1', brand:'prolook', seg:'nvr', icon:'nvr', name:'Pro Look 8 Kanal PoE NVR 4K', spec:'8x PoE Port · H.265+ Sıkıştırma', hw:'8 Kanal 4K', port:'8x PoE', extra:'2x SATA 16TB', price:320},
+  {id:'pl_sw1', brand:'prolook', seg:'switch', icon:'switch', name:'Pro Look 4+2 PoE Ağ Anahtarı', spec:'4x PoE 100M + 2x Uplink', hw:'4 Port PoE', port:'10/100M', extra:'65W Güç', price:110},
+  {id:'pl_al1', brand:'prolook', seg:'alarm', icon:'alarm', name:'Pro Look Kablosuz Akıllı Alarm Kiti', spec:'Dokunmatik Tuş Takımı + Siren + Dedektör', hw:'Tuya Smart Uyumlu', port:'Wi-Fi + GSM', extra:'110dB Harici Siren', price:360},
+
+  /* TVT */
+  {id:'tv_ip1', brand:'tvt', seg:'cam_ip', icon:'dome', name:'TVT 2MP IP Dome S3', spec:'1080p · Kompakt Metal Kasa', hw:'2MP 1080p', port:'PoE IP', extra:'IP67 / IK10', price:240},
+  {id:'tv_ip2', brand:'tvt', seg:'cam_ip', icon:'bullet', name:'TVT 4MP Starlight Bullet A3', spec:'2K QHD · 40m EXIR Gece Görüş', hw:'4MP 2K', port:'PoE IP', extra:'Starlight Sensör', price:280},
+  {id:'tv_ahd1', brand:'tvt', seg:'cam_ahd', icon:'bullet', name:'TVT 2MP TVI Analog Bullet', spec:'1080p · 4-in-1 Hibrit Çıkış', hw:'2MP TVI/AHD', port:'BNC Coax', extra:'IP66 Koruma', price:85},
+  {id:'tv_nvr1', brand:'tvt', seg:'nvr', icon:'nvr', name:'TVT 8 Kanal 4K PoE NVR S3', spec:'8x PoE Port · Akıllı Yüz Analizi', hw:'8 Kanal 4K', port:'8x PoE', extra:'160 Mbps Akış', price:340},
+  {id:'tv_sw1', brand:'tvt', seg:'switch', icon:'switch', name:'TVT 8-Port Gigabit Endüstriyel Switch', spec:'8x PoE Gigabit + SFP Portu', hw:'8x PoE Gigabit', port:'SFP Fiber Destekli', extra:'Ağır Hizmet Kasa', price:210},
+  {id:'tv_al1', brand:'tvt', seg:'alarm', icon:'alarm', name:'TVT Smart PIR & Çevre Koruma Kiti', spec:'Lazer Alan & PIR Entegre Dedektör', hw:'Çevre Güvenlik', port:'Kablolu/Röle', extra:'Yanlış Alarm Filtresi', price:390}
+];
+
+const SEGMENTS = [
+  {id:'all', label:'Tüm Donanımlar', icon:'⚡'},
+  {id:'cam_ip', label:'IP Kameralar', icon:'📹'},
+  {id:'cam_ahd', label:'Analog (AHD) Kameralar', icon:'📽️'},
+  {id:'nvr', label:'NVR Kayıt Cihazları', icon:'📼'},
+  {id:'switch', label:'PoE Switchler', icon:'🔌'},
+  {id:'wifi', label:'Wi-Fi Sistemleri', icon:'📶'},
+  {id:'alarm', label:'Alarm Sistemleri', icon:'🚨'}
+];
+
+/* DURUM BİLGİSİ */
+let currentBrand = 'all';
+let currentSeg = 'all';
+let searchKeyword = '';
+let selectedProductIds = new Set();
+let cart = JSON.parse(localStorage.getItem("v_cart") || "{}");
+
+const $ = id => document.getElementById(id);
+
+function init(){
+  renderBrandHeaderTabs();
+  renderSegmentPills();
+  renderCatalogCards();
+  updateSelectionBar();
+  updateCartUI();
+}
+
+function getBrandBadge(brand){
+  if(brand === 'hikvision') return `<span class="logo-hikvision"><span class="h">HIK</span><span class="v">VISION</span></span>`;
+  if(brand === 'prolook') return `<span class="logo-prolook">PRO<b>LOOK</b></span>`;
+  if(brand === 'microtik') return `<span class="logo-microtik">Mikro<span>Tik</span></span>`;
+  if(brand === 'tvt') return `<span class="logo-tvt">TVT</span>`;
+  return `<span>VISION</span>`;
+}
+
+function setBrand(brand, el){
+  currentBrand = brand;
+  document.querySelectorAll('.b-btn').forEach(b => b.classList.remove('active'));
+  if(el) el.classList.add('active');
+  renderSegmentPills();
+  renderCatalogCards();
+}
+
+function setSegment(segId){
+  currentSeg = segId;
+  renderSegmentPills();
+  renderCatalogCards();
+}
+
+function renderBrandHeaderTabs(){
+  // Dinamik filtre başlığı
+}
+
+function renderSegmentPills(){
+  // Seçili markadaki ürünleri say
+  const availableSegCounts = {};
+  SEGMENTS.forEach(s => availableSegCounts[s.id] = 0);
+
+  PRODUCTS.forEach(p => {
+    if(currentBrand === 'all' || p.brand === currentBrand){
+      availableSegCounts['all']++;
+      if(availableSegCounts[p.seg] !== undefined){
+        availableSegCounts[p.seg]++;
+      }
+    }
+  });
+
+  $("segmentPills").innerHTML = SEGMENTS.map(s => {
+    const count = availableSegCounts[s.id] || 0;
+    // Eğer o markada bu segmentte ürün yoksa butonu devre dışı gibi gösterme veya gizleme
+    const isActive = currentSeg === s.id;
+    return `
+      <button class="seg-pill ${isActive ? 'active' : ''}" onclick="setSegment('${s.id}')">
+        <span>${s.icon}</span>
+        <span>${s.label}</span>
+        <span class="count">${count}</span>
+      </button>
+    `;
+  }).join("");
+}
+
+function handleSearch(){
+  searchKeyword = $("searchInput").value.toLowerCase().trim();
+  renderCatalogCards();
+}
+
+function renderCatalogCards(){
+  let list = PRODUCTS;
+
+  // Marka Filtresi
+  if(currentBrand !== 'all'){
+    list = list.filter(p => p.brand === currentBrand);
+  }
+
+  // Segment Filtresi
+  if(currentSeg !== 'all'){
+    list = list.filter(p => p.seg === currentSeg);
+  }
+
+  // Arama Filtresi
+  if(searchKeyword){
+    list = list.filter(p => 
+      p.name.toLowerCase().includes(searchKeyword) ||
+      p.spec.toLowerCase().includes(searchKeyword) ||
+      p.hw.toLowerCase().includes(searchKeyword)
+    );
+  }
+
+  // Başlık Bilgisi
+  const brandName = currentBrand === 'all' ? 'Tüm Markalar' : currentBrand.toUpperCase();
+  const segObj = SEGMENTS.find(s => s.id === currentSeg);
+  $("lblCurrentFilter").textContent = `${brandName} / ${segObj ? segObj.label : 'Tümü'}`;
+  $("lblItemCount").textContent = list.length;
+
+  if(list.length === 0){
+    $("catalogCards").innerHTML = `
+      <div style="grid-column:1/-1;text-align:center;padding:50px 20px;color:var(--mu)">
+        <div style="font-size:36px;margin-bottom:8px">🔍</div>
+        <b>Bu filtreye uygun donanım bulunamadı.</b>
+        <p style="font-size:12px;margin-top:4px">Lütfen yukarıdan farklı bir segment veya marka seçin.</p>
+      </div>
+    `;
+    return;
+  }
+
+  $("catalogCards").innerHTML = list.map(p => {
+    const isSel = selectedProductIds.has(p.id);
+    return `
+      <div class="p-card ${isSel ? 'selected' : ''}" onclick="toggleProductSelection('${p.id}', event)">
+        <span class="sel-badge">✓ SEÇİLDİ</span>
+        <div class="p-img-box">
+          <div class="card-brand-tag">${getBrandBadge(p.brand)}</div>
+          ${SVG_ICONS[p.icon] || SVG_ICONS.bullet}
+        </div>
+        <div class="p-title">${p.name}</div>
+        <div class="p-specs">
+          <div class="spec-item"><span>Çözünürlük/Tür:</span><span>${p.hw}</span></div>
+          <div class="spec-item"><span>Arayüz/Port:</span><span>${p.port}</span></div>
+          <div class="spec-item"><span>Koruma/Özellik:</span><span>${p.extra}</span></div>
+        </div>
+        <div class="p-price-row">
+          <div class="p-price">${p.price} GEL</div>
+          <div class="p-actions" onclick="event.stopPropagation()">
+            <button class="btn" onclick="addToCart('${p.id}')">🛒 Ekle</button>
+            <a class="btn g" target="_blank" href="https://wa.me/995557030033?text=${encodeURIComponent('Merhaba, ' + p.name + ' stok durumu ve fiyatı nedir?')}">Sor</a>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+/* =========================================================
+   ÇOKLU SEÇİM & SEPET YÖNETİMİ
+   ========================================================= */
+function toggleProductSelection(id, e){
+  if(selectedProductIds.has(id)) selectedProductIds.delete(id);
+  else selectedProductIds.add(id);
+  updateSelectionBar();
+  renderCatalogCards();
+}
+
+function updateSelectionBar(){
+  const count = selectedProductIds.size;
+  const bar = $("selectionBar");
+  if(count > 0){
+    let total = 0;
+    selectedProductIds.forEach(id => {
+      const p = PRODUCTS.find(x => x.id === id);
+      if(p) total += p.price;
+    });
+    $("selCountText").textContent = `${count} Ürün Seçildi`;
+    $("selTotalText").textContent = `${total} GEL`;
+    bar.classList.add("show");
+  } else {
+    bar.classList.remove("show");
+  }
+}
+
+function addSelectedToCart(){
+  selectedProductIds.forEach(id => {
+    cart[id] = (cart[id] || 0) + 1;
+  });
+  selectedProductIds.clear();
+  updateSelectionBar();
+  renderCatalogCards();
+  saveCart();
+  showToast("Seçilen ürünler sepete eklendi!");
+}
+
+function sendSelectedWhatsApp(){
+  if(selectedProductIds.size === 0) return;
+  let text = "Merhaba Vision Electronics, seçtiğim ürünler için toplu fiyat teklifi ve montaj bilgisi istiyorum:%0A%0A";
+  let total = 0;
+  selectedProductIds.forEach(id => {
+    const p = PRODUCTS.find(x => x.id === id);
+    if(p){
+      text += `• ${p.name} (${p.hw}) - ${p.price} GEL%0A`;
+      total += p.price;
+    }
+  });
+  text += `%0AToplam Liste Fiyatı: ${total} GEL`;
+  window.open(`https://wa.me/995557030033?text=${text}`, '_blank');
+}
+
+function addToCart(id){
+  cart[id] = (cart[id] || 0) + 1;
+  saveCart();
+  showToast("Ürün sepete eklendi!");
+}
+
+function saveCart(){
+  localStorage.setItem("v_cart", JSON.stringify(cart));
+  updateCartUI();
+}
+
+function updateCartUI(){
+  const itemsContainer = $("cartItems");
+  let total = 0;
+  let count = 0;
+  let html = '';
+
+  for(const [id, qty] of Object.entries(cart)){
+    const p = PRODUCTS.find(x => x.id === id);
+    if(!p || qty <= 0) continue;
+    count += qty;
+    const sub = p.price * qty;
+    total += sub;
+    html += `
+      <div class="cart-item">
+        <div class="cart-item-info">
+          <div class="cart-item-title">${p.name}</div>
+          <div class="cart-item-price">${p.price} GEL x ${qty} = ${sub} GEL</div>
+          <div class="qty-ctrls">
+            <button class="qty-btn" onclick="modCart('${id}', -1)">-</button>
+            <span style="font-size:12px;font-weight:800;min-width:18px;text-align:center">${qty}</span>
+            <button class="qty-btn" onclick="modCart('${id}', 1)">+</button>
+            <button class="del-btn" onclick="delCart('${id}')">Sil</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  $("cartBadge").textContent = count;
+  $("cartTotal").textContent = `${total} GEL`;
+  itemsContainer.innerHTML = html || '<div style="text-align:center;color:var(--mu);padding:30px">Sepetiniz şu an boş.</div>';
+}
+
+function modCart(id, delta){
+  if(!cart[id]) return;
+  cart[id] += delta;
+  if(cart[id] <= 0) delete cart[id];
+  saveCart();
+}
+
+function delCart(id){
+  delete cart[id];
+  saveCart();
+}
+
+function toggleCart(){
+  $("cartBackdrop").classList.toggle("open");
+  $("cartPanel").classList.toggle("open");
+}
+
+function showToast(msg){
+  const t = $("toastMsg");
+  $("toastText").textContent = msg;
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 2400);
+}
+
+function checkoutWhatsApp(){
+  const name = $("custName").value.trim();
+  const phone = $("custPhone").value.trim();
+  const city = $("custCity").value.trim();
+  const notes = $("custNotes").value.trim();
+
+  let text = "🛒 *YENİ SİPARİŞ / TEKLİF TALEBİ*%0A";
+  text += `👤 *Müşteri:* ${name || 'Belirtilmedi'}%0A`;
+  text += `📞 *Telefon:* ${phone || 'Belirtilmedi'}%0A`;
+  text += `📍 *Konum:* ${city || 'Tiflis'}%0A`;
+  if(notes) text += `📝 *Not:* ${notes}%0A`;
+  text += `%0A📦 *Sipariş Edilen Donanımlar:*%0A`;
+
+  let total = 0;
+  for(const [id, qty] of Object.entries(cart)){
+    const p = PRODUCTS.find(x => x.id === id);
+    if(p && qty > 0){
+      text += `• ${qty}x ${p.name} - ${p.price * qty} GEL%0A`;
+      total += p.price * qty;
+    }
+  }
+
+  text += `%0A💰 *TOPLAM:* ${total} GEL%0A`;
+  text += `Montaj, keşif ve garanti koşulları hakkında bilgi rica ediyorum.`;
+
+  window.open(`https://wa.me/995557030033?text=${text}`, '_blank');
+}
+
+// Başlatıcı
+window.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>
