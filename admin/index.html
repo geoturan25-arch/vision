@@ -1,20 +1,131 @@
-[
-  {
-    "id": 1,
-    "brand": "Hikvision",
-    "name": "DS-2CD1041G2-LIU",
-    "category": "ip",
-    "price": 120,
-    "specs": "4 MP, 2.8mm, Smart Hybrid Light, PoE",
-    "image": "https://example.com/camera1.jpg"
-  },
-  {
-    "id": 2,
-    "brand": "Uniview",
-    "name": "IPC2122LB-AF40WK-F",
-    "category": "ip",
-    "price": 95,
-    "specs": "2 MP, Wi-Fi, IR 30m, MicroSD",
-    "image": "https://example.com/camera2.jpg"
-  }
-]
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель управления — Vision Electronics</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1, h2 { color: #1e293b; margin-top: 0; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        button { background: #2563eb; color: white; border: none; padding: 12px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; }
+        button:hover { background: #1d4ed8; }
+        .product-list { margin-top: 30px; border-top: 2px solid #eee; padding-top: 20px; }
+        .product-item { display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 10px 15px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #e2e8f0; }
+        .delete-btn { background: #ef4444; padding: 6px 12px; font-size: 14px; }
+        .delete-btn:hover { background: #dc2626; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Добавление товара в каталог</h1>
+    <form id="add-product-form">
+        <div class="form-group">
+            <label>Название камеры / товара:</label>
+            <input type="text" id="name" placeholder="Например: Hikvision DS-2CD1041G2-LIU" required>
+        </div>
+        <div class="form-group">
+            <label>Бренд:</label>
+            <select id="brand">
+                <option value="Hikvision">Hikvision</option>
+                <option value="HiWatch">HiWatch</option>
+                <option value="Uniview">Uniview</option>
+                <option value="Dahua">Dahua</option>
+                <option value="Другое">Другое</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Категория:</label>
+            <select id="type">
+                <option value="ip">IP камера</option>
+                <option value="analog">Аналоговая камера</option>
+                <option value="nvr">Регистратор (NVR/DVR)</option>
+                <option value="acc">Аксессуары / PoE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Цена (GEL):</label>
+            <input type="number" id="price" placeholder="120" required>
+        </div>
+        <div class="form-group">
+            <label>Характеристики (через запятую):</label>
+            <input type="text" id="spec" placeholder="4 MP, 2.8mm, Ночная подсветка 30m, PoE">
+        </div>
+        <div class="form-group">
+            <label>Ссылка на картинку (URL):</label>
+            <input type="url" id="image" placeholder="https://site.com/image.jpg">
+        </div>
+        <button type="submit">➕ Добавить камеру</button>
+    </form>
+
+    <div class="product-list">
+        <h2>Добавленные товары (<span id="count">0</span>)</h2>
+        <div id="products-container"></div>
+    </div>
+</div>
+
+<script>
+    function getProducts() {
+        return JSON.parse(localStorage.getItem('vision_custom_products') || '[]');
+    }
+
+    function saveProducts(products) {
+        localStorage.setItem('vision_custom_products', JSON.stringify(products));
+        renderProducts();
+    }
+
+    function renderProducts() {
+        const products = getProducts();
+        const container = document.getElementById('products-container');
+        document.getElementById('count').innerText = products.length;
+        container.innerHTML = '';
+
+        products.forEach((p, index) => {
+            const item = document.createElement('div');
+            item.className = 'product-item';
+            item.innerHTML = `
+                <div>
+                    <strong>${p.brand} ${p.name}</strong> — ${p.price} GEL<br>
+                    <small style="color:#666">${p.spec || ''}</small>
+                </div>
+                <button class="delete-btn" onclick="deleteProduct(${index})">Удалить</button>
+            `;
+            container.appendChild(item);
+        });
+    }
+
+    document.getElementById('add-product-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const newProduct = {
+            id: Date.now(),
+            name: document.getElementById('name').value,
+            brand: document.getElementById('brand').value,
+            type: document.getElementById('type').value,
+            price: document.getElementById('price').value,
+            spec: document.getElementById('spec').value,
+            image: document.getElementById('image').value
+        };
+
+        const products = getProducts();
+        products.push(newProduct);
+        saveProducts(products);
+
+        this.reset();
+        alert('Камера успешно добавлена!');
+    });
+
+    function deleteProduct(index) {
+        const products = getProducts();
+        products.splice(index, 1);
+        saveProducts(products);
+    }
+
+    renderProducts();
+</script>
+
+</body>
+</html>
