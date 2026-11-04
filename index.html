@@ -1,0 +1,73 @@
+// Arama filtresi kelimesi
+let catalogSearchQuery = "";
+
+// Arama kutusuna yazı yazıldıkça anında listeyi süzer
+function onSearchCatalog(val){
+  catalogSearchQuery = val.toLowerCase().trim();
+  renderCatalog();
+}
+
+// 1. Hem koddaki ürünleri hem de admin.html'den eklediğin yeni ürünleri birleştirir
+function getAllProducts(){
+  const customProducts = JSON.parse(localStorage.getItem("vision_custom_products") || "[]");
+  return [...customProducts, ...ALL_CATALOG_PRODUCTS];
+}
+
+// 2. Yenilenmiş Katalog Çizim Fonksiyonu
+function renderCatalog(){
+  const t = T[lang];
+  let list = getAllProducts();
+
+  // Kategori Filtresi
+  if(catalogType !== 'all'){
+    list = list.filter(p => p.type === catalogType);
+  }
+
+  // Marka Filtresi
+  if(catalogBrand !== 'all'){
+    list = list.filter(p => p.brand === catalogBrand);
+  }
+
+  // Arama Kelimesi Filtresi
+  if(catalogSearchQuery){
+    list = list.filter(p => 
+      p.name.toLowerCase().includes(catalogSearchQuery) || 
+      (p.res && p.res.toLowerCase().includes(catalogSearchQuery)) ||
+      (p.spec && p.spec.toLowerCase().includes(catalogSearchQuery))
+    );
+  }
+
+  if(list.length === 0){
+    $("cards").innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--mu)">Aradığınız kriterlere uygun ürün bulunamadı.</div>`;
+    return;
+  }
+
+  $("cards").innerHTML = list.map(p => {
+    const isSelected = selectedProductIds.has(p.id);
+    const imgHtml = p.image 
+      ? `<img src="${p.image}" style="max-height:90%;max-width:90%;object-fit:contain">` 
+      : (ICONS[p.icon] || ICONS['bullet']);
+
+    return `
+      <div class="card ${isSelected ? 'selected' : ''}" onclick="toggleProductSelection('${p.id}', event)">
+        <span class="selected-indicator">${t.badge_sel}</span>
+        <div class="im">
+          <div class="card-brand-badge">${getBrandBadge(p.brand)}</div>
+          ${imgHtml}
+        </div>
+        <h3>${p.name}</h3>
+        <div class="spec-row"><span>Özellik</span><span>${p.res || p.spec || '-'}</span></div>
+        <div class="spec-row"><span>Donanım</span><span>${p.lens || '-'}</span></div>
+        <div class="spec-row"><span>Gece/Depolama</span><span>${p.ir || '-'}</span></div>
+        <div class="spec-row"><span>Standart</span><span>${p.ip || '-'}</span></div>
+        <div class="price-tag">${p.price} GEL</div>
+        <div class="card-actions" onclick="event.stopPropagation()">
+          <button class="btn" onclick="addToCart('${p.id}')">🛒 ${t.add_c}</button>
+          <a class="btn g" target="_blank" href="https://wa.me/995557030033?text=${encodeURIComponent('Merhaba, ' + p.name + ' hakkında bilgi ve stok durumu rica ediyorum.')}">
+            ${t.ask}
+          </a>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
