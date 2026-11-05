@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vision Electronics — CCTV, Ağ & Güvenlik Çözümleri</title>
+<style>
+/* =========================================================
+   TİTANYUM & ARKTİK MAVİ — LÜKS, DİNLENDİRİCİ RENK PALETİ
+   ========================================================= */
+:root{
+  color-scheme:dark;
+  --bg:#0b0f17;                /* Kadife yumuşaklığında koyu grafit zemin */
+  --bg-deep:#070a10;           /* Derin bölümler için zemin */
+  --card:#121826;              /* Lüks gece mavisi kart zemini */
+  --card-hover:#182236;        /* Fare üzerine gelince yumuşak açılma */
+  --card-active:#1b2844;       /* Seçili kart zemini */
+  --line:#1e293b;              /* Modern slate çerçeve */
+  --line-light:#2a3a52;        /* İnce detay çerçevesi */
+  --tx:#f1f5f9;                /* Gözü kamaştırmayan buzul beyazı */
+  --tx-soft:#cbd5e1;           /* Yumuşak gövde metni */
+  --mu:#94a3b8;                /* Mat gümüş açıklama rengi */
+  --bl:#3b82f6;                /* Asil safir / arktik mavi */
+  --bl-hover:#2563eb;          /* Buton hover tonu */
+  --bl-soft:rgba(59,130,246,.12); /* Dinlendirici açık mavi dolgu */
+  --cyan:#38bdf8;              /* Soft gök mavisi vurgu */
+  --green:#10b981;             /* Modern zümrüt yeşili (fiyat & onay) */
+  --green-hover:#059669;       /* Koyu zümrüt hover */
+  --red:#ef4444;               /* Yumuşak uyarı kırmızısı */
+  --hik-red:#e11d48;           /* Hikvision kurumsal kırmızı */
+  --yellow:#f59e0b;            /* Sıcak kehribar (TVT) */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--tx);
+  font:14.5px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font-family:inherit;color:inherit}
+button{cursor:pointer}
+
+/* HEADER */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:120;
+  display:flex;align-items:center;gap:16px;padding:14px 32px;
+  background:rgba(11,15,23,.88);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+}
+.brand-link{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-logo-svg{width:36px;height:36px;flex:none}
+.brand-titles{display:flex;flex-direction:column;line-height:1}
+.brand-main{font-size:18px;font-weight:900;letter-spacing:.12em;color:#fff}
+.brand-main b{color:var(--bl)}
+.brand-sub{font-size:8.5px;font-weight:800;letter-spacing:.28em;color:var(--cyan);text-transform:uppercase;margin-top:3px}
+
+nav{display:flex;gap:24px;margin-left:auto;font-size:13.5px;color:var(--mu);font-weight:600}
+nav a{transition:color .2s}
+nav a:hover{color:#fff}
+
+.lang{display:flex;gap:4px}
+.lang button{background:none;border:1px solid var(--line);color:var(--mu);border-radius:6px;padding:4px 8px;font-size:11.5px;font-weight:700}
+.lang button.on{background:var(--bl);border-color:var(--bl);color:#fff}
+
+.cart-trigger{
+  position:relative;background:var(--card);border:1px solid var(--line);
+  color:#fff;border-radius:10px;padding:8px 14px;display:flex;align-items:center;gap:8px;font-weight:700;font-size:13px;
+  transition:all .2s;
+}
+.cart-trigger:hover{border-color:var(--bl);background:var(--card-hover)}
+.badge{background:var(--bl);color:#fff;font-size:11px;font-weight:900;border-radius:20px;padding:2px 7px;min-width:18px;text-align:center}
+@media(max-width:960px){nav{display:none}}
+
+/* HERO & TV SLIDESHOW */
+.hero{
+  position:relative;width:100%;height:85vh;min-height:640px;max-height:850px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;padding:0 24px;border-bottom:1px solid var(--line);background:var(--bg-deep);
+}
+.tv-frame{
+  position:absolute;inset:20px;border-radius:24px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.08);box-shadow:inset 0 0 60px rgba(0,0,0,.85), 0 20px 50px rgba(0,0,0,.6);
+}
+@media(max-width:768px){.tv-frame{inset:8px;border-radius:14px}}
+
+.tv-slide-item{
+  position:absolute;inset:0;background-size:cover;background-position:center;
+  opacity:0;transform:scale(1.05);
+  transition:opacity 1.4s ease-in-out, transform 7s ease-out;
+}
+.tv-slide-item.active{opacity:1;transform:scale(1)}
+
+.tv-backdrop-overlay{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:radial-gradient(circle at 50% 50%, rgba(11,15,23,.78) 0%, rgba(11,15,23,.94) 85%);
+}
+
+.hero-content{
+  position:relative;z-index:10;max-width:820px;text-align:center;margin:0 auto;
+}
+.tag-badge{
+  display:inline-flex;align-items:center;gap:8px;background:var(--bl-soft);
+  border:1px solid rgba(59,130,246,.35);border-radius:30px;padding:6px 16px;margin-bottom:18px;
+  backdrop-filter:blur(10px);
+}
+.tag-badge .live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(16,185,129,.6)}
+.tag-text{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--cyan);text-transform:uppercase}
+h1{font-size:clamp(30px,4.5vw,52px);line-height:1.15;margin-bottom:16px;font-weight:900;color:#fff}
+.hero-content p{color:var(--tx-soft);font-size:16.5px;line-height:1.65;margin:0 auto 28px;max-width:680px}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  background:var(--bl);color:#fff;padding:11px 22px;border-radius:10px;font-weight:700;
+  font-size:13.5px;border:0;transition:all .2s;text-align:center;
+}
+.btn:hover{background:var(--bl-hover);transform:translateY(-1px)}
+.btn.g{background:var(--card);border:1px solid var(--line-light);color:var(--tx)}
+.btn.g:hover{background:var(--card-hover);border-color:var(--bl)}
+.btn.green{background:var(--green);color:#fff}
+.btn.green:hover{background:var(--green-hover)}
+
+/* LOGOLAR */
+.logo-hikvision{font-family:'Arial Black', Impact, sans-serif;font-weight:900;letter-spacing:-0.5px;text-transform:uppercase}
+.logo-hikvision .h{color:#fff}.logo-hikvision .v{color:var(--hik-red)}
+.logo-prolook{font-weight:900;letter-spacing:.5px;color:#fff}
+.logo-prolook b{color:var(--bl)}
+.logo-microtik{font-family:ui-monospace, monospace;font-weight:900;color:var(--cyan)}
+.logo-microtik span{color:#fff}
+.logo-tvt{font-weight:900;letter-spacing:1px;color:var(--yellow)}
+
+/* ARAMA VE FİLTRE SEGMENTİ */
+.search-hero-bar-container{
+  max-width:1100px;margin:-36px auto 40px;position:relative;z-index:30;padding:0 20px;
+}
+.search-filter-box{
+  background:var(--card);border:1.5px solid var(--line-light);border-radius:16px;
+  padding:10px 14px;display:flex;align-items:center;gap:12px;
+  box-shadow:0 14px 35px rgba(0,0,0,.5);transition:border-color .2s;
+}
+.search-filter-box:focus-within{border-color:var(--bl)}
+.search-icon{font-size:19px;margin-left:6px;opacity:.7}
+.search-input-lg{
+  flex:1;background:none;border:none;outline:none;color:#fff;
+  font-size:15.5px;font-weight:600;padding:8px 0;
+}
+.search-input-lg::placeholder{color:var(--mu);font-weight:400}
+
+.filter-btn-trigger{
+  background:#0e1420;border:1px solid var(--line-light);color:#fff;
+  padding:10px 18px;border-radius:10px;font-weight:700;font-size:13.5px;
+  display:inline-flex;align-items:center;gap:8px;position:relative;
+}
+.filter-btn-trigger:hover{border-color:var(--bl);background:var(--card-hover)}
+
+.filter-dropdown-menu{
+  position:absolute;top:calc(100% + 12px);right:0;width:340px;
+  background:var(--card);border:1.5px solid var(--line-light);border-radius:14px;
+  padding:18px;box-shadow:0 18px 45px rgba(0,0,0,.7);display:none;flex-direction:column;gap:14px;
+  z-index:80;
+}
+.filter-dropdown-menu.open{display:flex}
+.f-group-title{font-size:11.5px;font-weight:800;color:var(--bl);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.f-select-native{
+  width:100%;background:#090d14;border:1px solid var(--line);color:#fff;
+  padding:9px 12px;border-radius:8px;font-size:13px;outline:none;
+}
+
+/* KATALOG BÖLÜMÜ */
+.catalog-section{padding:20px 24px 60px;max-width:1300px;margin:0 auto}
+.sec-head{margin-bottom:20px}
+.sec-tag{color:var(--cyan);font-size:11.5px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;margin-bottom:6px;display:block}
+.sec-title{font-size:28px;font-weight:900;margin-bottom:6px;color:#fff}
+.sec-desc{color:var(--mu);font-size:14px}
+
+.unified-filter-panel{
+  background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:18px;margin-bottom:18px;
+}
+.filter-row-label{
+  font-size:11px;font-weight:800;color:var(--mu);text-transform:uppercase;
+  letter-spacing:.1em;margin-bottom:10px;display:flex;align-items:center;gap:6px;
+}
+.filter-row-label span{color:var(--bl)}
+
+.brand-selector-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:16px;
+}
+.b-btn{
+  background:#0c111a;border:1.5px solid var(--line);border-radius:10px;padding:12px 10px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  transition:all .2s;cursor:pointer;
+}
+.b-btn:hover{border-color:var(--line-light);background:#101724}
+.b-btn.active{border-color:var(--bl);background:var(--card-active)}
+.b-btn .b-subtext{font-size:10px;color:var(--mu);font-weight:600}
+
+.segment-pills-row{
+  display:flex;flex-wrap:wrap;gap:8px;padding-top:14px;border-top:1px dashed var(--line);
+}
+.seg-pill{
+  background:#0c111a;border:1px solid var(--line);color:var(--tx);
+  border-radius:8px;padding:7px 14px;font-size:12.5px;font-weight:700;
+  display:inline-flex;align-items:center;gap:6px;transition:all .2s;
+}
+.seg-pill:hover{border-color:var(--line-light);background:#131c2c}
+.seg-pill.active{background:var(--bl-soft);border-color:var(--bl);color:#fff}
+.seg-pill .count{background:rgba(255,255,255,.08);border-radius:8px;padding:1px 6px;font-size:11px}
+
+/* PENCERELİ KATALOG */
+.catalog-window{
+  background:#0c1018;border:1.5px solid var(--line);border-radius:16px;
+  overflow:hidden;display:flex;flex-direction:column;box-shadow:0 14px 35px rgba(0,0,0,.4);
+}
+.window-topbar{
+  background:#111724;padding:12px 18px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+}
+.status-pill{background:#161f30;border:1px solid var(--line-light);padding:4px 10px;border-radius:20px;font-size:12px;font-weight:700}
+.status-pill b{color:var(--bl)}
+
+.window-scrollable-body{
+  max-height:650px;overflow-y:auto;padding:20px;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:16px;
+  scrollbar-width:thin;scrollbar-color:var(--line-light) transparent;
+}
+.window-scrollable-body::-webkit-scrollbar{width:8px}
+.window-scrollable-body::-webkit-scrollbar-thumb{background:var(--line-light);border-radius:4px}
+
+.p-card{
+  background:var(--card);border:1.5px solid var(--line);border-radius:12px;
+  padding:14px;display:flex;flex-direction:column;transition:all .2s ease;
+  position:relative;cursor:pointer;user-select:none;
+}
+.p-card:hover{border-color:var(--line-light);transform:translateY(-2px);background:var(--card-hover)}
+.p-card.selected{border-color:var(--bl);background:var(--card-active)}
+.sel-badge{
+  position:absolute;top:10px;right:10px;z-index:4;
+  background:var(--bl);color:#fff;font-size:10px;font-weight:900;
+  padding:3px 8px;border-radius:12px;display:none;
+}
+.p-card.selected .sel-badge{display:inline-block}
+
+.p-img-box{
+  height:140px;border-radius:8px;background:#080c13;
+  display:flex;align-items:center;justify-content:center;margin-bottom:12px;
+  border:1px solid rgba(255,255,255,.05);position:relative;overflow:hidden;
+}
+.p-img-box img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .4s ease}
+.p-card:hover .p-img-box img{transform:scale(1.06)}
+
+.card-brand-tag{
+  position:absolute;top:8px;left:8px;background:rgba(11,15,23,.9);
+  border:1px solid var(--line);border-radius:6px;padding:3px 7px;font-size:10px;z-index:3;
+}
+
+.p-title{font-size:14px;font-weight:800;margin-bottom:6px;line-height:1.35;color:#fff}
+.p-specs{display:flex;flex-direction:column;gap:3px;margin-bottom:12px}
+.spec-item{display:flex;justify-content:space-between;font-size:11.5px;color:var(--mu);border-bottom:1px dashed rgba(255,255,255,.06);padding-bottom:2px}
+.spec-item span:last-child{color:var(--tx);font-weight:600}
+.p-price-row{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:8px}
+.p-price{font-size:18px;font-weight:900;color:var(--green)}
+.p-actions{display:flex;gap:6px}
+.p-actions .btn{padding:8px 12px;font-size:12px}
+
+/* HAKKIMIZDA */
+.about-section{
+  padding:70px 24px;max-width:1300px;margin:0 auto;border-top:1px solid var(--line);
+}
+.about-grid{
+  display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;
+}
+@media(max-width:900px){.about-grid{grid-template-columns:1fr}}
+.about-stats{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:16px;
+}
+.stat-box{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;
+  text-align:center;
+}
+.stat-num{font-size:32px;font-weight:900;color:var(--bl);margin-bottom:4px}
+.stat-txt{font-size:12.5px;color:var(--mu);font-weight:600}
+
+/* PROJELERİMİZ */
+.projects-section{
+  padding:60px 0 90px;overflow:hidden;border-top:1px solid var(--line);
+  background:linear-gradient(180deg, var(--bg) 0%, #080c14 100%);
+}
+.projects-head{max-width:1300px;margin:0 auto 28px;padding:0 24px}
+
+.marquee-container{
+  width:100%;overflow:hidden;position:relative;display:flex;
+}
+.marquee-container::before, .marquee-container::after{
+  content:"";position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none;
+}
+.marquee-container::before{left:0;background:linear-gradient(90deg, var(--bg), transparent)}
+.marquee-container::after{right:0;background:linear-gradient(270deg, var(--bg), transparent)}
+
+.marquee-track{
+  display:flex;gap:24px;width:max-content;
+  animation:marqueeLeftToRight 36s linear infinite;
+}
+.marquee-track:hover{animation-play-state:paused}
+
+@keyframes marqueeLeftToRight{
+  0%{transform:translateX(-50%)}
+  100%{transform:translateX(0)}
+}
+
+.project-card{
+  width:380px;height:400px;background:var(--card);border:1.5px solid var(--line);
+  border-radius:16px;overflow:hidden;display:flex;flex-direction:column;
+  position:relative;flex:none;transition:transform .3s, border-color .3s;cursor:pointer;
+}
+.project-card:hover{
+  transform:translateY(-6px);border-color:var(--bl);
+}
+.project-card.flagship{
+  border-color:rgba(59,130,246,.5);background:linear-gradient(180deg, #131d2e 0%, #0f1522 100%);
+}
+.project-img{
+  height:210px;position:relative;overflow:hidden;background:#05070c;
+}
+.project-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.project-card:hover .project-img img{transform:scale(1.06)}
+.project-tag{
+  position:absolute;bottom:10px;left:12px;background:rgba(11,15,23,.88);
+  backdrop-filter:blur(6px);border:1px solid var(--line);padding:4px 10px;
+  border-radius:20px;font-size:11px;font-weight:800;color:var(--cyan);
+}
+.project-badge-corner{
+  position:absolute;top:10px;right:10px;background:var(--bl);color:#fff;
+  font-size:10px;font-weight:900;padding:3px 8px;border-radius:6px;letter-spacing:.05em;
+}
+
+.project-body{padding:18px;display:flex;flex-direction:column;flex:1}
+.project-body h3{font-size:16.5px;font-weight:800;margin-bottom:6px;color:#fff}
+.project-body p{font-size:12.5px;color:var(--mu);line-height:1.5;margin-bottom:auto}
+.project-footer-row{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
+.project-loc{font-size:11.5px;font-weight:700;color:var(--cyan);display:flex;align-items:center;gap:4px}
+.project-view-btn{font-size:11.5px;color:var(--bl);font-weight:800}
+
+/* GALERİ MODAL */
+.project-gallery-modal{
+  position:fixed;inset:0;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);
+  z-index:250;display:none;align-items:center;justify-content:center;padding:20px;
+}
+.project-gallery-modal.open{display:flex}
+.gallery-modal-content{
+  background:var(--card);border:1.5px solid var(--line-light);border-radius:18px;
+  max-width:960px;width:100%;max-height:92vh;display:flex;flex-direction:column;
+  overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,.8);
+}
+.gallery-modal-head{
+  display:flex;align-items:center;justify-content:space-between;padding:16px 24px;
+  border-bottom:1px solid var(--line);background:#141c2c;
+}
+.gallery-modal-head h3{font-size:18px;font-weight:900;display:flex;align-items:center;gap:10px;color:#fff}
+.gallery-modal-body{
+  padding:20px;overflow-y:auto;display:flex;flex-direction:column;gap:18px;
+}
+.main-preview-box{
+  width:100%;height:440px;background:#070a10;border-radius:12px;overflow:hidden;
+  border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.main-preview-box img{
+  width:100%;height:100%;object-fit:contain;background:#000;
+}
+.preview-caption{
+  position:absolute;bottom:0;left:0;right:0;background:rgba(11,15,23,.88);
+  backdrop-filter:blur(6px);padding:10px 16px;font-size:13px;font-weight:700;color:#fff;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.thumbs-strip{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:10px;
+}
+.thumb-card{
+  height:85px;background:#090d14;border:1.5px solid var(--line);border-radius:8px;
+  overflow:hidden;cursor:pointer;position:relative;transition:all .2s;
+}
+.thumb-card:hover{border-color:var(--line-light);transform:scale(1.02)}
+.thumb-card.active{border-color:var(--bl)}
+.thumb-card img{width:100%;height:100%;object-fit:cover}
+
+/* SEÇİLENLER BARI */
+.selection-bar{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(140%);
+  background:rgba(18,24,38,.96);backdrop-filter:blur(16px);
+  border:1.5px solid var(--bl);border-radius:14px;padding:12px 24px;
+  display:flex;align-items:center;gap:20px;z-index:110;box-shadow:0 12px 35px rgba(0,0,0,.7);
+  transition:transform .3s cubic-bezier(.2,.9,.3,1);
+}
+.selection-bar.show{transform:translateX(-50%) translateY(0)}
+.sel-info b{color:var(--bl);font-size:15px}
+.sel-info span{color:var(--green);font-size:18px;font-weight:900;margin-left:6px}
+
+/* TOAST */
+.toast-msg{
+  position:fixed;bottom:28px;right:28px;z-index:300;
+  background:#141d2d;border:1.5px solid var(--green);color:#fff;
+  padding:12px 20px;border-radius:10px;font-size:13.5px;font-weight:800;
+  box-shadow:0 8px 24px rgba(0,0,0,.7);display:flex;align-items:center;gap:8px;
+  transform:translateY(150%);opacity:0;transition:.3s;
+}
+.toast-msg.show{transform:translateY(0);opacity:1}
+
+/* SEPET */
+.cart-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s}
+.cart-backdrop.open{opacity:1;pointer-events:auto}
+.cart-panel{
+  position:fixed;top:0;right:0;bottom:0;width:min(480px,94vw);
+  background:#0e131d;border-left:1px solid var(--line);z-index:201;
+  display:flex;flex-direction:column;transform:translateX(100%);transition:transform .35s;
+}
+.cart-panel.open{transform:translateX(0)}
+.cart-head{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-bottom:1px solid var(--line)}
+.close-btn{background:none;border:0;color:var(--mu);font-size:22px}
+.cart-body{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:16px}
+.cart-items{display:flex;flex-direction:column;gap:10px}
+.cart-item{display:flex;align-items:center;gap:10px;background:var(--card);padding:10px 12px;border-radius:10px;border:1px solid var(--line)}
+.cart-item-info{flex:1}
+.cart-item-title{font-size:13px;font-weight:700}
+.cart-item-price{font-size:12px;color:var(--cyan);font-weight:700}
+.qty-ctrls{display:flex;align-items:center;gap:6px;margin-top:4px}
+.qty-btn{width:22px;height:22px;border-radius:5px;background:#090d14;border:1px solid var(--line);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px}
+.del-btn{background:none;border:0;color:var(--red);padding:2px 6px;font-size:12px}
+.checkout-form{background:#090d14;border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.checkout-form h4{font-size:13px;font-weight:800;border-bottom:1px solid var(--line);padding-bottom:6px}
+.checkout-form input,.checkout-form textarea{background:var(--card);border:1px solid var(--line);padding:8px 10px;border-radius:6px;font-size:12.5px}
+.cart-foot{padding:16px 22px;border-top:1px solid var(--line);background:#0b0f17}
+.total-row{display:flex;justify-content:space-between;align-items:center;font-size:16px;font-weight:800;margin-bottom:12px}
+.total-val{font-size:24px;color:var(--green)}
+
+footer{border-top:1px solid var(--line);padding:28px 20px;text-align:center;color:var(--mu);font-size:13px}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="#top" class="brand-link">
+    <svg class="brand-logo-svg" viewBox="0 0 48 48">
+      <defs>
+        <linearGradient id="shdGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#1e3a8a"/></linearGradient>
+      </defs>
+      <rect width="48" height="48" rx="12" fill="url(#shdGrad)"/>
+      <path d="M24 6 L40 12 V24 C40 33 33 40 24 43 C15 40 8 33 8 24 V12 Z" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1.8"/>
+      <circle cx="24" cy="24" r="10" fill="#0b0f17" stroke="#38bdf8" stroke-width="2"/>
+      <circle cx="24" cy="24" r="4" fill="#3b82f6"/>
+      <circle cx="36" cy="12" r="2.2" fill="#ef4444"/>
+    </svg>
+    <div class="brand-titles">
+      <div class="brand-main">VISION<b>.</b></div>
+      <div class="brand-sub">ELECTRONICS</div>
+    </div>
+  </a>
+
+  <nav>
+    <a href="#catalog">Katalog & Arama</a>
+    <a href="#about">Hakkımızda</a>
+    <a href="#projects">Projelerimiz</a>
+    <a href="#contact">Mühendis İletişim</a>
+  </nav>
+
+  <div class="lang" id="lang"></div>
+
+  <button class="cart-trigger" onclick="toggleCart()">
+    <span>🛒</span>
+    <span class="badge" id="cartBadge">0</span>
+  </button>
+</header>
+
+<!-- TV EKRANI HERO -->
+<div class="hero" id="top">
+  <div class="tv-frame">
+    <div class="tv-slide-item active" style="background-image:url('https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=1920&q=80')"></div>
+    <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1549109926-58f039549485?auto=format&fit=crop&w=1920&q=80')"></div>
+    <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1554936970-e49a373f6967?auto=format&fit=crop&w=1920&q=80')"></div>
+    <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1920&q=80')"></div>
+    <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1528312635006-8ea0bc49ec63?auto=format&fit=crop&w=1920&q=80')"></div>
+    <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=1920&q=80')"></div>
+    <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=1920&q=80')"></div>
+    <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=1920&q=80')"></div>
+    <div class="tv-backdrop-overlay"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="tag-badge">
+      <span class="live-dot"></span>
+      <span class="tag-text">CCTV · NETWORK POE · WI-FI · ALARM SİSTEMLERİ</span>
+    </div>
+    <h1>Profesyonel Güvenlik ve Ağ Donanımları</h1>
+    <p>Hikvision, MikroTik, Pro Look ve TVT markalı orijinal IP/Analog kameralar, NVR sunucuları, PoE switchler, Wi-Fi 6 altyapısı ve kablosuz alarm çözümleri.</p>
+    <div class="hero-btns">
+      <a class="btn" href="#catalog">Katalog Terminaline Git ⬇</a>
+      <a class="btn green" href="https://wa.me/995557030033" target="_blank">WhatsApp Mühendis Hattı</a>
+    </div>
+  </div>
+</div>
+
+<!-- ARAMA BAR VE FİLTRELEME -->
+<div class="search-hero-bar-container">
+  <div class="search-filter-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="mainSearchInput" class="search-input-lg" placeholder="Model, çözünürlük veya özellik ara (örn: ColorVu, MikroTik PoE, 4K NVR)..." oninput="syncAndFilter()">
+    
+    <div style="position:relative">
+      <button class="filter-btn-trigger" onclick="toggleFilterMenu()">
+        <span>⚡ Filtrele</span>
+        <span style="font-size:10px">▼</span>
+      </button>
+
+      <div class="filter-dropdown-menu" id="filterDropdownMenu">
+        <div>
+          <div class="f-group-title">Marka Seçin</div>
+          <select class="f-select-native" id="selectBrandQuick" onchange="quickFilterBrand(this.value)">
+            <option value="all">Tüm Markalar (Hikvision, MikroTik, Pro Look, TVT)</option>
+            <option value="hikvision">Hikvision</option>
+            <option value="microtik">MikroTik</option>
+            <option value="prolook">Pro Look</option>
+            <option value="tvt">TVT</option>
+          </select>
+        </div>
+
+        <div>
+          <div class="f-group-title">Donanım Kategorisi</div>
+          <select class="f-select-native" id="selectSegQuick" onchange="quickFilterSeg(this.value)">
+            <option value="all">Tüm Kategoriler</option>
+            <option value="cam_ip">IP Kameralar</option>
+            <option value="cam_ahd">Analog (AHD) Kameralar</option>
+            <option value="nvr">NVR Kayıt Cihazları</option>
+            <option value="switch">PoE Switchler</option>
+            <option value="wifi">Wi-Fi Sistemleri</option>
+            <option value="alarm">Alarm Sistemleri</option>
+          </select>
+        </div>
+
+        <button class="btn" style="width:100%;padding:8px" onclick="toggleFilterMenu()">Uygula & Kapat</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PENCERELİ KATALOG TERMİNALİ -->
+<section class="catalog-section" id="catalog">
+  <div class="sec-head">
+    <span class="sec-tag">EKİPMAN TERMİNALİ</span>
+    <h2 class="sec-title">Marka ve Donanım Seçim Paneli</h2>
+    <p class="sec-desc">Markanızı seçin; altındaki kamera, kayıt cihazı, switch, Wi-Fi veya alarm modellerini anında listeleyin.</p>
+  </div>
+
+  <div class="unified-filter-panel">
+    <div class="filter-row-label">
+      <span>1. ADIM</span> MARKA SEÇİMİ (TÜM SİSTEMLER TEK MERKEZDE)
+    </div>
+    <div class="brand-selector-grid">
+      <div class="b-btn active" onclick="setBrand('all', this)">
+        <b style="font-size:14px;color:#fff">TÜMÜ</b>
+        <span class="b-subtext">Tüm Markalar</span>
+      </div>
+      <div class="b-btn" onclick="setBrand('hikvision', this)">
+        <span class="logo-hikvision" style="font-size:14px"><span class="h">HIK</span><span class="v">VISION</span></span>
+        <span class="b-subtext">CCTV, PoE, Alarm</span>
+      </div>
+      <div class="b-btn" onclick="setBrand('microtik', this)">
+        <span class="logo-microtik" style="font-size:14px">Mikro<span>Tik</span></span>
+        <span class="b-subtext">Router, PoE, Wi-Fi</span>
+      </div>
+      <div class="b-btn" onclick="setBrand('prolook', this)">
+        <span class="logo-prolook" style="font-size:14px">PRO<b>LOOK</b></span>
+        <span class="b-subtext">Metal Kasa CCTV</span>
+      </div>
+      <div class="b-btn" onclick="setBrand('tvt', this)">
+        <span class="logo-tvt" style="font-size:14px">TVT</span>
+        <span class="b-subtext">AI Smart CCTV</span>
+      </div>
+    </div>
+
+    <div class="filter-row-label">
+      <span>2. ADIM</span> DONANIM TÜRÜ SEÇİN
+    </div>
+    <div class="segment-pills-row" id="segmentPills"></div>
+  </div>
+
+  <div class="catalog-window">
+    <div class="window-topbar">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="status-pill">Filtre: <b id="lblCurrentFilter">Tümü / Tümü</b></span>
+        <span class="status-pill">Donanım Sayısı: <b id="lblItemCount">0</b></span>
+      </div>
+    </div>
+    <div class="window-scrollable-body" id="catalogCards"></div>
+  </div>
+</section>
+
+<!-- HAKKIMIZDA -->
+<section class="about-section" id="about">
+  <div class="about-grid">
+    <div>
+      <span class="sec-tag">GÜVENİLİR MÜHENDİSLİK</span>
+      <h2 style="font-size:32px;font-weight:900;margin-bottom:14px">Vision Electronics Hakkında</h2>
+      <p style="color:var(--mu);margin-bottom:16px;line-height:1.7">
+        Vision Electronics; Tiflis, Batum ve tüm Gürcistan genelinde yüksek teknolojili güvenlik sistemleri, kurumsal CCTV altyapısı, MikroTik fiber ve PoE omurga çözümleri sunan yetkili mühendislik firmasıdır.
+      </p>
+      <p style="color:var(--mu);margin-bottom:24px;line-height:1.7">
+        Resmi distribütör garantili Hikvision, MikroTik, Pro Look ve TVT donanımlarıyla fabrikalardan lüks konutlara, otellerden lojistik merkezlerine kadar anahtar teslim projeler üretiyoruz. Tüm sistemler 2 yıl yerinde servis garantisi altındadır.
+      </p>
+      <div style="display:flex;gap:12px">
+        <a class="btn" href="#contact">Mühendis ile Görüş</a>
+        <a class="btn g" href="#projects">Projelerimizi İncele</a>
+      </div>
+    </div>
+
+    <div class="about-stats">
+      <div class="stat-box">
+        <div class="stat-num">500+</div>
+        <div class="stat-txt">Tamamlanan Güvenlik Projesi</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">10+ Yıl</div>
+        <div class="stat-txt">Sektörel Altyapı Deneyimi</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">2 Yıl</div>
+        <div class="stat-txt">Resmi Donanım & Servis Garantisi</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">7/24</div>
+        <div class="stat-txt">Mühendislik & Teknik Destek</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJELERİMİZ -->
+<section class="projects-section" id="projects">
+  <div class="projects-head">
+    <span class="sec-tag">REFERANSLARIMIZ & SAHA UYGULAMALARI</span>
+    <h2 style="font-size:28px;font-weight:900;margin-bottom:6px">Tamamlanan Örnek Projelerimiz</h2>
+    <p style="color:var(--mu);font-size:14px">Karta tıklayarak <strong>Digomi Project</strong>'in 28 kameralı gerçek ekran ve saha fotoğraflarını inceleyebilirsiniz.</p>
+  </div>
+
+  <div class="marquee-container">
+    <div class="marquee-track" id="marqueeTrack">
+      
+      <!-- 1. DİGOMİ PROJECT -->
+      <div class="project-card flagship" onclick="openDigomiGallery()">
+        <span class="project-badge-corner">★ CANLI SAHA</span>
+        <div class="project-img">
+          <img src="digomi-5.jpg" onerror="this.src='https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=700&q=80'" alt="Digomi Project Hikvision Matrix">
+          <span class="project-tag">28 Kamera · Hikvision NVR</span>
+        </div>
+        <div class="project-body">
+          <h3>Digomi Project (Spor & Yaşam Kompleksi)</h3>
+          <p><strong>Tamamladığımız 28 Kameralık Proje:</strong> Yarı olimpik havuz, fitness salonu, turnike geçişleri ve çevre güvenliğinin 28 Hikvision IP kamera ve 32-kanal NVR ile anahtar teslim kurulumu.</p>
+          <div class="project-footer-row">
+            <span class="project-loc">📍 Dighomi, Tiflis / Gürcistan</span>
+            <span class="project-view-btn">5 Fotoğrafı Gör 🔍</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. TİFLİS LOJİSTİK -->
+      <div class="project-card">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=700&q=80" alt="Lojistik Merkezi">
+          <span class="project-tag">CCTV & PoE Ağı</span>
+        </div>
+        <div class="project-body">
+          <h3>Tiflis Uluslararası Lojistik Merkezi</h3>
+          <p>64 Kanal Hikvision 4K IP kamera, MikroTik fiber omurga ve 360 derece çevre güvenlik analitiği.</p>
+          <div class="project-footer-row">
+            <span class="project-loc">📍 Tiflis / Gürcistan</span>
+            <span class="project-view-btn">Detay</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. BATUM RESORT -->
+      <div class="project-card">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80" alt="Batum Resort">
+          <span class="project-tag">Wi-Fi 6 & IP Kamera</span>
+        </div>
+        <div class="project-body">
+          <h3>Batum 5 Yıldızlı Sahil Oteli</h3>
+          <p>MikroTik cAP ax tavan tipi Wi-Fi altyapısı ve 120 adet IK10 vandal-proof dome kamera entegrasyonu.</p>
+          <div class="project-footer-row">
+            <span class="project-loc">📍 Batum / Gürcistan</span>
+            <span class="project-view-btn">Detay</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. KING DAVID -->
+      <div class="project-card">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=700&q=80" alt="İş Merkezi">
+          <span class="project-tag">Yüz Tanıma & Alarm</span>
+        </div>
+        <div class="project-body">
+          <h3>King David Business Plaza</h3>
+          <p>TVT AI yapay zeka destekli yüz tanıma turnike geçişi ve Hikvision AX PRO kablosuz alarm ağı.</p>
+          <div class="project-footer-row">
+            <span class="project-loc">📍 Tiflis Merkez</span>
+            <span class="project-view-btn">Detay</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. SANAYİ TESİSİ -->
+      <div class="project-card">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=700&q=80" alt="Endüstriyel Üretim">
+          <span class="project-tag">Termal & Endüstriyel</span>
+        </div>
+        <div class="project-body">
+          <h3>Rustavi Ağır Sanayi Tesisi</h3>
+          <p>Termal yangın algılama kameraları, patlamaya dayanıklı metal bullet muhafazalar ve 10G uplink.</p>
+          <div class="project-footer-row">
+            <span class="project-loc">📍 Rustavi Sanayi Bölgesi</span>
+            <span class="project-view-btn">Detay</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DİGOMİ MODAL GALERİ -->
+<div class="project-gallery-modal" id="digomiGalleryModal" onclick="closeDigomiGallery(event)">
+  <div class="gallery-modal-content" onclick="event.stopPropagation()">
+    <div class="gallery-modal-head">
+      <div>
+        <h3><span>🏢</span> Digomi Project — Tamamladığımız 28 Kameralık Proje</h3>
+        <p style="font-size:12px;color:var(--mu);margin-top:2px">Dighomi Spor & Yaşam Kompleksi Güvenlik Kamerası Entegrasyonu</p>
+      </div>
+      <button class="close-btn" onclick="closeDigomiGallery()">✕</button>
+    </div>
+
+    <div class="gallery-modal-body">
+      <div class="main-preview-box">
+        <img id="galleryMainImg" src="digomi-5.jpg" onerror="this.src='https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1200&q=80'" alt="Büyük Görünüm">
+        <div class="preview-caption" id="galleryCaption">28 Kameralı Hikvision NVR Merkezi TV İzleme Matrisi (Canlı Yayın Ekranı)</div>
+      </div>
+
+      <div class="thumbs-strip">
+        <div class="thumb-card active" onclick="setGalleryView(0, 'digomi-5.jpg', '28 Kameralı Hikvision NVR Merkezi TV İzleme Matrisi (Canlı Yayın Ekranı)', this)">
+          <img src="digomi-5.jpg" onerror="this.src='https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=300&q=80'" alt="28 Matrix">
+        </div>
+        <div class="thumb-card" onclick="setGalleryView(1, 'digomi-1.jpg', 'Turnike Geçiş & Ana Giriş Güvenlik Kamerası (CCTV Canlı Ekranı)', this)">
+          <img src="digomi-1.jpg" onerror="this.src='https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=300&q=80'" alt="Turnike Girişi">
+        </div>
+        <div class="thumb-card" onclick="setGalleryView(2, 'digomi-3.jpg', 'Yarı Olimpik Yüzme Havuzu Güvenlik Kamerası (CCTV Canlı Ekranı)', this)">
+          <img src="digomi-3.jpg" onerror="this.src='https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=300&q=80'" alt="Havuz">
+        </div>
+        <div class="thumb-card" onclick="setGalleryView(3, 'digomi-4.jpg', 'Fitness & Kardiyo Salonu Güvenlik Kamerası (CCTV Canlı Ekranı)', this)">
+          <img src="digomi-4.jpg" onerror="this.src='https://images.unsplash.com/photo-1528312635006-8ea0bc49ec63?auto=format&fit=crop&w=300&q=80'" alt="Fitness">
+        </div>
+        <div class="thumb-card" onclick="setGalleryView(4, 'digomi-2.jpg', 'Hikvision Bullet Kamera Montajı ve Junction Box Kablolama Sahası', this)">
+          <img src="digomi-2.jpg" onerror="this.src='https://images.unsplash.com/photo-1549109926-58f039549485?auto=format&fit=crop&w=300&q=80'" alt="Montaj Sahası">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- İLETİŞİM -->
+<section id="contact" style="padding:40px 24px 80px;max-width:1300px;margin:0 auto">
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:16px;padding:36px;text-align:center">
+    <h2 style="color:#fff;margin-bottom:8px">Mühendislik ve Proje Danışmanlığı</h2>
+    <p style="color:var(--mu);margin-bottom:20px">Tiflis ve Gürcistan genelinde yerinde ücretsiz keşif ve anahtar teslim kurulum teklifi için doğrudan iletişime geçin.</p>
+    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap">
+      <a class="btn" href="tel:+995557030033" style="font-size:15px;padding:12px 24px">📞 +995 557 030 033</a>
+      <a class="btn g" href="mailto:visionel@gmail.com" style="font-size:15px;padding:12px 24px">✉️ visionel@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇİLENLER BARI -->
+<div class="selection-bar" id="selectionBar">
+  <div class="sel-info">
+    <b id="selCountText">0 Ürün Seçildi</b>:
+    <span id="selTotalText">0 GEL</span>
+  </div>
+  <div style="display:flex;gap:10px">
+    <button class="btn" onclick="addSelectedToCart()">🛒 Seçilenleri Sepete Ekle</button>
+    <button class="btn green" onclick="sendSelectedWhatsApp()">💬 WhatsApp'tan Teklif Al</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast-msg" id="toastMsg">
+  <span>✓</span> <span id="toastText">Ürün sepete eklendi!</span>
+</div>
+
+<!-- SEPET PANELİ -->
+<div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart()"></div>
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-head">
+    <h3>Alışveriş Sepeti & Teklif</h3>
+    <button class="close-btn" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-body">
+    <div class="cart-items" id="cartItems"></div>
+    <div class="checkout-form">
+      <h4>Müşteri Bilgileri</h4>
+      <input type="text" id="custName" placeholder="Adınız Soyadınız">
+      <input type="tel" id="custPhone" placeholder="Telefon Numaranız (+995 ...)">
+      <input type="text" id="custCity" placeholder="Şehir / İlçe">
+      <textarea id="custNotes" rows="2" placeholder="Montaj veya sipariş notu..."></textarea>
+    </div>
+  </div>
+  <div class="cart-foot">
+    <div class="total-row">
+      <span>Toplam Tutar:</span>
+      <span class="total-val" id="cartTotal">0 GEL</span>
+    </div>
+    <button class="btn green" style="width:100%;justify-content:center;font-size:15px" onclick="checkoutWhatsApp()">
+      Siparişi WhatsApp ile Gönder 🚀
+    </button>
+  </div>
+</div>
+
+<footer>© Vision Electronics · Profesyonel Güvenlik ve Ağ Sistemleri · Tiflis, Gürcistan</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+
+/* ÜRÜN VERİTABANI */
+const PRODUCTS = [
+  {
+    id:'hk_ip1', brand:'hikvision', seg:'cam_ip',
+    img:'https://images.unsplash.com/photo-1549109926-58f039549485?auto=format&fit=crop&w=600&q=80',
+    name:'Hikvision DS-2CD2123G0-I 2MP Dome', spec:'1080p · 2.8mm Lens · 30m IR', hw:'2MP Full HD IP', port:'PoE 802.3af', extra:'IP67 / IK10 Darbe Dayanımlı', price:245
+  },
+  {
+    id:'hk_ip2', brand:'hikvision', seg:'cam_ip',
+    img:'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80',
+    name:'Hikvision DS-2CD2043G2-I 4MP AcuSense Bullet', spec:'2K QHD · Akıllı İnsan/Araç Algılama', hw:'4MP 2K IP Bullet', port:'PoE 802.3af', extra:'40m EXIR Gece Görüş', price:285
+  },
+  {
+    id:'hk_ip3', brand:'hikvision', seg:'cam_ip',
+    img:'https://images.unsplash.com/photo-1528312635006-8ea0bc49ec63?auto=format&fit=crop&w=600&q=80',
+    name:'Hikvision DS-2CD2087G2-LU 8MP 4K ColorVu', spec:'4K UltraHD · F1.0 7/24 Renkli Gece', hw:'8MP 4K ColorVu', port:'PoE IP / Audio Mic', extra:'60m Renkli Gece / Dahili Mikrofon', price:380
+  },
+  {
+    id:'hk_ahd1', brand:'hikvision', seg:'cam_ahd',
+    img:'https://images.unsplash.com/photo-1554936970-e49a373f6967?auto=format&fit=crop&w=600&q=80',
+    name:'Hikvision DS-2CE16D0T-IRF 2MP Turbo HD Bullet', spec:'1080p Analog HD · Metal Dış Ortam', hw:'2MP Analog BNC', port:'Koaksiyel BNC', extra:'IP66 Dış Ortam', price:95
+  },
+  {
+    id:'hk_ahd2', brand:'hikvision', seg:'cam_ahd',
+    img:'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=600&q=80',
+    name:'Hikvision DS-2CE78U1T-IT3 5MP Turbo HD Dome', spec:'5MP Super HD · EXIR 40m Gece', hw:'5MP Turbo HD', port:'Koaksiyel BNC', extra:'40m IR Gece / Dahili Ses', price:140
+  },
+  {
+    id:'hk_nvr1', brand:'hikvision', seg:'nvr',
+    img:'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80',
+    name:'Hikvision DS-7608NI-K1/8P 8 Kanal 4K PoE NVR', spec:'8x Bağımsız PoE Port · 1x SATA 8TB', hw:'8 Kanal 4K NVR', port:'8x Dahili PoE', extra:'80 Mbps Bant Genişliği', price:380
+  },
+  {
+    id:'hk_sw1', brand:'hikvision', seg:'switch',
+    img:'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80',
+    name:'Hikvision DS-3E0510P-E 8-Port Gigabit PoE Switch', spec:'8x Gigabit PoE + 2x SFP Uplink (110W)', hw:'8x Gigabit PoE', port:'8 Port PoE (110W)', extra:'Yıldırım Koruması 6kV', price:185
+  },
+  {
+    id:'hk_al1', brand:'hikvision', seg:'alarm',
+    img:'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=600&q=80',
+    name:'Hikvision DS-PWA96-M-WE AX PRO Kablosuz Alarm', spec:'96 Zon Kablosuz Panel + PIR Dedektör + Manyetik Kontak', hw:'Kablosuz Tri-X 868MHz', port:'Wi-Fi / 4G SIM / LAN', extra:'Anlık Mobil Alarm Bildirimi', price:540
+  },
+
+  {
+    id:'mc_ip1', brand:'microtik', seg:'cam_ip',
+    img:'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=600&q=80',
+    name:'MikroTik 4MP Endüstriyel IP Cam', spec:'2K QHD · Kriptolu RouterOS Veri Tüneli', hw:'4MP 2K IP', port:'Gigabit PoE', extra:'IP67 Endüstriyel Metal Kasa', price:290
+  },
+  {
+    id:'mc_sw1', brand:'microtik', seg:'switch',
+    img:'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80',
+    name:'MikroTik netPOWER 16P Ağır Hizmet PoE Switch', spec:'16x Gigabit PoE+ ve 2x SFP+ 10G Uplink', hw:'16x Gigabit PoE+', port:'PoE+ / Çift SFP+ 10G', extra:'Dış Ortam Su Geçirmez Kasa', price:480
+  },
+  {
+    id:'mc_wf1', brand:'microtik', seg:'wifi',
+    img:'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80',
+    name:'MikroTik cAP ax Wi-Fi 6 Tavan Tipi AP', spec:'Wi-Fi 6 Dual-Band Gigabit Access Point', hw:'Wi-Fi 6 AX1800', port:'PoE In & PoE Out', extra:'Yüksek İstemci Kapasitesi', price:240
+  },
+
+  {
+    id:'pl_ip1', brand:'prolook', seg:'cam_ip',
+    img:'https://images.unsplash.com/photo-1549109926-58f039549485?auto=format&fit=crop&w=600&q=80',
+    name:'Pro Look 4MP Smart IR Metal Bullet', spec:'2K QHD · 40m Gece Görüşü', hw:'4MP 2K IP', port:'PoE 802.3af', extra:'IP67 Su Geçirmez', price:275
+  },
+  {
+    id:'pl_nvr1', brand:'prolook', seg:'nvr',
+    img:'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80',
+    name:'Pro Look 8 Kanal 4K Ultra PoE NVR', spec:'8x Dahili PoE · H.265+ · 2x SATA 16TB', hw:'8 Kanal 4K NVR', port:'8x PoE Port', extra:'Ultra H.265+ Sıkıştırma', price:320
+  },
+
+  {
+    id:'tv_ip1', brand:'tvt', seg:'cam_ip',
+    img:'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80',
+    name:'TVT 4MP AI Starlight Bullet TD-9544S3', spec:'2K QHD · Yapay Zeka Yüz & Araç Sınıflandırma', hw:'4MP AI Starlight', port:'PoE IP', extra:'45m EXIR / Dahili Ses', price:280
+  },
+  {
+    id:'tv_nvr1', brand:'tvt', seg:'nvr',
+    img:'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80',
+    name:'TVT 16 Kanal 4K AI Analizli NVR TD-3216B2', spec:'16 Kanal 4K · Çift LAN Gigabit', hw:'16 Kanal 4K Server', port:'Çift Gigabit LAN', extra:'256 Mbps Giriş Bandı', price:510
+  }
+];
+
+const SEGMENTS = [
+  {id:'all', label:'Tüm Donanımlar', icon:'⚡'},
+  {id:'cam_ip', label:'IP Kameralar', icon:'📹'},
+  {id:'cam_ahd', label:'Analog (AHD) Kameralar', icon:'📽️'},
+  {id:'nvr', label:'NVR Kayıt Cihazları', icon:'📼'},
+  {id:'switch', label:'PoE Switchler', icon:'🔌'},
+  {id:'wifi', label:'Wi-Fi Sistemleri', icon:'📶'},
+  {id:'alarm', label:'Alarm Sistemleri', icon:'🚨'}
+];
+
+let currentBrand = 'all';
+let currentSeg = 'all';
+let searchKeyword = '';
+let selectedProductIds = new Set();
+let cart = JSON.parse(localStorage.getItem("v_cart") || "{}");
+
+/* TV SLIDESHOW */
+function initTvSlideshow(){
+  const slides = document.querySelectorAll('.tv-slide-item');
+  if(!slides.length) return;
+  let idx = 0;
+  setInterval(() => {
+    slides[idx].classList.remove('active');
+    idx = (idx + 1) % slides.length;
+    slides[idx].classList.add('active');
+  }, 4200);
+}
+
+function getBrandBadge(brand){
+  if(brand === 'hikvision') return `<span class="logo-hikvision"><span class="h">HIK</span><span class="v">VISION</span></span>`;
+  if(brand === 'prolook') return `<span class="logo-prolook">PRO<b>LOOK</b></span>`;
+  if(brand === 'microtik') return `<span class="logo-microtik">Mikro<span>Tik</span></span>`;
+  if(brand === 'tvt') return `<span class="logo-tvt">TVT</span>`;
+  return `<span>VISION</span>`;
+}
+
+function toggleFilterMenu(){ $("filterDropdownMenu").classList.toggle("open"); }
+
+function quickFilterBrand(val){
+  currentBrand = val;
+  document.querySelectorAll('.b-btn').forEach(b => {
+    b.classList.toggle('active', (val === 'all' && b.innerText.includes('TÜMÜ')) || b.innerHTML.toLowerCase().includes(val));
+  });
+  renderSegmentPills();
+  renderCatalogCards();
+}
+
+function quickFilterSeg(val){
+  currentSeg = val;
+  renderSegmentPills();
+  renderCatalogCards();
+}
+
+function syncAndFilter(){
+  searchKeyword = $("mainSearchInput").value.toLowerCase().trim();
+  renderCatalogCards();
+}
+
+function setBrand(brand, el){
+  currentBrand = brand;
+  $("selectBrandQuick").value = brand;
+  document.querySelectorAll('.b-btn').forEach(b => b.classList.remove('active'));
+  if(el) el.classList.add('active');
+  renderSegmentPills();
+  renderCatalogCards();
+}
+
+function setSegment(segId){
+  currentSeg = segId;
+  $("selectSegQuick").value = segId;
+  renderSegmentPills();
+  renderCatalogCards();
+}
+
+function renderSegmentPills(){
+  const counts = {};
+  SEGMENTS.forEach(s => counts[s.id] = 0);
+
+  PRODUCTS.forEach(p => {
+    if(currentBrand === 'all' || p.brand === currentBrand){
+      counts['all']++;
+      if(counts[p.seg] !== undefined) counts[p.seg]++;
+    }
+  });
+
+  $("segmentPills").innerHTML = SEGMENTS.map(s => {
+    const count = counts[s.id] || 0;
+    const isActive = currentSeg === s.id;
+    return `
+      <button class="seg-pill ${isActive ? 'active' : ''}" onclick="setSegment('${s.id}')">
+        <span>${s.icon}</span>
+        <span>${s.label}</span>
+        <span class="count">${count}</span>
+      </button>
+    `;
+  }).join("");
+}
+
+function renderCatalogCards(){
+  let list = PRODUCTS;
+  if(currentBrand !== 'all') list = list.filter(p => p.brand === currentBrand);
+  if(currentSeg !== 'all') list = list.filter(p => p.seg === currentSeg);
+
+  if(searchKeyword){
+    list = list.filter(p =>
+      p.name.toLowerCase().includes(searchKeyword) ||
+      p.spec.toLowerCase().includes(searchKeyword) ||
+      p.hw.toLowerCase().includes(searchKeyword)
+    );
+  }
+
+  const brandName = currentBrand === 'all' ? 'Tüm Markalar' : currentBrand.toUpperCase();
+  const segObj = SEGMENTS.find(s => s.id === currentSeg);
+  $("lblCurrentFilter").textContent = `${brandName} / ${segObj ? segObj.label : 'Tümü'}`;
+  $("lblItemCount").textContent = list.length;
+
+  if(!list.length){
+    $("catalogCards").innerHTML = `
+      <div style="grid-column:1/-1;text-align:center;padding:50px 20px;color:var(--mu)">
+        <div style="font-size:36px;margin-bottom:8px">🔍</div>
+        <b>Kriterlere uygun donanım bulunamadı.</b>
+      </div>
+    `;
+    return;
+  }
+
+  $("catalogCards").innerHTML = list.map(p => {
+    const isSel = selectedProductIds.has(p.id);
+    return `
+      <div class="p-card ${isSel ? 'selected' : ''}" onclick="toggleProductSelection('${p.id}', event)">
+        <span class="sel-badge">✓ SEÇİLDİ</span>
+        <div class="p-img-box">
+          <div class="card-brand-tag">${getBrandBadge(p.brand)}</div>
+          <img src="${p.img}" alt="${p.name}" loading="lazy">
+        </div>
+        <div class="p-title">${p.name}</div>
+        <div class="p-specs">
+          <div class="spec-item"><span>Çözünürlük/Tür:</span><span>${p.hw}</span></div>
+          <div class="spec-item"><span>Arayüz/Port:</span><span>${p.port}</span></div>
+          <div class="spec-item"><span>Özellik/Standart:</span><span>${p.extra}</span></div>
+        </div>
+        <div class="p-price-row">
+          <div class="p-price">${p.price} GEL</div>
+          <div class="p-actions" onclick="event.stopPropagation()">
+            <button class="btn" onclick="addToCart('${p.id}')">🛒 Ekle</button>
+            <a class="btn g" target="_blank" href="https://wa.me/995557030033?text=${encodeURIComponent('Merhaba, ' + p.name + ' hakkında fiyat rica ediyorum.')}">Sor</a>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+/* MARQUEE ÇOĞALTMA */
+function setupMarquee(){
+  const track = $("marqueeTrack");
+  if(track) track.innerHTML += track.innerHTML;
+}
+
+/* DİGOMİ GALERİ */
+function openDigomiGallery(){
+  $("digomiGalleryModal").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeDigomiGallery(e){
+  if(e && e.target && e.target.closest('.gallery-modal-content')) return;
+  $("digomiGalleryModal").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function setGalleryView(idx, imgUrl, caption, el){
+  $("galleryMainImg").src = imgUrl;
+  $("galleryCaption").textContent = caption;
+  document.querySelectorAll('.thumb-card').forEach(t => t.classList.remove('active'));
+  if(el) el.classList.add('active');
+}
+
+/* SEPET & SEÇİM */
+function toggleProductSelection(id, e){
+  if(selectedProductIds.has(id)) selectedProductIds.delete(id);
+  else selectedProductIds.add(id);
+  updateSelectionBar();
+  renderCatalogCards();
+}
+
+function updateSelectionBar(){
+  const count = selectedProductIds.size;
+  const bar = $("selectionBar");
+  if(count > 0){
+    let total = 0;
+    selectedProductIds.forEach(id => {
+      const p = PRODUCTS.find(x => x.id === id);
+      if(p) total += p.price;
+    });
+    $("selCountText").textContent = `${count} Ürün Seçildi`;
+    $("selTotalText").textContent = `${total} GEL`;
+    bar.classList.add("show");
+  } else {
+    bar.classList.remove("show");
+  }
+}
+
+function addSelectedToCart(){
+  selectedProductIds.forEach(id => { cart[id] = (cart[id] || 0) + 1; });
+  selectedProductIds.clear();
+  updateSelectionBar();
+  renderCatalogCards();
+  saveCart();
+  showToast("Seçilen ürünler sepete eklendi!");
+}
+
+function sendSelectedWhatsApp(){
+  if(!selectedProductIds.size) return;
+  let text = "Merhaba Vision Electronics, seçtiğim donanımlar için teklif rica ediyorum:%0A%0A";
+  let total = 0;
+  selectedProductIds.forEach(id => {
+    const p = PRODUCTS.find(x => x.id === id);
+    if(p){ text += `• ${p.name} - ${p.price} GEL%0A`; total += p.price; }
+  });
+  text += `%0AToplam: ${total} GEL`;
+  window.open(`https://wa.me/995557030033?text=${text}`, '_blank');
+}
+
+function addToCart(id){
+  cart[id] = (cart[id] || 0) + 1;
+  saveCart();
+  showToast("Ürün sepete eklendi!");
+}
+
+function saveCart(){
+  localStorage.setItem("v_cart", JSON.stringify(cart));
+  updateCartUI();
+}
+
+function updateCartUI(){
+  const itemsContainer = $("cartItems");
+  let total = 0;
+  let count = 0;
+  let html = '';
+
+  for(const [id, qty] of Object.entries(cart)){
+    const p = PRODUCTS.find(x => x.id === id);
+    if(!p || qty <= 0) continue;
+    count += qty;
+    const sub = p.price * qty;
+    total += sub;
+    html += `
+      <div class="cart-item">
+        <div class="cart-item-info">
+          <div class="cart-item-title">${p.name}</div>
+          <div class="cart-item-price">${p.price} GEL x ${qty} = ${sub} GEL</div>
+          <div class="qty-ctrls">
+            <button class="qty-btn" onclick="modCart('${id}', -1)">-</button>
+            <span style="font-size:12px;font-weight:800;min-width:18px;text-align:center">${qty}</span>
+            <button class="qty-btn" onclick="modCart('${id}', 1)">+</button>
+            <button class="del-btn" onclick="delCart('${id}')">Sil</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  $("cartBadge").textContent = count;
+  $("cartTotal").textContent = `${total} GEL`;
+  itemsContainer.innerHTML = html || '<div style="text-align:center;color:var(--mu);padding:30px">Sepetiniz boş.</div>';
+}
+
+function modCart(id, delta){
+  if(!cart[id]) return;
+  cart[id] += delta;
+  if(cart[id] <= 0) delete cart[id];
+  saveCart();
+}
+
+function delCart(id){ delete cart[id]; saveCart(); }
+
+function toggleCart(){
+  $("cartBackdrop").classList.toggle("open");
+  $("cartPanel").classList.toggle("open");
+}
+
+function showToast(msg){
+  const t = $("toastMsg");
+  $("toastText").textContent = msg;
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 2400);
+}
+
+function checkoutWhatsApp(){
+  const name = $("custName").value.trim();
+  const phone = $("custPhone").value.trim();
+  const city = $("custCity").value.trim();
+  const notes = $("custNotes").value.trim();
+
+  let text = "🛒 *YENİ SİPARİŞ & TEKLİF TALEBİ*%0A";
+  text += `👤 *Müşteri:* ${name || 'Belirtilmedi'}%0A`;
+  text += `📞 *Telefon:* ${phone || 'Belirtilmedi'}%0A`;
+  text += `📍 *Konum:* ${city || 'Tiflis'}%0A`;
+  if(notes) text += `📝 *Not:* ${notes}%0A`;
+  text += `%0A📦 *Donanım Listesi:*%0A`;
+
+  let total = 0;
+  for(const [id, qty] of Object.entries(cart)){
+    const p = PRODUCTS.find(x => x.id === id);
+    if(p && qty > 0){
+      text += `• ${qty}x ${p.name} - ${p.price * qty} GEL%0A`;
+      total += p.price * qty;
+    }
+  }
+
+  text += `%0A💰 *TOPLAM:* ${total} GEL%0A`;
+  text += `Montaj ve keşif süreci hakkında bilgi rica ediyorum.`;
+  window.open(`https://wa.me/995557030033?text=${text}`, '_blank');
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  initTvSlideshow();
+  setupMarquee();
+  renderSegmentPills();
+  renderCatalogCards();
+  updateSelectionBar();
+  updateCartUI();
+});
+</script>
+</body>
+</html>
