@@ -6,77 +6,88 @@
 <title>Vision Electronics — CCTV, Ağ & Güvenlik Çözümleri</title>
 <style>
 /* =========================================================
-   ATLAS (İPEKSİ SIVI METALİK) SILVER PALETİ
+   MAGNIFIC "LIGHT SILVER" (AÇIK PARLAK GÜMÜŞ & PLATİN) PALETİ
    ========================================================= */
 :root{
-  color-scheme:light;
-  /* Atlas kumaşı gibi yanardöner, saten yansımalı sıvı metalik degrade */
-  --bg-metallic-atlas: 
-    radial-gradient(ellipse at 15% 10%, rgba(255,255,255,0.7) 0%, rgba(210,220,232,0.4) 35%, transparent 60%),
-    radial-gradient(ellipse at 85% 90%, rgba(148,163,184,0.6) 0%, rgba(226,232,240,0.3) 40%, transparent 70%),
-    linear-gradient(135deg, #b0bcc9 0%, #dbe4ec 20%, #9eacbc 42%, #f1f5f9 62%, #8e9cae 82%, #cbd5e1 100%);
-  --card:#ffffff;
-  --card-hover:#f8fafc;
-  --line:#7e8e9f;              /* Tok çelik çerçeve */
-  --line-light:#94a3b8;
-  --tx:#090d16;                /* Derin okunaklı antrasit */
-  --tx-soft:#1e293b;
-  --mu:#475569;
-  --bl:#1d4ed8;                /* Precision Safir Mavi */
-  --bl-hover:#1e40af;
-  --bl-soft:rgba(29,78,216,.1);
-  --cyan:#0284c7;
-  --green:#047857;             /* Koyu Zümrüt */
-  --green-hover:#065f46;
-  --red:#dc2626;
-  --hik-red:#e11d48;
-  --yellow:#d97706;
+  color-scheme: light;
+  /* Magnific açık gümüş vektör dokusu: Temiz, beyaz ışık kırılmalı lüks gümüş degrade */
+  --bg-light-silver: 
+    radial-gradient(ellipse at 15% 15%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.4) 30%, transparent 65%),
+    radial-gradient(ellipse at 85% 85%, rgba(255, 255, 255, 0.9) 0%, rgba(220, 228, 237, 0.45) 35%, transparent 70%),
+    linear-gradient(135deg, 
+      #dbe2e9 0%, 
+      #f4f6f8 14%, 
+      #e1e7ed 28%, 
+      #ffffff 48%, 
+      #e4e9ef 65%, 
+      #f9fafb 80%, 
+      #ced6df 100%
+    );
+
+  --card: #ffffff;
+  --card-hover: #f8fafc;
+  --line: #b8c5d3;             /* Fırçalanmış açık krom çerçeve */
+  --line-light: #d1d9e2;
+  --tx: #0f172a;               /* Tok, okunaklı derin antrasit */
+  --tx-soft: #334155;
+  --mu: #64748b;
+  --bl: #1d4ed8;               /* Precision Safir Mavi */
+  --bl-hover: #1e40af;
+  --bl-soft: rgba(29, 78, 216, 0.08);
+  --cyan: #0284c7;
+  --green: #047857;            /* Zümrüt Yeşil */
+  --green-hover: #065f46;
+  --red: #dc2626;
+  --hik-red: #e11d48;
+  --yellow: #d97706;
 }
+
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
-  background:var(--bg-metallic-atlas);
-  background-attachment:fixed;
-  color:var(--tx);
-  font:14px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-  min-height:100vh;
+  background: var(--bg-light-silver);
+  background-attachment: fixed;
+  color: var(--tx);
+  font: 14px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
 }
 a{color:inherit;text-decoration:none}
 button,input,select,textarea{font-family:inherit;color:inherit}
 button{cursor:pointer}
 
-/* HEADER */
+/* HEADER: Fırçalanmış Açık Gümüş / Buzlu Cam */
 header{
   position:fixed;top:0;left:0;right:0;z-index:120;
   display:flex;align-items:center;gap:14px;padding:10px 28px;
-  background:linear-gradient(180deg, rgba(245,248,251,.96) 0%, rgba(205,215,225,.92) 100%);
-  backdrop-filter:blur(18px);
-  border-bottom:1.5px solid var(--line);
-  box-shadow:0 4px 20px rgba(0,0,0,.1);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(235, 240, 246, 0.90) 100%);
+  backdrop-filter: blur(18px);
+  border-bottom: 1.5px solid var(--line);
+  box-shadow: 0 4px 20px rgba(100, 116, 139, 0.12);
 }
 .brand-link{display:flex;align-items:center;gap:10px;text-decoration:none}
-.brand-logo-svg{width:34px;height:34px;flex:none;filter:drop-shadow(0 2px 4px rgba(0,0,0,.15))}
+.brand-logo-svg{width:34px;height:34px;flex:none;filter:drop-shadow(0 2px 5px rgba(0,0,0,.15))}
 .brand-titles{display:flex;flex-direction:column;line-height:1}
 .brand-main{font-size:17px;font-weight:900;letter-spacing:.12em;color:var(--tx)}
 .brand-main b{color:var(--bl)}
 .brand-sub{font-size:8px;font-weight:800;letter-spacing:.26em;color:var(--cyan);text-transform:uppercase;margin-top:2px}
 
-nav{display:flex;gap:18px;margin-left:auto;font-size:13px;color:var(--mu);font-weight:800}
+nav{display:flex;gap:18px;margin-left:auto;font-size:13px;color:var(--tx-soft);font-weight:800}
 nav a{transition:color .2s}
 nav a:hover{color:var(--bl)}
 
 .header-search-wrap{
   display:flex;align-items:center;background:#fff;border:1px solid var(--line);
   border-radius:20px;padding:4px 10px;width:210px;transition:all .2s;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.03);
 }
-.header-search-wrap:focus-within{border-color:var(--bl);width:250px}
+.header-search-wrap:focus-within{border-color:var(--bl);width:250px;box-shadow:0 0 10px rgba(29,78,216,0.15)}
 .header-search-input{border:none;outline:none;background:none;font-size:12px;color:var(--tx);width:100%;padding:3px}
 
 .lang{display:flex;gap:3px}
 .lang button{
-  background:#fff;border:1px solid var(--line);color:var(--mu);
+  background:#fff;border:1px solid var(--line);color:var(--tx-soft);
   border-radius:6px;padding:4px 7px;font-size:11px;font-weight:800;transition:.2s;
 }
 .lang button:hover{color:var(--bl);border-color:var(--bl)}
@@ -85,13 +96,14 @@ nav a:hover{color:var(--bl)}
 .cart-trigger{
   position:relative;background:#fff;border:1px solid var(--line);
   color:var(--tx);border-radius:8px;padding:6px 12px;display:flex;align-items:center;gap:6px;font-weight:800;font-size:12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.04);
 }
 .badge{background:var(--bl);color:#fff;font-size:10px;font-weight:900;border-radius:20px;padding:1px 6px;min-width:16px;text-align:center}
 @media(max-width:1080px){nav{display:none}.header-search-wrap{width:160px}}
 @media(max-width:768px){.header-search-wrap{display:none}}
 
 /* =========================================================
-   HERO: SİNEMATİK TV EKRANI (SAAT VE REC TAMAMEN SİLİNDİ)
+   HERO: SİNEMATİK TV EKRANI (AÇIK GÜMÜŞ KONTROL ÇERÇEVESİ)
    ========================================================= */
 .hero{
   position:relative;width:100%;height:84vh;min-height:560px;max-height:800px;
@@ -100,8 +112,8 @@ nav a:hover{color:var(--bl)}
 }
 .tv-frame{
   position:absolute;inset:16px;border-radius:18px;overflow:hidden;
-  border:4px solid #334155;
-  box-shadow:inset 0 0 100px rgba(0,0,0,.9), 0 25px 60px rgba(0,0,0,.6);
+  border:4px solid #94a3b8; /* Fırçalanmış açık çelik çerçeve */
+  box-shadow:inset 0 0 100px rgba(0,0,0,.9), 0 25px 60px rgba(0,0,0,.5);
   background:#000;
 }
 .tv-slide-item{
@@ -111,7 +123,6 @@ nav a:hover{color:var(--bl)}
 }
 .tv-slide-item.active{opacity:1;transform:scale(1)}
 
-/* TV SCANLINES & VIGNETTE */
 .tv-scanlines{
   position:absolute;inset:0;z-index:3;pointer-events:none;
   background:linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%);
@@ -122,30 +133,29 @@ nav a:hover{color:var(--bl)}
   background:radial-gradient(circle at 50% 50%, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 90%);
 }
 
-/* ŞEFFAF YAZILAR (SOL ÜSTTE) */
 .hero-content-transparent{
   position:absolute;top:40px;left:40px;z-index:20;
   max-width:540px;text-align:left;background:transparent !important;
 }
 .tag-badge{
-  display:inline-flex;align-items:center;background:rgba(0,0,0,.65);
-  border:1.5px solid rgba(255,255,255,.3);border-radius:30px;padding:6px 16px;margin-bottom:14px;
+  display:inline-flex;align-items:center;background:rgba(0,0,0,.68);
+  border:1.5px solid rgba(255,255,255,.35);border-radius:30px;padding:6px 16px;margin-bottom:14px;
+  backdrop-filter: blur(8px);
 }
 .tag-text{font-size:10.5px;font-weight:900;letter-spacing:.14em;color:#fff;text-transform:uppercase}
 h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weight:900;color:#fff;text-shadow:0 3px 12px rgba(0,0,0,.9)}
-.hero-content-transparent p{color:#e2e8f0;font-size:15px;line-height:1.6;margin-bottom:22px;text-shadow:0 2px 8px rgba(0,0,0,.9)}
+.hero-content-transparent p{color:#f1f5f9;font-size:15px;line-height:1.6;margin-bottom:22px;text-shadow:0 2px 8px rgba(0,0,0,.9)}
 .hero-btns{display:flex;gap:10px;flex-wrap:wrap}
 
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
   background:var(--bl);color:#fff;padding:10px 20px;border-radius:8px;font-weight:800;
-  font-size:13px;border:0;transition:all .2s;text-align:center;box-shadow:0 3px 10px rgba(0,0,0,.3);
+  font-size:13px;border:0;transition:all .2s;text-align:center;box-shadow:0 3px 12px rgba(0,0,0,.25);
 }
-.btn:hover{background:var(--bl-hover);transform:translateY(-1px)}
+.btn:hover{background:var(--bl-hover);transform:translateY(-1px);box-shadow:0 6px 18px rgba(29,78,216,.3)}
 .btn.green{background:var(--green);color:#fff}
-.btn.green:hover{background:var(--green-hover)}
+.btn.green:hover{background:var(--green-hover);box-shadow:0 6px 18px rgba(4,120,87,.3)}
 
-/* MOBİL KURALLARI */
 @media(max-width:768px){
   .hero{
     height:auto;min-height:auto;max-height:none;
@@ -156,9 +166,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
     position:relative;inset:auto;width:100%;height:270px;border-radius:14px;
     border-width:2px;margin-bottom:16px;
   }
-  .hero-content-transparent{
-    position:relative;top:auto;left:auto;max-width:100%;padding:4px;text-align:left;
-  }
+  .hero-content-transparent{position:relative;top:auto;left:auto;max-width:100%;padding:4px}
   h1{font-size:24px;margin-bottom:8px}
   .hero-content-transparent p{font-size:13px;margin-bottom:16px}
   .hero-btns{width:100%;display:grid;grid-template-columns:1fr;gap:8px}
@@ -166,18 +174,18 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 }
 
 /* =========================================================
-   HİZMET ALANLARIMIZ MODAL PENCERESİ (İÇ SAYFA)
+   HİZMET ALANLARIMIZ MODAL PENCERESİ
    ========================================================= */
 .services-modal{
-  position:fixed;inset:0;background:rgba(15,23,42,.85);backdrop-filter:blur(10px);
+  position:fixed;inset:0;background:rgba(15,23,42,.75);backdrop-filter:blur(10px);
   z-index:300;display:none;align-items:center;justify-content:center;padding:16px;
 }
 .services-modal.open{display:flex}
 .services-modal-card{
-  background:linear-gradient(180deg, #ffffff 0%, #eef2f6 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
   border:2px solid var(--line);border-radius:20px;
   max-width:960px;width:100%;max-height:92vh;display:flex;flex-direction:column;
-  overflow:hidden;box-shadow:0 25px 70px rgba(0,0,0,.5);
+  overflow:hidden;box-shadow:0 25px 70px rgba(0,0,0,.35);
 }
 .services-modal-head{
   display:flex;align-items:center;justify-content:space-between;padding:16px 24px;
@@ -199,11 +207,9 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .service-banner h4{font-size:16px;font-weight:900;margin-bottom:4px}
 .service-banner p{font-size:12.5px;line-height:1.6;color:#e0f2fe}
 
-.service-cards-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;
-}
+.service-cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
 .service-box{
-  background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:16px;
+  background:#fff;border:1.5px solid var(--line-light);border-radius:12px;padding:16px;
   display:flex;flex-direction:column;gap:5px;box-shadow:0 2px 8px rgba(0,0,0,.04);
 }
 .service-box:hover{border-color:var(--bl);transform:translateY(-2px)}
@@ -215,15 +221,20 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 /* =========================================================
    KATALOG VE 3 KADEMELİ FİLTRELEME
    ========================================================= */
-.catalog-section{padding:30px 24px 60px;max-width:1300px;margin:0 auto}
-.sec-head{margin-bottom:18px}
+.catalog-section{padding:34px 24px 60px;max-width:1300px;margin:0 auto}
+.sec-head{margin-bottom:20px}
 .sec-tag{color:var(--bl);font-size:11px;font-weight:900;letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px;display:block}
-.sec-title{font-size:26px;font-weight:900;margin-bottom:4px;color:var(--tx)}
-.sec-desc{color:var(--mu);font-size:13.5px}
+.sec-title{font-size:27px;font-weight:900;margin-bottom:4px;color:var(--tx)}
+.sec-desc{color:var(--tx-soft);font-size:13.5px}
 
 .unified-filter-panel{
-  background:#fff;border:1.5px solid var(--line);border-radius:16px;
-  padding:18px;margin-bottom:20px;box-shadow:0 8px 25px rgba(0,0,0,.08);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  border: 1.5px solid var(--line);
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 22px;
+  box-shadow: 0 10px 30px rgba(100, 116, 139, 0.12), inset 0 1px 0 rgba(255,255,255,0.9);
 }
 .filter-row-label{
   font-size:11px;font-weight:900;color:var(--mu);text-transform:uppercase;
@@ -235,30 +246,30 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
   display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:14px;
 }
 .b-btn{
-  background:#f1f5f9;border:1.5px solid var(--line);border-radius:10px;padding:10px 8px;
+  background:#f8fafc;border:1.5px solid var(--line-light);border-radius:10px;padding:10px 8px;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
   transition:all .2s;cursor:pointer;
 }
-.b-btn:hover{border-color:var(--bl);background:#fff}
-.b-btn.active{border-color:var(--bl);background:#eff6ff;box-shadow:0 0 10px rgba(29,78,216,.18)}
+.b-btn:hover{border-color:var(--bl);background:#fff;transform:translateY(-1px)}
+.b-btn.active{border-color:var(--bl);background:#eff6ff;box-shadow:0 0 12px rgba(29,78,216,.2)}
 .b-btn .b-subtext{font-size:9.5px;color:var(--mu);font-weight:700}
 
 .segment-pills-row{
   display:flex;flex-wrap:wrap;gap:6px;padding-top:12px;border-top:1px dashed var(--line);margin-bottom:12px;
 }
 .seg-pill{
-  background:#f1f5f9;border:1px solid var(--line);color:var(--tx);
+  background:#f8fafc;border:1px solid var(--line-light);color:var(--tx);
   border-radius:8px;padding:6px 12px;font-size:11.5px;font-weight:800;
   display:inline-flex;align-items:center;gap:6px;transition:all .2s;
 }
 .seg-pill:hover{border-color:var(--bl);background:#fff}
 .seg-pill.active{background:var(--bl);border-color:var(--bl);color:#fff}
-.seg-pill .count{background:rgba(0,0,0,.08);border-radius:8px;padding:1px 5px;font-size:10px}
+.seg-pill .count{background:rgba(0,0,0,.07);border-radius:8px;padding:1px 5px;font-size:10px}
 .seg-pill.active .count{background:rgba(255,255,255,.25);color:#fff}
 
 .subfilter-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding-top:10px;border-top:1px dashed var(--line)}
 .sub-pill{
-  background:#fff;border:1px solid var(--line);color:var(--tx-soft);
+  background:#fff;border:1px solid var(--line-light);color:var(--tx-soft);
   border-radius:20px;padding:4px 10px;font-size:11px;font-weight:800;transition:.2s;
 }
 .sub-pill:hover{border-color:var(--bl);color:var(--bl)}
@@ -267,13 +278,15 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 /* PENCERELİ KATALOG */
 .catalog-window{
   background:#fff;border:1.5px solid var(--line);border-radius:16px;
-  overflow:hidden;display:flex;flex-direction:column;box-shadow:0 10px 30px rgba(0,0,0,.08);
+  overflow:hidden;display:flex;flex-direction:column;
+  box-shadow: 0 12px 35px rgba(100, 116, 139, 0.12);
 }
 .window-topbar{
-  background:#f1f5f9;padding:10px 18px;border-bottom:1px solid var(--line);
+  background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%);
+  padding:10px 18px;border-bottom:1px solid var(--line-light);
   display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
 }
-.status-pill{background:#fff;border:1px solid var(--line);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:800}
+.status-pill{background:#fff;border:1px solid var(--line-light);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:800}
 .status-pill b{color:var(--bl)}
 
 .window-scrollable-body{
@@ -281,11 +294,8 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
   display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;
 }
 
-/* MOBİLDE YAN YANA 2'Lİ DİZİLİM */
 @media(max-width:768px){
-  .window-scrollable-body{
-    grid-template-columns:repeat(2,1fr);gap:10px;padding:10px;
-  }
+  .window-scrollable-body{grid-template-columns:repeat(2,1fr);gap:10px;padding:10px}
   .p-card{padding:10px !important}
   .p-img-box{height:105px !important}
   .p-title{font-size:12px !important;line-height:1.25 !important}
@@ -295,11 +305,14 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 }
 
 .p-card{
-  background:#fff;border:1.5px solid var(--line);border-radius:12px;
+  background:#fff;border:1.5px solid var(--line-light);border-radius:12px;
   padding:12px;display:flex;flex-direction:column;transition:all .2s ease;
-  position:relative;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.03);
+  position:relative;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.03);
 }
-.p-card:hover{border-color:var(--bl);transform:translateY(-2px);box-shadow:0 8px 20px rgba(29,78,216,.1)}
+.p-card:hover{
+  border-color:var(--bl);transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(29,78,216,.12);
+}
 .p-card.selected{border-color:var(--bl);background:#eff6ff}
 .sel-badge{
   position:absolute;top:8px;right:8px;z-index:4;
@@ -311,19 +324,19 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .p-img-box{
   height:135px;border-radius:8px;background:#f8fafc;
   display:flex;align-items:center;justify-content:center;margin-bottom:10px;
-  border:1px solid var(--line);position:relative;overflow:hidden;
+  border:1px solid var(--line-light);position:relative;overflow:hidden;
 }
 .p-img-box img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
 .p-card:hover .p-img-box img{transform:scale(1.08)}
 
 .card-brand-tag{
   position:absolute;top:6px;left:6px;background:rgba(255,255,255,.94);
-  border:1px solid var(--line);border-radius:6px;padding:2px 5px;font-size:9px;z-index:3;
+  border:1px solid var(--line-light);border-radius:6px;padding:2px 5px;font-size:9px;z-index:3;
 }
 
 .p-title{font-size:13px;font-weight:800;margin-bottom:6px;line-height:1.35;color:var(--tx)}
 .p-specs{display:flex;flex-direction:column;gap:2px;margin-bottom:10px}
-.spec-item{display:flex;justify-content:space-between;font-size:10.5px;color:var(--mu);border-bottom:1px dashed var(--line);padding-bottom:2px}
+.spec-item{display:flex;justify-content:space-between;font-size:10.5px;color:var(--mu);border-bottom:1px dashed var(--line-light);padding-bottom:2px}
 .spec-item span:last-child{color:var(--tx);font-weight:700}
 .p-price-row{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:6px}
 .p-price{font-size:16px;font-weight:900;color:var(--green)}
@@ -339,8 +352,13 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .logo-microtik span{color:var(--tx)}
 .logo-tvt{font-weight:900;letter-spacing:1px;color:var(--yellow)}
 
-/* PROJELER DOKUNMATİK SWIPE */
-.projects-section{padding:50px 0 80px;border-top:1px solid var(--line);background:linear-gradient(180deg, rgba(148,163,184,.6) 0%, rgba(100,116,139,.8) 100%)}
+/* =========================================================
+   PROJELER (LIGHT SILVER ETKİSİ İLE AYDINLIK & LÜKS)
+   ========================================================= */
+.projects-section{
+  padding:50px 0 80px;border-top:1.5px solid var(--line);
+  background: linear-gradient(180deg, rgba(226, 232, 240, 0.75) 0%, rgba(203, 213, 225, 0.85) 100%);
+}
 .projects-head{max-width:1300px;margin:0 auto 16px;padding:0 24px}
 .projects-touch-track{
   display:flex;gap:16px;padding:10px 24px 20px;
@@ -350,12 +368,12 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
   width:320px;height:380px;background:#fff;border:1.5px solid var(--line);
   border-radius:16px;overflow:hidden;display:flex;flex-direction:column;
   position:relative;flex:none;scroll-snap-align:start;transition:transform .2s;cursor:pointer;
-  box-shadow:0 6px 20px rgba(0,0,0,.12);
+  box-shadow:0 8px 24px rgba(100, 116, 139, 0.16);
 }
 .project-card:hover{transform:translateY(-4px);border-color:var(--bl)}
 .project-img{height:180px;position:relative;overflow:hidden;background:#000}
 .project-img img{width:100%;height:100%;object-fit:cover}
-.project-tag{position:absolute;bottom:8px;left:8px;background:rgba(255,255,255,.9);padding:2px 8px;border-radius:12px;font-size:10px;font-weight:800;color:var(--bl)}
+.project-tag{position:absolute;bottom:8px;left:8px;background:rgba(255,255,255,.92);padding:2px 8px;border-radius:12px;font-size:10px;font-weight:800;color:var(--bl)}
 .project-badge-corner{position:absolute;top:8px;right:8px;background:var(--bl);color:#fff;font-size:9px;font-weight:900;padding:2px 6px;border-radius:4px}
 .project-body{padding:14px;display:flex;flex-direction:column;flex:1}
 .project-body h3{font-size:14.5px;font-weight:800;margin-bottom:4px;color:var(--tx)}
@@ -394,7 +412,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .checkout-form{background:#f1f5f9;border-radius:8px;padding:10px;display:flex;flex-direction:column;gap:6px}
 .checkout-form input,.checkout-form textarea{background:#fff;border:1px solid var(--line);padding:6px 8px;border-radius:6px;font-size:11.5px}
 
-footer{border-top:1.5px solid var(--line);padding:20px;text-align:center;color:var(--mu);font-size:12px;background:#fff}
+footer{border-top:1.5px solid var(--line);padding:22px;text-align:center;color:var(--mu);font-size:12px;background:#fff}
 </style>
 </head>
 <body>
@@ -446,12 +464,9 @@ footer{border-top:1.5px solid var(--line);padding:20px;text-align:center;color:v
   </button>
 </header>
 
-<!-- =========================================================
-   HERO: TEMİZ TV EKRANI + 6 YEPYENİ SİNEMATİK GÖRSEL (SAAT/REC YOK)
-   ========================================================= -->
+<!-- HERO: SİNEMATİK TV EKRANI -->
 <div class="hero" id="top">
   <div class="tv-frame">
-    <!-- 6 ADET YEPYENİ, PRESTİJLİ GÜVENLİK VE KONTROL MERKEZİ GÖRSELİ -->
     <div class="tv-slide-item active" style="background-image:url('https://images.unsplash.com/photo-1713173642147-30cbbdb176d5?auto=format&fit=crop&w=1920&q=80')"></div>
     <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1525939815185-7b25b346d3db?auto=format&fit=crop&w=1920&q=80')"></div>
     <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1569515501972-26d4f39c8a93?auto=format&fit=crop&w=1920&q=80')"></div>
@@ -463,7 +478,6 @@ footer{border-top:1.5px solid var(--line);padding:20px;text-align:center;color:v
     <div class="tv-vignette"></div>
   </div>
 
-  <!-- SOL ÜSTTE ŞEFFAF YAZILAR (FAZLADAN BUTON/REC YOK) -->
   <div class="hero-content-transparent">
     <div class="tag-badge">
       <span class="tag-text" id="heroTagText">CCTV · NETWORK POE · WI-FI · ALARM</span>
@@ -477,9 +491,7 @@ footer{border-top:1.5px solid var(--line);padding:20px;text-align:center;color:v
   </div>
 </div>
 
-<!-- =========================================================
-   HİZMET ALANLARIMIZ MODAL PENCERESİ (İÇ SAYFA)
-   ========================================================= -->
+<!-- HİZMET ALANLARIMIZ MODAL PENCERESİ -->
 <div class="services-modal" id="servicesModal" onclick="closeServicesModal(event)">
   <div class="services-modal-card" onclick="event.stopPropagation()">
     <div class="services-modal-head">
@@ -546,9 +558,7 @@ footer{border-top:1.5px solid var(--line);padding:20px;text-align:center;color:v
   </div>
 </div>
 
-<!-- =========================================================
-   KATALOG VE 3 KADEMELİ FİLTRELEME
-   ========================================================= -->
+<!-- KATALOG VE 3 KADEMELİ FİLTRELEME -->
 <section class="catalog-section" id="catalog">
   <div class="sec-head">
     <span class="sec-tag" id="secTagCatalog">EKİPMAN TERMİNALİ</span>
@@ -605,14 +615,12 @@ footer{border-top:1.5px solid var(--line);padding:20px;text-align:center;color:v
   </div>
 </section>
 
-<!-- =========================================================
-   PROJELERİMİZ (DOKUNMATİK SWIPE)
-   ========================================================= -->
+<!-- PROJELERİMİZ (LIGHT SILVER ZEMİN VE AYDINLIK KARTLAR) -->
 <section class="projects-section" id="projects">
   <div class="projects-head">
-    <span class="sec-tag" style="color:#0284c7">REFERANSLARIMIZ & SAHA UYGULAMALARI</span>
-    <h2 style="font-size:26px;font-weight:900;margin-bottom:4px;color:#fff">Tamamlanan Örnek Projelerimiz</h2>
-    <p style="color:#cbd5e1;font-size:13px">Parmağınızla sağa-sola kaydırarak diğer projeleri ve Digomi Project'in 28 kameralı canlı görüntülerini inceleyin.</p>
+    <span class="sec-tag" style="color:var(--bl)">REFERANSLARIMIZ & SAHA UYGULAMALARI</span>
+    <h2 style="font-size:26px;font-weight:900;margin-bottom:4px;color:var(--tx)">Tamamlanan Örnek Projelerimiz</h2>
+    <p style="color:var(--tx-soft);font-size:13px">Parmağınızla sağa-sola kaydırarak diğer projeleri ve Digomi Project'in 28 kameralı canlı görüntülerini inceleyin.</p>
   </div>
 
   <div class="projects-touch-track" id="projectsTrack">
@@ -765,9 +773,6 @@ footer{border-top:1.5px solid var(--line);padding:20px;text-align:center;color:v
 <script>
 const $ = id => document.getElementById(id);
 
-/* =========================================================
-   HİZMET ALANLARI MODAL FONKSİYONLARI
-   ========================================================= */
 function openServicesModal(){
   $("servicesModal").classList.add("open");
   document.body.style.overflow = "hidden";
@@ -778,7 +783,6 @@ function closeServicesModal(e){
   document.body.style.overflow = "";
 }
 
-/* 5 DİL SÖZLÜĞÜ */
 const I18N = {
   en: {
     navServices: "🏢 Our Services", navCatalog: "Catalog", navProjects: "Projects", navContact: "Contact",
@@ -900,59 +904,6 @@ let searchKeyword = '';
 let selectedProductIds = new Set();
 let cart = JSON.parse(localStorage.getItem("v_cart") || "{}");
 
-function changeLang(langKey){
-  currentLang = langKey;
-  localStorage.setItem("v_lang", langKey);
-
-  ['en','ge','az','tr','ru'].forEach(l => {
-    const btn = $("btnLang_" + l);
-    if(btn) btn.classList.toggle('on', l === langKey);
-  });
-
-  const t = I18N[langKey] || I18N['tr'];
-
-  $("navServices").textContent = t.navServices;
-  $("navCatalog").textContent = t.navCatalog;
-  $("navProjects").textContent = t.navProjects;
-  $("navContact").textContent = t.navContact;
-  $("headerSearchInput").placeholder = t.searchPlaceholder;
-
-  $("heroTagText").textContent = t.heroTag;
-  $("heroH1").textContent = t.heroH1;
-  $("heroP").textContent = t.heroP;
-  $("btnHeroCatalog").textContent = t.btnCatalog;
-  $("btnHeroWhatsapp").textContent = t.btnWhatsapp;
-
-  $("secTagCatalog").textContent = t.secTagCatalog;
-  $("secTitleCatalog").textContent = t.secTitleCatalog;
-  $("secDescCatalog").textContent = t.secDescCatalog;
-  $("lblStep1").textContent = t.step1;
-  $("lblStep2").textContent = t.step2;
-  $("lblStep3").textContent = t.step3;
-  $("lblBrandAll").textContent = t.brandAll;
-  $("lblBrandAllSub").textContent = t.brandAllSub;
-  $("lblFilterTxt").textContent = t.filterTxt;
-  $("lblCountTxt").textContent = t.countTxt;
-
-  $("txtCartTitle").textContent = t.cartTitle;
-  $("txtCustHeader").textContent = t.custHeader;
-  $("custName").placeholder = t.custName;
-  $("custPhone").placeholder = t.custPhone;
-  $("custCity").placeholder = t.custCity;
-  $("custNotes").placeholder = t.custNotes;
-  $("txtTotalRow").textContent = t.totalRow;
-  $("btnCheckoutWhatsApp").textContent = t.btnCheckout;
-  $("btnSelAddToCart").textContent = t.btnSelAddToCart;
-  $("btnSelWhatsApp").textContent = t.btnSelWhatsApp;
-
-  renderSegmentPills();
-  renderSubFilters();
-  renderCatalogCards();
-  updateSelectionBar();
-  updateCartUI();
-}
-
-/* TÜM ORİJİNAL ÜRÜNLER (15 ADET) */
 const PRODUCTS = [
   {
     id:'hk_ip1', brand:'hikvision', seg:'cam_ip', mp:'2mp',
@@ -1376,6 +1327,58 @@ function checkoutWhatsApp(){
   text += `%0A💰 *TOPLAM:* ${total} GEL%0A`;
   text += `Keşif ve montaj teklifi rica ediyorum.`;
   window.open(`https://wa.me/995557030033?text=${text}`, '_blank');
+}
+
+function changeLang(langKey){
+  currentLang = langKey;
+  localStorage.setItem("v_lang", langKey);
+
+  ['en','ge','az','tr','ru'].forEach(l => {
+    const btn = $("btnLang_" + l);
+    if(btn) btn.classList.toggle('on', l === langKey);
+  });
+
+  const t = I18N[langKey] || I18N['tr'];
+
+  $("navServices").textContent = t.navServices;
+  $("navCatalog").textContent = t.navCatalog;
+  $("navProjects").textContent = t.navProjects;
+  $("navContact").textContent = t.navContact;
+  $("headerSearchInput").placeholder = t.searchPlaceholder;
+
+  $("heroTagText").textContent = t.heroTag;
+  $("heroH1").textContent = t.heroH1;
+  $("heroP").textContent = t.heroP;
+  $("btnHeroCatalog").textContent = t.btnCatalog;
+  $("btnHeroWhatsapp").textContent = t.btnWhatsapp;
+
+  $("secTagCatalog").textContent = t.secTagCatalog;
+  $("secTitleCatalog").textContent = t.secTitleCatalog;
+  $("secDescCatalog").textContent = t.secDescCatalog;
+  $("lblStep1").textContent = t.step1;
+  $("lblStep2").textContent = t.step2;
+  $("lblStep3").textContent = t.step3;
+  $("lblBrandAll").textContent = t.brandAll;
+  $("lblBrandAllSub").textContent = t.brandAllSub;
+  $("lblFilterTxt").textContent = t.filterTxt;
+  $("lblCountTxt").textContent = t.countTxt;
+
+  $("txtCartTitle").textContent = t.cartTitle;
+  $("txtCustHeader").textContent = t.custHeader;
+  $("custName").placeholder = t.custName;
+  $("custPhone").placeholder = t.custPhone;
+  $("custCity").placeholder = t.custCity;
+  $("custNotes").placeholder = t.custNotes;
+  $("txtTotalRow").textContent = t.totalRow;
+  $("btnCheckoutWhatsApp").textContent = t.btnCheckout;
+  $("btnSelAddToCart").textContent = t.btnSelAddToCart;
+  $("btnSelWhatsApp").textContent = t.btnSelWhatsApp;
+
+  renderSegmentPills();
+  renderSubFilters();
+  renderCatalogCards();
+  updateSelectionBar();
+  updateCartUI();
 }
 
 window.addEventListener("DOMContentLoaded", () => {
