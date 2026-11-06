@@ -11,7 +11,6 @@
 :root{
   color-scheme: light;
   
-  /* Attığın görselin 14 kademeli piksel renk degradasi + fırçalanmış çelik çizgileri */
   --metal-bg: 
     repeating-linear-gradient(
       180deg,
@@ -40,16 +39,15 @@
       #45464a 100%
     );
 
-  /* Kartlar: Fırçalanmış gümüş döküm plaka */
   --card-metal: linear-gradient(165deg, #ffffff 0%, #d8d9de 40%, #b2b3b8 100%);
   --card-metal-hover: linear-gradient(165deg, #ffffff 0%, #e8e9ed 40%, #c6c7cb 100%);
   
-  --line-steel: #505156;       /* Görseldeki koyu çelik çerçeve */
-  --line-bright: #ffffff;      /* Parlak yansıma kenarı */
-  --tx: #0b0f17;               /* Derin tok yazı */
+  --line-steel: #505156;
+  --line-bright: #ffffff;
+  --tx: #0b0f17;
   --tx-soft: #23272f;
   --mu: #475569;
-  --bl: #1d4ed8;               /* Safir Mavi */
+  --bl: #1d4ed8;
   --bl-hover: #1e40af;
   --cyan: #0284c7;
   --green: #047857;
@@ -75,7 +73,7 @@ a{color:inherit;text-decoration:none}
 button,input,select,textarea{font-family:inherit;color:inherit}
 button{cursor:pointer}
 
-/* HEADER: Koyu Çelik & Parlak Krom Çıta */
+/* HEADER */
 header{
   position:fixed;top:0;left:0;right:0;z-index:120;
   display:flex;align-items:center;gap:14px;padding:10px 28px;
@@ -97,9 +95,9 @@ nav a:hover{color:#60a5fa}
 
 .header-search-wrap{
   display:flex;align-items:center;background:#ffffff;border:1.5px solid #75767b;
-  border-radius:20px;padding:4px 10px;width:210px;transition:all .2s;
+  border-radius:20px;padding:4px 10px;width:200px;transition:all .2s;
 }
-.header-search-wrap:focus-within{border-color:#38bdf8;width:250px}
+.header-search-wrap:focus-within{border-color:#38bdf8;width:240px}
 .header-search-input{border:none;outline:none;background:none;font-size:12px;color:#0b0f17;width:100%;padding:3px}
 
 .lang{display:flex;gap:3px}
@@ -111,6 +109,14 @@ nav a:hover{color:#60a5fa}
 .lang button:hover{background:#ffffff}
 .lang button.on{background:#1d4ed8;color:#fff;border-color:#1e40af}
 
+.header-btns{display:flex;align-items:center;gap:8px}
+.admin-trigger{
+  background: linear-gradient(180deg, #475569 0%, #1e293b 100%);
+  border: 1.5px solid #b2b3b8;color:#fff;border-radius:8px;padding:6px 10px;
+  display:flex;align-items:center;gap:5px;font-weight:900;font-size:11px;
+}
+.admin-trigger:hover{background:#0f172a;border-color:#38bdf8}
+
 .cart-trigger{
   position:relative;background: linear-gradient(180deg, #ffffff 0%, #cbccd1 100%);
   border: 1.5px solid #4e5156;color:#0b0f17;border-radius:8px;padding:6px 12px;
@@ -118,10 +124,10 @@ nav a:hover{color:#60a5fa}
   box-shadow: 0 2px 6px rgba(0,0,0,0.25);
 }
 .badge{background:#1d4ed8;color:#fff;font-size:10px;font-weight:900;border-radius:20px;padding:1px 6px;min-width:16px;text-align:center}
-@media(max-width:1080px){nav{display:none}.header-search-wrap{width:160px}}
+@media(max-width:1080px){nav{display:none}.header-search-wrap{width:150px}}
 @media(max-width:768px){.header-search-wrap{display:none}}
 
-/* HERO: SİNEMATİK TV KONTROL ODASI */
+/* HERO */
 .hero{
   position:relative;width:100%;height:84vh;min-height:560px;max-height:800px;
   margin-top:54px;overflow:hidden;border-bottom:3px solid #505156;
@@ -139,25 +145,11 @@ nav a:hover{color:#60a5fa}
   background-size:cover;background-position:center;
 }
 .tv-slide-item.active{opacity:1;transform:scale(1)}
+.tv-scanlines{position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%);background-size:100% 4px}
+.tv-vignette{position:absolute;inset:0;z-index:4;pointer-events:none;background:radial-gradient(circle at 50% 50%, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 90%)}
 
-.tv-scanlines{
-  position:absolute;inset:0;z-index:3;pointer-events:none;
-  background:linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%);
-  background-size:100% 4px;
-}
-.tv-vignette{
-  position:absolute;inset:0;z-index:4;pointer-events:none;
-  background:radial-gradient(circle at 50% 50%, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 90%);
-}
-
-.hero-content-transparent{
-  position:absolute;top:40px;left:40px;z-index:20;
-  max-width:540px;text-align:left;background:transparent !important;
-}
-.tag-badge{
-  display:inline-flex;align-items:center;background:rgba(0,0,0,.75);
-  border:1.5px solid rgba(255,255,255,.4);border-radius:30px;padding:6px 16px;margin-bottom:14px;
-}
+.hero-content-transparent{position:absolute;top:40px;left:40px;z-index:20;max-width:540px;text-align:left;background:transparent !important}
+.tag-badge{display:inline-flex;align-items:center;background:rgba(0,0,0,.75);border:1.5px solid rgba(255,255,255,.4);border-radius:30px;padding:6px 16px;margin-bottom:14px}
 .tag-text{font-size:10.5px;font-weight:900;letter-spacing:.14em;color:#fff;text-transform:uppercase}
 h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weight:900;color:#fff;text-shadow:0 3px 14px rgba(0,0,0,.95)}
 .hero-content-transparent p{color:#f1f5f9;font-size:15px;line-height:1.6;margin-bottom:22px;text-shadow:0 2px 8px rgba(0,0,0,.95)}
@@ -171,17 +163,11 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .btn:hover{background:var(--bl-hover);transform:translateY(-1px);box-shadow:0 6px 18px rgba(29,78,216,.4)}
 .btn.green{background:var(--green);color:#fff}
 .btn.green:hover{background:var(--green-hover);box-shadow:0 6px 18px rgba(4,120,87,.4)}
+.btn.disabled{background:#94a3b8;color:#e2e8f0;cursor:not-allowed;box-shadow:none;transform:none !important}
 
 @media(max-width:768px){
-  .hero{
-    height:auto;min-height:auto;max-height:none;
-    display:flex;flex-direction:column;padding:12px 12px 24px;
-    background:#0b0f17;margin-top:52px;
-  }
-  .tv-frame{
-    position:relative;inset:auto;width:100%;height:270px;border-radius:14px;
-    border-width:2px;margin-bottom:16px;
-  }
+  .hero{height:auto;min-height:auto;max-height:none;display:flex;flex-direction:column;padding:12px 12px 24px;background:#0b0f17;margin-top:52px}
+  .tv-frame{position:relative;inset:auto;width:100%;height:270px;border-radius:14px;border-width:2px;margin-bottom:16px}
   .hero-content-transparent{position:relative;top:auto;left:auto;max-width:100%;padding:4px}
   h1{font-size:24px;margin-bottom:8px}
   .hero-content-transparent p{font-size:13px;margin-bottom:16px}
@@ -189,54 +175,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
   .btn{width:100%;padding:11px}
 }
 
-/* HİZMETLER MODAL */
-.services-modal{
-  position:fixed;inset:0;background:rgba(15,23,42,.85);backdrop-filter:blur(10px);
-  z-index:300;display:none;align-items:center;justify-content:center;padding:16px;
-}
-.services-modal.open{display:flex}
-.services-modal-card{
-  background: linear-gradient(180deg, #cbccd1 0%, #97989d 100%);
-  border:2.5px solid var(--line-steel);border-radius:20px;
-  max-width:960px;width:100%;max-height:92vh;display:flex;flex-direction:column;
-  overflow:hidden;box-shadow:0 25px 70px rgba(0,0,0,.7);
-}
-.services-modal-head{
-  display:flex;align-items:center;justify-content:space-between;padding:16px 24px;
-  background:linear-gradient(135deg, #1e293b 0%, #0f172a 100%);color:#fff;
-  border-bottom:2px solid var(--line-steel);
-}
-.services-modal-head h3{font-size:17px;font-weight:900;display:flex;align-items:center;gap:10px}
-.close-modal-btn{
-  background:#334155;border:1px solid rgba(255,255,255,.2);color:#fff;width:34px;height:34px;
-  border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;
-}
-.close-modal-btn:hover{background:var(--red)}
-
-.services-modal-body{padding:22px;overflow-y:auto;display:flex;flex-direction:column;gap:18px}
-.service-banner{
-  background:linear-gradient(135deg, #0284c7 0%, #1d4ed8 100%);color:#fff;
-  border-radius:12px;padding:18px;
-}
-.service-banner h4{font-size:16px;font-weight:900;margin-bottom:4px}
-.service-banner p{font-size:12.5px;line-height:1.6;color:#e0f2fe}
-
-.service-cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
-.service-box{
-  background: var(--card-metal);
-  border: 1.5px solid var(--line-steel);border-radius:12px;padding:16px;
-  display:flex;flex-direction:column;gap:5px;
-  box-shadow: inset 0 1px 0 #fff, 0 4px 12px rgba(0,0,0,0.15);
-}
-.service-box:hover{border-color:var(--bl);transform:translateY(-2px)}
-.service-icon{font-size:28px;margin-bottom:2px}
-.service-box h5{font-size:14.5px;font-weight:900;color:var(--tx)}
-.service-box p{font-size:12px;color:var(--tx-soft);line-height:1.55}
-.service-tag{font-size:10px;font-weight:900;color:var(--bl);margin-top:auto;padding-top:6px}
-
-/* =========================================================
-   KATALOG: FIRÇALANMIŞ METALİK FİLTRE PANELİ
-   ========================================================= */
+/* KATALOG */
 .catalog-section{padding:34px 24px 60px;max-width:1300px;margin:0 auto}
 .sec-head{margin-bottom:20px}
 .sec-tag{color:#1d4ed8;font-size:11px;font-weight:900;letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px;display:block;text-shadow:0 1px 2px rgba(255,255,255,0.7)}
@@ -247,9 +186,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
   background: linear-gradient(180deg, rgba(240, 240, 242, 0.94) 0%, rgba(178, 179, 184, 0.94) 100%);
   backdrop-filter: blur(14px);
   border: 2px solid var(--line-steel);
-  border-radius: 16px;
-  padding: 18px;
-  margin-bottom: 22px;
+  border-radius: 16px;padding: 18px;margin-bottom: 22px;
   box-shadow: inset 0 1px 0 #fff, 0 12px 35px rgba(0,0,0,0.25);
 }
 .filter-row-label{
@@ -258,9 +195,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 }
 .filter-row-label span{color:#fff;background:#1d4ed8;padding:2px 6px;border-radius:4px}
 
-.brand-selector-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:14px;
-}
+.brand-selector-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:14px}
 .b-btn{
   background: linear-gradient(180deg, #ffffff 0%, #b2b3b8 100%);
   border: 1.5px solid var(--line-steel);border-radius:10px;padding:10px 8px;
@@ -273,9 +208,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .b-btn.active .b-subtext{color:#e0f2fe}
 .b-btn .b-subtext{font-size:9.5px;color:var(--mu);font-weight:800}
 
-.segment-pills-row{
-  display:flex;flex-wrap:wrap;gap:6px;padding-top:12px;border-top:1.5px dashed var(--line-steel);margin-bottom:12px;
-}
+.segment-pills-row{display:flex;flex-wrap:wrap;gap:6px;padding-top:12px;border-top:1.5px dashed var(--line-steel);margin-bottom:12px}
 .seg-pill{
   background: linear-gradient(180deg, #ffffff 0%, #cbccd1 100%);
   border: 1.5px solid var(--line-steel);color:var(--tx);
@@ -296,7 +229,6 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .sub-pill:hover{border-color:var(--bl);color:var(--bl)}
 .sub-pill.active{background:var(--bl);color:#fff;border-color:var(--bl)}
 
-/* PENCERELİ KATALOG */
 .catalog-window{
   background: rgba(227, 228, 232, 0.95);
   border: 2px solid var(--line-steel);border-radius:16px;
@@ -326,7 +258,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
   .p-actions .btn{padding:5px 8px !important;font-size:10.5px !important}
 }
 
-/* ÜRÜN KARTLARI: METALİK PLATİN LEVHA */
+/* ÜRÜN KARTLARI */
 .p-card{
   background: var(--card-metal);
   border: 1.5px solid var(--line-steel);border-radius:12px;
@@ -347,7 +279,16 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 }
 .p-card.selected .sel-badge{display:inline-block}
 
-/* KAMERA GÖRSEL KUTUSU: GERÇEK DONANIM GÖRÜNTÜLEME TEPSİSİ */
+/* STOK ROZETLERİ */
+.stock-badge{
+  position:absolute;bottom:6px;right:6px;z-index:3;
+  padding:2px 7px;border-radius:10px;font-size:9.5px;font-weight:900;
+  box-shadow: 0 1px 4px rgba(0,0,0,.2);
+}
+.stock-badge.in-stock{background:#dcfce7;color:#15803d;border:1px solid #86efac}
+.stock-badge.low-stock{background:#fef3c7;color:#b45309;border:1px solid #fde68a}
+.stock-badge.out-stock{background:#fee2e2;color:#b91c1c;border:1px solid #fca5a5}
+
 .p-img-box{
   height:140px;border-radius:8px;
   background: linear-gradient(145deg, #ffffff 0%, #e8ebf0 50%, #d1d6de 100%);
@@ -357,7 +298,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 }
 .p-img-box img{
   max-width:92%;max-height:92%;width:auto;height:auto;
-  object-fit:contain; /* Kameranın şeklini (dome veya bullet) tam ve net gösterir */
+  object-fit:contain;
   filter:drop-shadow(0 4px 6px rgba(0,0,0,0.22));
   transition:transform .3s ease;
 }
@@ -366,6 +307,10 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .card-brand-tag{
   position:absolute;top:6px;left:6px;background:rgba(255,255,255,.95);
   border:1px solid var(--line-steel);border-radius:6px;padding:2px 5px;font-size:9px;z-index:3;
+}
+.card-type-tag{
+  position:absolute;top:6px;right:6px;background:rgba(15,23,42,.85);color:#fff;
+  border-radius:4px;padding:2px 5px;font-size:8.5px;font-weight:800;z-index:3;
 }
 
 .p-title{font-size:13px;font-weight:900;margin-bottom:6px;line-height:1.35;color:var(--tx)}
@@ -386,9 +331,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .logo-microtik span{color:var(--tx)}
 .logo-tvt{font-weight:900;letter-spacing:1px;color:var(--yellow)}
 
-/* =========================================================
-   PROJELER: KOYU ANTRASİT ÇELİK ALANI (GÖRSELİN DİBİ)
-   ========================================================= */
+/* PROJELER */
 .projects-section{
   padding:50px 0 80px;border-top:3px solid #b2b3b8;
   background: linear-gradient(180deg, #595a5e 0%, #45464a 100%);
@@ -418,11 +361,74 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .project-loc{font-size:10.5px;font-weight:800;color:var(--cyan)}
 .project-view-btn{font-size:11px;color:var(--bl);font-weight:800}
 
-/* DİGOMİ MODAL */
-.project-gallery-modal{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(6px);z-index:350;display:none;align-items:center;justify-content:center;padding:16px}
-.project-gallery-modal.open{display:flex}
-.gallery-modal-content{background:#fff;border-radius:16px;max-width:880px;width:100%;max-height:90vh;display:flex;flex-direction:column;overflow:hidden}
-.gallery-modal-head{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:#0f172a;color:#fff}
+/* ADMIN MODAL (METALLIC PANEL) */
+.admin-modal{
+  position:fixed;inset:0;background:rgba(15,23,42,.85);backdrop-filter:blur(8px);
+  z-index:360;display:none;align-items:center;justify-content:center;padding:16px;
+}
+.admin-modal.open{display:flex}
+.admin-card{
+  background: linear-gradient(180deg, #d8d9de 0%, #b2b3b8 100%);
+  border:2.5px solid var(--line-steel);border-radius:18px;
+  max-width:920px;width:100%;max-height:92vh;display:flex;flex-direction:column;
+  overflow:hidden;box-shadow:0 25px 70px rgba(0,0,0,.6);
+}
+.admin-head{
+  display:flex;align-items:center;justify-content:space-between;padding:14px 20px;
+  background:linear-gradient(135deg, #1e293b 0%, #0f172a 100%);color:#fff;
+  border-bottom:2px solid var(--line-steel);
+}
+.admin-body{padding:18px;overflow-y:auto;display:flex;flex-direction:column;gap:18px}
+.admin-form-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;
+  background:#fff;padding:14px;border-radius:12px;border:1.5px solid var(--line-steel);
+}
+.form-group{display:flex;flex-direction:column;gap:4px}
+.form-group label{font-size:11px;font-weight:900;color:var(--tx-soft);text-transform:uppercase}
+.form-group input, .form-group select{
+  background:#f8fafc;border:1.5px solid var(--line-steel);padding:7px 10px;border-radius:6px;font-size:12px;font-weight:700;color:#0b0f17;
+}
+.form-group input:focus, .form-group select:focus{outline:none;border-color:var(--bl);background:#fff}
+
+.inventory-table-wrap{
+  background:#fff;border-radius:12px;border:1.5px solid var(--line-steel);overflow:hidden;max-height:280px;overflow-y:auto;
+}
+.inventory-table{width:100%;border-collapse:collapse;font-size:11.5px}
+.inventory-table th{background:#334155;color:#fff;padding:8px 10px;text-align:left;position:sticky;top:0;font-weight:900}
+.inventory-table td{padding:8px 10px;border-bottom:1px solid #cbd5e1}
+.inventory-table tr:hover{background:#f1f5f9}
+.stock-pill-btn{
+  display:inline-flex;align-items:center;gap:4px;background:#e2e8f0;border:1px solid #94a3b8;border-radius:6px;padding:2px 6px;
+}
+.stock-pill-btn button{border:none;background:none;font-weight:900;padding:0 4px;font-size:12px}
+
+/* DIGOMI & HIZMETLER MODAL */
+.services-modal, .project-gallery-modal{
+  position:fixed;inset:0;background:rgba(15,23,42,.85);backdrop-filter:blur(10px);
+  z-index:300;display:none;align-items:center;justify-content:center;padding:16px;
+}
+.services-modal.open, .project-gallery-modal.open{display:flex}
+.services-modal-card, .gallery-modal-content{
+  background: linear-gradient(180deg, #cbccd1 0%, #97989d 100%);
+  border:2.5px solid var(--line-steel);border-radius:20px;
+  max-width:960px;width:100%;max-height:92vh;display:flex;flex-direction:column;
+  overflow:hidden;box-shadow:0 25px 70px rgba(0,0,0,.7);
+}
+.services-modal-head, .gallery-modal-head{
+  display:flex;align-items:center;justify-content:space-between;padding:16px 24px;
+  background:linear-gradient(135deg, #1e293b 0%, #0f172a 100%);color:#fff;
+  border-bottom:2px solid var(--line-steel);
+}
+.close-modal-btn{background:#334155;border:1px solid rgba(255,255,255,.2);color:#fff;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px}
+.close-modal-btn:hover{background:var(--red)}
+.services-modal-body{padding:22px;overflow-y:auto;display:flex;flex-direction:column;gap:18px}
+.service-banner{background:linear-gradient(135deg, #0284c7 0%, #1d4ed8 100%);color:#fff;border-radius:12px;padding:18px}
+.service-cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.service-box{
+  background: var(--card-metal);border: 1.5px solid var(--line-steel);border-radius:12px;padding:16px;
+  display:flex;flex-direction:column;gap:5px;box-shadow: inset 0 1px 0 #fff, 0 4px 12px rgba(0,0,0,0.15);
+}
+
 .gallery-modal-body{padding:14px;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
 .main-preview-box{width:100%;height:380px;background:#000;border-radius:10px;overflow:hidden;position:relative}
 .main-preview-box img{width:100%;height:100%;object-fit:contain}
@@ -494,10 +500,17 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
     <button onclick="changeLang('ru')" id="btnLang_ru">RU</button>
   </div>
 
-  <button class="cart-trigger" onclick="toggleCart()">
-    <span>🛒</span>
-    <span class="badge" id="cartBadge">0</span>
-  </button>
+  <div class="header-btns">
+    <!-- ADMIN GİRİŞ BUTONU -->
+    <button class="admin-trigger" onclick="openAdminModal()">
+      <span>🔒</span> <span>Panel</span>
+    </button>
+
+    <button class="cart-trigger" onclick="toggleCart()">
+      <span>🛒</span>
+      <span class="badge" id="cartBadge">0</span>
+    </button>
+  </div>
 </header>
 
 <!-- HERO: SİNEMATİK TV EKRANI -->
@@ -509,7 +522,6 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
     <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1513345407170-3f7ecd3b7d74?auto=format&fit=crop&w=1920&q=80')"></div>
     <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1676446242915-bfad60f491d6?auto=format&fit=crop&w=1920&q=80')"></div>
     <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1702306870996-ce93ec687e23?auto=format&fit=crop&w=1920&q=80')"></div>
-
     <div class="tv-scanlines"></div>
     <div class="tv-vignette"></div>
   </div>
@@ -523,73 +535,6 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
     <div class="hero-btns">
       <a class="btn" href="#catalog" id="btnHeroCatalog">Kataloğu İncele ⬇</a>
       <a class="btn green" href="https://wa.me/995557030033" target="_blank" id="btnHeroWhatsapp">WhatsApp Mühendis Hattı</a>
-    </div>
-  </div>
-</div>
-
-<!-- HİZMET ALANLARIMIZ MODAL PENCERESİ -->
-<div class="services-modal" id="servicesModal" onclick="closeServicesModal(event)">
-  <div class="services-modal-card" onclick="event.stopPropagation()">
-    <div class="services-modal-head">
-      <h3><span>🏢</span> Vision Electronics — Kurumsal Hizmet Alanlarımız</h3>
-      <button class="close-modal-btn" onclick="closeServicesModal()">✕</button>
-    </div>
-
-    <div class="services-modal-body">
-      <div class="service-banner">
-        <h4>A'dan Z'ye Profesyonel Montaj, Kablolama ve Mühendislik</h4>
-        <p>Tiflis, Batum ve tüm Gürcistan genelinde resmi distribütör garantili donanımlarla anahtar teslim montaj ve 2 yıl yerinde servis garantisi sunuyoruz.</p>
-      </div>
-
-      <div class="service-cards-grid">
-        <div class="service-box">
-          <div class="service-icon">🎉</div>
-          <h5>Düğün & Etkinlik Salonları</h5>
-          <p>Yüksek tavanlı geniş salonlarda kör noktasız 360° panoramik izleme, otopark plaka tanıma sistemi ve estetik dome kamera montajı.</p>
-          <div class="service-tag">✓ Kör Noktasız Geniş Açı</div>
-        </div>
-
-        <div class="service-box">
-          <div class="service-icon">💼</div>
-          <h5>Ofis ve İş Yerleri</h5>
-          <p>Personel devam takip, server odası izleme, MikroTik fiber ve Wi-Fi 6 altyapısı, turnike parmak izi/yüz tanıma geçiş kontrol entegrasyonu.</p>
-          <div class="service-tag">✓ Wi-Fi 6 & Yüz Tanıma</div>
-        </div>
-
-        <div class="service-box">
-          <div class="service-icon">🏡</div>
-          <h5>Lüks Villalar ve Konutlar</h5>
-          <p>ColorVu teknolojisiyle 7/24 renkli gece görüşü, bahçe çit alarm dedektörleri, cep telefonundan anlık canlı izleme ve interkom.</p>
-          <div class="service-tag">✓ 7/24 Renkli Gece Görüşü</div>
-        </div>
-
-        <div class="service-box">
-          <div class="service-icon">🏭</div>
-          <h5>Sanayi Tesisleri ve Fabrikalar</h5>
-          <p>Yangın ve aşırı sıcaklık algılayan termal kameralar, toza dayanıklı metal muhafazalar, fiber omurga ve ağır hizmet switch altyapısı.</p>
-          <div class="service-tag">✓ Termal & Ex-Proof Montaj</div>
-        </div>
-
-        <div class="service-box">
-          <div class="service-icon">🏗️</div>
-          <h5>İnşaat ve Şantiye Alanları</h5>
-          <p>Elektrik ve internet olmayan alanlar için Güneş Enerjili (Solar) 4G kameralar, vinç üstü güvenlik ve zorlu saha kablolama işçiliği.</p>
-          <div class="service-tag">✓ Solar & 4G SIM Destekli</div>
-        </div>
-
-        <div class="service-box" style="background:var(--card-metal);border-color:var(--green)">
-          <div class="service-icon">🛠️</div>
-          <h5 style="color:var(--green)">2 Yıl Garantili İşçilik</h5>
-          <p>Kanal içi borulama, etiketli kablolama, rack kabin sonlandırma, fiber kaynak ve 7/24 acil servis hattı ile işçiliğimizin arkasındayız.</p>
-          <div class="service-tag" style="color:var(--green)">✓ Yerinde Servis & Ücretsiz Keşif</div>
-        </div>
-      </div>
-
-      <div style="text-align:center;padding:10px">
-        <a class="btn green" href="https://wa.me/995557030033?text=Merhaba%2C%20montaj%20ve%20iscilik%20hizmetleriniz%20hakkinda%20bilgi%20almak%20istiyorum." target="_blank" style="padding:12px 28px;font-size:14px">
-          Ücretsiz Keşif ve Fiyat Teklifi Al (WhatsApp) 🚀
-        </a>
-      </div>
     </div>
   </div>
 </div>
@@ -651,6 +596,150 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
   </div>
 </section>
 
+<!-- =========================================================
+   ŞİFRELİ ADMIN YÖNETİM PANELİ (MODAL)
+   ========================================================= */ -->
+<div class="admin-modal" id="adminModal" onclick="closeAdminModal(event)">
+  <div class="admin-card" onclick="event.stopPropagation()">
+    <div class="admin-head">
+      <h3 style="display:flex;align-items:center;gap:8px">
+        <span>🛡️</span> <span>Vision Electronics — Donanım ve Stok Yönetimi</span>
+      </h3>
+      <button class="close-modal-btn" onclick="closeAdminModal()">✕</button>
+    </div>
+
+    <!-- 1. ŞİFRE GİRİŞ EKRANI -->
+    <div id="adminAuthScreen" style="padding:40px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <div style="font-size:36px">🔒</div>
+      <h4 style="font-size:16px;font-weight:900;color:var(--tx)">Yönetici Giriş Doğrulaması</h4>
+      <p style="font-size:12px;color:var(--tx-soft);max-width:300px">Bu alana sadece yetkili mühendis ve mağaza yöneticileri giriş yapabilir.</p>
+      <input type="password" id="adminPinInput" placeholder="PIN Şifresi (Varsayılan: 1234)" style="width:240px;padding:10px;text-align:center;font-size:14px;border:2px solid var(--line-steel);border-radius:8px">
+      <button class="btn" style="width:240px" onclick="verifyAdminPin()">Giriş Yap ➔</button>
+    </div>
+
+    <!-- 2. GERÇEK YÖNETİM PANELİ (GİRİŞTEN SONRA AÇILIR) -->
+    <div id="adminPanelScreen" class="admin-body" style="display:none">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <h4 style="font-size:14px;font-weight:900;color:var(--tx)">➕ Yeni Donanım / Model Ekle</h4>
+        <button class="btn" style="background:#dc2626;padding:4px 10px;font-size:10px" onclick="logoutAdmin()">Çıkış Yap ✕</button>
+      </div>
+
+      <!-- YENİ ÜRÜN EKLEME FORMU -->
+      <div class="admin-form-grid">
+        <div class="form-group" style="grid-column:1/-1">
+          <label>Ürün / Model Adı</label>
+          <input type="text" id="admName" placeholder="Örn: Hikvision DS-2CD1043G0E-I 4MP Bullet">
+        </div>
+
+        <div class="form-group">
+          <label>Marka</label>
+          <select id="admBrand">
+            <option value="hikvision">Hikvision</option>
+            <option value="prolook">Pro Look</option>
+            <option value="microtik">MikroTik</option>
+            <option value="tvt">TVT</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Donanım Kategorisi</label>
+          <select id="admSeg" onchange="handleSegChange(this.value)">
+            <option value="cam_ip">📹 IP Kamera</option>
+            <option value="cam_ahd">📽️ Analog Kamera (Turbo HD)</option>
+            <option value="nvr">📼 NVR Kayıt Cihazı</option>
+            <option value="switch">🔌 PoE Switch</option>
+            <option value="wifi">📶 Wi-Fi Sistemi</option>
+            <option value="alarm">🚨 Alarm Sistemi</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="groupKasaTipi">
+          <label>Kasa Tipi</label>
+          <select id="admKasa">
+            <option value="Bullet">Bullet (Silindirik)</option>
+            <option value="Dome">Dome (Kubbe)</option>
+            <option value="PTZ">PTZ (Hareketli)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Çözünürlük / Kanal / Port</label>
+          <select id="admSubSpec">
+            <option value="2mp">2MP (1080p FHD)</option>
+            <option value="4mp">4MP (2K QHD)</option>
+            <option value="5mp">5MP (Super HD)</option>
+            <option value="8mp">8MP (4K Ultra)</option>
+            <option value="8ch">8 Kanal NVR</option>
+            <option value="16ch">16 Kanal Server</option>
+            <option value="8p">8 Port PoE</option>
+            <option value="16p">16 Port PoE+</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Stok Adedi</label>
+          <input type="number" id="admStock" value="10" min="0" placeholder="Örn: 10">
+        </div>
+
+        <div class="form-group">
+          <label>Satış Fiyatı (GEL)</label>
+          <input type="number" id="admPrice" placeholder="Örn: 245" min="0">
+        </div>
+
+        <div class="form-group" style="grid-column:1/-1">
+          <label>Ürün Resim Linki (URL)</label>
+          <input type="url" id="admImg" placeholder="https://... veya resim.jpg">
+        </div>
+
+        <div class="form-group">
+          <label>Donanım Tanımı (Hw)</label>
+          <input type="text" id="admHw" placeholder="Örn: 4MP 2K Bullet IP">
+        </div>
+
+        <div class="form-group">
+          <label>Arayüz / Port</label>
+          <input type="text" id="admPort" placeholder="Örn: PoE 802.3af">
+        </div>
+
+        <div class="form-group">
+          <label>Koruma / Özellik</label>
+          <input type="text" id="admExtra" placeholder="Örn: IP67 Su Geçirmez / EXIR">
+        </div>
+
+        <div style="grid-column:1/-1;display:flex;justify-content:flex-end;margin-top:6px">
+          <button class="btn green" style="padding:10px 24px;font-size:13px" onclick="saveNewProduct()">
+            Ürünü Kataloğa Ekle ve Yayına Al 🚀
+          </button>
+        </div>
+      </div>
+
+      <!-- MEVCUT ENVANTER VE STOK GÜNCELLEME LİSTESİ -->
+      <div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <h4 style="font-size:13.5px;font-weight:900;color:var(--tx)">📋 Mevcut Envanter ve Stok Sayımı</h4>
+          <button class="btn" style="background:#475569;font-size:10.5px;padding:4px 8px" onclick="resetDefaultProducts()">
+            Varsayılan Donanımlara Sıfırla
+          </button>
+        </div>
+        <div class="inventory-table-wrap">
+          <table class="inventory-table">
+            <thead>
+              <tr>
+                <th>Ürün</th>
+                <th>Kategori</th>
+                <th>Fiyat</th>
+                <th>Stok Sayısı</th>
+                <th>İşlem</th>
+              </tr>
+            </thead>
+            <tbody id="admInventoryList"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- PROJELERİMİZ -->
 <section class="projects-section" id="projects">
   <div class="projects-head">
@@ -660,11 +749,10 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
   </div>
 
   <div class="projects-touch-track" id="projectsTrack">
-    <!-- 1. DİGOMİ PROJECT -->
     <div class="project-card" onclick="openDigomiGallery()">
       <span class="project-badge-corner">★ CANLI SAHA</span>
       <div class="project-img">
-        <img src="digomi-5.jpg" onerror="this.src='https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=700&q=80'" alt="Digomi Project Hikvision Matrix">
+        <img src="digomi-5.jpg" onerror="this.src='https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=700&q=80'" alt="Digomi Project">
         <span class="project-tag">28 Kamera · Hikvision NVR</span>
       </div>
       <div class="project-body">
@@ -677,10 +765,9 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
       </div>
     </div>
 
-    <!-- 2. TİFLİS LOJİSTİK -->
     <div class="project-card">
       <div class="project-img">
-        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=700&q=80" alt="Lojistik Merkezi">
+        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=700&q=80" alt="Lojistik">
         <span class="project-tag">CCTV & PoE Ağı</span>
       </div>
       <div class="project-body">
@@ -693,10 +780,9 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
       </div>
     </div>
 
-    <!-- 3. BATUM RESORT -->
     <div class="project-card">
       <div class="project-img">
-        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80" alt="Batum Resort">
+        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80" alt="Otel">
         <span class="project-tag">Wi-Fi 6 & IP Kamera</span>
       </div>
       <div class="project-body">
@@ -704,38 +790,6 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
         <p>MikroTik cAP ax tavan tipi Wi-Fi altyapısı ve 120 adet IK10 vandal-proof dome kamera entegrasyonu.</p>
         <div class="project-footer-row">
           <span class="project-loc">📍 Batum / Gürcistan</span>
-          <span class="project-view-btn">Detay</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 4. KING DAVID -->
-    <div class="project-card">
-      <div class="project-img">
-        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=700&q=80" alt="İş Merkezi">
-        <span class="project-tag">Yüz Tanıma & Alarm</span>
-      </div>
-      <div class="project-body">
-        <h3>King David Business Plaza</h3>
-        <p>TVT AI yapay zeka destekli yüz tanıma turnike geçişi ve Hikvision AX PRO kablosuz alarm ağı.</p>
-        <div class="project-footer-row">
-          <span class="project-loc">📍 Tiflis Merkez</span>
-          <span class="project-view-btn">Detay</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 5. SANAYİ TESİSİ -->
-    <div class="project-card">
-      <div class="project-img">
-        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=700&q=80" alt="Endüstriyel Üretim">
-        <span class="project-tag">Termal & Endüstriyel</span>
-      </div>
-      <div class="project-body">
-        <h3>Rustavi Ağır Sanayi Tesisi</h3>
-        <p>Termal yangın algılama kameraları, patlamaya dayanıklı metal bullet muhafazalar ve 10G uplink.</p>
-        <div class="project-footer-row">
-          <span class="project-loc">📍 Rustavi Sanayi Bölgesi</span>
           <span class="project-view-btn">Detay</span>
         </div>
       </div>
@@ -757,10 +811,32 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
       </div>
       <div class="thumbs-strip">
         <div class="thumb-card" onclick="setGalleryView(0, 'digomi-5.jpg', '28 Kameralı Hikvision NVR Merkezi TV İzleme Matrisi', this)"><img src="digomi-5.jpg" onerror="this.src='https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=300&q=80'"></div>
-        <div class="thumb-card" onclick="setGalleryView(1, 'digomi-1.jpg', 'Turnike Geçiş & Ana Giriş Güvenlik Kamerası', this)"><img src="digomi-1.jpg" onerror="this.src='https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=300&q=80'"></div>
-        <div class="thumb-card" onclick="setGalleryView(2, 'digomi-3.jpg', 'Yarı Olimpik Yüzme Havuzu Güvenlik Kamerası', this)"><img src="digomi-3.jpg" onerror="this.src='https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=300&q=80'"></div>
-        <div class="thumb-card" onclick="setGalleryView(3, 'digomi-4.jpg', 'Fitness & Kardiyo Salonu Güvenlik Kamerası', this)"><img src="digomi-4.jpg" onerror="this.src='https://images.unsplash.com/photo-1528312635006-8ea0bc49ec63?auto=format&fit=crop&w=300&q=80'"></div>
-        <div class="thumb-card" onclick="setGalleryView(4, 'digomi-2.jpg', 'Hikvision Bullet Kamera Montajı ve Kablolama Sahası', this)"><img src="digomi-2.jpg" onerror="this.src='https://images.unsplash.com/photo-1549109926-58f039549485?auto=format&fit=crop&w=300&q=80'"></div>
+        <div class="thumb-card" onclick="setGalleryView(1, 'digomi-1.jpg', 'Turnike Giriş Güvenlik Kamerası', this)"><img src="digomi-1.jpg" onerror="this.src='https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=300&q=80'"></div>
+        <div class="thumb-card" onclick="setGalleryView(2, 'digomi-3.jpg', 'Yarı Olimpik Yüzme Havuzu Kamerası', this)"><img src="digomi-3.jpg" onerror="this.src='https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=300&q=80'"></div>
+        <div class="thumb-card" onclick="setGalleryView(3, 'digomi-4.jpg', 'Fitness & Kardiyo Salonu Kamerası', this)"><img src="digomi-4.jpg" onerror="this.src='https://images.unsplash.com/photo-1528312635006-8ea0bc49ec63?auto=format&fit=crop&w=300&q=80'"></div>
+        <div class="thumb-card" onclick="setGalleryView(4, 'digomi-2.jpg', 'Hikvision Bullet Kamera Montajı ve Sahası', this)"><img src="digomi-2.jpg" onerror="this.src='https://images.unsplash.com/photo-1549109926-58f039549485?auto=format&fit=crop&w=300&q=80'"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HİZMET ALANLARIMIZ MODAL -->
+<div class="services-modal" id="servicesModal" onclick="closeServicesModal(event)">
+  <div class="services-modal-card" onclick="event.stopPropagation()">
+    <div class="services-modal-head">
+      <h3><span>🏢</span> Vision Electronics — Kurumsal Hizmet Alanlarımız</h3>
+      <button class="close-modal-btn" onclick="closeServicesModal()">✕</button>
+    </div>
+    <div class="services-modal-body">
+      <div class="service-banner">
+        <h4>A'dan Z'ye Profesyonel Montaj, Kablolama ve Mühendislik</h4>
+        <p>Tiflis, Batum ve tüm Gürcistan genelinde 2 yıl yerinde servis garantisi sunuyoruz.</p>
+      </div>
+      <div class="service-cards-grid">
+        <div class="service-box"><h5>🎉 Düğün & Etkinlik Salonları</h5><p>360° panoramik izleme, otopark plaka tanıma.</p></div>
+        <div class="service-box"><h5>💼 Ofis ve İş Yerleri</h5><p>Personel devam takip, turnike yüz tanıma.</p></div>
+        <div class="service-box"><h5>🏡 Lüks Villalar ve Konutlar</h5><p>ColorVu 7/24 renkli gece görüşü, bahçe alarmı.</p></div>
+        <div class="service-box"><h5>🏭 Sanayi Tesisleri ve Fabrikalar</h5><p>Termal yangın algılama, ağır hizmet switchler.</p></div>
       </div>
     </div>
   </div>
@@ -775,7 +851,7 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
   </div>
 </div>
 
-<div class="toast-msg" id="toastMsg"><span>✓</span> <span id="toastText">Ürün sepete eklendi!</span></div>
+<div class="toast-msg" id="toastMsg"><span>✓</span> <span id="toastText">İşlem tamamlandı!</span></div>
 
 <div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart()"></div>
 <div class="cart-panel" id="cartPanel">
@@ -804,134 +880,159 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
   </div>
 </div>
 
-<footer>© Vision Electronics · Profesyonel Güvenlik ve Ağ Donanımları · Tiflis, Gürcistan</footer>
+<footer>
+  © Vision Electronics · Profesyonel Güvenlik ve Ağ Donanımları · Tiflis, Gürcistan · 
+  <a href="javascript:void(0)" onclick="openAdminModal()" style="color:#60a5fa;text-decoration:underline">Yönetici Paneli (🔒)</a>
+</footer>
 
 <script>
 const $ = id => document.getElementById(id);
 
-function openServicesModal(){
-  $("servicesModal").classList.add("open");
-  document.body.style.overflow = "hidden";
-}
-function closeServicesModal(e){
-  if(e && e.target && e.target.closest('.services-modal-card')) return;
-  $("servicesModal").classList.remove("open");
-  document.body.style.overflow = "";
-}
-
+/* DİL SÖZLÜĞÜ */
 const I18N = {
   en: {
-    navServices: "🏢 Our Services", navCatalog: "Catalog", navProjects: "Projects", navContact: "Contact",
-    searchPlaceholder: "Search model or specs...",
-    heroTag: "CCTV · NETWORK POE · WI-FI · ALARM",
-    heroH1: "Professional Security and Network Hardware",
-    heroP: "Genuine Hikvision, MikroTik, Pro Look and TVT IP/Analog cameras, NVR servers and turnkey engineering services.",
-    btnCatalog: "View Catalog ⬇", btnWhatsapp: "WhatsApp Line",
-    secTagCatalog: "EQUIPMENT TERMINAL", secTitleCatalog: "Brand and Hardware Selection Panel",
-    secDescCatalog: "Filter by brand, category, and resolution/channels to instantly list matched hardware.",
-    step1: "BRAND SELECTION", step2: "HARDWARE CATEGORY", step3: "DETAILED SPECIFICATION",
-    brandAll: "ALL", brandAllSub: "All Brands",
-    filterTxt: "Filter:", countTxt: "Hardware:",
-    lblSpecHw: "Resolution/Type:", lblSpecPort: "Interface/Port:", lblSpecExtra: "Feature/Standard:",
-    btnAdd: "🛒 Add", btnAsk: "Inquire", btnSelected: "✓ SELECTED",
-    cartTitle: "Shopping Cart & Quotation", custHeader: "Customer Information",
-    custName: "Full Name", custPhone: "Phone (+995 ...)", custCity: "City / District", custNotes: "Installation notes...",
-    totalRow: "Total Amount:", btnCheckout: "Send Order via WhatsApp 🚀",
-    toastAdded: "Hardware added to cart!", toastSelectedAdded: "Selected items added to cart!",
-    selCountText: "Items Selected", btnSelAddToCart: "🛒 Add to Cart", btnSelWhatsApp: "💬 WhatsApp Quote",
-    cartEmpty: "Your cart is empty.",
-    allCat: "All Categories", catIp: "IP Cameras", catAhd: "Analog Cameras", catNvr: "NVR Recorders", catSw: "PoE Switches", catWifi: "Wi-Fi Systems", catAlarm: "Alarms"
+    navServices: "🏢 Services", navCatalog: "Catalog", navProjects: "Projects", navContact: "Contact",
+    searchPlaceholder: "Search model or specs...", heroTag: "CCTV · NETWORK POE · WI-FI · ALARM",
+    heroH1: "Professional Security and Network Hardware", heroP: "Genuine cameras, NVRs and turnkey engineering services.",
+    btnCatalog: "View Catalog ⬇", btnWhatsapp: "WhatsApp Line", secTagCatalog: "EQUIPMENT TERMINAL",
+    secTitleCatalog: "Hardware Selection Panel", secDescCatalog: "Filter by brand, category, and resolution.",
+    step1: "BRAND SELECTION", step2: "CATEGORY", step3: "DETAILED SPECIFICATION",
+    brandAll: "ALL", brandAllSub: "All Brands", filterTxt: "Filter:", countTxt: "Hardware:",
+    lblSpecHw: "Type:", lblSpecPort: "Port:", lblSpecExtra: "Feature:", btnAdd: "🛒 Add", btnAsk: "Inquire", btnSelected: "✓ SELECTED",
+    cartTitle: "Cart", custHeader: "Customer Info", custName: "Name", custPhone: "Phone (+995 ...)", custCity: "City", custNotes: "Notes...",
+    totalRow: "Total:", btnCheckout: "Send via WhatsApp 🚀", toastAdded: "Added to cart!", toastSelectedAdded: "Items added to cart!",
+    selCountText: "Items Selected", btnSelAddToCart: "🛒 Add to Cart", btnSelWhatsApp: "💬 WhatsApp Quote", cartEmpty: "Your cart is empty.",
+    allCat: "All", catIp: "IP Cameras", catAhd: "Analog Cameras", catNvr: "NVRs", catSw: "PoE Switches", catWifi: "Wi-Fi", catAlarm: "Alarms"
   },
   ge: {
-    navServices: "🏢 ჩვენი სერვისები", navCatalog: "კატალოგი", navProjects: "პროექტები", navContact: "კონტაქტი",
-    searchPlaceholder: "მოძებნეთ მოდელი...",
-    heroTag: "CCTV · NETWORK POE · WI-FI · დაცვა",
-    heroH1: "პროფესიონალური უსაფრთხოების აპარატურა",
-    heroP: "Hikvision, MikroTik, Pro Look და TVT-ის ორიგინალი IP კამერები, NVR ჩამწერები და გასაღების ჩაბარებით სამუშაოები.",
-    btnCatalog: "კატალოგის ნახვა ⬇", btnWhatsapp: "WhatsApp ინჟინერი",
-    secTagCatalog: "აპარატურის ტერმინალი", secTitleCatalog: "ბრენდისა და ტექნიკის პანელი",
-    secDescCatalog: "გაფილტრეთ ბრენდით, კატეგორიით და გარჩევადობით/არხებით.",
-    step1: "ბრენდის შერჩევა", step2: "კატეგორია", step3: "დეტალური პარამეტრები",
-    brandAll: "ყველა", brandAllSub: "ყველა ბრენდი",
-    filterTxt: "ფილტრი:", countTxt: "აპარატურა:",
-    lblSpecHw: "გარჩევადობა:", lblSpecPort: "პორტი:", lblSpecExtra: "სტანდარტი:",
-    btnAdd: "🛒 დამატება", btnAsk: "ფასი", btnSelected: "✓ არჩეულია",
-    cartTitle: "კალათა", custHeader: "მომხმარებელი",
-    custName: "სახელი", custPhone: "ტელეფონი (+995 ...)", custCity: "ქალაქი", custNotes: "შენიშვნა...",
-    totalRow: "ჯამური თანხა:", btnCheckout: "WhatsApp შეკვეთა 🚀",
-    toastAdded: "პროდუქტი კალათაშია!", toastSelectedAdded: "დაემატა კალათაში!",
-    selCountText: "არჩეულია", btnSelAddToCart: "🛒 კალათაში", btnSelWhatsApp: "💬 შეთავაზება",
-    cartEmpty: "კალათა ცარიელია.",
-    allCat: "ყველა", catIp: "IP კამერები", catAhd: "ანალოგი", catNvr: "NVR ჩამწერები", catSw: "PoE სვიჩები", catWifi: "Wi-Fi", catAlarm: "სიგნალიზაცია"
+    navServices: "🏢 სერვისები", navCatalog: "კატალოგი", navProjects: "პროექტები", navContact: "კონტაქტი",
+    searchPlaceholder: "მოძებნეთ მოდელი...", heroTag: "CCTV · NETWORK POE · WI-FI · დაცვა",
+    heroH1: "პროფესიონალური უსაფრთხოების აპარატურა", heroP: "ორიგინალი IP კამერები, NVR ჩამწერები და მონტაჟი.",
+    btnCatalog: "კატალოგი ⬇", btnWhatsapp: "WhatsApp ინჟინერი", secTagCatalog: "აპარატურის ტერმინალი",
+    secTitleCatalog: "ტექნიკის პანელი", secDescCatalog: "გაფილტრეთ ბრენდით, კატეგორიით და პარამეტრებით.",
+    step1: "ბრენდი", step2: "კატეგორია", step3: "პარამეტრები",
+    brandAll: "ყველა", brandAllSub: "ყველა ბრენდი", filterTxt: "ფილტრი:", countTxt: "აპარატურა:",
+    lblSpecHw: "ტიპი:", lblSpecPort: "პორტი:", lblSpecExtra: "სტანდარტი:", btnAdd: "🛒 დამატება", btnAsk: "ფასი", btnSelected: "✓ არჩეულია",
+    cartTitle: "კალათა", custHeader: "მომხმარებელი", custName: "სახელი", custPhone: "ტელეფონი (+995 ...)", custCity: "ქალაქი", custNotes: "შენიშვნა...",
+    totalRow: "ჯამი:", btnCheckout: "WhatsApp შეკვეთა 🚀", toastAdded: "დაემატა!", toastSelectedAdded: "დაემატა კალათაში!",
+    selCountText: "არჩეულია", btnSelAddToCart: "🛒 კალათაში", btnSelWhatsApp: "💬 შეთავაზება", cartEmpty: "ცარიელია.",
+    allCat: "ყველა", catIp: "IP კამერები", catAhd: "ანალოგი", catNvr: "NVR", catSw: "PoE სვიჩები", catWifi: "Wi-Fi", catAlarm: "სიგნალიზაცია"
   },
   az: {
-    navServices: "🏢 Xidmət Sahələrimiz", navCatalog: "Kataloq", navProjects: "Layihələr", navContact: "Əlaqə",
-    searchPlaceholder: "Model axtarın...",
-    heroTag: "CCTV · NETWORK POE · WI-FI · SİQNALİZASİYA",
-    heroH1: "Peşəkar Təhlükəsizlik və Şəbəkə Avadanlıqları",
-    heroP: "Orijinal IP/Analoq kameralar, NVR serverləri və açar təhvili montaj ustalığı.",
-    btnCatalog: "Kataloqa Bax ⬇", btnWhatsapp: "WhatsApp Mühəndis",
-    secTagCatalog: "AVADANLIQ TERMİNALI", secTitleCatalog: "Seçim Paneli",
-    secDescCatalog: "Brend, kateqoriya və megapiksel/kanal sayına görə sıralayın.",
-    step1: "BREND SEÇİMİ", step2: "KATEQORİYA", step3: "ƏTRAFLI PARAMETRLƏR",
-    brandAll: "HAMISI", brandAllSub: "Bütün Brendlər",
-    filterTxt: "Filtr:", countTxt: "Say:",
-    lblSpecHw: "Təsvir/Növ:", lblSpecPort: "Port:", lblSpecExtra: "Özəllik:",
-    btnAdd: "🛒 Əlavə et", btnAsk: "Soruş", btnSelected: "✓ SEÇİLDİ",
-    cartTitle: "Səbət", custHeader: "Müştəri Məlumatı",
-    custName: "Adınız", custPhone: "Telefon (+995 ...)", custCity: "Şəhər", custNotes: "Qeyd...",
-    totalRow: "Cəmi:", btnCheckout: "WhatsApp ilə Göndər 🚀",
-    toastAdded: "Səbətə əlavə olundu!", toastSelectedAdded: "Əlavə olundu!",
-    selCountText: "Məhsul Seçildi", btnSelAddToCart: "🛒 Səbətə Əlavə Et", btnSelWhatsApp: "💬 WhatsApp Təklif",
-    cartEmpty: "Səbət boşdur.",
-    allCat: "Hamısı", catIp: "IP Kameralar", catAhd: "Analoq", catNvr: "NVR Cihazları", catSw: "PoE Sviçlər", catWifi: "Wi-Fi", catAlarm: "Siqnalizasiya"
+    navServices: "🏢 Xidmətlər", navCatalog: "Kataloq", navProjects: "Layihələr", navContact: "Əlaqə",
+    searchPlaceholder: "Model axtarın...", heroTag: "CCTV · NETWORK POE · WI-FI · SİQNALİZASİYA",
+    heroH1: "Peşəkar Təhlükəsizlik və Şəbəkə Avadanlıqları", heroP: "Orijinal kameralar, NVR serverləri və quraşdırma.",
+    btnCatalog: "Kataloq ⬇", btnWhatsapp: "WhatsApp Mühəndis", secTagCatalog: "AVADANLIQ TERMİNALI",
+    secTitleCatalog: "Seçim Paneli", secDescCatalog: "Brend və parametrlərə görə sıralayın.",
+    step1: "BREND", step2: "KATEQORİYA", step3: "PARAMETRLƏR",
+    brandAll: "HAMISI", brandAllSub: "Bütün Brendlər", filterTxt: "Filtr:", countTxt: "Say:",
+    lblSpecHw: "Növ:", lblSpecPort: "Port:", lblSpecExtra: "Özəllik:", btnAdd: "🛒 Əlavə et", btnAsk: "Soruş", btnSelected: "✓ SEÇİLDİ",
+    cartTitle: "Səbət", custHeader: "Müştəri", custName: "Adınız", custPhone: "Telefon (+995 ...)", custCity: "Şəhər", custNotes: "Qeyd...",
+    totalRow: "Cəmi:", btnCheckout: "WhatsApp ilə Göndər 🚀", toastAdded: "Əlavə olundu!", toastSelectedAdded: "Səbətə əlavə olundu!",
+    selCountText: "Məhsul", btnSelAddToCart: "🛒 Əlavə Et", btnSelWhatsApp: "💬 Təklif Al", cartEmpty: "Səbət boşdur.",
+    allCat: "Hamısı", catIp: "IP Kameralar", catAhd: "Analoq", catNvr: "NVR", catSw: "PoE Sviçlər", catWifi: "Wi-Fi", catAlarm: "Siqnalizasiya"
   },
   tr: {
     navServices: "🏢 Hizmet Alanlarımız", navCatalog: "Katalog", navProjects: "Projelerimiz", navContact: "İletişim",
-    searchPlaceholder: "Model veya özellik ara...",
-    heroTag: "CCTV · NETWORK POE · WI-FI · ALARM",
-    heroH1: "Profesyonel Güvenlik ve Ağ Donanımları",
-    heroP: "Hikvision, MikroTik, Pro Look ve TVT markalı orijinal kameralar, NVR sunucuları ve anahtar teslim mühendislik işçiliği.",
-    btnCatalog: "Kataloğu İncele ⬇", btnWhatsapp: "WhatsApp Mühendis Hattı",
-    secTagCatalog: "EKİPMAN TERMİNALİ", secTitleCatalog: "Marka ve Donanım Seçim Paneli",
-    secDescCatalog: "Markanızı, donanım kategorinizi ve megapiksel/kanal sayısını filtreleyerek anında listeleyin.",
+    searchPlaceholder: "Model veya özellik ara...", heroTag: "CCTV · NETWORK POE · WI-FI · ALARM",
+    heroH1: "Profesyonel Güvenlik ve Ağ Donanımları", heroP: "Hikvision, MikroTik, Pro Look ve TVT orijinal kameralar, NVR sunucuları ve mühendislik.",
+    btnCatalog: "Kataloğu İncele ⬇", btnWhatsapp: "WhatsApp Mühendis Hattı", secTagCatalog: "EKİPMAN TERMİNALİ",
+    secTitleCatalog: "Marka ve Donanım Seçim Paneli", secDescCatalog: "Markanızı, donanım kategorinizi ve çözünürlük/kanal sayısını listeleyin.",
     step1: "MARKA SEÇİMİ", step2: "DONANIM KATEGORİSİ", step3: "DETAYLI ÖZELLİK SEÇİMİ",
-    brandAll: "TÜMÜ", brandAllSub: "Tüm Markalar",
-    filterTxt: "Filtre:", countTxt: "Ürün:",
-    lblSpecHw: "Çözünürlük/Tür:", lblSpecPort: "Arayüz/Port:", lblSpecExtra: "Özellik/Standart:",
-    btnAdd: "🛒 Ekle", btnAsk: "Sor", btnSelected: "✓ SEÇİLDİ",
-    cartTitle: "Alışveriş Sepeti & Teklif", custHeader: "Müşteri Bilgileri",
-    custName: "Adınız Soyadınız", custPhone: "Telefon Numaranız (+995 ...)", custCity: "Şehir / İlçe", custNotes: "Sipariş notu...",
-    totalRow: "Toplam Tutar:", btnCheckout: "Siparişi WhatsApp ile Gönder 🚀",
-    toastAdded: "Ürün sepete eklendi!", toastSelectedAdded: "Seçilen ürünler sepete eklendi!",
-    selCountText: "Ürün Seçildi", btnSelAddToCart: "🛒 Sepete Ekle", btnSelWhatsApp: "💬 Teklif Al",
-    cartEmpty: "Sepetiniz boş.",
+    brandAll: "TÜMÜ", brandAllSub: "Tüm Markalar", filterTxt: "Filtre:", countTxt: "Ürün:",
+    lblSpecHw: "Tür/Kasa:", lblSpecPort: "Arayüz/Port:", lblSpecExtra: "Özellik:", btnAdd: "🛒 Ekle", btnAsk: "Sor", btnSelected: "✓ SEÇİLDİ",
+    cartTitle: "Alışveriş Sepeti & Teklif", custHeader: "Müşteri Bilgileri", custName: "Adınız Soyadınız", custPhone: "Telefon Numaranız (+995 ...)", custCity: "Şehir / İlçe", custNotes: "Sipariş notu...",
+    totalRow: "Toplam Tutar:", btnCheckout: "Siparişi WhatsApp ile Gönder 🚀", toastAdded: "Ürün sepete eklendi!", toastSelectedAdded: "Seçilen ürünler eklendi!",
+    selCountText: "Ürün Seçildi", btnSelAddToCart: "🛒 Sepete Ekle", btnSelWhatsApp: "💬 Teklif Al", cartEmpty: "Sepetiniz boş.",
     allCat: "Tümü", catIp: "IP Kameralar", catAhd: "Analog Kameralar", catNvr: "NVR Kayıt Cihazları", catSw: "PoE Switchler", catWifi: "Wi-Fi Sistemleri", catAlarm: "Alarm Sistemleri"
   },
   ru: {
     navServices: "🏢 Наши Услуги", navCatalog: "Каталог", navProjects: "Проекты", navContact: "Контакты",
-    searchPlaceholder: "Поиск модели...",
-    heroTag: "CCTV · NETWORK POE · WI-FI · БЕЗОПАСНОСТЬ",
-    heroH1: "Профессиональное оборудование безопасности",
-    heroP: "Оригинальные камеры Hikvision, MikroTik, Pro Look и TVT, NVR видеорегистраторы и работы под ключ.",
-    btnCatalog: "Смотреть каталог ⬇", btnWhatsapp: "Инженер в WhatsApp",
-    secTagCatalog: "ТЕРМИНАЛ ОБОРУДОВАНИЯ", secTitleCatalog: "Панель выбора оборудования",
-    secDescCatalog: "Фильtruйте по бренду, категории и разрешению/каналам.",
-    step1: "ВЫБОР БРЕНДА", step2: "КАТЕГОРИЯ ОБОРУДОВАНИЯ", step3: "ДЕТАЛЬНЫЕ ПАРАМЕТРЫ",
-    brandAll: "ВСЕ", brandAllSub: "Все бренды",
-    filterTxt: "Фильтр:", countTxt: "Товаров:",
-    lblSpecHw: "Разрешение/Тип:", lblSpecPort: "Порт:", lblSpecExtra: "Особенность:",
-    btnAdd: "🛒 В корзину", btnAsk: "Узнать цену", btnSelected: "✓ ВЫБРАНО",
-    cartTitle: "Корзина", custHeader: "Информация о клиенте",
-    custName: "ФИО", custPhone: "Телефон (+995 ...)", custCity: "Город", custNotes: "Примечания...",
-    totalRow: "Итоговая сумма:", btnCheckout: "Заказ в WhatsApp 🚀",
-    toastAdded: "Товар добавлен в корзину!", toastSelectedAdded: "Товары добавлены!",
-    selCountText: "Выбрано", btnSelAddToCart: "🛒 В корзину", btnSelWhatsApp: "💬 WhatsApp сметa",
-    cartEmpty: "Корзина пуста.",
+    searchPlaceholder: "Поиск модели...", heroTag: "CCTV · NETWORK POE · WI-FI · БЕЗОПАСНОСТЬ",
+    heroH1: "Профессиональное оборудование безопасности", heroP: "Оригинальные камеры, NVR регистраторы и монтаж под ключ.",
+    btnCatalog: "Смотреть каталог ⬇", btnWhatsapp: "Инженер в WhatsApp", secTagCatalog: "ТЕРМИНАЛ ОБОРУДОВАНИЯ",
+    secTitleCatalog: "Панель выбора оборудования", secDescCatalog: "Фильтруйте по бренду, категории и характеристикам.",
+    step1: "ВЫБОР БРЕНДА", step2: "КАТЕГОРИЯ", step3: "ДЕТАЛЬНЫЕ ПАРАМЕТРЫ",
+    brandAll: "ВСЕ", brandAllSub: "Все бренды", filterTxt: "Фильтр:", countTxt: "Товаров:",
+    lblSpecHw: "Тип:", lblSpecPort: "Порт:", lblSpecExtra: "Особенность:", btnAdd: "🛒 В корзину", btnAsk: "Узнать цену", btnSelected: "✓ ВЫБРАНО",
+    cartTitle: "Корзина", custHeader: "Информация", custName: "ФИО", custPhone: "Телефон (+995 ...)", custCity: "Город", custNotes: "Примечания...",
+    totalRow: "Итого:", btnCheckout: "Заказ в WhatsApp 🚀", toastAdded: "Добавлено в корзину!", toastSelectedAdded: "Товары добавлены!",
+    selCountText: "Выбрано", btnSelAddToCart: "🛒 В корзину", btnSelWhatsApp: "💬 Смета WhatsApp", cartEmpty: "Корзина пуста.",
     allCat: "Все", catIp: "IP-камеры", catAhd: "Аналоговые камеры", catNvr: "NVR регистраторы", catSw: "PoE коммутаторы", catWifi: "Wi-Fi", catAlarm: "Сигнализации"
   }
 };
 
+/* VARSAYILAN GERÇEK ÜRÜNLER (STOK SAYILARI İLE) */
+const DEFAULT_PRODUCTS = [
+  {
+    id:'hk_ip_dome', brand:'hikvision', seg:'cam_ip', kasa:'Dome', mp:'2mp', stock: 12,
+    img:'https://shop.neotech.ge/images/detailed/9/DS-2CD2123G2-IS-%E5%8D%8A%E7%90%8318-%E6%B5%B7%E5%BA%B7%E7%99%BD-%E6%AD%A3%E9%9D%A2.png.thumb.1280.1280_uibh-nh.png',
+    name:'Hikvision DS-2CD1123G0E-I(C) 2MP Dome', spec:'1080p FHD · 2.8mm Geniş Açı · 30m IR', hw:'2MP Dome IP Kamera', port:'PoE 802.3af', extra:'IK10 Vandal / IP67 Su Geçirmez', price:189
+  },
+  {
+    id:'hk_ip_bullet', brand:'hikvision', seg:'cam_ip', kasa:'Bullet', mp:'4mp', stock: 8,
+    img:'https://assets.hikvision.com/prd/normal/all/image/m000008410/main_mainview/DS-2CD10X3-Bullet.png',
+    name:'Hikvision DS-2CD1043G0E-I 4MP Bullet', spec:'2K QHD · 120 dB WDR · EXIR 30m', hw:'4MP Bullet IP Kamera', port:'PoE 802.3af', extra:'IP67 Dış Ortam / H.265+', price:235
+  },
+  {
+    id:'hk_ip_colorvu', brand:'hikvision', seg:'cam_ip', kasa:'Bullet', mp:'8mp', stock: 3,
+    img:'https://assets.hikvision.com/prd/normal/all/image/m000008410/main_mainview/DS-2CD10X3-Bullet.png',
+    name:'Hikvision DS-2CD2087G2-LU 8MP 4K ColorVu Bullet', spec:'4K UltraHD · F1.0 7/24 Renkli Gece', hw:'8MP 4K Bullet IP', port:'PoE IP / Audio Mic', extra:'60m Renkli Gece / Mikrofon', price:380
+  },
+  {
+    id:'hk_ahd_bullet', brand:'hikvision', seg:'cam_ahd', kasa:'Bullet', mp:'2mp', stock: 15,
+    img:'https://assets.hikvision.com/prd/normal/all/image/m000008410/main_mainview/DS-2CD10X3-Bullet.png',
+    name:'Hikvision DS-2CE16D0T-IRF Turbo HD Bullet', spec:'1080p Analog HD · 20m Smart IR', hw:'2MP Turbo HD Bullet', port:'Koaksiyel BNC', extra:'IP66 Dış Ortam Metal', price:95
+  },
+  {
+    id:'hk_ahd_dome', brand:'hikvision', seg:'cam_ahd', kasa:'Dome', mp:'5mp', stock: 0,
+    img:'https://shop.neotech.ge/images/detailed/9/DS-2CD2123G2-IS-%E5%8D%8A%E7%90%8318-%E6%B5%B7%E5%BA%B7%E7%99%BD-%E6%AD%A3%E9%9D%A2.png.thumb.1280.1280_uibh-nh.png',
+    name:'Hikvision DS-2CE78U1T-IT3 5MP Turbo HD Dome', spec:'5MP Super HD · EXIR 40m Gece', hw:'5MP Turbo HD Dome', port:'Koaksiyel BNC', extra:'40m IR Gece / Dahili Ses', price:140
+  },
+  {
+    id:'hk_nvr1', brand:'hikvision', seg:'nvr', kasa:'', ch:'8ch', stock: 5,
+    img:'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80',
+    name:'Hikvision DS-7608NI-K1/8P 8 Kanal 4K NVR', spec:'8x Bağımsız PoE Port · 1x SATA 8TB', hw:'8 Kanal 4K NVR', port:'8x Dahili PoE', extra:'80 Mbps Bant Genişliği', price:380
+  },
+  {
+    id:'hk_sw1', brand:'hikvision', seg:'switch', kasa:'', ports:'8p', stock: 9,
+    img:'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80',
+    name:'Hikvision DS-3E0510P-E 8-Port Gigabit PoE Switch', spec:'8x Gigabit PoE + 2x SFP (110W)', hw:'8x Gigabit PoE', port:'8 Port PoE (110W)', extra:'Yıldırım Koruması 6kV', price:185
+  },
+  {
+    id:'pl_ip_bullet1', brand:'prolook', seg:'cam_ip', kasa:'Bullet', mp:'2mp', stock: 14,
+    img:'https://www.rimaelektronik.com/images/stories/virtuemart/product/Prolook-PR-IPB1021-I.webp',
+    name:'Prolook PR-IPB1021-I 2MP IP Bullet', spec:'1080p FHD · 4mm Sabit Lens · H.265', hw:'2MP Bullet IP', port:'PoE 802.3af', extra:'IP67 Dış Ortam Su Geçirmez', price:165
+  },
+  {
+    id:'pl_ip_bullet2', brand:'prolook', seg:'cam_ip', kasa:'Bullet', mp:'4mp', stock: 2,
+    img:'https://www.rimaelektronik.com/images/stories/virtuemart/product/Prolook-PR-IPB1021-I.webp',
+    name:'Prolook PR-IPB2020F-I 4MP Smart IR Bullet', spec:'2K QHD · 30m IR Gece Görüşü', hw:'4MP 2K Bullet IP', port:'PoE 802.3af', extra:'Ağır Hizmet Metal Kasa', price:215
+  },
+  {
+    id:'pl_ip_dome', brand:'prolook', seg:'cam_ip', kasa:'Dome', mp:'2mp', stock: 7,
+    img:'https://www.rimaelektronik.com/images/stories/virtuemart/product/Prolook-PR-IPD1121-I3.webp',
+    name:'Prolook PR-IPD1121-I 2MP Metal Dome', spec:'1080p FHD · 2.8mm Geniş Açı · 30m IR', hw:'2MP Dome IP', port:'PoE 802.3af', extra:'IK10 Darbe Dayanımlı / IP67', price:175
+  },
+  {
+    id:'pl_nvr1', brand:'prolook', seg:'nvr', kasa:'', ch:'8ch', stock: 4,
+    img:'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80',
+    name:'Pro Look 8 Kanal 4K Ultra PoE NVR', spec:'8x Dahili PoE · H.265+ · 2x SATA 16TB', hw:'8 Kanal 4K NVR', port:'8x PoE Port', extra:'Ultra H.265+ Sıkıştırma', price:320
+  },
+  {
+    id:'mc_sw1', brand:'microtik', seg:'switch', kasa:'', ports:'16p', stock: 3,
+    img:'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80',
+    name:'MikroTik netPOWER 16P Ağır Hizmet PoE', spec:'16x Gigabit PoE+ ve 2x SFP+ 10G', hw:'16x Gigabit PoE+', port:'PoE+ / Çift SFP+ 10G', extra:'Dış Ortam Su Geçirmez Kasa', price:480
+  },
+  {
+    id:'mc_wf1', brand:'microtik', seg:'wifi', kasa:'', stock: 11,
+    img:'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80',
+    name:'MikroTik cAP ax Wi-Fi 6 Tavan Tipi AP', spec:'Wi-Fi 6 Dual-Band Gigabit Access Point', hw:'Wi-Fi 6 AX1800', port:'PoE In & PoE Out', extra:'Yüksek İstemci Kapasitesi', price:240
+  }
+];
+
+/* LOCALSTORAGE YÜKLEME */
+let PRODUCTS = JSON.parse(localStorage.getItem("vision_products")) || DEFAULT_PRODUCTS;
 let currentLang = localStorage.getItem("v_lang") || 'tr';
 let currentBrand = 'all';
 let currentSeg = 'all';
@@ -939,199 +1040,174 @@ let currentSubFilter = 'all';
 let searchKeyword = '';
 let selectedProductIds = new Set();
 let cart = JSON.parse(localStorage.getItem("v_cart") || "{}");
+let isAdminLoggedIn = sessionStorage.getItem("v_admin_logged") === "1";
 
-/* =========================================================
-   ÜRÜN LİSTESİ: DOME YERİNE DOME, BULLET YERİNE BULLET FOTOĞRAFLARI
-   ========================================================= */
-const PRODUCTS = [
-  // --- HIKVISION MODELLERİ (VERDİĞİN LİNKLERLE EŞLEŞTİRİLDİ) ---
-  {
-    id:'hk_ip_dome', brand:'hikvision', seg:'cam_ip', mp:'2mp',
-    img:'https://shop.neotech.ge/images/detailed/9/DS-2CD2123G2-IS-%E5%8D%8A%E7%90%8318-%E6%B5%B7%E5%BA%B7%E7%99%BD-%E6%AD%A3%E9%9D%A2.png.thumb.1280.1280_uibh-nh.png',
-    name:'Hikvision DS-2CD1123G0E-I(C) 2MP Dome', 
-    spec:'1080p FHD · 2.8mm Geniş Açı · 30m IR', 
-    hw:'2MP Dome IP Kamera', 
-    port:'PoE 802.3af', 
-    extra:'IK10 Vandal / IP67 Su Geçirmez', 
-    price:189
-  },
-  {
-    id:'hk_ip_bullet', brand:'hikvision', seg:'cam_ip', mp:'4mp',
-    img:'https://assets.hikvision.com/prd/normal/all/image/m000008410/main_mainview/DS-2CD10X3-Bullet.png',
-    name:'Hikvision DS-2CD1043G0E-I 4MP Bullet', 
-    spec:'2K QHD · 120 dB WDR · EXIR 2.0 30m', 
-    hw:'4MP Bullet IP Kamera', 
-    port:'PoE 802.3af', 
-    extra:'IP67 Dış Ortam / H.265+', 
-    price:235
-  },
-  {
-    id:'hk_ip_colorvu', brand:'hikvision', seg:'cam_ip', mp:'8mp',
-    img:'https://assets.hikvision.com/prd/normal/all/image/m000008410/main_mainview/DS-2CD10X3-Bullet.png',
-    name:'Hikvision DS-2CD2087G2-LU 8MP 4K ColorVu Bullet', 
-    spec:'4K UltraHD · F1.0 7/24 Renkli Gece', 
-    hw:'8MP 4K Bullet IP', 
-    port:'PoE IP / Audio Mic', 
-    extra:'60m Renkli Gece / Dahili Mikrofon', 
-    price:380
-  },
-  {
-    id:'hk_ahd_bullet', brand:'hikvision', seg:'cam_ahd', mp:'2mp',
-    img:'https://assets.hikvision.com/prd/normal/all/image/m000008410/main_mainview/DS-2CD10X3-Bullet.png',
-    name:'Hikvision DS-2CE16D0T-IRF Turbo HD Bullet', 
-    spec:'1080p Analog HD · 20m Smart IR Gece', 
-    hw:'2MP Turbo HD Bullet', 
-    port:'Koaksiyel BNC', 
-    extra:'IP66 Dış Ortam Metal Kasa', 
-    price:95
-  },
-  {
-    id:'hk_ahd_dome', brand:'hikvision', seg:'cam_ahd', mp:'5mp',
-    img:'https://shop.neotech.ge/images/detailed/9/DS-2CD2123G2-IS-%E5%8D%8A%E7%90%8318-%E6%B5%B7%E5%BA%B7%E7%99%BD-%E6%AD%A3%E9%9D%A2.png.thumb.1280.1280_uibh-nh.png',
-    name:'Hikvision DS-2CE78U1T-IT3 5MP Turbo HD Dome', 
-    spec:'5MP Super HD · EXIR 40m Gece · Dahili Ses', 
-    hw:'5MP Turbo HD Dome', 
-    port:'Koaksiyel BNC', 
-    extra:'40m IR Gece / Dahili Ses', 
-    price:140
-  },
-  {
-    id:'hk_nvr1', brand:'hikvision', seg:'nvr', ch:'8ch',
-    img:'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80',
-    name:'Hikvision DS-7608NI-K1/8P 8 Kanal 4K NVR', 
-    spec:'8x Bağımsız PoE Port · 1x SATA 8TB', 
-    hw:'8 Kanal 4K NVR', 
-    port:'8x Dahili PoE', 
-    extra:'80 Mbps Bant Genişliği', 
-    price:380
-  },
-  {
-    id:'hk_sw1', brand:'hikvision', seg:'switch', ports:'8p',
-    img:'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80',
-    name:'Hikvision DS-3E0510P-E 8-Port Gigabit PoE Switch', 
-    spec:'8x Gigabit PoE + 2x SFP Uplink (110W)', 
-    hw:'8x Gigabit PoE', 
-    port:'8 Port PoE (110W)', 
-    extra:'Yıldırım Koruması 6kV', 
-    price:185
-  },
-  {
-    id:'hk_al1', brand:'hikvision', seg:'alarm',
-    img:'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=600&q=80',
-    name:'Hikvision DS-PWA96-M-WE AX PRO Alarm', 
-    spec:'96 Zon Kablosuz Panel + PIR Dedektör', 
-    hw:'Kablosuz Tri-X 868MHz', 
-    port:'Wi-Fi / 4G SIM / LAN', 
-    extra:'Anlık Mobil Alarm Bildirimi', 
-    price:540
-  },
-
-  // --- PRO LOOK MODELLERİ (VERDİĞİN LİNKLERLE EŞLEŞTİRİLDİ) ---
-  {
-    id:'pl_ip_bullet1', brand:'prolook', seg:'cam_ip', mp:'2mp',
-    img:'https://www.rimaelektronik.com/images/stories/virtuemart/product/Prolook-PR-IPB1021-I.webp',
-    name:'Prolook PR-IPB1021-I 2MP IP Bullet', 
-    spec:'1080p FHD · 4mm Sabit Lens · H.265 Sıkıştırma', 
-    hw:'2MP Bullet IP', 
-    port:'PoE 802.3af', 
-    extra:'IP67 Dış Ortam Su Geçirmez Metal', 
-    price:165
-  },
-  {
-    id:'pl_ip_bullet2', brand:'prolook', seg:'cam_ip', mp:'4mp',
-    img:'https://www.rimaelektronik.com/images/stories/virtuemart/product/Prolook-PR-IPB1021-I.webp',
-    name:'Prolook PR-IPB2020F-I 4MP Smart IR Bullet', 
-    spec:'2K QHD · 30m IR Gece Görüşü · 92dB DWDR', 
-    hw:'4MP 2K Bullet IP', 
-    port:'PoE 802.3af', 
-    extra:'Ağır Hizmet Metal Kasa / IP67', 
-    price:215
-  },
-  {
-    id:'pl_ip_dome', brand:'prolook', seg:'cam_ip', mp:'2mp',
-    img:'https://www.rimaelektronik.com/images/stories/virtuemart/product/Prolook-PR-IPD1121-I3.webp',
-    name:'Prolook PR-IPD1121-I 2MP Metal Dome', 
-    spec:'1080p FHD · 2.8mm Geniş Açı · 30m IR', 
-    hw:'2MP Dome IP', 
-    port:'PoE 802.3af', 
-    extra:'IK10 Darbe Dayanımlı / IP67', 
-    price:175
-  },
-  {
-    id:'pl_nvr1', brand:'prolook', seg:'nvr', ch:'8ch',
-    img:'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80',
-    name:'Pro Look 8 Kanal 4K Ultra PoE NVR', 
-    spec:'8x Dahili PoE · H.265+ · 2x SATA 16TB', 
-    hw:'8 Kanal 4K NVR', 
-    port:'8x PoE Port', 
-    extra:'Ultra H.265+ Sıkıştırma', 
-    price:320
-  },
-
-  // --- MIKROTIK VE TVT ---
-  {
-    id:'mc_ip1', brand:'microtik', seg:'cam_ip', mp:'4mp',
-    img:'https://assets.hikvision.com/prd/normal/all/image/m000008410/main_mainview/DS-2CD10X3-Bullet.png',
-    name:'MikroTik 4MP Endüstriyel IP Bullet', 
-    spec:'2K QHD · Kriptolu RouterOS Veri Tüneli', 
-    hw:'4MP 2K IP Bullet', 
-    port:'Gigabit PoE', 
-    extra:'IP67 Endüstriyel Metal Kasa', 
-    price:290
-  },
-  {
-    id:'mc_sw1', brand:'microtik', seg:'switch', ports:'16p',
-    img:'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80',
-    name:'MikroTik netPOWER 16P Ağır Hizmet PoE', 
-    spec:'16x Gigabit PoE+ ve 2x SFP+ 10G Uplink', 
-    hw:'16x Gigabit PoE+', 
-    port:'PoE+ / Çift SFP+ 10G', 
-    extra:'Dış Ortam Su Geçirmez Kasa', 
-    price:480
-  },
-  {
-    id:'mc_wf1', brand:'microtik', seg:'wifi',
-    img:'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80',
-    name:'MikroTik cAP ax Wi-Fi 6 Tavan Tipi AP', 
-    spec:'Wi-Fi 6 Dual-Band Gigabit Access Point', 
-    hw:'Wi-Fi 6 AX1800', 
-    port:'PoE In & PoE Out', 
-    extra:'Yüksek İstemci Kapasitesi', 
-    price:240
-  },
-  {
-    id:'tv_ip1', brand:'tvt', seg:'cam_ip', mp:'4mp',
-    img:'https://assets.hikvision.com/prd/normal/all/image/m000008410/main_mainview/DS-2CD10X3-Bullet.png',
-    name:'TVT 4MP AI Starlight Bullet TD-9544S3', 
-    spec:'2K QHD · Yapay Zeka Yüz & Araç Sınıflandırma', 
-    hw:'4MP AI Starlight Bullet', 
-    port:'PoE IP', 
-    extra:'45m EXIR / Dahili Ses', 
-    price:280
-  },
-  {
-    id:'tv_nvr1', brand:'tvt', seg:'nvr', ch:'16ch',
-    img:'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80',
-    name:'TVT 16 Kanal 4K AI Analizli NVR TD-3216B2', 
-    spec:'16 Kanal 4K · Çift LAN Gigabit', 
-    hw:'16 Kanal 4K Server', 
-    port:'Çift Gigabit LAN', 
-    extra:'256 Mbps Giriş Bandı', 
-    price:510
-  }
-];
-
-function initTvSlideshow(){
-  const slides = document.querySelectorAll('.tv-slide-item');
-  if(!slides.length) return;
-  let idx = 0;
-  setInterval(() => {
-    slides[idx].classList.remove('active');
-    idx = (idx + 1) % slides.length;
-    slides[idx].classList.add('active');
-  }, 4200);
+function saveProductsToStorage(){
+  localStorage.setItem("vision_products", JSON.stringify(PRODUCTS));
+  renderSegmentPills();
+  renderSubFilters();
+  renderCatalogCards();
+  renderInventoryTable();
 }
 
+function resetDefaultProducts(){
+  if(confirm("Tüm ürünler ve stoklar fabrika ayarlarına sıfırlansın mı?")){
+    PRODUCTS = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
+    saveProductsToStorage();
+    showToast("Ürünler varsayılanlara sıfırlandı!");
+  }
+}
+
+/* =========================================================
+   ADMIN PANELİ FONKSİYONLARI
+   ========================================================= */
+function openAdminModal(){
+  $("adminModal").classList.add("open");
+  document.body.style.overflow = "hidden";
+  if(isAdminLoggedIn){
+    $("adminAuthScreen").style.display = "none";
+    $("adminPanelScreen").style.display = "flex";
+    renderInventoryTable();
+  } else {
+    $("adminAuthScreen").style.display = "flex";
+    $("adminPanelScreen").style.display = "none";
+    $("adminPinInput").value = "";
+    $("adminPinInput").focus();
+  }
+}
+
+function closeAdminModal(e){
+  if(e && e.target && e.target.closest('.admin-card')) return;
+  $("adminModal").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function verifyAdminPin(){
+  const pin = $("adminPinInput").value.trim();
+  const validPin = localStorage.getItem("vision_admin_pin") || "1234";
+  if(pin === validPin){
+    isAdminLoggedIn = true;
+    sessionStorage.setItem("v_admin_logged", "1");
+    $("adminAuthScreen").style.display = "none";
+    $("adminPanelScreen").style.display = "flex";
+    renderInventoryTable();
+  } else {
+    alert("Hatalı PIN! Lütfen tekrar deneyin (Varsayılan PIN: 1234)");
+  }
+}
+
+function logoutAdmin(){
+  isAdminLoggedIn = false;
+  sessionStorage.removeItem("v_admin_logged");
+  $("adminAuthScreen").style.display = "flex";
+  $("adminPanelScreen").style.display = "none";
+}
+
+function handleSegChange(seg){
+  const kasaGroup = $("groupKasaTipi");
+  if(seg === 'cam_ip' || seg === 'cam_ahd'){
+    kasaGroup.style.display = 'flex';
+  } else {
+    kasaGroup.style.display = 'none';
+  }
+}
+
+function saveNewProduct(){
+  const name = $("admName").value.trim();
+  const brand = $("admBrand").value;
+  const seg = $("admSeg").value;
+  const kasa = (seg === 'cam_ip' || seg === 'cam_ahd') ? $("admKasa").value : '';
+  const subSpec = $("admSubSpec").value;
+  const stock = parseInt($("admStock").value) || 0;
+  const price = parseFloat($("admPrice").value) || 0;
+  let img = $("admImg").value.trim();
+  const hw = $("admHw").value.trim() || `${brand.toUpperCase()} Donanımı`;
+  const port = $("admPort").value.trim() || 'Standart Port';
+  const extra = $("admExtra").value.trim() || 'Orijinal Ürün';
+
+  if(!name){ alert("Lütfen ürün adını yazınız!"); return; }
+  if(!price){ alert("Lütfen ürün fiyatını yazınız!"); return; }
+
+  if(!img){
+    // Otomatik kasa tipine göre resim atama
+    if(kasa === 'Dome') img = 'https://shop.neotech.ge/images/detailed/9/DS-2CD2123G2-IS-%E5%8D%8A%E7%90%8318-%E6%B5%B7%E5%BA%B7%E7%99%BD-%E6%AD%A3%E9%9D%A2.png.thumb.1280.1280_uibh-nh.png';
+    else if(kasa === 'Bullet') img = 'https://assets.hikvision.com/prd/normal/all/image/m000008410/main_mainview/DS-2CD10X3-Bullet.png';
+    else img = 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80';
+  }
+
+  const newProd = {
+    id: 'prod_' + Date.now(),
+    brand: brand,
+    seg: seg,
+    kasa: kasa,
+    mp: (seg === 'cam_ip' || seg === 'cam_ahd') ? subSpec : undefined,
+    ch: (seg === 'nvr') ? subSpec : undefined,
+    ports: (seg === 'switch') ? subSpec : undefined,
+    stock: stock,
+    img: img,
+    name: name,
+    spec: `${hw} · ${port}`,
+    hw: hw,
+    port: port,
+    extra: extra,
+    price: price
+  };
+
+  PRODUCTS.unshift(newProd);
+  saveProductsToStorage();
+  showToast("Yeni ürün başarıyla eklendi! 🚀");
+
+  $("admName").value = '';
+  $("admPrice").value = '';
+  $("admImg").value = '';
+  $("admHw").value = '';
+  $("admPort").value = '';
+  $("admExtra").value = '';
+}
+
+function renderInventoryTable(){
+  const tbody = $("admInventoryList");
+  if(!tbody) return;
+  tbody.innerHTML = PRODUCTS.map((p, idx) => `
+    <tr>
+      <td>
+        <b>${p.name}</b>
+        <div style="font-size:10px;color:var(--mu)">${p.brand.toUpperCase()} ${p.kasa ? '· ' + p.kasa : ''}</div>
+      </td>
+      <td><span style="font-size:10px;background:#e2e8f0;padding:2px 6px;border-radius:4px">${p.seg}</span></td>
+      <td><b>${p.price} GEL</b></td>
+      <td>
+        <div class="stock-pill-btn">
+          <button onclick="modStock(${idx}, -1)">-</button>
+          <span style="min-width:18px;text-align:center;font-weight:900;color:${p.stock <= 0 ? 'red' : p.stock <= 3 ? 'orange' : 'green'}">${p.stock}</span>
+          <button onclick="modStock(${idx}, 1)">+</button>
+        </div>
+      </td>
+      <td>
+        <button style="border:none;background:none;color:#dc2626;font-size:13px;cursor:pointer;font-weight:900" onclick="delProduct(${idx})" title="Ürünü Sil">🗑️</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function modStock(idx, delta){
+  if(PRODUCTS[idx]){
+    PRODUCTS[idx].stock = Math.max(0, (PRODUCTS[idx].stock || 0) + delta);
+    saveProductsToStorage();
+  }
+}
+
+function delProduct(idx){
+  if(confirm(`"${PRODUCTS[idx].name}" ürününü silmek istediğinize emin misiniz?`)){
+    PRODUCTS.splice(idx, 1);
+    saveProductsToStorage();
+    showToast("Ürün silindi.");
+  }
+}
+
+/* =========================================================
+   KATALOG & VİTRİN RENDER FONKSİYONLARI
+   ========================================================= */
 function getBrandBadge(brand){
   if(brand === 'hikvision') return `<span class="logo-hikvision"><span class="h">HIK</span><span class="v">VISION</span></span>`;
   if(brand === 'prolook') return `<span class="logo-prolook">PRO<b>LOOK</b></span>`;
@@ -1140,40 +1216,86 @@ function getBrandBadge(brand){
   return `<span>VISION</span>`;
 }
 
-function scrollToCatalog(){ $('catalog').scrollIntoView({behavior:'smooth'}); }
+function renderCatalogCards(){
+  const t = I18N[currentLang] || I18N['tr'];
+  let list = PRODUCTS;
 
-function handleSearch(val){
-  searchKeyword = val.toLowerCase().trim();
-  renderCatalogCards();
-  if(searchKeyword.length >= 2) scrollToCatalog();
-}
+  if(currentBrand !== 'all') list = list.filter(p => p.brand === currentBrand);
+  if(currentSeg !== 'all') list = list.filter(p => p.seg === currentSeg);
 
-function setBrand(brand, el){
-  currentBrand = brand;
-  currentSubFilter = 'all';
-  document.querySelectorAll('.b-btn').forEach(b => b.classList.remove('active'));
-  if(el) el.classList.add('active');
-  renderSegmentPills();
-  renderSubFilters();
-  renderCatalogCards();
-  scrollToCatalog();
-}
+  if(currentSubFilter !== 'all'){
+    if(currentSeg === 'cam_ip' || currentSeg === 'cam_ahd') list = list.filter(p => p.mp === currentSubFilter);
+    else if(currentSeg === 'nvr') list = list.filter(p => p.ch === currentSubFilter);
+    else if(currentSeg === 'switch') list = list.filter(p => p.ports === currentSubFilter);
+  }
 
-function setSegment(segId){
-  currentSeg = segId;
-  currentSubFilter = 'all';
-  renderSegmentPills();
-  renderSubFilters();
-  renderCatalogCards();
-  scrollToCatalog();
-}
+  if(searchKeyword){
+    list = list.filter(p =>
+      p.name.toLowerCase().includes(searchKeyword) ||
+      (p.spec && p.spec.toLowerCase().includes(searchKeyword)) ||
+      (p.hw && p.hw.toLowerCase().includes(searchKeyword))
+    );
+  }
 
-function setSubFilter(val, el){
-  currentSubFilter = val;
-  document.querySelectorAll('.sub-pill').forEach(b => b.classList.remove('active'));
-  if(el) el.classList.add('active');
-  renderCatalogCards();
-  scrollToCatalog();
+  const brandName = currentBrand === 'all' ? t.brandAll : currentBrand.toUpperCase();
+  $("lblCurrentFilter").textContent = `${brandName}`;
+  $("lblItemCount").textContent = list.length;
+
+  if(!list.length){
+    $("catalogCards").innerHTML = `
+      <div style="grid-column:1/-1;text-align:center;padding:40px 10px;color:var(--tx-soft)">
+        <div style="font-size:30px;margin-bottom:6px">🔍</div>
+        <b>Kriterlere uygun donanım bulunamadı.</b>
+      </div>
+    `;
+    return;
+  }
+
+  $("catalogCards").innerHTML = list.map(p => {
+    const isSel = selectedProductIds.has(p.id);
+    const stock = (p.stock !== undefined) ? p.stock : 10;
+    
+    // STOK ROZETİ MANTIĞI
+    let stockBadgeHtml = '';
+    let isOutOfStock = stock <= 0;
+    if(stock > 3){
+      stockBadgeHtml = `<span class="stock-badge in-stock">🟢 Stokta (${stock} Adet)</span>`;
+    } else if(stock > 0){
+      stockBadgeHtml = `<span class="stock-badge low-stock">🟡 Son ${stock} Adet!</span>`;
+    } else {
+      stockBadgeHtml = `<span class="stock-badge out-stock">🔴 Tükendi</span>`;
+    }
+
+    return `
+      <div class="p-card ${isSel ? 'selected' : ''}" onclick="toggleProductSelection('${p.id}', event)">
+        <span class="sel-badge">${t.btnSelected}</span>
+        ${stockBadgeHtml}
+        
+        <div class="p-img-box">
+          <div class="card-brand-tag">${getBrandBadge(p.brand)}</div>
+          ${p.kasa ? `<div class="card-type-tag">${p.kasa.toUpperCase()}</div>` : ''}
+          <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='https://assets.hikvision.com/prd/normal/all/image/m000008410/main_mainview/DS-2CD10X3-Bullet.png'">
+        </div>
+        <div class="p-title">${p.name}</div>
+        <div class="p-specs">
+          <div class="spec-item"><span>${t.lblSpecHw}</span><span>${p.hw || p.kasa || '-'}</span></div>
+          <div class="spec-item"><span>${t.lblSpecPort}</span><span>${p.port || '-'}</span></div>
+          <div class="spec-item"><span>${t.lblSpecExtra}</span><span>${p.extra || '-'}</span></div>
+        </div>
+        <div class="p-price-row">
+          <div class="p-price">${p.price} GEL</div>
+          <div class="p-actions" onclick="event.stopPropagation()">
+            ${isOutOfStock ? `
+              <button class="btn disabled" disabled title="Ürün stokta kalmadı">Tükendi</button>
+            ` : `
+              <button class="btn" onclick="addToCart('${p.id}')">${t.btnAdd}</button>
+            `}
+            <a class="btn" style="background:#505156;color:#fff" target="_blank" href="https://wa.me/995557030033?text=${encodeURIComponent('Hello Vision Electronics, info about: ' + p.name + (isOutOfStock ? ' (Pre-order / Stock request)' : ''))}">${t.btnAsk}</a>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join("");
 }
 
 function renderSegmentPills(){
@@ -1247,86 +1369,60 @@ function renderSubFilters(){
   }
 }
 
-function renderCatalogCards(){
-  const t = I18N[currentLang] || I18N['tr'];
-  let list = PRODUCTS;
-
-  if(currentBrand !== 'all') list = list.filter(p => p.brand === currentBrand);
-  if(currentSeg !== 'all') list = list.filter(p => p.seg === currentSeg);
-
-  if(currentSubFilter !== 'all'){
-    if(currentSeg === 'cam_ip' || currentSeg === 'cam_ahd') list = list.filter(p => p.mp === currentSubFilter);
-    else if(currentSeg === 'nvr') list = list.filter(p => p.ch === currentSubFilter);
-    else if(currentSeg === 'switch') list = list.filter(p => p.ports === currentSubFilter);
-  }
-
-  if(searchKeyword){
-    list = list.filter(p =>
-      p.name.toLowerCase().includes(searchKeyword) ||
-      p.spec.toLowerCase().includes(searchKeyword) ||
-      p.hw.toLowerCase().includes(searchKeyword)
-    );
-  }
-
-  const brandName = currentBrand === 'all' ? t.brandAll : currentBrand.toUpperCase();
-  $("lblCurrentFilter").textContent = `${brandName}`;
-  $("lblItemCount").textContent = list.length;
-
-  if(!list.length){
-    $("catalogCards").innerHTML = `
-      <div style="grid-column:1/-1;text-align:center;padding:40px 10px;color:var(--tx-soft)">
-        <div style="font-size:30px;margin-bottom:6px">🔍</div>
-        <b>Kriterlere uygun donanım bulunamadı.</b>
-      </div>
-    `;
-    return;
-  }
-
-  $("catalogCards").innerHTML = list.map(p => {
-    const isSel = selectedProductIds.has(p.id);
-    return `
-      <div class="p-card ${isSel ? 'selected' : ''}" onclick="toggleProductSelection('${p.id}', event)">
-        <span class="sel-badge">${t.btnSelected}</span>
-        <div class="p-img-box">
-          <div class="card-brand-tag">${getBrandBadge(p.brand)}</div>
-          <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='https://assets.hikvision.com/prd/normal/all/image/m000008410/main_mainview/DS-2CD10X3-Bullet.png'">
-        </div>
-        <div class="p-title">${p.name}</div>
-        <div class="p-specs">
-          <div class="spec-item"><span>${t.lblSpecHw}</span><span>${p.hw}</span></div>
-          <div class="spec-item"><span>${t.lblSpecPort}</span><span>${p.port}</span></div>
-          <div class="spec-item"><span>${t.lblSpecExtra}</span><span>${p.extra}</span></div>
-        </div>
-        <div class="p-price-row">
-          <div class="p-price">${p.price} GEL</div>
-          <div class="p-actions" onclick="event.stopPropagation()">
-            <button class="btn" onclick="addToCart('${p.id}')">${t.btnAdd}</button>
-            <a class="btn" style="background:#505156;color:#fff" target="_blank" href="https://wa.me/995557030033?text=${encodeURIComponent('Hello Vision Electronics, info about: ' + p.name)}">${t.btnAsk}</a>
-          </div>
-        </div>
-      </div>
-    `;
-  }).join("");
+function setBrand(brand, el){
+  currentBrand = brand;
+  currentSubFilter = 'all';
+  document.querySelectorAll('.b-btn').forEach(b => b.classList.remove('active'));
+  if(el) el.classList.add('active');
+  renderSegmentPills();
+  renderSubFilters();
+  renderCatalogCards();
 }
 
-/* DİGOMİ GALERİ */
-function openDigomiGallery(){
-  $("digomiGalleryModal").classList.add("open");
-  document.body.style.overflow = "hidden";
+function setSegment(segId){
+  currentSeg = segId;
+  currentSubFilter = 'all';
+  renderSegmentPills();
+  renderSubFilters();
+  renderCatalogCards();
 }
-function closeDigomiGallery(e){
-  if(e && e.target && e.target.closest('.gallery-modal-content')) return;
-  $("digomiGalleryModal").classList.remove("open");
-  document.body.style.overflow = "";
+
+function setSubFilter(val, el){
+  currentSubFilter = val;
+  document.querySelectorAll('.sub-pill').forEach(b => b.classList.remove('active'));
+  if(el) el.classList.add('active');
+  renderCatalogCards();
 }
+
+function handleSearch(val){
+  searchKeyword = val.toLowerCase().trim();
+  renderCatalogCards();
+}
+
+/* TV SLIDESHOW */
+function initTvSlideshow(){
+  const slides = document.querySelectorAll('.tv-slide-item');
+  if(!slides.length) return;
+  let idx = 0;
+  setInterval(() => {
+    slides[idx].classList.remove('active');
+    idx = (idx + 1) % slides.length;
+    slides[idx].classList.add('active');
+  }, 4200);
+}
+
+/* DİGOMİ VE HİZMETLER */
+function openDigomiGallery(){ $("digomiGalleryModal").classList.add("open"); document.body.style.overflow = "hidden"; }
+function closeDigomiGallery(e){ if(e && e.target && e.target.closest('.gallery-modal-content')) return; $("digomiGalleryModal").classList.remove("open"); document.body.style.overflow = ""; }
 function setGalleryView(idx, imgUrl, caption, el){
-  $("galleryMainImg").src = imgUrl;
-  $("galleryCaption").textContent = caption;
+  $("galleryMainImg").src = imgUrl; $("galleryCaption").textContent = caption;
   document.querySelectorAll('.thumb-card').forEach(t => t.classList.remove('active'));
   if(el) el.classList.add('active');
 }
+function openServicesModal(){ $("servicesModal").classList.add("open"); document.body.style.overflow = "hidden"; }
+function closeServicesModal(e){ if(e && e.target && e.target.closest('.services-modal-card')) return; $("servicesModal").classList.remove("open"); document.body.style.overflow = ""; }
 
-/* SEPET */
+/* SEPET & SİPARİŞ */
 function toggleProductSelection(id, e){
   if(selectedProductIds.has(id)) selectedProductIds.delete(id);
   else selectedProductIds.add(id);
@@ -1354,7 +1450,12 @@ function updateSelectionBar(){
 
 function addSelectedToCart(){
   const t = I18N[currentLang] || I18N['tr'];
-  selectedProductIds.forEach(id => { cart[id] = (cart[id] || 0) + 1; });
+  selectedProductIds.forEach(id => {
+    const p = PRODUCTS.find(x => x.id === id);
+    if(p && (p.stock === undefined || p.stock > 0)){
+      cart[id] = (cart[id] || 0) + 1;
+    }
+  });
   selectedProductIds.clear();
   updateSelectionBar();
   renderCatalogCards();
@@ -1376,6 +1477,10 @@ function sendSelectedWhatsApp(){
 
 function addToCart(id){
   const t = I18N[currentLang] || I18N['tr'];
+  const p = PRODUCTS.find(x => x.id === id);
+  if(!p || (p.stock !== undefined && p.stock <= 0)){
+    alert("Bu ürün tükenmiştir!"); return;
+  }
   cart[id] = (cart[id] || 0) + 1;
   saveCart();
   showToast(t.toastAdded);
@@ -1389,9 +1494,7 @@ function saveCart(){
 function updateCartUI(){
   const t = I18N[currentLang] || I18N['tr'];
   const itemsContainer = $("cartItems");
-  let total = 0;
-  let count = 0;
-  let html = '';
+  let total = 0; let count = 0; let html = '';
 
   for(const [id, qty] of Object.entries(cart)){
     const p = PRODUCTS.find(x => x.id === id);
@@ -1426,19 +1529,12 @@ function modCart(id, delta){
   if(cart[id] <= 0) delete cart[id];
   saveCart();
 }
-
 function delCart(id){ delete cart[id]; saveCart(); }
 
-function toggleCart(){
-  $("cartBackdrop").classList.toggle("open");
-  $("cartPanel").classList.toggle("open");
-}
-
+function toggleCart(){ $("cartBackdrop").classList.toggle("open"); $("cartPanel").classList.toggle("open"); }
 function showToast(msg){
-  const t = $("toastMsg");
-  $("toastText").textContent = msg;
-  t.classList.add("show");
-  setTimeout(() => t.classList.remove("show"), 2400);
+  const t = $("toastMsg"); $("toastText").textContent = msg;
+  t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 2400);
 }
 
 function checkoutWhatsApp(){
@@ -1462,7 +1558,6 @@ function checkoutWhatsApp(){
       total += p.price * qty;
     }
   }
-
   text += `%0A💰 *TOPLAM:* ${total} GEL%0A`;
   text += `Keşif ve montaj teklifi rica ediyorum.`;
   window.open(`https://wa.me/995557030033?text=${text}`, '_blank');
@@ -1471,26 +1566,21 @@ function checkoutWhatsApp(){
 function changeLang(langKey){
   currentLang = langKey;
   localStorage.setItem("v_lang", langKey);
-
   ['en','ge','az','tr','ru'].forEach(l => {
     const btn = $("btnLang_" + l);
     if(btn) btn.classList.toggle('on', l === langKey);
   });
-
   const t = I18N[langKey] || I18N['tr'];
-
   $("navServices").textContent = t.navServices;
   $("navCatalog").textContent = t.navCatalog;
   $("navProjects").textContent = t.navProjects;
   $("navContact").textContent = t.navContact;
   $("headerSearchInput").placeholder = t.searchPlaceholder;
-
   $("heroTagText").textContent = t.heroTag;
   $("heroH1").textContent = t.heroH1;
   $("heroP").textContent = t.heroP;
   $("btnHeroCatalog").textContent = t.btnCatalog;
   $("btnHeroWhatsapp").textContent = t.btnWhatsapp;
-
   $("secTagCatalog").textContent = t.secTagCatalog;
   $("secTitleCatalog").textContent = t.secTitleCatalog;
   $("secDescCatalog").textContent = t.secDescCatalog;
@@ -1502,17 +1592,6 @@ function changeLang(langKey){
   $("lblFilterTxt").textContent = t.filterTxt;
   $("lblCountTxt").textContent = t.countTxt;
 
-  $("txtCartTitle").textContent = t.cartTitle;
-  $("txtCustHeader").textContent = t.custHeader;
-  $("custName").placeholder = t.custName;
-  $("custPhone").placeholder = t.custPhone;
-  $("custCity").placeholder = t.custCity;
-  $("custNotes").placeholder = t.custNotes;
-  $("txtTotalRow").textContent = t.totalRow;
-  $("btnCheckoutWhatsApp").textContent = t.btnCheckout;
-  $("btnSelAddToCart").textContent = t.btnSelAddToCart;
-  $("btnSelWhatsApp").textContent = t.btnSelWhatsApp;
-
   renderSegmentPills();
   renderSubFilters();
   renderCatalogCards();
@@ -1523,6 +1602,7 @@ function changeLang(langKey){
 window.addEventListener("DOMContentLoaded", () => {
   initTvSlideshow();
   changeLang(currentLang);
+  handleSegChange($("admSeg").value);
 });
 </script>
 </body>
