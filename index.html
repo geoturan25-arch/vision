@@ -6,7 +6,7 @@
 <title>Vision Electronics — CCTV, Ağ & Güvenlik Çözümleri</title>
 <style>
 /* =========================================================
-   GÖNDERDİĞİN GÖRSELDEN BİREBİR ALINAN METALİK GÜMÜŞ PALETİ
+   SABİT VE DEĞİŞMEZ METALİK GÜMÜŞ PALETİ (KİLİTLİ)
    ========================================================= */
 :root{
   color-scheme: light;
@@ -40,7 +40,7 @@
       #45464a 100%
     );
 
-  /* Kartlar: Fırçalanmış gümüş plaka (Beyaz kağıt değil, metal döküm) */
+  /* Kartlar: Fırçalanmış gümüş döküm plaka */
   --card-metal: linear-gradient(165deg, #ffffff 0%, #d8d9de 40%, #b2b3b8 100%);
   --card-metal-hover: linear-gradient(165deg, #ffffff 0%, #e8e9ed 40%, #c6c7cb 100%);
   
@@ -319,7 +319,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 @media(max-width:768px){
   .window-scrollable-body{grid-template-columns:repeat(2,1fr);gap:10px;padding:10px}
   .p-card{padding:10px !important}
-  .p-img-box{height:105px !important}
+  .p-img-box{height:115px !important}
   .p-title{font-size:12px !important;line-height:1.25 !important}
   .p-specs{display:none !important}
   .p-price{font-size:15px !important}
@@ -347,13 +347,20 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 }
 .p-card.selected .sel-badge{display:inline-block}
 
+/* KAMERA GÖRSEL KUTUSU: GERÇEK DONANIM GÖRÜNTÜLEME TEPSİSİ */
 .p-img-box{
-  height:135px;border-radius:8px;
-  background: linear-gradient(135deg, #dedfe1 0%, #b2b3b8 100%);
+  height:140px;border-radius:8px;
+  background: linear-gradient(145deg, #ffffff 0%, #e8ebf0 50%, #d1d6de 100%);
   display:flex;align-items:center;justify-content:center;margin-bottom:10px;
-  border:1px solid var(--line-steel);position:relative;overflow:hidden;
+  border:1px solid var(--line-steel);position:relative;overflow:hidden;padding:8px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
 }
-.p-img-box img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+.p-img-box img{
+  max-width:92%;max-height:92%;width:auto;height:auto;
+  object-fit:contain; /* Kameranın şeklini (dome veya bullet) tam ve net gösterir */
+  filter:drop-shadow(0 4px 6px rgba(0,0,0,0.22));
+  transition:transform .3s ease;
+}
 .p-card:hover .p-img-box img{transform:scale(1.08)}
 
 .card-brand-tag{
@@ -909,7 +916,7 @@ const I18N = {
     heroP: "Оригинальные камеры Hikvision, MikroTik, Pro Look и TVT, NVR видеорегистраторы и работы под ключ.",
     btnCatalog: "Смотреть каталог ⬇", btnWhatsapp: "Инженер в WhatsApp",
     secTagCatalog: "ТЕРМИНАЛ ОБОРУДОВАНИЯ", secTitleCatalog: "Панель выбора оборудования",
-    secDescCatalog: "Фильтруйте по бренду, категории и разрешению/каналам.",
+    secDescCatalog: "Фильtruйте по бренду, категории и разрешению/каналам.",
     step1: "ВЫБОР БРЕНДА", step2: "КАТЕГОРИЯ ОБОРУДОВАНИЯ", step3: "ДЕТАЛЬНЫЕ ПАРАМЕТРЫ",
     brandAll: "ВСЕ", brandAllSub: "Все бренды",
     filterTxt: "Фильтр:", countTxt: "Товаров:",
@@ -933,81 +940,184 @@ let searchKeyword = '';
 let selectedProductIds = new Set();
 let cart = JSON.parse(localStorage.getItem("v_cart") || "{}");
 
+/* =========================================================
+   ÜRÜN LİSTESİ: DOME YERİNE DOME, BULLET YERİNE BULLET FOTOĞRAFLARI
+   ========================================================= */
 const PRODUCTS = [
+  // --- HIKVISION MODELLERİ (VERDİĞİN LİNKLERLE EŞLEŞTİRİLDİ) ---
   {
-    id:'hk_ip1', brand:'hikvision', seg:'cam_ip', mp:'2mp',
-    img:'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80',
-    name:'Hikvision DS-2CD2123G0-I 2MP Dome', spec:'1080p · 2.8mm Lens · 30m IR', hw:'2MP Full HD IP', port:'PoE 802.3af', extra:'IP67 / IK10 Darbe Dayanımlı', price:245
+    id:'hk_ip_dome', brand:'hikvision', seg:'cam_ip', mp:'2mp',
+    img:'https://shop.neotech.ge/images/detailed/9/DS-2CD2123G2-IS-%E5%8D%8A%E7%90%8318-%E6%B5%B7%E5%BA%B7%E7%99%BD-%E6%AD%A3%E9%9D%A2.png.thumb.1280.1280_uibh-nh.png',
+    name:'Hikvision DS-2CD1123G0E-I(C) 2MP Dome', 
+    spec:'1080p FHD · 2.8mm Geniş Açı · 30m IR', 
+    hw:'2MP Dome IP Kamera', 
+    port:'PoE 802.3af', 
+    extra:'IK10 Vandal / IP67 Su Geçirmez', 
+    price:189
   },
   {
-    id:'hk_ip2', brand:'hikvision', seg:'cam_ip', mp:'4mp',
-    img:'https://images.unsplash.com/photo-1528312635006-8ea0bc49ec63?auto=format&fit=crop&w=600&q=80',
-    name:'Hikvision DS-2CD2043G2-I 4MP AcuSense', spec:'2K QHD · Akıllı İnsan/Araç Algılama', hw:'4MP 2K IP Bullet', port:'PoE 802.3af', extra:'40m EXIR Gece Görüş', price:285
+    id:'hk_ip_bullet', brand:'hikvision', seg:'cam_ip', mp:'4mp',
+    img:'https://assets.hikvision.com/prd/normal/all/image/m000008410/main_mainview/DS-2CD10X3-Bullet.png',
+    name:'Hikvision DS-2CD1043G0E-I 4MP Bullet', 
+    spec:'2K QHD · 120 dB WDR · EXIR 2.0 30m', 
+    hw:'4MP Bullet IP Kamera', 
+    port:'PoE 802.3af', 
+    extra:'IP67 Dış Ortam / H.265+', 
+    price:235
   },
   {
-    id:'hk_ip3', brand:'hikvision', seg:'cam_ip', mp:'8mp',
-    img:'https://images.unsplash.com/photo-1496368077930-c1e31b4e5b44?auto=format&fit=crop&w=600&q=80',
-    name:'Hikvision DS-2CD2087G2-LU 8MP 4K ColorVu', spec:'4K UltraHD · F1.0 7/24 Renkli Gece', hw:'8MP 4K ColorVu', port:'PoE IP / Audio Mic', extra:'60m Renkli Gece / Dahili Mikrofon', price:380
+    id:'hk_ip_colorvu', brand:'hikvision', seg:'cam_ip', mp:'8mp',
+    img:'https://assets.hikvision.com/prd/normal/all/image/m000008410/main_mainview/DS-2CD10X3-Bullet.png',
+    name:'Hikvision DS-2CD2087G2-LU 8MP 4K ColorVu Bullet', 
+    spec:'4K UltraHD · F1.0 7/24 Renkli Gece', 
+    hw:'8MP 4K Bullet IP', 
+    port:'PoE IP / Audio Mic', 
+    extra:'60m Renkli Gece / Dahili Mikrofon', 
+    price:380
   },
   {
-    id:'hk_ahd1', brand:'hikvision', seg:'cam_ahd', mp:'2mp',
-    img:'https://images.unsplash.com/photo-1554936970-e49a373f6967?auto=format&fit=crop&w=600&q=80',
-    name:'Hikvision DS-2CE16D0T-IRF 2MP Turbo HD', spec:'1080p Analog HD · Metal Dış Ortam', hw:'2MP Analog BNC', port:'Koaksiyel BNC', extra:'IP66 Dış Ortam', price:95
+    id:'hk_ahd_bullet', brand:'hikvision', seg:'cam_ahd', mp:'2mp',
+    img:'https://assets.hikvision.com/prd/normal/all/image/m000008410/main_mainview/DS-2CD10X3-Bullet.png',
+    name:'Hikvision DS-2CE16D0T-IRF Turbo HD Bullet', 
+    spec:'1080p Analog HD · 20m Smart IR Gece', 
+    hw:'2MP Turbo HD Bullet', 
+    port:'Koaksiyel BNC', 
+    extra:'IP66 Dış Ortam Metal Kasa', 
+    price:95
   },
   {
-    id:'hk_ahd2', brand:'hikvision', seg:'cam_ahd', mp:'5mp',
-    img:'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=600&q=80',
-    name:'Hikvision DS-2CE78U1T-IT3 5MP Turbo HD Dome', spec:'5MP Super HD · EXIR 40m Gece', hw:'5MP Turbo HD', port:'Koaksiyel BNC', extra:'40m IR Gece / Dahili Ses', price:140
+    id:'hk_ahd_dome', brand:'hikvision', seg:'cam_ahd', mp:'5mp',
+    img:'https://shop.neotech.ge/images/detailed/9/DS-2CD2123G2-IS-%E5%8D%8A%E7%90%8318-%E6%B5%B7%E5%BA%B7%E7%99%BD-%E6%AD%A3%E9%9D%A2.png.thumb.1280.1280_uibh-nh.png',
+    name:'Hikvision DS-2CE78U1T-IT3 5MP Turbo HD Dome', 
+    spec:'5MP Super HD · EXIR 40m Gece · Dahili Ses', 
+    hw:'5MP Turbo HD Dome', 
+    port:'Koaksiyel BNC', 
+    extra:'40m IR Gece / Dahili Ses', 
+    price:140
   },
   {
     id:'hk_nvr1', brand:'hikvision', seg:'nvr', ch:'8ch',
     img:'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80',
-    name:'Hikvision DS-7608NI-K1/8P 8 Kanal 4K NVR', spec:'8x Bağımsız PoE Port · 1x SATA 8TB', hw:'8 Kanal 4K NVR', port:'8x Dahili PoE', extra:'80 Mbps Bant Genişliği', price:380
+    name:'Hikvision DS-7608NI-K1/8P 8 Kanal 4K NVR', 
+    spec:'8x Bağımsız PoE Port · 1x SATA 8TB', 
+    hw:'8 Kanal 4K NVR', 
+    port:'8x Dahili PoE', 
+    extra:'80 Mbps Bant Genişliği', 
+    price:380
   },
   {
     id:'hk_sw1', brand:'hikvision', seg:'switch', ports:'8p',
     img:'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80',
-    name:'Hikvision DS-3E0510P-E 8-Port Gigabit PoE Switch', spec:'8x Gigabit PoE + 2x SFP Uplink (110W)', hw:'8x Gigabit PoE', port:'8 Port PoE (110W)', extra:'Yıldırım Koruması 6kV', price:185
+    name:'Hikvision DS-3E0510P-E 8-Port Gigabit PoE Switch', 
+    spec:'8x Gigabit PoE + 2x SFP Uplink (110W)', 
+    hw:'8x Gigabit PoE', 
+    port:'8 Port PoE (110W)', 
+    extra:'Yıldırım Koruması 6kV', 
+    price:185
   },
   {
     id:'hk_al1', brand:'hikvision', seg:'alarm',
     img:'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=600&q=80',
-    name:'Hikvision DS-PWA96-M-WE AX PRO Alarm', spec:'96 Zon Kablosuz Panel + PIR Dedektör', hw:'Kablosuz Tri-X 868MHz', port:'Wi-Fi / 4G SIM / LAN', extra:'Anlık Mobil Alarm Bildirimi', price:540
+    name:'Hikvision DS-PWA96-M-WE AX PRO Alarm', 
+    spec:'96 Zon Kablosuz Panel + PIR Dedektör', 
+    hw:'Kablosuz Tri-X 868MHz', 
+    port:'Wi-Fi / 4G SIM / LAN', 
+    extra:'Anlık Mobil Alarm Bildirimi', 
+    price:540
+  },
+
+  // --- PRO LOOK MODELLERİ (VERDİĞİN LİNKLERLE EŞLEŞTİRİLDİ) ---
+  {
+    id:'pl_ip_bullet1', brand:'prolook', seg:'cam_ip', mp:'2mp',
+    img:'https://www.rimaelektronik.com/images/stories/virtuemart/product/Prolook-PR-IPB1021-I.webp',
+    name:'Prolook PR-IPB1021-I 2MP IP Bullet', 
+    spec:'1080p FHD · 4mm Sabit Lens · H.265 Sıkıştırma', 
+    hw:'2MP Bullet IP', 
+    port:'PoE 802.3af', 
+    extra:'IP67 Dış Ortam Su Geçirmez Metal', 
+    price:165
   },
   {
-    id:'mc_ip1', brand:'microtik', seg:'cam_ip', mp:'4mp',
-    img:'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=600&q=80',
-    name:'MikroTik 4MP Endüstriyel IP Cam', spec:'2K QHD · Kriptolu RouterOS Veri Tüneli', hw:'4MP 2K IP', port:'Gigabit PoE', extra:'IP67 Endüstriyel Metal Kasa', price:290
+    id:'pl_ip_bullet2', brand:'prolook', seg:'cam_ip', mp:'4mp',
+    img:'https://www.rimaelektronik.com/images/stories/virtuemart/product/Prolook-PR-IPB1021-I.webp',
+    name:'Prolook PR-IPB2020F-I 4MP Smart IR Bullet', 
+    spec:'2K QHD · 30m IR Gece Görüşü · 92dB DWDR', 
+    hw:'4MP 2K Bullet IP', 
+    port:'PoE 802.3af', 
+    extra:'Ağır Hizmet Metal Kasa / IP67', 
+    price:215
   },
   {
-    id:'mc_sw1', brand:'microtik', seg:'switch', ports:'16p',
-    img:'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80',
-    name:'MikroTik netPOWER 16P Ağır Hizmet PoE', spec:'16x Gigabit PoE+ ve 2x SFP+ 10G Uplink', hw:'16x Gigabit PoE+', port:'PoE+ / Çift SFP+ 10G', extra:'Dış Ortam Su Geçirmez Kasa', price:480
-  },
-  {
-    id:'mc_wf1', brand:'microtik', seg:'wifi',
-    img:'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80',
-    name:'MikroTik cAP ax Wi-Fi 6 Tavan Tipi AP', spec:'Wi-Fi 6 Dual-Band Gigabit Access Point', hw:'Wi-Fi 6 AX1800', port:'PoE In & PoE Out', extra:'Yüksek İstemci Kapasitesi', price:240
-  },
-  {
-    id:'pl_ip1', brand:'prolook', seg:'cam_ip', mp:'4mp',
-    img:'https://images.unsplash.com/photo-1549109926-58f039549485?auto=format&fit=crop&w=600&q=80',
-    name:'Pro Look 4MP Smart IR Metal Bullet', spec:'2K QHD · 40m Gece Görüşü', hw:'4MP 2K IP', port:'PoE 802.3af', extra:'IP67 Su Geçirmez', price:275
+    id:'pl_ip_dome', brand:'prolook', seg:'cam_ip', mp:'2mp',
+    img:'https://www.rimaelektronik.com/images/stories/virtuemart/product/Prolook-PR-IPD1121-I3.webp',
+    name:'Prolook PR-IPD1121-I 2MP Metal Dome', 
+    spec:'1080p FHD · 2.8mm Geniş Açı · 30m IR', 
+    hw:'2MP Dome IP', 
+    port:'PoE 802.3af', 
+    extra:'IK10 Darbe Dayanımlı / IP67', 
+    price:175
   },
   {
     id:'pl_nvr1', brand:'prolook', seg:'nvr', ch:'8ch',
     img:'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80',
-    name:'Pro Look 8 Kanal 4K Ultra PoE NVR', spec:'8x Dahili PoE · H.265+ · 2x SATA 16TB', hw:'8 Kanal 4K NVR', port:'8x PoE Port', extra:'Ultra H.265+ Sıkıştırma', price:320
+    name:'Pro Look 8 Kanal 4K Ultra PoE NVR', 
+    spec:'8x Dahili PoE · H.265+ · 2x SATA 16TB', 
+    hw:'8 Kanal 4K NVR', 
+    port:'8x PoE Port', 
+    extra:'Ultra H.265+ Sıkıştırma', 
+    price:320
+  },
+
+  // --- MIKROTIK VE TVT ---
+  {
+    id:'mc_ip1', brand:'microtik', seg:'cam_ip', mp:'4mp',
+    img:'https://assets.hikvision.com/prd/normal/all/image/m000008410/main_mainview/DS-2CD10X3-Bullet.png',
+    name:'MikroTik 4MP Endüstriyel IP Bullet', 
+    spec:'2K QHD · Kriptolu RouterOS Veri Tüneli', 
+    hw:'4MP 2K IP Bullet', 
+    port:'Gigabit PoE', 
+    extra:'IP67 Endüstriyel Metal Kasa', 
+    price:290
+  },
+  {
+    id:'mc_sw1', brand:'microtik', seg:'switch', ports:'16p',
+    img:'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80',
+    name:'MikroTik netPOWER 16P Ağır Hizmet PoE', 
+    spec:'16x Gigabit PoE+ ve 2x SFP+ 10G Uplink', 
+    hw:'16x Gigabit PoE+', 
+    port:'PoE+ / Çift SFP+ 10G', 
+    extra:'Dış Ortam Su Geçirmez Kasa', 
+    price:480
+  },
+  {
+    id:'mc_wf1', brand:'microtik', seg:'wifi',
+    img:'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80',
+    name:'MikroTik cAP ax Wi-Fi 6 Tavan Tipi AP', 
+    spec:'Wi-Fi 6 Dual-Band Gigabit Access Point', 
+    hw:'Wi-Fi 6 AX1800', 
+    port:'PoE In & PoE Out', 
+    extra:'Yüksek İstemci Kapasitesi', 
+    price:240
   },
   {
     id:'tv_ip1', brand:'tvt', seg:'cam_ip', mp:'4mp',
-    img:'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80',
-    name:'TVT 4MP AI Starlight Bullet TD-9544S3', spec:'2K QHD · Yapay Zeka Yüz & Araç Sınıflandırma', hw:'4MP AI Starlight', port:'PoE IP', extra:'45m EXIR / Dahili Ses', price:280
+    img:'https://assets.hikvision.com/prd/normal/all/image/m000008410/main_mainview/DS-2CD10X3-Bullet.png',
+    name:'TVT 4MP AI Starlight Bullet TD-9544S3', 
+    spec:'2K QHD · Yapay Zeka Yüz & Araç Sınıflandırma', 
+    hw:'4MP AI Starlight Bullet', 
+    port:'PoE IP', 
+    extra:'45m EXIR / Dahili Ses', 
+    price:280
   },
   {
     id:'tv_nvr1', brand:'tvt', seg:'nvr', ch:'16ch',
     img:'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80',
-    name:'TVT 16 Kanal 4K AI Analizli NVR TD-3216B2', spec:'16 Kanal 4K · Çift LAN Gigabit', hw:'16 Kanal 4K Server', port:'Çift Gigabit LAN', extra:'256 Mbps Giriş Bandı', price:510
+    name:'TVT 16 Kanal 4K AI Analizli NVR TD-3216B2', 
+    spec:'16 Kanal 4K · Çift LAN Gigabit', 
+    hw:'16 Kanal 4K Server', 
+    port:'Çift Gigabit LAN', 
+    extra:'256 Mbps Giriş Bandı', 
+    price:510
   }
 ];
 
@@ -1179,7 +1289,7 @@ function renderCatalogCards(){
         <span class="sel-badge">${t.btnSelected}</span>
         <div class="p-img-box">
           <div class="card-brand-tag">${getBrandBadge(p.brand)}</div>
-          <img src="${p.img}" alt="${p.name}" loading="lazy">
+          <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='https://assets.hikvision.com/prd/normal/all/image/m000008410/main_mainview/DS-2CD10X3-Bullet.png'">
         </div>
         <div class="p-title">${p.name}</div>
         <div class="p-specs">
