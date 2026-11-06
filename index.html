@@ -6,35 +6,36 @@
 <title>Vision Electronics — CCTV, Ağ & Güvenlik Çözümleri</title>
 <style>
 /* =========================================================
-   TÜND & PARLAK TITANIUM SILVER — METALİK LÜKS PALET
+   ATLAS (İPEKSİ SIVI METALİK) SILVER PALETİ
    ========================================================= */
 :root{
   color-scheme:light;
-  --bg-silver-gradient: radial-gradient(circle at 50% 0%, #dbe2e9 0%, #bcc7d3 50%, #a4b0be 100%);
-  --bg-solid:#b4bfc9;
-  --bg-deep:#99a7b5;
+  /* Atlas kumaşı gibi yanardöner, saten yansımalı sıvı metalik degrade */
+  --bg-metallic-atlas: 
+    radial-gradient(ellipse at 15% 10%, rgba(255,255,255,0.7) 0%, rgba(210,220,232,0.4) 35%, transparent 60%),
+    radial-gradient(ellipse at 85% 90%, rgba(148,163,184,0.6) 0%, rgba(226,232,240,0.3) 40%, transparent 70%),
+    linear-gradient(135deg, #b0bcc9 0%, #dbe4ec 20%, #9eacbc 42%, #f1f5f9 62%, #8e9cae 82%, #cbd5e1 100%);
   --card:#ffffff;
   --card-hover:#f8fafc;
-  --card-active:#e2e8f0;
-  --line:#8e9cae;              /* Tünd metalik çerçeve */
-  --line-light:#a4b1c2;
-  --tx:#0f172a;                /* Okunaklı antrasit */
-  --tx-soft:#334155;
+  --line:#7e8e9f;              /* Tok çelik çerçeve */
+  --line-light:#94a3b8;
+  --tx:#090d16;                /* Derin okunaklı antrasit */
+  --tx-soft:#1e293b;
   --mu:#475569;
-  --bl:#1d4ed8;                /* Canlı safir mavi */
+  --bl:#1d4ed8;                /* Precision Safir Mavi */
   --bl-hover:#1e40af;
   --bl-soft:rgba(29,78,216,.1);
   --cyan:#0284c7;
-  --green:#047857;             /* Net koyu zümrüt */
+  --green:#047857;             /* Koyu Zümrüt */
   --green-hover:#065f46;
-  --red:#dc2626;               /* CCTV REC Kırmızısı */
+  --red:#dc2626;
   --hik-red:#e11d48;
   --yellow:#d97706;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
-  background:var(--bg-silver-gradient);
+  background:var(--bg-metallic-atlas);
   background-attachment:fixed;
   color:var(--tx);
   font:14px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
@@ -46,16 +47,14 @@ a{color:inherit;text-decoration:none}
 button,input,select,textarea{font-family:inherit;color:inherit}
 button{cursor:pointer}
 
-/* =========================================================
-   HEADER: METALİK PARLAK HEADER
-   ========================================================= */
+/* HEADER */
 header{
   position:fixed;top:0;left:0;right:0;z-index:120;
   display:flex;align-items:center;gap:14px;padding:10px 28px;
-  background:linear-gradient(180deg, rgba(235,240,245,.96) 0%, rgba(205,215,225,.92) 100%);
-  backdrop-filter:blur(16px);
+  background:linear-gradient(180deg, rgba(245,248,251,.96) 0%, rgba(205,215,225,.92) 100%);
+  backdrop-filter:blur(18px);
   border-bottom:1.5px solid var(--line);
-  box-shadow:0 4px 20px rgba(15,23,42,.08);
+  box-shadow:0 4px 20px rgba(0,0,0,.1);
 }
 .brand-link{display:flex;align-items:center;gap:10px;text-decoration:none}
 .brand-logo-svg{width:34px;height:34px;flex:none;filter:drop-shadow(0 2px 4px rgba(0,0,0,.15))}
@@ -70,11 +69,10 @@ nav a:hover{color:var(--bl)}
 
 .header-search-wrap{
   display:flex;align-items:center;background:#fff;border:1px solid var(--line);
-  border-radius:20px;padding:4px 10px;width:220px;transition:all .2s;
-  box-shadow:inset 0 1px 3px rgba(0,0,0,.06);
+  border-radius:20px;padding:4px 10px;width:210px;transition:all .2s;
 }
-.header-search-wrap:focus-within{border-color:var(--bl);width:260px;box-shadow:0 0 10px rgba(29,78,216,.2)}
-.header-search-input{border:none;outline:none;background:none;font-size:12px;color:var(--tx);width:100%;padding:4px}
+.header-search-wrap:focus-within{border-color:var(--bl);width:250px}
+.header-search-input{border:none;outline:none;background:none;font-size:12px;color:var(--tx);width:100%;padding:3px}
 
 .lang{display:flex;gap:3px}
 .lang button{
@@ -87,26 +85,22 @@ nav a:hover{color:var(--bl)}
 .cart-trigger{
   position:relative;background:#fff;border:1px solid var(--line);
   color:var(--tx);border-radius:8px;padding:6px 12px;display:flex;align-items:center;gap:6px;font-weight:800;font-size:12px;
-  box-shadow:0 2px 6px rgba(0,0,0,.08);
 }
-.cart-trigger:hover{border-color:var(--bl)}
 .badge{background:var(--bl);color:#fff;font-size:10px;font-weight:900;border-radius:20px;padding:1px 6px;min-width:16px;text-align:center}
 @media(max-width:1080px){nav{display:none}.header-search-wrap{width:160px}}
 @media(max-width:768px){.header-search-wrap{display:none}}
 
 /* =========================================================
-   HERO & AKTİF CCTV MONİTÖR EKRANI
+   HERO: SİNEMATİK TV EKRANI (SAAT VE REC TAMAMEN SİLİNDİ)
    ========================================================= */
 .hero{
-  position:relative;width:100%;height:84vh;min-height:580px;max-height:800px;
+  position:relative;width:100%;height:84vh;min-height:560px;max-height:800px;
   margin-top:54px;overflow:hidden;border-bottom:2px solid var(--line);
   background:#090d14;
 }
-
-/* GERÇEK CCTV MONİTÖRÜ */
 .tv-frame{
   position:absolute;inset:16px;border-radius:18px;overflow:hidden;
-  border:4px solid #2a3442;
+  border:4px solid #334155;
   box-shadow:inset 0 0 100px rgba(0,0,0,.9), 0 25px 60px rgba(0,0,0,.6);
   background:#000;
 }
@@ -117,44 +111,25 @@ nav a:hover{color:var(--bl)}
 }
 .tv-slide-item.active{opacity:1;transform:scale(1)}
 
-/* CCTV SCANLINES & TV INTERLACE EFEKTİ */
+/* TV SCANLINES & VIGNETTE */
 .tv-scanlines{
   position:absolute;inset:0;z-index:3;pointer-events:none;
-  background:linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-  background-size:100% 4px, 6px 100%;
+  background:linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%);
+  background-size:100% 4px;
 }
 .tv-vignette{
   position:absolute;inset:0;z-index:4;pointer-events:none;
   background:radial-gradient(circle at 50% 50%, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 90%);
 }
 
-/* CCTV CANLI KAMERA HUD (EKRAN VERİLERİ) */
-.cctv-hud-top{
-  position:absolute;top:18px;right:22px;z-index:15;
-  display:flex;align-items:center;gap:12px;background:rgba(0,0,0,.65);
-  backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.15);
-  border-radius:30px;padding:5px 14px;color:#fff;font-family:ui-monospace, monospace;font-size:11px;
-}
-.cctv-rec-dot{
-  width:9px;height:9px;border-radius:50%;background:var(--red);box-shadow:0 0 10px var(--red);
-  animation:cctvBlink 1s infinite alternate;
-}
-@keyframes cctvBlink{from{opacity:1}to{opacity:.2}}
-
-.cctv-hud-bottom{
-  position:absolute;bottom:18px;right:22px;z-index:15;
-  background:rgba(0,0,0,.65);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.15);
-  border-radius:8px;padding:4px 10px;color:#38bdf8;font-family:ui-monospace, monospace;font-size:10.5px;
-}
-
-/* YAZILAR SOL ÜSTTE ŞEFFAF */
+/* ŞEFFAF YAZILAR (SOL ÜSTTE) */
 .hero-content-transparent{
   position:absolute;top:40px;left:40px;z-index:20;
-  max-width:550px;text-align:left;background:transparent !important;
+  max-width:540px;text-align:left;background:transparent !important;
 }
 .tag-badge{
-  display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.6);
-  border:1.5px solid rgba(255,255,255,.25);border-radius:30px;padding:5px 14px;margin-bottom:14px;
+  display:inline-flex;align-items:center;background:rgba(0,0,0,.65);
+  border:1.5px solid rgba(255,255,255,.3);border-radius:30px;padding:6px 16px;margin-bottom:14px;
 }
 .tag-text{font-size:10.5px;font-weight:900;letter-spacing:.14em;color:#fff;text-transform:uppercase}
 h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weight:900;color:#fff;text-shadow:0 3px 12px rgba(0,0,0,.9)}
@@ -167,14 +142,10 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
   font-size:13px;border:0;transition:all .2s;text-align:center;box-shadow:0 3px 10px rgba(0,0,0,.3);
 }
 .btn:hover{background:var(--bl-hover);transform:translateY(-1px)}
-.btn.silver{background:linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);color:var(--tx);border:1px solid var(--line)}
-.btn.silver:hover{background:#fff}
 .btn.green{background:var(--green);color:#fff}
 .btn.green:hover{background:var(--green-hover)}
 
-/* =========================================================
-   1. MADDE: MOBİL EKRAN KURALLARI (RESPONSIVE HERO + 2'Lİ GRID)
-   ========================================================= */
+/* MOBİL KURALLARI */
 @media(max-width:768px){
   .hero{
     height:auto;min-height:auto;max-height:none;
@@ -195,7 +166,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 }
 
 /* =========================================================
-   4. MADDE: HAKKIMIZDA & HİZMET ALANLARIMIZ MODALI (İÇ SAYFA)
+   HİZMET ALANLARIMIZ MODAL PENCERESİ (İÇ SAYFA)
    ========================================================= */
 .services-modal{
   position:fixed;inset:0;background:rgba(15,23,42,.85);backdrop-filter:blur(10px);
@@ -206,43 +177,40 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
   background:linear-gradient(180deg, #ffffff 0%, #eef2f6 100%);
   border:2px solid var(--line);border-radius:20px;
   max-width:960px;width:100%;max-height:92vh;display:flex;flex-direction:column;
-  overflow:hidden;box-shadow:0 25px 70px rgba(0,0,0,.5);animation:modalIn .3s ease-out;
+  overflow:hidden;box-shadow:0 25px 70px rgba(0,0,0,.5);
 }
-@keyframes modalIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
-
 .services-modal-head{
-  display:flex;align-items:center;justify-content:space-between;padding:18px 24px;
+  display:flex;align-items:center;justify-content:space-between;padding:16px 24px;
   background:linear-gradient(135deg, #1e293b 0%, #0f172a 100%);color:#fff;
   border-bottom:2px solid var(--line);
 }
-.services-modal-head h3{font-size:18px;font-weight:900;display:flex;align-items:center;gap:10px}
+.services-modal-head h3{font-size:17px;font-weight:900;display:flex;align-items:center;gap:10px}
 .close-modal-btn{
   background:#334155;border:1px solid rgba(255,255,255,.2);color:#fff;width:34px;height:34px;
-  border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;transition:.2s;
+  border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;
 }
-.close-modal-btn:hover{background:var(--red);transform:scale(1.08)}
+.close-modal-btn:hover{background:var(--red)}
 
-.services-modal-body{padding:24px;overflow-y:auto;display:flex;flex-direction:column;gap:20px}
-
+.services-modal-body{padding:22px;overflow-y:auto;display:flex;flex-direction:column;gap:18px}
 .service-banner{
   background:linear-gradient(135deg, #0284c7 0%, #1d4ed8 100%);color:#fff;
-  border-radius:14px;padding:20px;box-shadow:0 6px 20px rgba(29,78,216,.25);
+  border-radius:12px;padding:18px;
 }
-.service-banner h4{font-size:17px;font-weight:900;margin-bottom:6px}
-.service-banner p{font-size:13px;line-height:1.6;color:#e0f2fe}
+.service-banner h4{font-size:16px;font-weight:900;margin-bottom:4px}
+.service-banner p{font-size:12.5px;line-height:1.6;color:#e0f2fe}
 
 .service-cards-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;
 }
 .service-box{
-  background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:18px;
-  display:flex;flex-direction:column;gap:6px;transition:all .2s;box-shadow:0 4px 12px rgba(0,0,0,.04);
+  background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:16px;
+  display:flex;flex-direction:column;gap:5px;box-shadow:0 2px 8px rgba(0,0,0,.04);
 }
-.service-box:hover{border-color:var(--bl);transform:translateY(-3px);box-shadow:0 8px 25px rgba(29,78,216,.12)}
-.service-icon{font-size:32px;margin-bottom:4px}
-.service-box h5{font-size:15px;font-weight:900;color:var(--tx)}
+.service-box:hover{border-color:var(--bl);transform:translateY(-2px)}
+.service-icon{font-size:28px;margin-bottom:2px}
+.service-box h5{font-size:14.5px;font-weight:900;color:var(--tx)}
 .service-box p{font-size:12px;color:var(--mu);line-height:1.55}
-.service-tag{font-size:10.5px;font-weight:800;color:var(--bl);margin-top:auto;padding-top:8px}
+.service-tag{font-size:10px;font-weight:800;color:var(--bl);margin-top:auto;padding-top:6px}
 
 /* =========================================================
    KATALOG VE 3 KADEMELİ FİLTRELEME
@@ -255,7 +223,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 
 .unified-filter-panel{
   background:#fff;border:1.5px solid var(--line);border-radius:16px;
-  padding:18px;margin-bottom:20px;box-shadow:0 8px 25px rgba(0,0,0,.06);
+  padding:18px;margin-bottom:20px;box-shadow:0 8px 25px rgba(0,0,0,.08);
 }
 .filter-row-label{
   font-size:11px;font-weight:900;color:var(--mu);text-transform:uppercase;
@@ -296,10 +264,10 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .sub-pill:hover{border-color:var(--bl);color:var(--bl)}
 .sub-pill.active{background:var(--bl);color:#fff;border-color:var(--bl)}
 
-/* PENCERELİ KATALOG VE MOBİL 2'Lİ GRID */
+/* PENCERELİ KATALOG */
 .catalog-window{
   background:#fff;border:1.5px solid var(--line);border-radius:16px;
-  overflow:hidden;display:flex;flex-direction:column;box-shadow:0 10px 30px rgba(0,0,0,.06);
+  overflow:hidden;display:flex;flex-direction:column;box-shadow:0 10px 30px rgba(0,0,0,.08);
 }
 .window-topbar{
   background:#f1f5f9;padding:10px 18px;border-bottom:1px solid var(--line);
@@ -313,7 +281,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
   display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;
 }
 
-/* 1. MADDE: MOBİLDE YAN YANA 2'Lİ ÜRÜN KARTLARI */
+/* MOBİLDE YAN YANA 2'Lİ DİZİLİM */
 @media(max-width:768px){
   .window-scrollable-body{
     grid-template-columns:repeat(2,1fr);gap:10px;padding:10px;
@@ -321,7 +289,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
   .p-card{padding:10px !important}
   .p-img-box{height:105px !important}
   .p-title{font-size:12px !important;line-height:1.25 !important}
-  .p-specs{display:none !important} /* Mobilde temiz görünüm için teknik detaylar kart içine gizlenir */
+  .p-specs{display:none !important}
   .p-price{font-size:15px !important}
   .p-actions .btn{padding:5px 8px !important;font-size:10.5px !important}
 }
@@ -345,7 +313,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
   display:flex;align-items:center;justify-content:center;margin-bottom:10px;
   border:1px solid var(--line);position:relative;overflow:hidden;
 }
-.p-img-box img{max-width:90%;max-height:90%;object-fit:contain;transition:transform .3s ease}
+.p-img-box img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
 .p-card:hover .p-img-box img{transform:scale(1.08)}
 
 .card-brand-tag{
@@ -372,7 +340,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .logo-tvt{font-weight:900;letter-spacing:1px;color:var(--yellow)}
 
 /* PROJELER DOKUNMATİK SWIPE */
-.projects-section{padding:50px 0 80px;border-top:1px solid var(--line);background:linear-gradient(180deg, var(--bg-deep) 0%, #8b99a8 100%)}
+.projects-section{padding:50px 0 80px;border-top:1px solid var(--line);background:linear-gradient(180deg, rgba(148,163,184,.6) 0%, rgba(100,116,139,.8) 100%)}
 .projects-head{max-width:1300px;margin:0 auto 16px;padding:0 24px}
 .projects-touch-track{
   display:flex;gap:16px;padding:10px 24px 20px;
@@ -382,7 +350,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
   width:320px;height:380px;background:#fff;border:1.5px solid var(--line);
   border-radius:16px;overflow:hidden;display:flex;flex-direction:column;
   position:relative;flex:none;scroll-snap-align:start;transition:transform .2s;cursor:pointer;
-  box-shadow:0 6px 20px rgba(0,0,0,.08);
+  box-shadow:0 6px 20px rgba(0,0,0,.12);
 }
 .project-card:hover{transform:translateY(-4px);border-color:var(--bl)}
 .project-img{height:180px;position:relative;overflow:hidden;background:#000}
@@ -396,7 +364,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .project-loc{font-size:10.5px;font-weight:800;color:var(--cyan)}
 .project-view-btn{font-size:11px;color:var(--bl);font-weight:800}
 
-/* GALERİ MODAL */
+/* DİGOMİ MODAL */
 .project-gallery-modal{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);z-index:350;display:none;align-items:center;justify-content:center;padding:16px}
 .project-gallery-modal.open{display:flex}
 .gallery-modal-content{background:#fff;border-radius:16px;max-width:880px;width:100%;max-height:90vh;display:flex;flex-direction:column;overflow:hidden}
@@ -409,7 +377,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .thumb-card{height:65px;background:#000;border-radius:6px;overflow:hidden;cursor:pointer}
 .thumb-card img{width:100%;height:100%;object-fit:cover}
 
-/* SEPET */
+/* SEPET & SEÇİM */
 .selection-bar{position:fixed;bottom:16px;left:50%;transform:translateX(-50%) translateY(140%);background:#fff;border:1.5px solid var(--bl);border-radius:12px;padding:8px 16px;display:flex;align-items:center;gap:14px;z-index:110;box-shadow:0 8px 30px rgba(0,0,0,.2);transition:.3s}
 .selection-bar.show{transform:translateX(-50%) translateY(0)}
 .toast-msg{position:fixed;bottom:20px;right:20px;z-index:400;background:#fff;border:1.5px solid var(--green);color:var(--tx);padding:10px 16px;border-radius:8px;font-size:12.5px;font-weight:800;box-shadow:0 6px 20px rgba(0,0,0,.15);display:flex;align-items:center;gap:8px;transform:translateY(150%);transition:.3s}
@@ -450,10 +418,10 @@ footer{border-top:1.5px solid var(--line);padding:20px;text-align:center;color:v
     </div>
   </a>
 
-  <!-- KOMPAKT HEADER ARAMA ÇUBUĞU -->
+  <!-- KOMPAKT HEADER ARAMA -->
   <div class="header-search-wrap">
     <span>🔍</span>
-    <input type="text" id="headerSearchInput" class="header-search-input" placeholder="Model veya özellik ara..." oninput="handleSearch(this.value)">
+    <input type="text" id="headerSearchInput" class="header-search-input" placeholder="Model ara..." oninput="handleSearch(this.value)">
   </div>
 
   <nav>
@@ -479,53 +447,38 @@ footer{border-top:1.5px solid var(--line);padding:20px;text-align:center;color:v
 </header>
 
 <!-- =========================================================
-   2. VE 3. MADDE: AKTİF TV MONİTÖR EKRANI + 6 DERİN CCTV GÖRSELİ
+   HERO: TEMİZ TV EKRANI + 6 YEPYENİ SİNEMATİK GÖRSEL (SAAT/REC YOK)
    ========================================================= -->
 <div class="hero" id="top">
-  <!-- CCTV Monitör Çerçevesi -->
   <div class="tv-frame">
-    <!-- 6 ADET SİNEMATİK GÜVENLİK GÖRSELİ -->
-    <div class="tv-slide-item active" style="background-image:url('https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=1920&q=80')"></div>
-    <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=1920&q=80')"></div>
-    <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1528312635006-8ea0bc49ec63?auto=format&fit=crop&w=1920&q=80')"></div>
-    <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1920&q=80')"></div>
-    <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1496368077930-c1e31b4e5b44?auto=format&fit=crop&w=1920&q=80')"></div>
-    <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1920&q=80')"></div>
+    <!-- 6 ADET YEPYENİ, PRESTİJLİ GÜVENLİK VE KONTROL MERKEZİ GÖRSELİ -->
+    <div class="tv-slide-item active" style="background-image:url('https://images.unsplash.com/photo-1713173642147-30cbbdb176d5?auto=format&fit=crop&w=1920&q=80')"></div>
+    <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1525939815185-7b25b346d3db?auto=format&fit=crop&w=1920&q=80')"></div>
+    <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1569515501972-26d4f39c8a93?auto=format&fit=crop&w=1920&q=80')"></div>
+    <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1513345407170-3f7ecd3b7d74?auto=format&fit=crop&w=1920&q=80')"></div>
+    <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1676446242915-bfad60f491d6?auto=format&fit=crop&w=1920&q=80')"></div>
+    <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1702306870996-ce93ec687e23?auto=format&fit=crop&w=1920&q=80')"></div>
 
-    <!-- EKRAN SCANLINE & VIGNETTE EFEKTLERİ -->
     <div class="tv-scanlines"></div>
     <div class="tv-vignette"></div>
-
-    <!-- CCTV CANLI OSD EKRAN BİLGİSİ (CANLI SAAT DAHİL) -->
-    <div class="cctv-hud-top">
-      <span class="cctv-rec-dot"></span>
-      <span>REC ● LIVE</span>
-      <span style="color:#cbd5e1" id="cctvClock">00:00:00</span>
-    </div>
-
-    <div class="cctv-hud-bottom">
-      CAM 01: TBILISI MATRIX · 4K UHD 60FPS
-    </div>
   </div>
 
-  <!-- SOL ÜSTTE ŞEFFAF BAŞLIK VE BUTONLAR -->
+  <!-- SOL ÜSTTE ŞEFFAF YAZILAR (FAZLADAN BUTON/REC YOK) -->
   <div class="hero-content-transparent">
     <div class="tag-badge">
-      <span class="cctv-rec-dot"></span>
       <span class="tag-text" id="heroTagText">CCTV · NETWORK POE · WI-FI · ALARM</span>
     </div>
     <h1 id="heroH1">Profesyonel Güvenlik ve Ağ Donanımları</h1>
     <p id="heroP">Hikvision, MikroTik, Pro Look ve TVT orijinal IP/Analog kameralar, NVR sunucuları ve anahtar teslim mühendislik işçiliği.</p>
     <div class="hero-btns">
       <a class="btn" href="#catalog" id="btnHeroCatalog">Kataloğu İncele ⬇</a>
-      <button class="btn silver" onclick="openServicesModal()" id="btnHeroServices">🏢 Hizmet Alanlarımız</button>
-      <a class="btn green" href="https://wa.me/995557030033" target="_blank" id="btnHeroWhatsapp">WhatsApp Hattı</a>
+      <a class="btn green" href="https://wa.me/995557030033" target="_blank" id="btnHeroWhatsapp">WhatsApp Mühendis Hattı</a>
     </div>
   </div>
 </div>
 
 <!-- =========================================================
-   4. MADDE: HAKKIMIZDA & HİZMET ALANLARIMIZ MODAL (İÇ SAYFA)
+   HİZMET ALANLARIMIZ MODAL PENCERESİ (İÇ SAYFA)
    ========================================================= -->
 <div class="services-modal" id="servicesModal" onclick="closeServicesModal(event)">
   <div class="services-modal-card" onclick="event.stopPropagation()">
@@ -537,55 +490,49 @@ footer{border-top:1.5px solid var(--line);padding:20px;text-align:center;color:v
     <div class="services-modal-body">
       <div class="service-banner">
         <h4>A'dan Z'ye Profesyonel Montaj, Kablolama ve Mühendislik</h4>
-        <p>Tiflis, Batum ve tüm Gürcistan genelinde resmi distribütör garantili Hikvision, MikroTik ve TVT altyapısıyla en zorlu sahalarda anahtar teslim montaj ve 2 yıl yerinde servis garantisi sunuyoruz.</p>
+        <p>Tiflis, Batum ve tüm Gürcistan genelinde resmi distribütör garantili donanımlarla anahtar teslim montaj ve 2 yıl yerinde servis garantisi sunuyoruz.</p>
       </div>
 
       <div class="service-cards-grid">
-        <!-- 1. DÜĞÜN SALONLARI -->
         <div class="service-box">
           <div class="service-icon">🎉</div>
           <h5>Düğün & Etkinlik Salonları</h5>
-          <p>Yüksek tavanlı geniş salonlarda kör noktasız 360° panoramik izleme, otopark plaka tanıma sistemi ve misafir güvenliği için estetik beyaz dome kamera montajı.</p>
+          <p>Yüksek tavanlı geniş salonlarda kör noktasız 360° panoramik izleme, otopark plaka tanıma sistemi ve estetik dome kamera montajı.</p>
           <div class="service-tag">✓ Kör Noktasız Geniş Açı</div>
         </div>
 
-        <!-- 2. OFİS VE İŞ YERLERİ -->
         <div class="service-box">
           <div class="service-icon">💼</div>
           <h5>Ofis ve İş Yerleri</h5>
-          <p>Personel devam takip, server odası izleme, MikroTik fiber ve tavan tipi Wi-Fi 6 altyapısı, turnike parmak izi/yüz tanıma geçiş kontrol entegrasyonu.</p>
+          <p>Personel devam takip, server odası izleme, MikroTik fiber ve Wi-Fi 6 altyapısı, turnike parmak izi/yüz tanıma geçiş kontrol entegrasyonu.</p>
           <div class="service-tag">✓ Wi-Fi 6 & Yüz Tanıma</div>
         </div>
 
-        <!-- 3. LÜKS VİLLALAR -->
         <div class="service-box">
           <div class="service-icon">🏡</div>
           <h5>Lüks Villalar ve Konutlar</h5>
-          <p>ColorVu teknolojisiyle 7/24 renkli gece görüşü, bahçe çit alarm dedektörleri, cep telefonundan anlık canlı izleme ve görüntülü interkom sistemleri.</p>
+          <p>ColorVu teknolojisiyle 7/24 renkli gece görüşü, bahçe çit alarm dedektörleri, cep telefonundan anlık canlı izleme ve interkom.</p>
           <div class="service-tag">✓ 7/24 Renkli Gece Görüşü</div>
         </div>
 
-        <!-- 4. SANAYİ VE FABRİKALAR -->
         <div class="service-box">
           <div class="service-icon">🏭</div>
           <h5>Sanayi Tesisleri ve Fabrikalar</h5>
-          <p>Yangın ve aşırı sıcaklık algılayan termal kameralar, toza ve neme dayanıklı metal muhafazalar, 10G fiber omurga ve ağır hizmet PoE switch altyapısı.</p>
+          <p>Yangın ve aşırı sıcaklık algılayan termal kameralar, toza dayanıklı metal muhafazalar, fiber omurga ve ağır hizmet switch altyapısı.</p>
           <div class="service-tag">✓ Termal & Ex-Proof Montaj</div>
         </div>
 
-        <!-- 5. İNŞAAT VE ŞANTİYELER -->
         <div class="service-box">
           <div class="service-icon">🏗️</div>
           <h5>İnşaat ve Şantiye Alanları</h5>
-          <p>Elektrik ve internet olmayan alanlar için Güneş Enerjili (Solar) 4G kameralar, vinç üstü güvenlik, şantiye çevre kontrolü ve zorlu saha kablolama işçiliği.</p>
+          <p>Elektrik ve internet olmayan alanlar için Güneş Enerjili (Solar) 4G kameralar, vinç üstü güvenlik ve zorlu saha kablolama işçiliği.</p>
           <div class="service-tag">✓ Solar & 4G SIM Destekli</div>
         </div>
 
-        <!-- 6. RESMİ İŞÇİLİK VE SERVİS -->
         <div class="service-box" style="background:#f0fdf4;border-color:var(--green)">
           <div class="service-icon">🛠️</div>
-          <h5 style="color:var(--green)">2 Yıl Garantili Mühendislik</h5>
-          <p>Kanal içi borulama, etiketli kablolama, rack kabin sonlandırma, fiber kaynak ve 7/24 acil servis hattıyla işçiliğimizin arkasındayız.</p>
+          <h5 style="color:var(--green)">2 Yıl Garantili İşçilik</h5>
+          <p>Kanal içi borulama, etiketli kablolama, rack kabin sonlandırma, fiber kaynak ve 7/24 acil servis hattı ile işçiliğimizin arkasındayız.</p>
           <div class="service-tag" style="color:var(--green)">✓ Yerinde Servis & Ücretsiz Keşif</div>
         </div>
       </div>
@@ -610,7 +557,6 @@ footer{border-top:1.5px solid var(--line);padding:20px;text-align:center;color:v
   </div>
 
   <div class="unified-filter-panel">
-    <!-- 1. KADEME: MARKA -->
     <div class="filter-row-label">
       <span>1. ADIM</span> <span id="lblStep1">MARKA SEÇİMİ</span>
     </div>
@@ -637,13 +583,11 @@ footer{border-top:1.5px solid var(--line);padding:20px;text-align:center;color:v
       </div>
     </div>
 
-    <!-- 2. KADEME: KATEGORİ -->
     <div class="filter-row-label">
       <span>2. ADIM</span> <span id="lblStep2">DONANIM KATEGORİSİ</span>
     </div>
     <div class="segment-pills-row" id="segmentPills"></div>
 
-    <!-- 3. KADEME: DİNAMİK ÖZELLİK (MEGAPİKSEL / KANAL) -->
     <div class="filter-row-label" id="rowLabelStep3" style="display:none">
       <span>3. ADIM</span> <span id="lblStep3">DETAYLI ÖZELLİK SEÇİMİ</span>
     </div>
@@ -778,7 +722,7 @@ footer{border-top:1.5px solid var(--line);padding:20px;text-align:center;color:v
   </div>
 </div>
 
-<!-- SEPET VE TOAST -->
+<!-- SEPET & SEÇİM BARI -->
 <div class="selection-bar" id="selectionBar">
   <div class="sel-info"><b id="selCountText">0 Ürün Seçildi</b>: <span id="selTotalText">0 GEL</span></div>
   <div style="display:flex;gap:8px">
@@ -822,19 +766,7 @@ footer{border-top:1.5px solid var(--line);padding:20px;text-align:center;color:v
 const $ = id => document.getElementById(id);
 
 /* =========================================================
-   CANLI CCTV DİJİTAL SAATİ (HER SANİYE ÇALIŞIR)
-   ========================================================= */
-function updateCctvClock(){
-  const now = new Date();
-  const pad = n => n.toString().padStart(2, '0');
-  const str = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
-  const el = $("cctvClock");
-  if(el) el.textContent = str;
-}
-setInterval(updateCctvClock, 1000);
-
-/* =========================================================
-   4. MADDE: HİZMET ALANLARI MODAL PENCERESİ FONKSİYONLARI
+   HİZMET ALANLARI MODAL FONKSİYONLARI
    ========================================================= */
 function openServicesModal(){
   $("servicesModal").classList.add("open");
@@ -854,7 +786,7 @@ const I18N = {
     heroTag: "CCTV · NETWORK POE · WI-FI · ALARM",
     heroH1: "Professional Security and Network Hardware",
     heroP: "Genuine Hikvision, MikroTik, Pro Look and TVT IP/Analog cameras, NVR servers and turnkey engineering services.",
-    btnCatalog: "View Catalog ⬇", btnServices: "🏢 Our Services", btnWhatsapp: "WhatsApp Line",
+    btnCatalog: "View Catalog ⬇", btnWhatsapp: "WhatsApp Line",
     secTagCatalog: "EQUIPMENT TERMINAL", secTitleCatalog: "Brand and Hardware Selection Panel",
     secDescCatalog: "Filter by brand, category, and resolution/channels to instantly list matched hardware.",
     step1: "BRAND SELECTION", step2: "HARDWARE CATEGORY", step3: "DETAILED SPECIFICATION",
@@ -876,7 +808,7 @@ const I18N = {
     heroTag: "CCTV · NETWORK POE · WI-FI · დაცვა",
     heroH1: "პროფესიონალური უსაფრთხოების აპარატურა",
     heroP: "Hikvision, MikroTik, Pro Look და TVT-ის ორიგინალი IP კამერები, NVR ჩამწერები და გასაღების ჩაბარებით სამუშაოები.",
-    btnCatalog: "კატალოგის ნახვა ⬇", btnServices: "🏢 სერვისები", btnWhatsapp: "WhatsApp ინჟინერი",
+    btnCatalog: "კატალოგის ნახვა ⬇", btnWhatsapp: "WhatsApp ინჟინერი",
     secTagCatalog: "აპარატურის ტერმინალი", secTitleCatalog: "ბრენდისა და ტექნიკის პანელი",
     secDescCatalog: "გაფილტრეთ ბრენდით, კატეგორიით და გარჩევადობით/არხებით.",
     step1: "ბრენდის შერჩევა", step2: "კატეგორია", step3: "დეტალური პარამეტრები",
@@ -898,7 +830,7 @@ const I18N = {
     heroTag: "CCTV · NETWORK POE · WI-FI · SİQNALİZASİYA",
     heroH1: "Peşəkar Təhlükəsizlik və Şəbəkə Avadanlıqları",
     heroP: "Orijinal IP/Analoq kameralar, NVR serverləri və açar təhvili montaj ustalığı.",
-    btnCatalog: "Kataloqa Bax ⬇", btnServices: "🏢 Xidmətlərimiz", btnWhatsapp: "WhatsApp Mühəndis",
+    btnCatalog: "Kataloqa Bax ⬇", btnWhatsapp: "WhatsApp Mühəndis",
     secTagCatalog: "AVADANLIQ TERMİNALI", secTitleCatalog: "Seçim Paneli",
     secDescCatalog: "Brend, kateqoriya və megapiksel/kanal sayına görə sıralayın.",
     step1: "BREND SEÇİMİ", step2: "KATEQORİYA", step3: "ƏTRAFLI PARAMETRLƏR",
@@ -920,7 +852,7 @@ const I18N = {
     heroTag: "CCTV · NETWORK POE · WI-FI · ALARM",
     heroH1: "Profesyonel Güvenlik ve Ağ Donanımları",
     heroP: "Hikvision, MikroTik, Pro Look ve TVT markalı orijinal kameralar, NVR sunucuları ve anahtar teslim mühendislik işçiliği.",
-    btnCatalog: "Kataloğu İncele ⬇", btnServices: "🏢 Hizmet Alanlarımız", btnWhatsapp: "WhatsApp Hattı",
+    btnCatalog: "Kataloğu İncele ⬇", btnWhatsapp: "WhatsApp Mühendis Hattı",
     secTagCatalog: "EKİPMAN TERMİNALİ", secTitleCatalog: "Marka ve Donanım Seçim Paneli",
     secDescCatalog: "Markanızı, donanım kategorinizi ve megapiksel/kanal sayısını filtreleyerek anında listeleyin.",
     step1: "MARKA SEÇİMİ", step2: "DONANIM KATEGORİSİ", step3: "DETAYLI ÖZELLİK SEÇİMİ",
@@ -942,7 +874,7 @@ const I18N = {
     heroTag: "CCTV · NETWORK POE · WI-FI · БЕЗОПАСНОСТЬ",
     heroH1: "Профессиональное оборудование безопасности",
     heroP: "Оригинальные камеры Hikvision, MikroTik, Pro Look и TVT, NVR видеорегистраторы и работы под ключ.",
-    btnCatalog: "Смотреть каталог ⬇", btnServices: "🏢 Наши Услуги", btnWhatsapp: "Инженер в WhatsApp",
+    btnCatalog: "Смотреть каталог ⬇", btnWhatsapp: "Инженер в WhatsApp",
     secTagCatalog: "ТЕРМИНАЛ ОБОРУДОВАНИЯ", secTitleCatalog: "Панель выбора оборудования",
     secDescCatalog: "Фильтруйте по бренду, категории и разрешению/каналам.",
     step1: "ВЫБОР БРЕНДА", step2: "КАТЕГОРИЯ ОБОРУДОВАНИЯ", step3: "ДЕТАЛЬНЫЕ ПАРАМЕТРЫ",
@@ -989,7 +921,6 @@ function changeLang(langKey){
   $("heroH1").textContent = t.heroH1;
   $("heroP").textContent = t.heroP;
   $("btnHeroCatalog").textContent = t.btnCatalog;
-  $("btnHeroServices").textContent = t.btnServices;
   $("btnHeroWhatsapp").textContent = t.btnWhatsapp;
 
   $("secTagCatalog").textContent = t.secTagCatalog;
@@ -1021,7 +952,7 @@ function changeLang(langKey){
   updateCartUI();
 }
 
-/* ÜRÜNLER (EN YAYGIN 15 DONANIM) */
+/* TÜM ORİJİNAL ÜRÜNLER (15 ADET) */
 const PRODUCTS = [
   {
     id:'hk_ip1', brand:'hikvision', seg:'cam_ip', mp:'2mp',
@@ -1280,7 +1211,7 @@ function renderCatalogCards(){
           <div class="p-price">${p.price} GEL</div>
           <div class="p-actions" onclick="event.stopPropagation()">
             <button class="btn" onclick="addToCart('${p.id}')">${t.btnAdd}</button>
-            <a class="btn silver" target="_blank" href="https://wa.me/995557030033?text=${encodeURIComponent('Hello Vision Electronics, info about: ' + p.name)}">${t.btnAsk}</a>
+            <a class="btn" style="background:#e2e8f0;color:#0f172a" target="_blank" href="https://wa.me/995557030033?text=${encodeURIComponent('Hello Vision Electronics, info about: ' + p.name)}">${t.btnAsk}</a>
           </div>
         </div>
       </div>
@@ -1288,7 +1219,7 @@ function renderCatalogCards(){
   }).join("");
 }
 
-/* DIGOMI GALERI */
+/* DİGOMİ GALERİ */
 function openDigomiGallery(){
   $("digomiGalleryModal").classList.add("open");
   document.body.style.overflow = "hidden";
@@ -1384,9 +1315,9 @@ function updateCartUI(){
           <div class="cart-item-title">${p.name}</div>
           <div class="cart-item-price">${p.price} GEL x ${qty} = ${sub} GEL</div>
           <div style="display:flex;align-items:center;gap:4px;margin-top:4px">
-            <button class="btn silver" style="padding:2px 8px;font-size:10px" onclick="modCart('${id}', -1)">-</button>
+            <button class="btn" style="padding:2px 8px;font-size:10px;background:#e2e8f0;color:#0f172a" onclick="modCart('${id}', -1)">-</button>
             <span style="font-size:11px;font-weight:900;min-width:14px;text-align:center">${qty}</span>
-            <button class="btn silver" style="padding:2px 8px;font-size:10px" onclick="modCart('${id}', 1)">+</button>
+            <button class="btn" style="padding:2px 8px;font-size:10px;background:#e2e8f0;color:#0f172a" onclick="modCart('${id}', 1)">+</button>
             <button style="background:none;border:none;color:var(--red);margin-left:auto;cursor:pointer;font-weight:900" onclick="delCart('${id}')">✕</button>
           </div>
         </div>
@@ -1444,3 +1375,13 @@ function checkoutWhatsApp(){
 
   text += `%0A💰 *TOPLAM:* ${total} GEL%0A`;
   text += `Keşif ve montaj teklifi rica ediyorum.`;
+  window.open(`https://wa.me/995557030033?text=${text}`, '_blank');
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  initTvSlideshow();
+  changeLang(currentLang);
+});
+</script>
+</body>
+</html>
