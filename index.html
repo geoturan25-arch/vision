@@ -19,6 +19,8 @@
       transparent 1px,
       transparent 3px
     ),
+    url('silver.jpg'),
+    url('input_file_1.jpeg'),
     linear-gradient(180deg, 
       #4e5156 0%, 
       #616267 4%, 
@@ -84,11 +86,10 @@ header{
 .brand-logo-svg{width:34px;height:34px;flex:none;filter:drop-shadow(0 2px 5px rgba(0,0,0,.4))}
 .brand-titles{display:flex;flex-direction:column;line-height:1}
 .brand-main{font-size:17px;font-weight:900;letter-spacing:.12em;color:#ffffff}
-.brand-main b{color:#60a5fa;cursor:pointer;user-select:none;padding:0 2px;transition:color .2s}
-.brand-main b:hover{color:#93c5fd;text-shadow:0 0 8px #38bdf8}
+.brand-main b{color:#60a5fa}
 .brand-sub{font-size:8px;font-weight:800;letter-spacing:.26em;color:#38bdf8;text-transform:uppercase;margin-top:2px}
 
-nav{display:flex;gap:20px;margin-left:auto;font-size:13px;color:#e2e8f0;font-weight:800}
+nav{display:flex;gap:18px;margin-left:auto;font-size:13px;color:#e2e8f0;font-weight:800}
 nav a{transition:color .2s}
 nav a:hover{color:#60a5fa}
 
@@ -113,7 +114,7 @@ nav a:hover{color:#60a5fa}
   flex:1;background:#fff;border:1.5px solid #75767b;border-radius:8px;padding:8px 12px;font-size:13px;outline:none;
 }
 
-/* DİL SEÇİCİ */
+/* 1. TEK BUTONLU BAYRAKLI DİL SEÇİCİ */
 .lang-dropdown-wrap{position:relative}
 .lang-trigger-btn{
   background: linear-gradient(180deg, #f0f0f2 0%, #b2b3b8 100%);
@@ -153,7 +154,7 @@ nav a:hover{color:#60a5fa}
   .brand-main{font-size:15px}
 }
 
-/* HERO (TV SLIDESHOW) */
+/* HERO (DİNAMİK TV SLIDESHOW) */
 .hero{
   position:relative;width:100%;height:84vh;min-height:560px;max-height:800px;
   margin-top:54px;overflow:hidden;border-bottom:3px solid #505156;
@@ -201,7 +202,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
   .btn{width:100%;padding:11px}
 }
 
-/* HİZMET ALANLARIMIZ */
+/* 3.2 KOMPAKT HİZMET ALANLARIMIZ */
 .services-compact-sec{padding:40px 24px;max-width:1300px;margin:0 auto}
 .service-compact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
 .service-compact-card{
@@ -384,44 +385,30 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .logo-microtik span{color:var(--tx)}
 .logo-tvt{font-weight:900;letter-spacing:1px;color:var(--yellow)}
 
-/* PARTNERLER BÖLÜMÜ (ŞEFFAF VE DİREKT GÖRÜNÜR) */
+/* 3.3 PARTNER VE ÇÖZÜM ORTAKLARI BÖLÜMÜ */
 .partners-section{
-  padding:42px 24px;border-top:2px solid var(--line-steel);
+  padding:36px 24px;border-top:2px solid var(--line-steel);
   background: linear-gradient(180deg, rgba(80, 81, 86, 0.4) 0%, rgba(45, 47, 52, 0.7) 100%);
 }
 .partners-container{max-width:1300px;margin:0 auto}
 .partners-grid{
-  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:36px;margin-top:24px;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:24px;margin-top:18px;
 }
 .partner-logo-item{
-  background: transparent !important;
-  border: none !important;
-  border-radius: 0;
-  padding: 6px 14px;
-  height: 60px;
-  min-width: 120px;
-  display:flex;align-items:center;justify-content:center;
-  transition: transform .25s ease;
-  backdrop-filter: none !important;
-  box-shadow: none !important;
+  background: rgba(255, 255, 255, 0.08);border: 1px solid rgba(255,255,255,0.25);
+  border-radius:12px;padding:12px 20px;height:70px;min-width:140px;
+  display:flex;align-items:center;justify-content:center;transition:all .25s ease;
+  backdrop-filter: blur(8px);
 }
 .partner-logo-item:hover{
-  background: transparent !important;
-  border: none !important;
-  transform: scale(1.12);
-  box-shadow: none !important;
+  background: rgba(255, 255, 255, 0.22);border-color:#fff;transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.3);
 }
 .partner-logo-item img{
-  max-height: 48px;
-  max-width: 140px;
-  object-fit: contain;
-  filter: none !important;
-  opacity: 1 !important;
-  transition: all .25s ease;
+  max-height:42px;max-width:110px;object-fit:contain;
+  filter: brightness(0) invert(1);
+  opacity:0.85;transition:all .25s;
 }
-.partner-logo-item:hover img{
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4)) !important;
-}
+.partner-logo-item:hover img{opacity:1;filter:none}
 
 /* PROJELER */
 .projects-section{
@@ -582,7 +569,7 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
       <circle cx="36" cy="12" r="2.2" fill="#ef4444"/>
     </svg>
     <div class="brand-titles">
-      <div class="brand-main">VISION<b id="secretDot" title="Yönetici Girişi (3 Kez Tıkla veya Alt+A)">.</b></div>
+      <div class="brand-main">VISION<b id="secretDot" title="Vision">.</b></div>
       <div class="brand-sub">ELECTRONICS</div>
     </div>
   </a>
@@ -593,19 +580,18 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
     <input type="text" id="headerSearchInput" class="header-search-input" placeholder="Model search..." oninput="handleSearch(this.value)">
   </div>
 
-  <!-- SİMGESİZ YALIN MENÜ -->
   <nav>
-    <a href="#servicesSec" id="navServices">Hizmet Alanlarımız</a>
+    <a href="#servicesSec" id="navServices">🏢 Hizmet Alanlarımız</a>
     <a href="#catalog" id="navCatalog">Katalog</a>
-    <a href="#partnersSec" id="navPartners">Partnerler</a>
+    <a href="#partnersSec" id="navPartners">🤝 Partnerler</a>
     <a href="#projects" id="navProjects">Projelerimiz</a>
-    <a href="tel:+995557030033" id="navContact">İletişim</a>
+    <a href="tel:+995557030033" id="navContact">📞 İletişim</a>
   </nav>
 
   <!-- MOBİL ARAMA TETİKLEYİCİSİ -->
   <button class="mobile-search-btn" onclick="toggleMobileSearch()">🔍</button>
 
-  <!-- DİL SEÇİCİ -->
+  <!-- 1. TEK BUTONLU BAYRAKLI DİL SEÇİCİ -->
   <div class="lang-dropdown-wrap" id="langDropdownWrap">
     <button class="lang-trigger-btn" onclick="toggleLangDropdown()">
       <span id="currentLangFlag">🇹🇷</span>
@@ -634,10 +620,19 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
   <button class="btn" style="padding:6px 10px;background:#64748b" onclick="toggleMobileSearch()">✕</button>
 </div>
 
-<!-- HERO -->
+<!-- =========================================================
+   HERO: SİNEMATİK TV EKRANI (6 ADET YÜKSEK ÇÖZÜNÜRLÜKLÜ SLIDE)
+   ========================================================= -->
 <div class="hero" id="top">
   <div class="tv-frame" id="tvFrameContainer">
-    <div id="tvSlidesContainer"></div>
+    <div id="tvSlidesContainer">
+      <div class="tv-slide-item active" style="background-image:url('https://images.unsplash.com/photo-1713173642147-30cbbdb176d5?auto=format&fit=crop&w=1920&q=80')"></div>
+      <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1525939815185-7b25b346d3db?auto=format&fit=crop&w=1920&q=80')"></div>
+      <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1569515501972-26d4f39c8a93?auto=format&fit=crop&w=1920&q=80')"></div>
+      <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1513345407170-3f7ecd3b7d74?auto=format&fit=crop&w=1920&q=80')"></div>
+      <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1676446242915-bfad60f491d6?auto=format&fit=crop&w=1920&q=80')"></div>
+      <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1702306870996-ce93ec687e23?auto=format&fit=crop&w=1920&q=80')"></div>
+    </div>
     <div class="tv-scanlines"></div>
     <div class="tv-vignette"></div>
   </div>
@@ -655,14 +650,72 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
   </div>
 </div>
 
-<!-- HİZMET ALANLARIMIZ -->
+<!-- =========================================================
+   3.2 SEGMENTLİ & FOTOĞRAFLI KOMPAKT HİZMET ALANLARIMIZ
+   ========================================================= -->
 <section class="services-compact-sec" id="servicesSec">
   <div class="sec-head">
     <span class="sec-tag">UZMANLIK ALANLARIMIZ</span>
     <h2 class="sec-title" id="secTitleServices">Sektörel Hizmet Alanlarımız</h2>
     <p class="sec-desc">Tiflis, Batum ve tüm Gürcistan'da anahtar teslim projelendirme, kablolama ve 2 yıl garantili montaj.</p>
   </div>
-  <div class="service-compact-grid" id="servicesCompactGrid"></div>
+  <div class="service-compact-grid" id="servicesCompactGrid">
+    <div class="service-compact-card">
+      <div class="service-compact-img">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Düğün & Etkinlik Salonları">
+        <span class="service-compact-tag">360° Panoramik</span>
+      </div>
+      <div class="service-compact-body">
+        <h4>Düğün & Etkinlik Salonları</h4>
+        <p>Yüksek tavanlı geniş salonlarda kör noktasız izleme ve otopark plaka tanıma.</p>
+        <div class="service-compact-foot"><span>✓ Anahtar Teslim</span><a href="https://wa.me/995557030033" target="_blank" style="color:var(--bl);text-decoration:underline">Teklif Al ➔</a></div>
+      </div>
+    </div>
+    <div class="service-compact-card">
+      <div class="service-compact-img">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" alt="Ofis ve İş Merkezleri">
+        <span class="service-compact-tag">Wi-Fi 6 & Yüz Tanıma</span>
+      </div>
+      <div class="service-compact-body">
+        <h4>Ofis ve İş Merkezleri</h4>
+        <p>Personel devam kontrol, turnike parmak izi/yüz tanıma, server odası izleme.</p>
+        <div class="service-compact-foot"><span>✓ Anahtar Teslim</span><a href="https://wa.me/995557030033" target="_blank" style="color:var(--bl);text-decoration:underline">Teklif Al ➔</a></div>
+      </div>
+    </div>
+    <div class="service-compact-card">
+      <div class="service-compact-img">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Lüks Villalar & Konutlar">
+        <span class="service-compact-tag">7/24 Renkli Gece</span>
+      </div>
+      <div class="service-compact-body">
+        <h4>Lüks Villalar & Konutlar</h4>
+        <p>ColorVu teknolojisiyle gece renkli izleme, bahçe çit alarmı ve uzaktan interkom.</p>
+        <div class="service-compact-foot"><span>✓ Anahtar Teslim</span><a href="https://wa.me/995557030033" target="_blank" style="color:var(--bl);text-decoration:underline">Teklif Al ➔</a></div>
+      </div>
+    </div>
+    <div class="service-compact-card">
+      <div class="service-compact-img">
+        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80" alt="Fabrika ve Sanayi">
+        <span class="service-compact-tag">Termal Yangın Algılama</span>
+      </div>
+      <div class="service-compact-body">
+        <h4>Fabrika ve Sanayi</h4>
+        <p>Aşırı sıcaklık algılayan termal kameralar, toza dayanıklı muhafazalar ve fiber omurga.</p>
+        <div class="service-compact-foot"><span>✓ Anahtar Teslim</span><a href="https://wa.me/995557030033" target="_blank" style="color:var(--bl);text-decoration:underline">Teklif Al ➔</a></div>
+      </div>
+    </div>
+    <div class="service-compact-card">
+      <div class="service-compact-img">
+        <img src="https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=600&q=80" alt="İnşaat ve Şantiye">
+        <span class="service-compact-tag">Solar & 4G SIM</span>
+      </div>
+      <div class="service-compact-body">
+        <h4>İnşaat ve Şantiye</h4>
+        <p>Elektrik ve internet olmayan alanlar için Güneş Enerjili (Solar) kameralar ve vinç güvenliği.</p>
+        <div class="service-compact-foot"><span>✓ Anahtar Teslim</span><a href="https://wa.me/995557030033" target="_blank" style="color:var(--bl);text-decoration:underline">Teklif Al ➔</a></div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- KATALOG -->
@@ -722,7 +775,7 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
   </div>
 </section>
 
-<!-- PARTNER VE ÇÖZÜM ORTAKLARI BÖLÜMÜ (ŞEFFAF VE CANLI) -->
+<!-- 3.3 PARTNER VE ÇÖZÜM ORTAKLARIMIZ BÖLÜMÜ -->
 <section class="partners-section" id="partnersSec">
   <div class="partners-container">
     <div style="text-align:center">
@@ -730,7 +783,14 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
       <h3 style="font-size:22px;font-weight:900;color:#ffffff;margin-top:4px">Çözüm Ortaklarımız & Distribütör Markalar</h3>
       <p style="color:#cbd5e1;font-size:12.5px;max-width:600px;margin:4px auto 0">Gürcistan genelindeki projelerimizde resmi garantili, küresel sertifikalı donanım üreticileriyle çalışıyoruz.</p>
     </div>
-    <div class="partners-grid" id="partnersGrid"></div>
+    <div class="partners-grid" id="partnersGrid">
+      <div class="partner-logo-item" title="Hikvision"><span style="font-size:13px;font-weight:900;color:#fff">HIKVISION</span></div>
+      <div class="partner-logo-item" title="MikroTik"><span style="font-size:13px;font-weight:900;color:#60a5fa">MikroTik</span></div>
+      <div class="partner-logo-item" title="Pro Look"><span style="font-size:13px;font-weight:900;color:#fff">PROLOOK</span></div>
+      <div class="partner-logo-item" title="TVT"><span style="font-size:13px;font-weight:900;color:#facc15">TVT</span></div>
+      <div class="partner-logo-item" title="WD Purple"><span style="font-size:13px;font-weight:900;color:#c084fc">WD PURPLE</span></div>
+      <div class="partner-logo-item" title="Seagate"><span style="font-size:13px;font-weight:900;color:#4ade80">SEAGATE</span></div>
+    </div>
   </div>
 </section>
 
@@ -741,10 +801,58 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
     <h2 style="font-size:26px;font-weight:900;margin-bottom:4px;color:#ffffff">Tamamlanan Örnek Projelerimiz</h2>
     <p style="color:#cbd5e1;font-size:13px">Parmağınızla sağa-sola kaydırarak projeleri ve Digomi Project'in 28 kameralı canlı görüntülerini inceleyin.</p>
   </div>
-  <div class="projects-touch-track" id="projectsTrack"></div>
+  <div class="projects-touch-track" id="projectsTrack">
+    <div class="project-card" onclick="openDigomiGallery()">
+      <span class="project-badge-corner">★ CANLI SAHA</span>
+      <div class="project-img">
+        <img src="digomi-5.jpg" onerror="this.src='https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=700&q=80'" alt="Digomi Project">
+        <span class="project-tag">28 Kamera · Hikvision NVR</span>
+      </div>
+      <div class="project-body">
+        <h3>Digomi Project (Spor & Yaşam)</h3>
+        <p>Yarı olimpik havuz, fitness salonu, turnike geçişleri ve çevre güvenliğinin 28 Hikvision IP kamera ile kurulumu.</p>
+        <div class="project-footer-row">
+          <span class="project-loc">📍 Dighomi, Tiflis</span>
+          <span class="project-view-btn">5 Fotoğrafı Gör 🔍</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=700&q=80" alt="Lojistik">
+        <span class="project-tag">CCTV & PoE Ağı</span>
+      </div>
+      <div class="project-body">
+        <h3>Tiflis Lojistik Merkezi</h3>
+        <p>64 Kanal Hikvision 4K IP kamera, MikroTik fiber omurga ve 360 derece çevre güvenlik analitiği.</p>
+        <div class="project-footer-row">
+          <span class="project-loc">📍 Tiflis / Gürcistan</span>
+          <span class="project-view-btn">Detay</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80" alt="Otel">
+        <span class="project-tag">Wi-Fi 6 & IP Kamera</span>
+      </div>
+      <div class="project-body">
+        <h3>Batum 5 Yıldızlı Otel</h3>
+        <p>MikroTik cAP ax tavan tipi Wi-Fi altyapısı ve 120 adet IK10 vandal-proof dome kamera entegrasyonu.</p>
+        <div class="project-footer-row">
+          <span class="project-loc">📍 Batum / Gürcistan</span>
+          <span class="project-view-btn">Detay</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ADMIN MODAL -->
+<!-- =========================================================
+   GELİŞMİŞ ADMIN YÖNETİM PANELİ (CMS SEKMELİ)
+   ========================================================= -->
 <div class="admin-modal" id="adminModal" onclick="closeAdminModal(event)">
   <div class="admin-card" onclick="event.stopPropagation()">
     <div class="admin-head">
@@ -759,12 +867,13 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
       <div style="font-size:36px">🔒</div>
       <h4 style="font-size:16px;font-weight:900;color:var(--tx)">Yönetici Giriş Doğrulaması</h4>
       <p style="font-size:12px;color:var(--tx-soft);max-width:300px">Bu alana sadece yetkili mağaza yöneticisi erişebilir.</p>
-      <input type="password" id="adminPinInput" placeholder="PIN Şifresi (Varsayılan: 1234)" style="width:240px;padding:10px;text-align:center;font-size:14px;border:2px solid var(--line-steel);border-radius:8px" onkeydown="if(event.key==='Enter')verifyAdminPin()">
+      <input type="password" id="adminPinInput" placeholder="PIN Şifresi (Varsayılan: 1234)" style="width:240px;padding:10px;text-align:center;font-size:14px;border:2px solid var(--line-steel);border-radius:8px">
       <button class="btn" style="width:240px" onclick="verifyAdminPin()">Giriş Yap ➔</button>
     </div>
 
     <!-- ADMIN PANEL İÇERİĞİ -->
     <div id="adminPanelScreen" style="display:none;flex-direction:column;flex:1;overflow:hidden">
+      <!-- 5 YÖNETİM SEKMESİ -->
       <div class="admin-tabs-bar">
         <button class="admin-tab-btn active" onclick="switchAdminTab('hero', this)">🖥️ Giriş & TV Ekranı</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('products', this)">📦 Donanım Kataloğu</button>
@@ -776,7 +885,7 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
 
       <div class="admin-body">
         
-        <!-- 1. SEKME: GİRİŞ & TV SLIDESHOW YÖNETİMİ -->
+        <!-- 2.1 SEKME: GİRİŞ & TV SLIDESHOW YÖNETİMİ -->
         <div id="tabContent_hero" style="display:flex;flex-direction:column;gap:16px">
           <h4 style="font-size:13.5px;font-weight:900;color:var(--tx)">🖥️ Hero Başlıkları ve TV Ekranı Fotoğrafları</h4>
           <div class="admin-form-grid">
@@ -812,7 +921,7 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
           </div>
         </div>
 
-        <!-- 2. SEKME: DONANIM KATALOĞU & STOK -->
+        <!-- 2.2 SEKME: DONANIM KATALOĞU & STOK -->
         <div id="tabContent_products" style="display:none;flex-direction:column;gap:16px">
           <h4 style="font-size:13.5px;font-weight:900;color:var(--tx)">➕ Yeni Donanım / Model Ekle</h4>
           <div class="admin-form-grid">
@@ -853,7 +962,7 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
               <select id="admSubSpec"></select>
             </div>
             <div class="form-group">
-              <label>Stok Sayısı</label>
+              <label>Stok Sayısı (Sadece Sen Görürsün)</label>
               <input type="number" id="admStock" value="10" min="0">
             </div>
             <div class="form-group">
@@ -861,11 +970,11 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
               <input type="number" id="admPrice" placeholder="Örn: 245" min="0">
             </div>
             <div class="form-group" style="grid-column:1/-1">
-              <label>Resim Linki (Opsiyonel)</label>
+              <label>Resim Linki</label>
               <input type="url" id="admImg" placeholder="https://... veya resim.jpg">
             </div>
             <div class="form-group">
-              <label>Donanım Tanımı</label>
+              <label>Donanım Tanımı (English Hw)</label>
               <input type="text" id="admHw" placeholder="4MP Fixed Bullet IP Camera">
             </div>
             <div class="form-group">
@@ -895,7 +1004,7 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
           </div>
         </div>
 
-        <!-- 3. SEKME: HİZMET ALANLARI CMS -->
+        <!-- 3.2 SEKME: HİZMET ALANLARI CMS -->
         <div id="tabContent_services" style="display:none;flex-direction:column;gap:16px">
           <h4 style="font-size:13.5px;font-weight:900;color:var(--tx)">➕ Yeni Kompakt Hizmet Alanı Ekle</h4>
           <div class="admin-form-grid">
@@ -931,7 +1040,7 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
           </div>
         </div>
 
-        <!-- 4. SEKME: PARTNER & ÇÖZÜM ORTAKLARI YÖNETİMİ -->
+        <!-- 3.3 SEKME: PARTNER & ÇÖZÜM ORTAKLARI YÖNETİMİ -->
         <div id="tabContent_partners" style="display:none;flex-direction:column;gap:16px">
           <h4 style="font-size:13.5px;font-weight:900;color:var(--tx)">➕ Yeni Çözüm Ortağı / Marka Logosu Ekle</h4>
           <div class="admin-form-grid">
@@ -959,7 +1068,7 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
           </div>
         </div>
 
-        <!-- 5. SEKME: PROJELERİMİZ YÖNETİMİ -->
+        <!-- SEKME: PROJELERİMİZ YÖNETİMİ -->
         <div id="tabContent_projects" style="display:none;flex-direction:column;gap:16px">
           <h4 style="font-size:13.5px;font-weight:900;color:var(--tx)">➕ Yeni Referans Proje Ekle</h4>
           <div class="admin-form-grid">
@@ -1070,326 +1179,10 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
   © Vision Electronics · Profesyonel Güvenlik ve Ağ Donanımları · Tiflis, Gürcistan
 </footer>
 
-<!-- =========================================================
-   JAVASCRIPT
-   ========================================================= -->
 <script>
 const $ = id => document.getElementById(id);
 
-/* 1. DİL TABLOSU VE BAYRAKLAR */
-const LANG_FLAGS = {
-  tr: { flag: '🇹🇷', code: 'TR' },
-  en: { flag: '🇬🇧', code: 'EN' },
-  ge: { flag: '🇬🇪', code: 'GE' },
-  az: { flag: '🇦🇿', code: 'AZ' },
-  ru: { flag: '🇷🇺', code: 'RU' }
-};
-
-const I18N = {
-  tr: {
-    navServices: 'Hizmet Alanlarımız',
-    navCatalog: 'Katalog',
-    navPartners: 'Partnerler',
-    navProjects: 'Projelerimiz',
-    navContact: 'İletişim',
-    searchPlaceholder: 'Model veya özellik ara...',
-    secTagCatalog: 'EKİPMAN TERMİNALİ',
-    secTitleCatalog: 'Marka ve Donanım Seçim Paneli',
-    secDescCatalog: 'Markanızı, donanım kategorinizi ve megapiksel/kanal sayısını filtreleyerek anında listeleyin.',
-    step1: 'MARKA SEÇİMİ',
-    step2: 'DONANIM KATEGORİSİ',
-    step3: 'DETAYLI ÖZELLİK SEÇİMİ',
-    brandAll: 'TÜMÜ',
-    brandAllSub: 'Tüm Markalar',
-    filterTxt: 'Filtre:',
-    countTxt: 'Ürün:',
-    allCat: 'Tüm Kategoriler',
-    catIp: 'IP Kamera',
-    catAhd: 'Analog (Turbo HD)',
-    catNvr: 'NVR Kayıt Cihazı',
-    catSw: 'PoE Switch',
-    catWifi: 'Wi-Fi Ağları',
-    catAlarm: 'Alarm Sistemi',
-    subAllMp: 'Tüm Çözünürlükler',
-    subAllNvr: 'Tüm Kanallar',
-    subAllSw: 'Tüm Portlar',
-    stockIn: 'Stokta Var',
-    stockLow: 'Kritik Stok',
-    stockOut: 'Tükendi',
-    btnAdd: 'Sepete Ekle',
-    btnAsk: 'Teklif Al',
-    btnSelected: 'SEÇİLDİ',
-    lblSpecHw: 'Donanım',
-    lblSpecPort: 'Arayüz',
-    lblSpecExtra: 'Koruma',
-    selCountText: 'Ürün Seçildi',
-    toastAdded: 'Ürün sepete eklendi!',
-    toastSelectedAdded: 'Seçili ürünler sepete eklendi!',
-    cartEmpty: 'Sepetiniz henüz boş.'
-  },
-  en: {
-    navServices: 'Services',
-    navCatalog: 'Catalog',
-    navPartners: 'Partners',
-    navProjects: 'Projects',
-    navContact: 'Contact',
-    searchPlaceholder: 'Search model or specs...',
-    secTagCatalog: 'EQUIPMENT TERMINAL',
-    secTitleCatalog: 'Brand & Hardware Selector',
-    secDescCatalog: 'Filter by brand, category and megapixel/channels to quickly locate equipment.',
-    step1: 'SELECT BRAND',
-    step2: 'HARDWARE CATEGORY',
-    step3: 'ADVANCED SPECS',
-    brandAll: 'ALL',
-    brandAllSub: 'All Brands',
-    filterTxt: 'Filter:',
-    countTxt: 'Items:',
-    allCat: 'All Categories',
-    catIp: 'IP Cameras',
-    catAhd: 'Analog (Turbo HD)',
-    catNvr: 'NVR Recorders',
-    catSw: 'PoE Switches',
-    catWifi: 'Wi-Fi Systems',
-    catAlarm: 'Alarm Systems',
-    subAllMp: 'All Resolutions',
-    subAllNvr: 'All Channels',
-    subAllSw: 'All Ports',
-    stockIn: 'In Stock',
-    stockLow: 'Low Stock',
-    stockOut: 'Out of Stock',
-    btnAdd: 'Add to Cart',
-    btnAsk: 'Get Quote',
-    btnSelected: 'SELECTED',
-    lblSpecHw: 'Hardware',
-    lblSpecPort: 'Interface',
-    lblSpecExtra: 'Protection',
-    selCountText: 'Items Selected',
-    toastAdded: 'Product added to cart!',
-    toastSelectedAdded: 'Selected items added to cart!',
-    cartEmpty: 'Your cart is empty.'
-  },
-  ge: {
-    navServices: 'სერვისები',
-    navCatalog: 'კატალოგი',
-    navPartners: 'პარტნიორები',
-    navProjects: 'პროექტები',
-    navContact: 'კონტაქტი',
-    searchPlaceholder: 'ძებნა...',
-    secTagCatalog: 'მოწყობილობების ტერმინალი',
-    secTitleCatalog: 'ბრენდისა და ტექნიკის პანელი',
-    secDescCatalog: 'გაფილტრეთ ბრენდის, კატეგორიისა და მეგაპიქსელის მიხედვით.',
-    step1: 'ბრენდის არჩევა',
-    step2: 'კატეგორია',
-    step3: 'დეტალური მახასიათებლები',
-    brandAll: 'ყველა',
-    brandAllSub: 'ყველა ბრენდი',
-    filterTxt: 'ფილტრი:',
-    countTxt: 'პროდუქტი:',
-    allCat: 'ყველა კატეგორია',
-    catIp: 'IP კამერები',
-    catAhd: 'Turbo HD კამერები',
-    catNvr: 'NVR ჩამწერები',
-    catSw: 'PoE სვიჩები',
-    catWifi: 'Wi-Fi სისტემები',
-    catAlarm: 'დაცვის სისტემები',
-    subAllMp: 'ყველა გარჩევადობა',
-    subAllNvr: 'ყველა არხი',
-    subAllSw: 'ყველა პორტი',
-    stockIn: 'მარაგშია',
-    stockLow: 'მცირე მარაგი',
-    stockOut: 'ამოიწურა',
-    btnAdd: 'კალათაში',
-    btnAsk: 'ფასის მოთხოვნა',
-    btnSelected: 'არჩეულია',
-    lblSpecHw: 'აპარატურა',
-    lblSpecPort: 'ინტერფეისი',
-    lblSpecExtra: 'დაცვა',
-    selCountText: 'პროდუქტი არჩეულია',
-    toastAdded: 'დამატებულია კალათაში!',
-    toastSelectedAdded: 'არჩეული პროდუქტები დამატებულია!',
-    cartEmpty: 'თქვენი კალათა ცარიელია.'
-  },
-  az: {
-    navServices: 'Xidmətlərimiz',
-    navCatalog: 'Kataloq',
-    navPartners: 'Tərəfdaşlar',
-    navProjects: 'Layihələr',
-    navContact: 'Əlaqə',
-    searchPlaceholder: 'Model və ya xüsusiyyət axtar...',
-    secTagCatalog: 'AVADANLIQ TERMİNALI',
-    secTitleCatalog: 'Brend və Avadanlıq Seçim Paneli',
-    secDescCatalog: 'Brend, kateqoriya və meqapikselə görə anında axtarın.',
-    step1: 'BREND SEÇİMİ',
-    step2: 'AVADANLIQ KATEQORİYASI',
-    step3: 'XÜSUSİ SEÇİM',
-    brandAll: 'HAMISI',
-    brandAllSub: 'Bütün Brendlər',
-    filterTxt: 'Filtr:',
-    countTxt: 'Məhsul:',
-    allCat: 'Bütün Kateqoriyalar',
-    catIp: 'IP Kamera',
-    catAhd: 'Analog (Turbo HD)',
-    catNvr: 'NVR Qeydedici',
-    catSw: 'PoE Sviç',
-    catWifi: 'Wi-Fi Şəbəkələri',
-    catAlarm: 'Siqnalizasiya',
-    subAllMp: 'Bütün Meqapiksellər',
-    subAllNvr: 'Bütün Kanallar',
-    subAllSw: 'Bütün Portlar',
-    stockIn: 'Anbarda Var',
-    stockLow: 'Az Sayda',
-    stockOut: 'Bitib',
-    btnAdd: 'Səbətə At',
-    btnAsk: 'Təklif Al',
-    btnSelected: 'SEÇİLDİ',
-    lblSpecHw: 'Avadanlıq',
-    lblSpecPort: 'İnterfeys',
-    lblSpecExtra: 'Mühafizə',
-    selCountText: 'Məhsul Seçildi',
-    toastAdded: 'Məhsul səbətə əlavə edildi!',
-    toastSelectedAdded: 'Seçilmiş məhsullar səbətə atıldı!',
-    cartEmpty: 'Səbətiniz boşdur.'
-  },
-  ru: {
-    navServices: 'Услуги',
-    navCatalog: 'Каталог',
-    navPartners: 'Партнеры',
-    navProjects: 'Проекты',
-    navContact: 'Контакты',
-    searchPlaceholder: 'Поиск модели или параметров...',
-    secTagCatalog: 'ТЕРМИНАЛ ОБОРУДОВАНИЯ',
-    secTitleCatalog: 'Панель выбора брендов и оборудования',
-    secDescCatalog: 'Фильтруйте по бренду, категории и разрешению/каналам.',
-    step1: 'ВЫБОР БРЕНДА',
-    step2: 'КАТЕГОРИЯ',
-    step3: 'ДЕТАЛЬНЫЕ ПАРАМЕТРЫ',
-    brandAll: 'ВСЕ',
-    brandAllSub: 'Все бренды',
-    filterTxt: 'Фильтр:',
-    countTxt: 'Товары:',
-    allCat: 'Все категории',
-    catIp: 'IP Камеры',
-    catAhd: 'Аналог (Turbo HD)',
-    catNvr: 'Видеорегистраторы NVR',
-    catSw: 'PoE Коммутаторы',
-    catWifi: 'Wi-Fi Оборудование',
-    catAlarm: 'Охранные системы',
-    subAllMp: 'Все разрешения',
-    subAllNvr: 'Все каналы',
-    subAllSw: 'Все порты',
-    stockIn: 'В наличии',
-    stockLow: 'Мало на складе',
-    stockOut: 'Нет в наличии',
-    btnAdd: 'В корзину',
-    btnAsk: 'Запросить КП',
-    btnSelected: 'ВЫБРАНО',
-    lblSpecHw: 'Модель',
-    lblSpecPort: 'Интерфейс',
-    lblSpecExtra: 'Защита',
-    selCountText: 'Товаров выбрано',
-    toastAdded: 'Товар добавлен в корзину!',
-    toastSelectedAdded: 'Выбранные товары добавлены в корзину!',
-    cartEmpty: 'Ваша корзина пуста.'
-  }
-};
-
-/* 2. FABRİKA VARSAYILANLARI */
-const DEFAULT_HERO = {
-  tag: "CCTV · NETWORK POE · WI-FI · ALARM",
-  h1: "Profesyonel Güvenlik ve Ağ Donanımları",
-  p: "Hikvision, MikroTik, Pro Look ve TVT orijinal IP/Analog kameralar, NVR sunucuları ve anahtar teslim mühendislik işçiliği.",
-  slides: [
-    "https://images.unsplash.com/photo-1713173642147-30cbbdb176d5?auto=format&fit=crop&w=1920&q=80",
-    "https://images.unsplash.com/photo-1525939815185-7b25b346d3db?auto=format&fit=crop&w=1920&q=80",
-    "https://images.unsplash.com/photo-1569515501972-26d4f39c8a93?auto=format&fit=crop&w=1920&q=80",
-    "https://images.unsplash.com/photo-1513345407170-3f7ecd3b7d74?auto=format&fit=crop&w=1920&q=80",
-    "https://images.unsplash.com/photo-1676446242915-bfad60f491d6?auto=format&fit=crop&w=1920&q=80",
-    "https://images.unsplash.com/photo-1702306870996-ce93ec687e23?auto=format&fit=crop&w=1920&q=80"
-  ]
-};
-
-const DEFAULT_SERVICES = [
-  { id: 'srv_1', img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80', title: 'Düğün & Etkinlik Salonları', tag: '360° Panoramik', desc: 'Yüksek tavanlı geniş salonlarda kör noktasız izleme ve otopark plaka tanıma.' },
-  { id: 'srv_2', img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80', title: 'Ofis ve İş Merkezleri', tag: 'Wi-Fi 6 & Yüz Tanıma', desc: 'Personel devam kontrol, turnike parmak izi/yüz tanıma, server odası izleme.' },
-  { id: 'srv_3', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80', title: 'Lüks Villalar & Konutlar', tag: '7/24 Renkli Gece', desc: 'ColorVu teknolojisiyle gece renkli izleme, bahçe çit alarmı ve uzaktan interkom.' },
-  { id: 'srv_4', img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80', title: 'Fabrika ve Sanayi', tag: 'Termal Yangın Algılama', desc: 'Aşırı sıcaklık algılayan termal kameralar, toza dayanıklı muhafazalar ve fiber omurga.' },
-  { id: 'srv_5', img: 'https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=600&q=80', title: 'İnşaat ve Şantiye', tag: 'Solar & 4G SIM', desc: 'Elektrik ve internet olmayan alanlar için Güneş Enerjili (Solar) kameralar ve vinç güvenliği.' }
-];
-
-const DEFAULT_PARTNERS = [
-  { id: 'p_1', name: 'Hikvision', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Hikvision_logo.svg/320px-Hikvision_logo.svg.png' },
-  { id: 'p_2', name: 'MikroTik', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Mikrotik_logo.svg/320px-Mikrotik_logo.svg.png' },
-  { id: 'p_3', name: 'Pro Look', logo: '' },
-  { id: 'p_4', name: 'TVT', logo: '' },
-  { id: 'p_5', name: 'WD Purple', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Western_Digital_logo.svg/320px-Western_Digital_logo.svg.png' },
-  { id: 'p_6', name: 'Seagate', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Seagate_logo.svg/320px-Seagate_logo.svg.png' }
-];
-
-const DEFAULT_PROJECTS = [
-  { id: 'proj_1', isDigomi: true, title: 'Digomi Project (Spor & Yaşam)', loc: '📍 Dighomi, Tiflis', tag: '28 Kamera · Hikvision NVR', img: 'digomi-5.jpg', desc: 'Yarı olimpik havuz, fitness salonu, turnike geçişleri ve çevre güvenliğinin 28 Hikvision IP kamera ile kurulumu.' },
-  { id: 'proj_2', isDigomi: false, title: 'Tiflis Lojistik Merkezi', loc: '📍 Tiflis / Gürcistan', tag: 'CCTV & PoE Ağı', img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=700&q=80', desc: '64 Kanal Hikvision 4K IP kamera, MikroTik fiber omurga ve 360 derece çevre güvenlik analitiği.' },
-  { id: 'proj_3', isDigomi: false, title: 'Batum 5 Yıldızlı Otel', loc: '📍 Batum / Gürcistan', tag: 'Wi-Fi 6 & IP Kamera', img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80', desc: 'MikroTik cAP ax tavan tipi Wi-Fi altyapısı ve 120 adet IK10 vandal-proof dome kamera entegrasyonu.' }
-];
-
-const DEFAULT_PRODUCTS = [
-  {
-    id: 'prod_1', brand: 'hikvision', seg: 'cam_ip', kasa: 'Bullet', mp: '4mp', stock: 12, price: 185,
-    img: 'https://assets.hikvision.com/prd/normal/all/image/m000008410/main_mainview/DS-2CD10X3-Bullet.png',
-    name: 'Hikvision DS-2CD1043G0E-I 4MP Bullet',
-    spec: '4MP 2K QHD · PoE 802.3af', hw: '4MP Fixed Lens IP', port: '1x RJ45 100M PoE', extra: 'IP67 / 30m EXIR IR'
-  },
-  {
-    id: 'prod_2', brand: 'hikvision', seg: 'cam_ip', kasa: 'Dome', mp: '4mp', stock: 8, price: 240,
-    img: 'https://shop.neotech.ge/images/detailed/9/DS-2CD2123G2-IS-%E5%8D%8A%E7%90%8318-%E6%B5%B7%E5%BA%B7%E7%99%BD-%E6%AD%A3%E9%9D%A2.png.thumb.1280.1280_uibh-nh.png',
-    name: 'Hikvision DS-2CD2143G2-I 4MP Dome AcuSense',
-    spec: '4MP AcuSense AI · IK10 Vandal-Proof', hw: '4MP Deep Learning AI', port: 'PoE 802.3af / MicroSD', extra: 'IP67 & IK10 Metal'
-  },
-  {
-    id: 'prod_3', brand: 'hikvision', seg: 'nvr', ch: '8ch', stock: 5, price: 430,
-    img: 'https://assets.hikvision.com/prd/normal/all/image/m000008410/main_mainview/DS-2CD10X3-Bullet.png',
-    name: 'Hikvision DS-7608NI-K1/8P 8-Channel 4K NVR',
-    spec: '8ch 4K Ultra HD · 8x PoE Port Dahili', hw: '8 Kanal 80Mbps Bant', port: '8x Bağımsız PoE Port', extra: '1x SATA 8TB Destek'
-  },
-  {
-    id: 'prod_4', brand: 'hikvision', seg: 'switch', ports: '8p', stock: 15, price: 195,
-    img: 'https://assets.hikvision.com/prd/normal/all/image/m000008410/main_mainview/DS-2CD10X3-Bullet.png',
-    name: 'Hikvision DS-3E0508P-E 8-Port Gigabit PoE',
-    spec: '8-Port Gigabit · 60W PoE Bütçesi', hw: 'Full Gigabit Metal Kasa', port: '8x GbE RJ45 Port', extra: '6KV Yıldırım Koruması'
-  },
-  {
-    id: 'prod_5', brand: 'microtik', seg: 'wifi', stock: 9, price: 260,
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Mikrotik_logo.svg/320px-Mikrotik_logo.svg.png',
-    name: 'MikroTik cAP ax Wi-Fi 6 Ceiling AP',
-    spec: 'Wi-Fi 6 AX1800 · Dual Gigabit PoE', hw: 'Quad-Core 1.8GHz CPU', port: '2x Gigabit PoE-In/Out', extra: 'RouterOS v7 Level 4'
-  },
-  {
-    id: 'prod_6', brand: 'microtik', seg: 'switch', ports: '8p', stock: 4, price: 520,
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Mikrotik_logo.svg/320px-Mikrotik_logo.svg.png',
-    name: 'MikroTik RB5009UG+S+IN Heavy Duty Router',
-    spec: '1x 2.5G + 7x GbE + 10G SFP+', hw: 'Quad-Core Marvell Armada', port: '2.5G + 10G SFP+ Kafesi', extra: 'RouterOS v7 Enterprise'
-  },
-  {
-    id: 'prod_7', brand: 'prolook', seg: 'cam_ip', kasa: 'Bullet', mp: '4mp', stock: 14, price: 130,
-    img: 'https://assets.hikvision.com/prd/normal/all/image/m000008410/main_mainview/DS-2CD10X3-Bullet.png',
-    name: 'Pro Look PL-IP400B 4MP Metal Bullet',
-    spec: '4MP QHD · Ağır Metal Dış Ortam', hw: '4MP Sony Starvis Sensör', port: 'PoE 48V Standard', extra: 'IP67 Su Geçirmez'
-  },
-  {
-    id: 'prod_8', brand: 'tvt', seg: 'nvr', ch: '8ch', stock: 6, price: 290,
-    img: 'https://assets.hikvision.com/prd/normal/all/image/m000008410/main_mainview/DS-2CD10X3-Bullet.png',
-    name: 'TVT TD-3108B1 8-Channel AI Smart NVR',
-    spec: '8ch H.265+ · Yüz ve Araç Analitiği', hw: '8 Kanal 4K Kayıt İşlemci', port: 'HDMI 4K + VGA Çıkış', extra: 'ONVIF Profile S/G/T'
-  }
-];
-
-function getBrandBadge(brand){
-  if(brand === 'hikvision') return '<span class="logo-hikvision"><span class="h">HIK</span><span class="v">VISION</span></span>';
-  if(brand === 'microtik') return '<span class="logo-microtik">Mikro<span>Tik</span></span>';
-  if(brand === 'prolook') return '<span class="logo-prolook">PRO<b>LOOK</b></span>';
-  if(brand === 'tvt') return '<span class="logo-tvt">TVT</span>';
-  return (brand || '').toUpperCase();
-}
-
+/* GÜVENLİ VERİ OKUMA: EĞER TARAYICI HAFIZASI BOŞSA OTOMATİK TAM LİSTEYİ GETİRİR */
 function getSafeArray(key, fallback){
   try {
     const raw = localStorage.getItem(key);
@@ -1458,7 +1251,7 @@ function resetDefaultProducts(){
   }
 }
 
-/* 3. DİL SEÇİMİ */
+/* 1. DİL MENÜSÜ */
 function toggleLangDropdown(){
   $("langDropdownMenu").classList.toggle("open");
 }
@@ -1509,13 +1302,14 @@ function selectLang(code){
   updateCartUI();
 }
 
+/* MOBİL ARAMA */
 function toggleMobileSearch(){
   const drawer = $("mobileSearchDrawer");
   drawer.classList.toggle("open");
   if(drawer.classList.contains("open")){ $("mobileSearchInput").focus(); }
 }
 
-/* 4. HERO TV */
+/* 2.1 HERO FRONTLEND RENDER */
 function renderHeroFrontend(){
   $("heroTagText").textContent = HERO_DATA.tag;
   $("heroH1").textContent = HERO_DATA.h1;
@@ -1541,7 +1335,7 @@ function initTvSlideshow(){
   }, 4200);
 }
 
-/* 5. HİZMETLER */
+/* 3.2 KOMPAKT HİZMET ALANLARI RENDER */
 function renderCompactServicesFrontend(){
   const grid = $("servicesCompactGrid");
   if(!grid) return;
@@ -1563,18 +1357,19 @@ function renderCompactServicesFrontend(){
   `).join('');
 }
 
-/* 6. PARTNERLER */
+/* 3.3 PARTNER LOGOLARI RENDER */
 function renderPartnersFrontend(){
   const grid = $("partnersGrid");
   if(!grid) return;
   grid.innerHTML = PARTNERS.map(p => `
     <div class="partner-logo-item" title="${p.name}">
-      ${p.logo ? `<img src="${p.logo}" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="${p.name}"><span style="display:none;font-size:13px;font-weight:900;color:#fff">${p.name}</span>` : `<span style="font-size:13px;font-weight:900;color:#fff;letter-spacing:0.05em">${p.name}</span>`}
+      <img src="${p.logo}" onerror="this.style.display='none'" alt="${p.name}">
+      <span style="font-size:12px;font-weight:900;color:#fff;display:${p.logo ? 'none' : 'block'}">${p.name}</span>
     </div>
   `).join('');
 }
 
-/* 7. PROJELER */
+/* PROJELER RENDER */
 function renderProjectsTrack(){
   const track = $("projectsTrack");
   if(!track) return;
@@ -1597,7 +1392,7 @@ function renderProjectsTrack(){
   `).join('');
 }
 
-/* 8. ADMIN MODAL */
+/* GİZLİ ADMIN GİRİŞİ */
 function openAdminModal(){
   $("adminModal").classList.add("open");
   document.body.style.overflow = "hidden";
@@ -1613,7 +1408,7 @@ function openAdminModal(){
     $("adminAuthScreen").style.display = "flex";
     $("adminPanelScreen").style.display = "none";
     $("adminPinInput").value = "";
-    setTimeout(() => $("adminPinInput").focus(), 150);
+    $("adminPinInput").focus();
   }
 }
 
@@ -1656,18 +1451,14 @@ if(secretDot){
     e.preventDefault(); e.stopPropagation();
     dotClickCount++;
     clearTimeout(dotClickTimer);
-    dotClickTimer = setTimeout(() => { dotClickCount = 0; }, 2000);
-    if(dotClickCount >= 3){
-      dotClickCount = 0;
-      openAdminModal();
-    }
+    dotClickTimer = setTimeout(() => { dotClickCount = 0; }, 1500);
+    if(dotClickCount >= 3){ dotClickCount = 0; openAdminModal(); }
   });
 }
 
 window.addEventListener('keydown', (e) => {
   if(e.altKey && (e.key === 'a' || e.key === 'A')){
-    e.preventDefault();
-    openAdminModal();
+    e.preventDefault(); openAdminModal();
   }
 });
 
@@ -1681,10 +1472,11 @@ function switchAdminTab(tabName, btn){
   $('tabContent_projects').style.display = tabName === 'projects' ? 'flex' : 'none';
 }
 
+/* HERO ADMIN */
 function loadAdminHeroFields(){
-  $("admHeroTag").value = HERO_DATA.tag || '';
-  $("admHeroH1").value = HERO_DATA.h1 || '';
-  $("admHeroP").value = HERO_DATA.p || '';
+  $("admHeroTag").value = HERO_DATA.tag;
+  $("admHeroH1").value = HERO_DATA.h1;
+  $("admHeroP").value = HERO_DATA.p;
   renderAdminTvSlidesTable();
 }
 
@@ -1721,13 +1513,14 @@ function renderAdminTvSlidesTable(){
   if(!tbody) return;
   tbody.innerHTML = HERO_DATA.slides.map((url, idx) => `
     <tr>
-      <td><img src="${url}" style="width:50px;height:30px;object-fit:cover;border-radius:4px" onerror="this.src='https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=100&q=80'"></td>
+      <td><img src="${url}" style="width:50px;height:30px;object-fit:cover;border-radius:4px"></td>
       <td style="font-size:10.5px;max-width:260px;overflow:hidden;text-overflow:ellipsis">${url}</td>
       <td><button style="border:none;background:none;color:#dc2626;cursor:pointer;font-weight:900" onclick="delTvSlide(${idx})">🗑️</button></td>
     </tr>
   `).join('');
 }
 
+/* HİZMET CMS */
 function saveNewService(){
   const title = $("admSrvTitle").value.trim();
   const img = $("admSrvImg").value.trim() || 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80';
@@ -1762,6 +1555,7 @@ function delService(idx){
   }
 }
 
+/* PARTNER CMS */
 function saveNewPartner(){
   const name = $("admPartnerName").value.trim();
   const logo = $("admPartnerLogo").value.trim();
@@ -1780,7 +1574,7 @@ function renderAdminPartnersTable(){
   if(!tbody) return;
   tbody.innerHTML = PARTNERS.map((p, idx) => `
     <tr>
-      <td>${p.logo ? `<img src="${p.logo}" style="height:28px;max-width:70px;object-fit:contain">` : '-'}</td>
+      <td>${p.logo ? `<img src="${p.logo}" style="height:25px;max-width:60px;object-fit:contain;background:#000;padding:2px;border-radius:4px">` : '-'}</td>
       <td><b>${p.name}</b></td>
       <td><button style="border:none;background:none;color:#dc2626;cursor:pointer;font-weight:900" onclick="delPartner(${idx})">🗑️</button></td>
     </tr>
@@ -1793,6 +1587,7 @@ function delPartner(idx){
   }
 }
 
+/* ÜRÜN CMS */
 function handleSegChange(seg){
   const kasaGroup = $("groupKasaTipi");
   const subGroup = $("groupSubSpec");
@@ -1889,6 +1684,7 @@ function delProduct(idx){
   }
 }
 
+/* PROJE CMS */
 function saveNewProject(){
   const title = $("admProjTitle").value.trim();
   const loc = $("admProjLoc").value.trim() || '📍 Tiflis / Gürcistan';
@@ -1918,7 +1714,7 @@ function delProject(idx){
   }
 }
 
-/* 9. KATALOG FİLTRELEME & GÖRÜNÜM */
+/* KATALOG FİLTRELERİ */
 function renderCatalogCards(){
   const t = I18N[currentLang] || I18N['tr'];
   let list = PRODUCTS;
@@ -2094,7 +1890,7 @@ function handleSearch(val){
   renderCatalogCards();
 }
 
-/* 10. DİGOMİ MODAL */
+/* DİGOMİ MODAL */
 function openDigomiGallery(){ $("digomiGalleryModal").classList.add("open"); document.body.style.overflow = "hidden"; }
 function closeDigomiGallery(e){ if(e && e.target && e.target.closest('.gallery-modal-content')) return; $("digomiGalleryModal").classList.remove("open"); document.body.style.overflow = ""; }
 function setGalleryView(idx, imgUrl, caption, el){
@@ -2103,7 +1899,7 @@ function setGalleryView(idx, imgUrl, caption, el){
   if(el) el.classList.add('active');
 }
 
-/* 11. SEPET VE SEÇİM */
+/* SEPET & SEÇİM */
 function toggleProductSelection(id, e){
   if(selectedProductIds.has(id)) selectedProductIds.delete(id);
   else selectedProductIds.add(id);
@@ -2230,13 +2026,8 @@ function checkoutWhatsApp(){
   window.open(`https://wa.me/995557030033?text=${text}`, '_blank');
 }
 
-/* BAŞLATICI */
 window.addEventListener("DOMContentLoaded", () => {
-  renderHeroFrontend();
   initTvSlideshow();
-  renderCompactServicesFrontend();
-  renderPartnersFrontend();
-  renderProjectsTrack();
   selectLang(currentLang);
   handleSegChange($("admSeg").value);
   if(window.location.hash === '#admin') openAdminModal();
