@@ -93,7 +93,6 @@ nav{display:flex;gap:18px;margin-left:auto;font-size:13px;color:#e2e8f0;font-wei
 nav a{transition:color .2s}
 nav a:hover{color:#60a5fa}
 
-/* MASAÜSTÜ ARAMA */
 .header-search-wrap{
   display:flex;align-items:center;background:#ffffff;border:1.5px solid #75767b;
   border-radius:20px;padding:4px 10px;width:180px;transition:all .2s;
@@ -101,7 +100,6 @@ nav a:hover{color:#60a5fa}
 .header-search-wrap:focus-within{border-color:#38bdf8;width:220px}
 .header-search-input{border:none;outline:none;background:none;font-size:12px;color:#0b0f17;width:100%;padding:3px}
 
-/* MOBİL ARAMA BUTONU VE ÇEKMECESİ */
 .mobile-search-btn{
   display:none;background:linear-gradient(180deg, #f0f0f2 0%, #b2b3b8 100%);
   border:1px solid #4e5156;border-radius:6px;width:30px;height:30px;
@@ -255,7 +253,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .b-btn.active .b-subtext{color:#e0f2fe}
 .b-btn .b-subtext{font-size:9.5px;color:var(--mu);font-weight:800}
 
-.segment-pills-row{display:flex;flex-wrap:gap:6px;padding-top:12px;border-top:1.5px dashed var(--line-steel);margin-bottom:12px;display:flex;flex-wrap:wrap;gap:6px}
+.segment-pills-row{display:flex;flex-wrap:wrap;gap:6px;padding-top:12px;border-top:1.5px dashed var(--line-steel);margin-bottom:12px}
 .seg-pill{
   background: linear-gradient(180deg, #ffffff 0%, #cbccd1 100%);
   border: 1.5px solid var(--line-steel);color:var(--tx);
@@ -442,9 +440,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .project-loc{font-size:10.5px;font-weight:800;color:var(--cyan)}
 .project-view-btn{font-size:11px;color:var(--bl);font-weight:800}
 
-/* =========================================================
-   GELİŞMİŞ ADMIN YÖNETİM PANELİ (CMS SEKMELİ)
-   ========================================================= */
+/* ADMIN MODAL */
 .admin-modal{
   position:fixed;inset:0;background:rgba(15,23,42,.85);backdrop-filter:blur(8px);
   z-index:360;display:none;align-items:center;justify-content:center;padding:16px;
@@ -624,10 +620,19 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
   <button class="btn" style="padding:6px 10px;background:#64748b" onclick="toggleMobileSearch()">✕</button>
 </div>
 
-<!-- HERO -->
+<!-- =========================================================
+   HERO: SİNEMATİK TV EKRANI (6 ADET YÜKSEK ÇÖZÜNÜRLÜKLÜ SLIDE)
+   ========================================================= -->
 <div class="hero" id="top">
   <div class="tv-frame" id="tvFrameContainer">
-    <div id="tvSlidesContainer"></div>
+    <div id="tvSlidesContainer">
+      <div class="tv-slide-item active" style="background-image:url('https://images.unsplash.com/photo-1713173642147-30cbbdb176d5?auto=format&fit=crop&w=1920&q=80')"></div>
+      <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1525939815185-7b25b346d3db?auto=format&fit=crop&w=1920&q=80')"></div>
+      <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1569515501972-26d4f39c8a93?auto=format&fit=crop&w=1920&q=80')"></div>
+      <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1513345407170-3f7ecd3b7d74?auto=format&fit=crop&w=1920&q=80')"></div>
+      <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1676446242915-bfad60f491d6?auto=format&fit=crop&w=1920&q=80')"></div>
+      <div class="tv-slide-item" style="background-image:url('https://images.unsplash.com/photo-1702306870996-ce93ec687e23?auto=format&fit=crop&w=1920&q=80')"></div>
+    </div>
     <div class="tv-scanlines"></div>
     <div class="tv-vignette"></div>
   </div>
@@ -645,14 +650,72 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
   </div>
 </div>
 
-<!-- 3.2 KOMPAKT HİZMET ALANLARIMIZ -->
+<!-- =========================================================
+   3.2 SEGMENTLİ & FOTOĞRAFLI KOMPAKT HİZMET ALANLARIMIZ
+   ========================================================= -->
 <section class="services-compact-sec" id="servicesSec">
   <div class="sec-head">
     <span class="sec-tag">UZMANLIK ALANLARIMIZ</span>
     <h2 class="sec-title" id="secTitleServices">Sektörel Hizmet Alanlarımız</h2>
     <p class="sec-desc">Tiflis, Batum ve tüm Gürcistan'da anahtar teslim projelendirme, kablolama ve 2 yıl garantili montaj.</p>
   </div>
-  <div class="service-compact-grid" id="servicesCompactGrid"></div>
+  <div class="service-compact-grid" id="servicesCompactGrid">
+    <div class="service-compact-card">
+      <div class="service-compact-img">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Düğün & Etkinlik Salonları">
+        <span class="service-compact-tag">360° Panoramik</span>
+      </div>
+      <div class="service-compact-body">
+        <h4>Düğün & Etkinlik Salonları</h4>
+        <p>Yüksek tavanlı geniş salonlarda kör noktasız izleme ve otopark plaka tanıma.</p>
+        <div class="service-compact-foot"><span>✓ Anahtar Teslim</span><a href="https://wa.me/995557030033" target="_blank" style="color:var(--bl);text-decoration:underline">Teklif Al ➔</a></div>
+      </div>
+    </div>
+    <div class="service-compact-card">
+      <div class="service-compact-img">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" alt="Ofis ve İş Merkezleri">
+        <span class="service-compact-tag">Wi-Fi 6 & Yüz Tanıma</span>
+      </div>
+      <div class="service-compact-body">
+        <h4>Ofis ve İş Merkezleri</h4>
+        <p>Personel devam kontrol, turnike parmak izi/yüz tanıma, server odası izleme.</p>
+        <div class="service-compact-foot"><span>✓ Anahtar Teslim</span><a href="https://wa.me/995557030033" target="_blank" style="color:var(--bl);text-decoration:underline">Teklif Al ➔</a></div>
+      </div>
+    </div>
+    <div class="service-compact-card">
+      <div class="service-compact-img">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Lüks Villalar & Konutlar">
+        <span class="service-compact-tag">7/24 Renkli Gece</span>
+      </div>
+      <div class="service-compact-body">
+        <h4>Lüks Villalar & Konutlar</h4>
+        <p>ColorVu teknolojisiyle gece renkli izleme, bahçe çit alarmı ve uzaktan interkom.</p>
+        <div class="service-compact-foot"><span>✓ Anahtar Teslim</span><a href="https://wa.me/995557030033" target="_blank" style="color:var(--bl);text-decoration:underline">Teklif Al ➔</a></div>
+      </div>
+    </div>
+    <div class="service-compact-card">
+      <div class="service-compact-img">
+        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80" alt="Fabrika ve Sanayi">
+        <span class="service-compact-tag">Termal Yangın Algılama</span>
+      </div>
+      <div class="service-compact-body">
+        <h4>Fabrika ve Sanayi</h4>
+        <p>Aşırı sıcaklık algılayan termal kameralar, toza dayanıklı muhafazalar ve fiber omurga.</p>
+        <div class="service-compact-foot"><span>✓ Anahtar Teslim</span><a href="https://wa.me/995557030033" target="_blank" style="color:var(--bl);text-decoration:underline">Teklif Al ➔</a></div>
+      </div>
+    </div>
+    <div class="service-compact-card">
+      <div class="service-compact-img">
+        <img src="https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=600&q=80" alt="İnşaat ve Şantiye">
+        <span class="service-compact-tag">Solar & 4G SIM</span>
+      </div>
+      <div class="service-compact-body">
+        <h4>İnşaat ve Şantiye</h4>
+        <p>Elektrik ve internet olmayan alanlar için Güneş Enerjili (Solar) kameralar ve vinç güvenliği.</p>
+        <div class="service-compact-foot"><span>✓ Anahtar Teslim</span><a href="https://wa.me/995557030033" target="_blank" style="color:var(--bl);text-decoration:underline">Teklif Al ➔</a></div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- KATALOG -->
@@ -720,7 +783,14 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
       <h3 style="font-size:22px;font-weight:900;color:#ffffff;margin-top:4px">Çözüm Ortaklarımız & Distribütör Markalar</h3>
       <p style="color:#cbd5e1;font-size:12.5px;max-width:600px;margin:4px auto 0">Gürcistan genelindeki projelerimizde resmi garantili, küresel sertifikalı donanım üreticileriyle çalışıyoruz.</p>
     </div>
-    <div class="partners-grid" id="partnersGrid"></div>
+    <div class="partners-grid" id="partnersGrid">
+      <div class="partner-logo-item" title="Hikvision"><span style="font-size:13px;font-weight:900;color:#fff">HIKVISION</span></div>
+      <div class="partner-logo-item" title="MikroTik"><span style="font-size:13px;font-weight:900;color:#60a5fa">MikroTik</span></div>
+      <div class="partner-logo-item" title="Pro Look"><span style="font-size:13px;font-weight:900;color:#fff">PROLOOK</span></div>
+      <div class="partner-logo-item" title="TVT"><span style="font-size:13px;font-weight:900;color:#facc15">TVT</span></div>
+      <div class="partner-logo-item" title="WD Purple"><span style="font-size:13px;font-weight:900;color:#c084fc">WD PURPLE</span></div>
+      <div class="partner-logo-item" title="Seagate"><span style="font-size:13px;font-weight:900;color:#4ade80">SEAGATE</span></div>
+    </div>
   </div>
 </section>
 
@@ -731,11 +801,57 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
     <h2 style="font-size:26px;font-weight:900;margin-bottom:4px;color:#ffffff">Tamamlanan Örnek Projelerimiz</h2>
     <p style="color:#cbd5e1;font-size:13px">Parmağınızla sağa-sola kaydırarak projeleri ve Digomi Project'in 28 kameralı canlı görüntülerini inceleyin.</p>
   </div>
-  <div class="projects-touch-track" id="projectsTrack"></div>
+  <div class="projects-touch-track" id="projectsTrack">
+    <div class="project-card" onclick="openDigomiGallery()">
+      <span class="project-badge-corner">★ CANLI SAHA</span>
+      <div class="project-img">
+        <img src="digomi-5.jpg" onerror="this.src='https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=700&q=80'" alt="Digomi Project">
+        <span class="project-tag">28 Kamera · Hikvision NVR</span>
+      </div>
+      <div class="project-body">
+        <h3>Digomi Project (Spor & Yaşam)</h3>
+        <p>Yarı olimpik havuz, fitness salonu, turnike geçişleri ve çevre güvenliğinin 28 Hikvision IP kamera ile kurulumu.</p>
+        <div class="project-footer-row">
+          <span class="project-loc">📍 Dighomi, Tiflis</span>
+          <span class="project-view-btn">5 Fotoğrafı Gör 🔍</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=700&q=80" alt="Lojistik">
+        <span class="project-tag">CCTV & PoE Ağı</span>
+      </div>
+      <div class="project-body">
+        <h3>Tiflis Lojistik Merkezi</h3>
+        <p>64 Kanal Hikvision 4K IP kamera, MikroTik fiber omurga ve 360 derece çevre güvenlik analitiği.</p>
+        <div class="project-footer-row">
+          <span class="project-loc">📍 Tiflis / Gürcistan</span>
+          <span class="project-view-btn">Detay</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80" alt="Otel">
+        <span class="project-tag">Wi-Fi 6 & IP Kamera</span>
+      </div>
+      <div class="project-body">
+        <h3>Batum 5 Yıldızlı Otel</h3>
+        <p>MikroTik cAP ax tavan tipi Wi-Fi altyapısı ve 120 adet IK10 vandal-proof dome kamera entegrasyonu.</p>
+        <div class="project-footer-row">
+          <span class="project-loc">📍 Batum / Gürcistan</span>
+          <span class="project-view-btn">Detay</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- =========================================================
-   2. YENİDEN YAPILANDIRILMIŞ ÇOK SEKMELİ ADMIN PANELİ (CMS)
+   GELİŞMİŞ ADMIN YÖNETİM PANELİ (CMS SEKMELİ)
    ========================================================= -->
 <div class="admin-modal" id="adminModal" onclick="closeAdminModal(event)">
   <div class="admin-card" onclick="event.stopPropagation()">
@@ -790,7 +906,6 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
             </div>
           </div>
 
-          <!-- TV FOTOĞRAFLARI LİSTESİ -->
           <div>
             <h4 style="font-size:13px;font-weight:900;color:var(--tx);margin-bottom:8px">📺 TV Ekranında Dönen Slayt Fotoğrafları</h4>
             <div style="display:flex;gap:8px;margin-bottom:10px">
@@ -934,7 +1049,7 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
               <input type="text" id="admPartnerName" placeholder="Örn: Western Digital Purple">
             </div>
             <div class="form-group" style="grid-column:span 2">
-              <label>Şeffaf Logo Linki (PNG / SVG - Arka planı şeffaf)</label>
+              <label>Şeffaf Logo Linki (PNG / SVG)</label>
               <input type="url" id="admPartnerLogo" placeholder="https://...logo.png">
             </div>
             <div style="grid-column:1/-1;display:flex;justify-content:flex-end">
@@ -1067,9 +1182,76 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
 <script>
 const $ = id => document.getElementById(id);
 
-/* =========================================================
-   DİL MENÜSÜ FONKSİYONLARI (DROPDOWN)
-   ========================================================= */
+/* GÜVENLİ VERİ OKUMA: EĞER TARAYICI HAFIZASI BOŞSA OTOMATİK TAM LİSTEYİ GETİRİR */
+function getSafeArray(key, fallback){
+  try {
+    const raw = localStorage.getItem(key);
+    if(!raw) return fallback;
+    const parsed = JSON.parse(raw);
+    if(Array.isArray(parsed) && parsed.length > 0) return parsed;
+    return fallback;
+  } catch(e) {
+    return fallback;
+  }
+}
+
+let HERO_DATA = DEFAULT_HERO;
+try {
+  const hRaw = localStorage.getItem("vision_hero");
+  if(hRaw){
+    const parsed = JSON.parse(hRaw);
+    if(parsed && parsed.slides && parsed.slides.length > 0) HERO_DATA = parsed;
+  }
+} catch(e){}
+
+let PRODUCTS = getSafeArray("vision_products", DEFAULT_PRODUCTS);
+let SERVICES = getSafeArray("vision_services", DEFAULT_SERVICES);
+let PARTNERS = getSafeArray("vision_partners", DEFAULT_PARTNERS);
+let PROJECTS = getSafeArray("vision_projects", DEFAULT_PROJECTS);
+
+let currentLang = localStorage.getItem("v_lang") || 'tr';
+let currentBrand = 'all';
+let currentSeg = 'all';
+let currentSubFilter = 'all';
+let searchKeyword = '';
+let selectedProductIds = new Set();
+let cart = JSON.parse(localStorage.getItem("v_cart") || "{}");
+let isAdminLoggedIn = sessionStorage.getItem("v_admin_logged") === "1";
+
+function saveAllToStorage(){
+  localStorage.setItem("vision_hero", JSON.stringify(HERO_DATA));
+  localStorage.setItem("vision_products", JSON.stringify(PRODUCTS));
+  localStorage.setItem("vision_services", JSON.stringify(SERVICES));
+  localStorage.setItem("vision_partners", JSON.stringify(PARTNERS));
+  localStorage.setItem("vision_projects", JSON.stringify(PROJECTS));
+  renderHeroFrontend();
+  renderCompactServicesFrontend();
+  renderPartnersFrontend();
+  renderSegmentPills();
+  renderSubFilters();
+  renderCatalogCards();
+  renderProjectsTrack();
+}
+
+function resetDefaultProducts(){
+  if(confirm("Tüm ürünler ve ayarlar fabrika varsayılanlarına sıfırlansın mı?")){
+    localStorage.removeItem("vision_products");
+    localStorage.removeItem("vision_services");
+    localStorage.removeItem("vision_partners");
+    localStorage.removeItem("vision_projects");
+    localStorage.removeItem("vision_hero");
+    PRODUCTS = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
+    SERVICES = JSON.parse(JSON.stringify(DEFAULT_SERVICES));
+    PARTNERS = JSON.parse(JSON.stringify(DEFAULT_PARTNERS));
+    PROJECTS = JSON.parse(JSON.stringify(DEFAULT_PROJECTS));
+    HERO_DATA = JSON.parse(JSON.stringify(DEFAULT_HERO));
+    saveAllToStorage();
+    renderInventoryTable();
+    showToast("Fabrika ayarlarına dönüldü!");
+  }
+}
+
+/* 1. DİL MENÜSÜ */
 function toggleLangDropdown(){
   $("langDropdownMenu").classList.toggle("open");
 }
@@ -1127,7 +1309,7 @@ function toggleMobileSearch(){
   if(drawer.classList.contains("open")){ $("mobileSearchInput").focus(); }
 }
 
-/* HERO FRONTLEND RENDER */
+/* 2.1 HERO FRONTLEND RENDER */
 function renderHeroFrontend(){
   $("heroTagText").textContent = HERO_DATA.tag;
   $("heroH1").textContent = HERO_DATA.h1;
@@ -1210,7 +1392,7 @@ function renderProjectsTrack(){
   `).join('');
 }
 
-/* GİZLİ ADMIN MODAL GİRİŞİ */
+/* GİZLİ ADMIN GİRİŞİ */
 function openAdminModal(){
   $("adminModal").classList.add("open");
   document.body.style.overflow = "hidden";
@@ -1338,7 +1520,7 @@ function renderAdminTvSlidesTable(){
   `).join('');
 }
 
-/* HİZMET ALANLARI CMS */
+/* HİZMET CMS */
 function saveNewService(){
   const title = $("admSrvTitle").value.trim();
   const img = $("admSrvImg").value.trim() || 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80';
@@ -1405,7 +1587,7 @@ function delPartner(idx){
   }
 }
 
-/* ÜRÜN & STOK CMS */
+/* ÜRÜN CMS */
 function handleSegChange(seg){
   const kasaGroup = $("groupKasaTipi");
   const subGroup = $("groupSubSpec");
@@ -1845,12 +2027,8 @@ function checkoutWhatsApp(){
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  renderHeroFrontend();
   initTvSlideshow();
-  renderCompactServicesFrontend();
-  renderPartnersFrontend();
   selectLang(currentLang);
-  renderProjectsTrack();
   handleSegChange($("admSeg").value);
   if(window.location.hash === '#admin') openAdminModal();
 });
