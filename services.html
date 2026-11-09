@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#202951">
+<title>Hizmet Çözümleri — Vision Electronics</title>
+<style>
+:root{
+  --page-bg:linear-gradient(110deg,#482b70 0%,#34265f 38%,#202951 68%,#111a3a 100%);
+  --ink:#172033;
+  --muted:#586174;
+  --lavender:#c4b5fd;
+  --white:#fff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  min-height:100vh;background:var(--page-bg);color:var(--white);
+  font:15px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+a{color:inherit;text-decoration:none}
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:14px max(24px,calc((100vw - 1200px)/2));
+  border-bottom:1px solid rgba(255,255,255,.2);
+  background:rgba(17,26,58,.38);backdrop-filter:blur(14px);
+}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.1em}
+.brand-mark{
+  display:grid;place-items:center;width:38px;height:38px;border-radius:11px;
+  background:linear-gradient(135deg,#7656d6,#111a3a);border:1px solid rgba(255,255,255,.5)
+}
+.brand-mark span{font-size:20px}
+.top-link{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border:1px solid rgba(255,255,255,.38);border-radius:9px;padding:8px 14px;
+  font-size:13px;font-weight:800;transition:background .2s,border-color .2s
+}
+.top-link:hover{background:rgba(255,255,255,.12);border-color:#fff}
+main{max-width:1200px;margin:0 auto;padding:58px 24px 80px}
+.eyebrow{color:var(--lavender);font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}
+h1{max-width:760px;margin-top:8px;font-size:clamp(34px,5vw,58px);line-height:1.08;letter-spacing:-.035em}
+.intro{max-width:700px;margin-top:16px;color:#e3e7f2;font-size:16px}
+.section-heading{margin:50px 0 18px}
+.section-heading h2{font-size:clamp(23px,3vw,32px);line-height:1.2}
+.section-heading p{margin-top:7px;color:#d5d9e8}
+.sector-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.sector-card{
+  display:flex;flex-direction:column;min-height:240px;padding:22px;
+  border:1px solid rgba(255,255,255,.5);border-radius:18px;
+  background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(238,240,249,.95));
+  color:var(--ink);box-shadow:0 16px 35px rgba(8,12,35,.22);
+  transition:transform .2s,box-shadow .2s
+}
+.sector-card:hover{transform:translateY(-4px);box-shadow:0 22px 40px rgba(8,12,35,.32)}
+.sector-icon{
+  display:grid;place-items:center;width:46px;height:46px;border-radius:13px;
+  background:#eee9ff;color:#5436b0;font-size:23px
+}
+.sector-card h3{margin-top:16px;font-size:18px;line-height:1.3}
+.sector-card p{margin-top:8px;color:var(--muted);font-size:13px}
+.card-link{margin-top:auto;padding-top:18px;color:#5635b7;font-size:12px;font-weight:900}
+.solution-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.solution-card{
+  padding:18px;border:1px solid rgba(255,255,255,.26);border-radius:14px;
+  background:rgba(255,255,255,.09);backdrop-filter:blur(8px)
+}
+.solution-card span{font-size:22px}
+.solution-card h3{margin-top:8px;font-size:15px}
+.solution-card p{margin-top:5px;color:#d5d9e8;font-size:12px}
+.contact-panel{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  margin-top:48px;padding:24px;border:1px solid rgba(255,255,255,.24);
+  border-radius:18px;background:rgba(11,17,42,.35)
+}
+.contact-panel h2{font-size:21px}
+.contact-panel p{margin-top:4px;color:#d5d9e8;font-size:13px}
+.contact-button{
+  flex:none;padding:11px 18px;border-radius:9px;background:#7656d6;
+  color:#fff;font-size:13px;font-weight:900;box-shadow:0 8px 20px rgba(8,12,35,.25)
+}
+.contact-button:hover{background:#6545c5}
+footer{padding:20px;text-align:center;border-top:1px solid rgba(255,255,255,.16);color:#d5d9e8;font-size:12px}
+@media(max-width:900px){
+  .sector-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .solution-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:560px){
+  .topbar{padding:10px 16px}
+  .brand{font-size:13px}
+  .top-link{padding:7px 10px;font-size:11px}
+  main{padding:42px 16px 56px}
+  .intro{font-size:14px}
+  .section-heading{margin-top:38px}
+  .sector-grid{grid-template-columns:1fr;gap:12px}
+  .sector-card{min-height:190px;padding:18px}
+  .solution-grid{grid-template-columns:1fr 1fr}
+  .solution-card{padding:14px}
+  .contact-panel{align-items:flex-start;flex-direction:column}
+  .contact-button{width:100%;text-align:center}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="Vision Electronics ana sayfa">
+    <span class="brand-mark" aria-hidden="true"><span>◈</span></span>
+    <span>VISION ELECTRONICS</span>
+  </a>
+  <a class="top-link" href="index.html">← Ana sayfa</a>
+</header>
+
+<main>
+  <section aria-labelledby="pageTitle">
+    <span class="eyebrow">GÜVENLİK · AĞ · AKILLI SİSTEMLER</span>
+    <h1 id="pageTitle">Her mekana uygun, tek noktadan güvenlik çözümleri.</h1>
+    <p class="intro">Villa, site, restoran ve işletmeler için kamera, Wi-Fi, alarm ve ağ altyapısını ihtiyacınıza göre projelendiriyor ve kuruyoruz.</p>
+  </section>
+
+  <section aria-labelledby="sectorsTitle">
+    <div class="section-heading">
+      <h2 id="sectorsTitle">Nereler için çalışıyoruz?</h2>
+      <p>Her mekanın ihtiyacı farklı. Çözümü kullanım alanına göre planlıyoruz.</p>
+    </div>
+    <div class="sector-grid">
+      <article class="sector-card">
+        <span class="sector-icon" aria-hidden="true">⌂</span>
+        <h3>Villa ve özel konutlar</h3>
+        <p>İç ve dış mekan kameraları, güçlü Wi-Fi kapsaması, alarm ve uzaktan erişim.</p>
+        <a class="card-link" href="https://wa.me/995557030033?text=Villa%20ve%20konut%20guvenlik%20cozumleri%20hakkinda%20bilgi%20almak%20istiyorum" target="_blank" rel="noopener noreferrer">Çözüm hakkında konuşun →</a>
+      </article>
+      <article class="sector-card">
+        <span class="sector-icon" aria-hidden="true">▦</span>
+        <h3>Site ve apartmanlar</h3>
+        <p>Ortak alan ve çevre güvenliği, giriş kontrolü, kamera ve bina genelinde ağ altyapısı.</p>
+        <a class="card-link" href="https://wa.me/995557030033?text=Site%20ve%20apartman%20guvenlik%20cozumleri%20hakkinda%20bilgi%20almak%20istiyorum" target="_blank" rel="noopener noreferrer">Çözüm hakkında konuşun →</a>
+      </article>
+      <article class="sector-card">
+        <span class="sector-icon" aria-hidden="true">♨</span>
+        <h3>Restoran ve konaklama</h3>
+        <p>Müşteri ve servis alanları için kamera, misafir Wi-Fi ağı ve güvenli bağlantı.</p>
+        <a class="card-link" href="https://wa.me/995557030033?text=Restoran%20ve%20konaklama%20guvenlik%20cozumleri%20hakkinda%20bilgi%20almak%20istiyorum" target="_blank" rel="noopener noreferrer">Çözüm hakkında konuşun →</a>
+      </article>
+      <article class="sector-card">
+        <span class="sector-icon" aria-hidden="true">▣</span>
+        <h3>Özel işletmeler</h3>
+        <p>Ofis, mağaza, depo ve iş yerleri için kamera, alarm ve ağ çözümleri.</p>
+        <a class="card-link" href="https://wa.me/995557030033?text=Isletmem%20icin%20guvenlik%20cozumleri%20hakkinda%20bilgi%20almak%20istiyorum" target="_blank" rel="noopener noreferrer">Çözüm hakkında konuşun →</a>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="solutionsTitle">
+    <div class="section-heading">
+      <h2 id="solutionsTitle">Kurulumunu yaptığımız sistemler</h2>
+      <p>İhtiyaca göre tek tek ya da birlikte çalışan sistemler halinde planlanabilir.</p>
+    </div>
+    <div class="solution-grid">
+      <article class="solution-card"><span aria-hidden="true">◉</span><h3>IP kamera sistemleri</h3><p>Canlı izleme, kayıt ve uzaktan erişim çözümleri.</p></article>
+      <article class="solution-card"><span aria-hidden="true">⌁</span><h3>Wi-Fi ve ağ altyapısı</h3><p>Geniş kapsama alanı ve güvenilir bağlantı.</p></article>
+      <article class="solution-card"><span aria-hidden="true">♧</span><h3>Güvenlik alarmı</h3><p>Mekana göre planlanan alarm ve bildirim sistemleri.</p></article>
+      <article class="solution-card"><span aria-hidden="true">⇄</span><h3>Giriş ve interkom</h3><p>Kontrollü geçiş ve uzaktan görüşme çözümleri.</p></article>
+    </div>
+  </section>
+
+  <section class="contact-panel" aria-label="Proje danışmanlığı">
+    <div>
+      <h2>Projenizi birlikte planlayalım</h2>
+      <p>Mekanınızı ve ihtiyacınızı paylaşın; size uygun çözümü konuşalım.</p>
+    </div>
+    <a class="contact-button" href="https://wa.me/995557030033?text=Hizmet%20projem%20icin%20bilgi%20almak%20istiyorum" target="_blank" rel="noopener noreferrer">WhatsApp'tan ulaşın</a>
+  </section>
+</main>
+
+<footer>© Vision Electronics · Tiflis, Gürcistan</footer>
+</body>
+</html>
