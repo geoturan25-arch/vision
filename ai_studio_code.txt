@@ -1,3 +1,0 @@
-proje-klasoru/
-  ├── index.html
-  └── admin.html
