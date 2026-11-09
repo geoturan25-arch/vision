@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 64" role="img" aria-labelledby="title">
+  <title id="title">Vision Electronics</title>
+  <defs>
+    <linearGradient id="connectedV" x1="13" y1="18" x2="51" y2="49" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#c1a8ff"/>
+      <stop offset="1" stop-color="#6d58e8"/>
+    </linearGradient>
+  </defs>
+  <path d="M13 18 32 49l19-31" fill="none" stroke="url(#connectedV)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M13 18h16M35 18h16" stroke="#55d5ff" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="13" cy="18" r="5" fill="#55d5ff"/>
+  <circle cx="51" cy="18" r="5" fill="#55d5ff"/>
+  <circle cx="32" cy="49" r="4" fill="#fff"/>
+  <text x="76" y="34" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800" letter-spacing="2">VISION</text>
+  <text x="180.66" y="51" text-anchor="end" textLength="104.66" lengthAdjust="spacingAndGlyphs" fill="#dbe4ff" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700" letter-spacing="2">ELECTRONICS</text>
+</svg>
