@@ -540,7 +540,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .checkout-form{background:#fff;border:1.5px solid var(--line-steel);border-radius:8px;padding:10px;display:flex;flex-direction:column;gap:6px;margin-top:4px}
 .checkout-form input,.checkout-form textarea{background:#f8fafc;border:1px solid var(--line-steel);padding:6px 8px;border-radius:6px;font-size:11.5px}
 
-footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;color:#ffffff;font-weight:700;font-size:12px;background:#383a3e}
+footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:center;color:#ffffff;font-weight:700;font-size:12px;background:#383a3e}
 </style>
 </head>
 <body>
@@ -559,7 +559,7 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
 
   <nav>
     <a href="services.html" id="navServices">Hizmet Alanlarımız</a>
-    <a href="#catalog" id="navCatalog">Katalog</a>
+    <a href="catalog.html" id="navCatalog">Katalog</a>
     <a href="#partnersSec" id="navPartners">Partnerler</a>
     <a href="#projects" id="navProjects">Projelerimiz</a>
     <a href="tel:+995557030033" id="navContact">İletişim</a>
@@ -617,12 +617,12 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
 
   <div class="hero-content-transparent">
     <div class="tag-badge">
-      <span class="tag-text" id="heroTagText">CCTV · NETWORK POE · WI-FI · ALARM</span>
+      <span class="tag-text" id="heroTagText">CCTV · IP CAMERA · WI-FI · ALARM</span>
     </div>
     <h1 id="heroH1">Profesyonel Güvenlik ve Ağ Donanımları</h1>
     <p id="heroP">Hikvision, MikroTik, Pro Look ve TVT orijinal IP/Analog kameralar, NVR sunucuları ve anahtar teslim mühendislik işçiliği.</p>
     <div class="hero-btns">
-      <a class="btn" href="#catalog" id="btnHeroCatalog">Kataloğu İncele ⬇</a>
+      <a class="btn" href="catalog.html" id="btnHeroCatalog">Katalog</a>
       <a class="btn green" href="https://wa.me/995557030033" target="_blank" id="btnHeroWhatsapp">WhatsApp Mühendis Hattı</a>
     </div>
   </div>
@@ -872,7 +872,7 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
           <div class="admin-form-grid">
             <div class="form-group" style="grid-column:1/-1">
               <label>Hero Rozet Metni (Tagline)</label>
-              <input type="text" id="admHeroTag" placeholder="CCTV · NETWORK POE · WI-FI · ALARM">
+              <input type="text" id="admHeroTag" placeholder="CCTV · IP CAMERA · WI-FI · ALARM">
             </div>
             <div class="form-group" style="grid-column:1/-1">
               <label>Hero Ana Başlık (H1)</label>
@@ -1211,7 +1211,7 @@ footer{border-top:2px solid var(--line-steel);padding:22px;text-align:center;col
   window.VisionTranslations.extendCatalog(window.I18N);
   window.VisionTranslations.apply(document, "tr");
   window.DEFAULT_HERO = {
-    tag: "CCTV · NETWORK POE · WI-FI · ALARM",
+    tag: "CCTV · IP CAMERA · WI-FI · ALARM",
     h1: "Profesyonel Güvenlik ve Ağ Donanımları",
     p: "Hikvision, MikroTik, Pro Look ve TVT orijinal IP/Analog kameralar, NVR sunucuları ve anahtar teslim mühendislik işçiliği.",
     slides: []
@@ -1477,6 +1477,9 @@ function toggleMobileSearch(){
 
 /* 2.1 HERO FRONTLEND RENDER */
 function renderHeroFrontend(){
+  if(HERO_DATA.tag === "CCTV · NETWORK POE · WI-FI · ALARM"){
+    HERO_DATA.tag = "CCTV · IP CAMERA · WI-FI · ALARM";
+  }
   $("heroTagText").textContent = HERO_DATA.tag;
   $("heroH1").textContent = HERO_DATA.h1;
   $("heroP").textContent = HERO_DATA.p;
@@ -1637,11 +1640,13 @@ if(secretDot){
   });
 }
 
-window.addEventListener('keydown', (e) => {
-  if(e.altKey && (e.key === 'a' || e.key === 'A')){
-    e.preventDefault(); openAdminModal();
+document.addEventListener('keydown', (e) => {
+  if(e.altKey && (e.code === 'KeyA' || e.key.toLowerCase() === 'a')){
+    e.preventDefault();
+    e.stopPropagation();
+    openAdminModal();
   }
-});
+}, true);
 
 function switchAdminTab(tabName, btn){
   document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
