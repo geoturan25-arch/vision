@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#202951">
+<title>Ürün kataloğu — Vision Electronics</title>
+<style>
+:root{
+  --page-bg:linear-gradient(110deg,#482b70 0%,#34265f 38%,#202951 68%,#111a3a 100%);
+  --ink:#172033;--muted:#586174;--lavender:#c4b5fd;--white:#fff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;background:var(--page-bg);color:var(--white);font:15px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px max(24px,calc((100vw - 1200px)/2));border-bottom:1px solid rgba(255,255,255,.2);background:rgba(17,26,58,.38);backdrop-filter:blur(14px)}
+.brand{display:flex;align-items:center;flex:none}
+.brand img{display:block;width:166px;height:auto}
+.topbar-actions{display:flex;align-items:center;gap:10px}
+.language-switch{display:flex;gap:4px;padding:4px;border:1px solid rgba(255,255,255,.28);border-radius:9px}
+.language-switch button{padding:5px 7px;border:0;border-radius:6px;background:transparent;color:#fff;font:700 11px/1 system-ui,sans-serif;cursor:pointer}
+.language-switch button[aria-pressed="true"]{background:rgba(255,255,255,.2)}
+.top-link{display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.38);border-radius:9px;padding:8px 14px;font-size:13px;font-weight:800;transition:background .2s}
+.top-link:hover{background:rgba(255,255,255,.12)}
+main{max-width:1200px;margin:0 auto;padding:52px 24px 80px}
+.eyebrow{color:var(--lavender);font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}
+h1{margin-top:8px;font-size:clamp(34px,5vw,54px);line-height:1.08;letter-spacing:-.035em}
+.intro{max-width:720px;margin-top:12px;color:#e3e7f2;font-size:15px}
+.catalog-controls{margin-top:30px;padding:20px;border:1px solid rgba(255,255,255,.35);border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.97),rgba(229,232,242,.94));color:var(--ink);box-shadow:0 16px 35px rgba(8,12,35,.25)}
+.control-label{display:block;margin-bottom:8px;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.brand-filters,.category-filters{display:flex;flex-wrap:wrap;gap:8px}
+.brand-filters{margin-bottom:18px}
+.filter-button{border:1px solid #8991a1;border-radius:9px;padding:8px 13px;background:#fff;color:#172033;font-size:12px;font-weight:800;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.filter-button:hover{border-color:#5635b7}
+.filter-button.active{border-color:#5635b7;background:#5635b7;color:#fff}
+.search-row{display:flex;align-items:center;gap:12px;margin-top:18px;padding-top:16px;border-top:1px dashed #9ba2b0}
+.search-row input{width:100%;min-width:0;border:1px solid #8991a1;border-radius:10px;padding:11px 14px;background:#fff;color:#172033;outline:none}
+.search-row input:focus{border-color:#5635b7;box-shadow:0 0 0 3px rgba(86,53,183,.15)}
+.search-row select{border:1px solid #8991a1;border-radius:10px;padding:11px;background:#fff;color:#172033}
+.catalog-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:24px 2px 12px;color:#e3e7f2;font-size:13px;font-weight:800}
+.catalog-meta strong{color:#fff}
+.catalog-status{margin:8px 0 14px;padding:10px 14px;border:1px solid rgba(255,255,255,.25);border-radius:10px;background:rgba(255,255,255,.1);color:#fff;font-size:12px}
+.catalog-status[hidden]{display:none}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.product-card{display:flex;flex-direction:column;min-width:0;padding:12px;border:1px solid #505156;border-radius:14px;background:linear-gradient(165deg,#fff 0%,#d8d9de 40%,#b2b3b8 100%);color:var(--ink);box-shadow:0 8px 22px rgba(0,0,0,.2);transition:transform .2s,border-color .2s}
+.product-card:hover{transform:translateY(-3px);border-color:#5635b7}
+.product-image{height:160px;display:grid;place-items:center;position:relative;overflow:hidden;margin-bottom:12px;padding:10px;border:1px solid #8a8d95;border-radius:9px;background:linear-gradient(145deg,#fff,#e8ebf0 55%,#d1d6de)}
+.product-image img{max-width:92%;max-height:92%;object-fit:contain;filter:drop-shadow(0 4px 6px rgba(0,0,0,.18))}
+.product-brand,.product-type{position:absolute;top:7px;border-radius:6px;padding:3px 7px;font-size:9px;font-weight:900}
+.product-brand{left:7px;background:#fff;border:1px solid #9ca3af}
+.product-type{right:7px;background:#172033;color:#fff}
+.product-name{font-size:14px;font-weight:900;line-height:1.35}
+.product-specs{display:grid;gap:4px;margin:10px 0 14px;padding-left:17px;color:#111827;font-size:10px;list-style:disc}
+.product-specs li::marker{color:#111827}
+.product-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;margin-top:auto;padding-top:8px}
+.product-price{color:#047857;font-size:17px;font-weight:900;line-height:1.2}
+.stock{display:flex;align-items:center;gap:5px;margin-top:4px;font-size:10px;font-weight:800}
+.stock-dot{width:8px;height:8px;border-radius:50%;background:#10b981}
+.stock.low{color:#854d0e}.stock.low .stock-dot{background:#f59e0b}
+.stock.out{color:#991b1b}.stock.out .stock-dot{background:#ef4444}
+.product-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:5px}
+.action-button{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:7px;padding:7px 9px;background:#1d4ed8;color:#fff;font-size:10px;font-weight:800;cursor:pointer}
+.action-button:hover{background:#1e40af}
+.action-button.ask{background:#505156}
+.empty-state{grid-column:1/-1;padding:46px 16px;border:1px solid rgba(255,255,255,.25);border-radius:14px;background:rgba(255,255,255,.08);text-align:center;color:#fff}
+footer{padding:20px;text-align:center;border-top:1px solid rgba(255,255,255,.16);color:#d5d9e8;font-size:12px}
+@media(max-width:600px){
+  .topbar{padding:10px 14px}.brand img{width:142px}.topbar-actions{gap:6px}.top-link{padding:7px 9px;font-size:11px}
+  .language-switch{gap:1px;padding:3px}.language-switch button{padding:5px 4px;font-size:10px}
+  main{padding:38px 14px 58px}.catalog-controls{padding:14px}.search-row{align-items:stretch;flex-direction:column}
+  .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.product-card{padding:9px}
+  .product-image{height:115px}.product-specs{font-size:9px}.product-bottom{align-items:flex-start;flex-direction:column}
+  .product-actions{width:100%;justify-content:stretch}.action-button{flex:1}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="Vision Electronics ana sayfa"><img src="vision-logo.svg" alt="Vision Electronics"></a>
+  <div class="topbar-actions">
+    <div class="language-switch" aria-label="Site language">
+      <button type="button" data-site-language="tr" aria-label="Türkçe">TR</button>
+      <button type="button" data-site-language="en" aria-label="English">EN</button>
+      <button type="button" data-site-language="ge" aria-label="ქართული">GE</button>
+      <button type="button" data-site-language="az" aria-label="Azərbaycanca">AZ</button>
+      <button type="button" data-site-language="ru" aria-label="Русский">RU</button>
+    </div>
+    <a class="top-link" href="index.html">← Ana sayfa</a>
+  </div>
+</header>
+
+<main>
+  <section aria-labelledby="pageTitle">
+    <span class="eyebrow">VISION ELECTRONICS</span>
+    <h1 id="pageTitle">Ürün kataloğu</h1>
+    <p class="intro">Markaya, kategoriye veya ürün modeline göre arama yapın. Ürün listesi yönetim panelindeki ortak katalogdan yüklenir.</p>
+  </section>
+
+  <section class="catalog-controls" aria-label="Katalog filtreleri">
+    <div class="control-label" id="brandLabel">Marka</div>
+    <div class="brand-filters" id="brandFilters"></div>
+    <div class="control-label" id="categoryLabel">Kategori</div>
+    <div class="category-filters" id="categoryFilters"></div>
+    <div class="search-row">
+      <input id="modelSearch" type="search" placeholder="Model veya özellik ara..." autocomplete="off">
+    </div>
+  </section>
+
+  <div class="catalog-meta">
+    <span id="activeFilter">Tüm markalar</span>
+    <span><strong id="productCount">0</strong> <span>Ürün</span></span>
+  </div>
+  <p class="catalog-status" id="catalogStatus" role="status" hidden></p>
+  <section class="product-grid" id="productGrid" aria-live="polite"></section>
+</main>
+<footer>© Vision Electronics · Tiflis, Gürcistan</footer>
+
+<script src="vision-i18n.js"></script>
+<script src="vision-cloud-config.js"></script>
+<script src="vision-cloud.js"></script>
+<script>
+(() => {
+  const translations = window.VisionTranslations;
+  const langButtons = document.querySelectorAll("[data-site-language]");
+  const brandFilters = document.getElementById("brandFilters");
+  const categoryFilters = document.getElementById("categoryFilters");
+  const productGrid = document.getElementById("productGrid");
+  const searchInput = document.getElementById("modelSearch");
+  const productCount = document.getElementById("productCount");
+  const activeFilter = document.getElementById("activeFilter");
+  const status = document.getElementById("catalogStatus");
+  const categoryLabels = {
+    all: "Tüm kategoriler",
+    cam_ip: "IP kameralar",
+    cam_ahd: "Analog kameralar",
+    nvr: "NVR kayıt cihazları",
+    switch: "PoE switch'ler",
+    wifi: "Wi-Fi",
+    alarm: "Alarm sistemleri",
+    others: "Diğerleri"
+  };
+  const knownBrands = {
+    hikvision: "Hikvision",
+    prolook: "Prolook",
+    microtik: "MikroTik",
+    tvt: "TVT"
+  };
+  const categoryOrder = ["cam_ip", "cam_ahd", "nvr", "switch", "wifi", "alarm", "others"];
+  const brandOrder = ["hikvision", "prolook", "microtik", "tvt"];
+  let language = localStorage.getItem("v_lang") || "tr";
+  let products = [];
+  let selectedBrand = "all";
+  let selectedCategory = "all";
+  let localCart = {};
+
+  function text(source) {
+    return translations.translateText(source, language);
+  }
+
+  function escapeHtml(value) {
+    return String(value == null ? "" : value).replace(/[&<>"']/g, character => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    })[character]);
+  }
+
+  function readLocalProducts() {
+    try {
+      const saved = JSON.parse(localStorage.getItem("vision_products") || "[]");
+      return Array.isArray(saved) ? saved : [];
+    } catch (error) {
+      console.error("Locally saved catalog data is invalid:", error);
+      return [];
+    }
+  }
+
+  function readCart() {
+    try {
+      const saved = JSON.parse(localStorage.getItem("v_cart") || "{}");
+      return saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {};
+    } catch (error) {
+      console.error("Saved cart data is invalid:", error);
+      return {};
+    }
+  }
+
+  function updateBrandFilters() {
+    const availableBrands = [...brandOrder];
+    products.forEach(product => {
+      const brand = product.brand === "mikrotik" ? "microtik" : product.brand;
+      if (brand && !knownBrands[brand] && !availableBrands.includes(brand)) {
+        availableBrands.push(brand);
+      }
+    });
+    const buttons = [{ id: "all", label: text("Tüm markalar") }].concat(
+      availableBrands.map(brand => ({ id: brand, label: knownBrands[brand] || brand }))
+    );
+    brandFilters.innerHTML = buttons.map(button => `
+      <button type="button" class="filter-button ${selectedBrand === button.id ? "active" : ""}"
+        data-brand="${escapeHtml(button.id)}">${escapeHtml(button.label)}</button>
+    `).join("");
+  }
+
+  function updateCategoryFilters() {
+    const buttons = [{ id: "all", label: text(categoryLabels.all) }].concat(
+      categoryOrder.map(category => ({ id: category, label: text(categoryLabels[category]) }))
+    );
+    categoryFilters.innerHTML = buttons.map(button => `
+      <button type="button" class="filter-button ${selectedCategory === button.id ? "active" : ""}"
+        data-category="${escapeHtml(button.id)}">${escapeHtml(button.label)}</button>
+    `).join("");
+  }
+
+  function renderProducts() {
+    const query = searchInput.value.trim().toLocaleLowerCase();
+    const filtered = products.filter(product => {
+      const productBrand = product.brand === "mikrotik" ? "microtik" : product.brand;
+      if (selectedBrand !== "all" && productBrand !== selectedBrand) return false;
+      if (selectedCategory !== "all" && product.seg !== selectedCategory) return false;
+      const searchable = [
+        product.name, product.brand, product.seg, product.kasa,
+        product.hw, product.port, product.extra, product.spec,
+        product.mp, product.ch, product.ports,
+        ...(Array.isArray(product.details) ? product.details : [])
+      ].filter(Boolean).join(" ").toLocaleLowerCase();
+      return !query || searchable.includes(query);
+    });
+
+    productCount.textContent = filtered.length;
+    activeFilter.textContent = selectedBrand === "all" ? text("Tüm markalar") :
+      (knownBrands[selectedBrand] || selectedBrand);
+    if (!filtered.length) {
+      productGrid.innerHTML = `<div class="empty-state">${text("Ürün bulunamadı.")}</div>`;
+      return;
+    }
+
+    productGrid.innerHTML = filtered.map(product => {
+      const productBrand = product.brand === "mikrotik" ? "microtik" : product.brand;
+      const stock = product.stock === undefined ? 10 : Number(product.stock);
+      const stockClass = stock <= 0 ? "out" : stock <= 3 ? "low" : "";
+      const stockLabel = stock <= 0 ? "Stokta yok" : stock <= 3 ? "Son ürünler" : "Stokta";
+      const modelSpec = [product.kasa, product.mp, product.ch, product.ports].filter(Boolean).join(" · ");
+      const info = (Array.isArray(product.details) && product.details.length
+        ? product.details
+        : [product.hw, product.port, product.extra]).filter(value => typeof value === "string" && value.trim());
+      const message = encodeURIComponent("Hello Vision Electronics, info about: " + (product.name || ""));
+      return `
+        <article class="product-card">
+          <div class="product-image">
+            <span class="product-brand">${escapeHtml(knownBrands[productBrand] || product.brand || "")}</span>
+            ${modelSpec ? `<span class="product-type">${escapeHtml(modelSpec)}</span>` : ""}
+            <img src="${escapeHtml(product.img || "https://images.pexels.com/photos/27658186/pexels-photo-27658186.jpeg?auto=compress&cs=tinysrgb&w=600")}"
+              alt="${escapeHtml(product.name || "")}" loading="lazy"
+              onerror="this.src='https://images.pexels.com/photos/27658186/pexels-photo-27658186.jpeg?auto=compress&cs=tinysrgb&w=600'">
+          </div>
+          <h2 class="product-name">${escapeHtml(product.name || "")}</h2>
+          ${info.length ? `<ul class="product-specs">${info.map(value => `<li>${escapeHtml(value)}</li>`).join("")}</ul>` : ""}
+          <div class="product-bottom">
+            <div>
+              <div class="product-price">${escapeHtml(product.price)} GEL</div>
+              <div class="stock ${stockClass}"><span class="stock-dot"></span>${text(stockLabel)}</div>
+            </div>
+            <div class="product-actions">
+              ${stock > 0 ? `<button type="button" class="action-button" data-add="${escapeHtml(product.id)}">${text("Sepete ekle")}</button>` : ""}
+              <a class="action-button ask" href="https://wa.me/995557030033?text=${message}"
+                target="_blank" rel="noopener noreferrer">${text("Bilgi al")}</a>
+            </div>
+          </div>
+        </article>
+      `;
+    }).join("");
+  }
+
+  function render() {
+    updateBrandFilters();
+    updateCategoryFilters();
+    renderProducts();
+  }
+
+  function setStatus(message) {
+    status.textContent = message ? text(message) : "";
+    status.hidden = !message;
+  }
+
+  brandFilters.addEventListener("click", event => {
+    const button = event.target.closest("[data-brand]");
+    if (!button) return;
+    selectedBrand = button.dataset.brand;
+    render();
+  });
+
+  categoryFilters.addEventListener("click", event => {
+    const button = event.target.closest("[data-category]");
+    if (!button) return;
+    selectedCategory = button.dataset.category;
+    render();
+  });
+
+  searchInput.addEventListener("input", renderProducts);
+  productGrid.addEventListener("click", event => {
+    const button = event.target.closest("[data-add]");
+    if (!button) return;
+    const productId = button.dataset.add;
+    localCart[productId] = (Number(localCart[productId]) || 0) + 1;
+    localStorage.setItem("v_cart", JSON.stringify(localCart));
+    setStatus("Sepete eklendi.");
+  });
+
+  langButtons.forEach(button => button.addEventListener("click", () => {
+    language = window.setSiteLanguage(button.dataset.siteLanguage);
+    render();
+  }));
+  translations.apply(document, language);
+  localCart = readCart();
+  const params = new URLSearchParams(location.search);
+  const initialSearch = params.get("search");
+  const initialCategory = params.get("category");
+  if (categoryOrder.includes(initialCategory)) selectedCategory = initialCategory;
+  if (initialSearch) searchInput.value = initialSearch;
+  setStatus("Ürün listesi yükleniyor...");
+  render();
+
+  window.VisionCloud.load().then(result => {
+    if (result.content && Array.isArray(result.content.products)) {
+      products = result.content.products;
+      localStorage.setItem("vision_products", JSON.stringify(products));
+      setStatus("");
+    } else {
+      products = readLocalProducts();
+      setStatus("");
+    }
+    render();
+  }).catch(error => {
+    console.error("Shared product catalog could not be loaded:", error);
+    products = readLocalProducts();
+    setStatus("Yerel ürün listesi gösteriliyor; ortak katalog yüklenemedi.");
+    render();
+  });
+})();
+</script>
+</body>
+</html>
