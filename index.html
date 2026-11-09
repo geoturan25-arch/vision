@@ -190,161 +190,24 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .service-compact-body p{font-size:11px;color:var(--tx-soft);line-height:1.45;margin-bottom:auto}
 .service-compact-foot{font-size:9.5px;font-weight:900;color:var(--bl);padding-top:6px;border-top:1px dashed var(--line-steel);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
 
-/* KATALOG */
-.catalog-section{padding:30px 24px 60px;max-width:1300px;margin:0 auto}
+/* KATALOG KATEGORİLERİ */
+.catalog-section{padding:38px 24px 64px;max-width:1300px;margin:0 auto}
 .sec-head{margin-bottom:16px}
 .sec-tag{color:#c4b5fd;font-size:11px;font-weight:900;letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px;display:block}
 .sec-title{font-size:27px;font-weight:900;margin-bottom:4px;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,0.35)}
 .sec-desc{color:#e2e8f0;font-size:13.5px;font-weight:700}
-
-.unified-filter-panel{
-  background: linear-gradient(180deg, rgba(240, 240, 242, 0.94) 0%, rgba(178, 179, 184, 0.94) 100%);
-  backdrop-filter: blur(14px);
-  border: 2px solid var(--line-steel);
-  border-radius: 16px;padding: 16px;margin-bottom: 20px;
-  box-shadow: inset 0 1px 0 #fff, 0 12px 35px rgba(0,0,0,0.25);
-}
-.filter-row-label{
-  font-size:11px;font-weight:900;color:var(--tx);text-transform:uppercase;
-  letter-spacing:.1em;margin-bottom:8px;display:flex;align-items:center;gap:6px;
-}
-.filter-row-label span{color:#fff;background:#1d4ed8;padding:2px 6px;border-radius:4px}
-
-.brand-selector-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:14px}
-.b-btn{
-  background: linear-gradient(180deg, #ffffff 0%, #b2b3b8 100%);
-  border: 1.5px solid var(--line-steel);border-radius:10px;padding:10px 8px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
-  transition:all .2s;cursor:pointer;
-  box-shadow: inset 0 1px 0 #fff, 0 2px 6px rgba(0,0,0,0.1);
-}
-.b-btn:hover{border-color:var(--bl);background:#fff;transform:translateY(-1px)}
-.b-btn.active{border-color:var(--bl);background:#1d4ed8;color:#fff;box-shadow:0 0 14px rgba(29,78,216,.4)}
-.b-btn.active .b-subtext{color:#e0f2fe}
-.b-btn .b-subtext{font-size:9.5px;color:var(--mu);font-weight:800}
-
-.segment-pills-row{display:flex;flex-wrap:wrap;gap:6px;padding-top:12px;border-top:1.5px dashed var(--line-steel);margin-bottom:12px}
-.seg-pill{
-  background: linear-gradient(180deg, #ffffff 0%, #cbccd1 100%);
-  border: 1.5px solid var(--line-steel);color:var(--tx);
-  border-radius:8px;padding:6px 12px;font-size:11.5px;font-weight:800;
-  display:inline-flex;align-items:center;gap:6px;transition:all .2s;
-  box-shadow: inset 0 1px 0 #fff;
-}
-.seg-pill:hover{border-color:var(--bl);background:#fff}
-.seg-pill.active{background:var(--bl);border-color:var(--bl);color:#fff;box-shadow:none}
-.seg-pill .count{background:rgba(0,0,0,.12);border-radius:8px;padding:1px 5px;font-size:10px}
-.seg-pill.active .count{background:rgba(255,255,255,.25);color:#fff}
-
-.subfilter-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding-top:10px;border-top:1.5px dashed var(--line-steel)}
-.sub-pill{
-  background:#fff;border:1.5px solid var(--line-steel);color:var(--tx);
-  border-radius:20px;padding:4px 10px;font-size:11px;font-weight:800;transition:.2s;
-}
-.sub-pill:hover{border-color:var(--bl);color:var(--bl)}
-.sub-pill.active{background:var(--bl);color:#fff;border-color:var(--bl)}
-
-.catalog-window{
-  background: rgba(227, 228, 232, 0.95);
-  border: 2px solid var(--line-steel);border-radius:16px;
-  overflow:hidden;display:flex;flex-direction:column;
-  box-shadow: inset 0 1px 0 #fff, 0 14px 40px rgba(0,0,0,0.3);
-}
-.window-topbar{
-  background: linear-gradient(180deg, #dedfe1 0%, #b2b3b8 100%);
-  padding:10px 18px;border-bottom:1.5px solid var(--line-steel);
-  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
-}
-.status-pill{background:#fff;border:1.5px solid var(--line-steel);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:800}
-.status-pill b{color:var(--bl)}
-
-.window-scrollable-body{
-  max-height:680px;overflow-y:auto;padding:18px;
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;
-}
-
-@media(max-width:768px){
-  .window-scrollable-body{grid-template-columns:repeat(2,1fr);gap:10px;padding:10px}
-  .p-card{padding:10px !important}
-  .p-img-box{height:115px !important}
-  .p-title{font-size:12px !important;line-height:1.25 !important}
-  .p-specs{display:none !important}
-  .p-price{font-size:15px !important}
-  .p-actions .btn{padding:5px 8px !important;font-size:10.5px !important}
-}
-
-/* ÜRÜN KARTLARI */
-.p-card{
-  background: var(--card-metal);
-  border: 1.5px solid var(--line-steel);border-radius:12px;
-  padding:12px;display:flex;flex-direction:column;transition:all .2s ease;
-  position:relative;cursor:pointer;
-  box-shadow: inset 0 1px 0 #fff, 0 6px 16px rgba(0,0,0,0.18);
-}
-.p-card:hover{
-  background: var(--card-metal-hover);
-  border-color:var(--bl);transform:translateY(-2px);
-  box-shadow: inset 0 1px 0 #fff, 0 12px 28px rgba(29, 78, 216, 0.25);
-}
-.p-card.selected{border-color:var(--bl);background:#eff6ff}
-.sel-badge{
-  position:absolute;top:8px;right:8px;z-index:4;
-  background:var(--bl);color:#fff;font-size:9.5px;font-weight:900;
-  padding:2px 6px;border-radius:8px;display:none;
-}
-.p-card.selected .sel-badge{display:inline-block}
-
-.p-img-box{
-  height:140px;border-radius:8px;
-  background: linear-gradient(145deg, #ffffff 0%, #e8ebf0 50%, #d1d6de 100%);
-  display:flex;align-items:center;justify-content:center;margin-bottom:10px;
-  border:1px solid var(--line-steel);position:relative;overflow:hidden;padding:8px;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-}
-.p-img-box img{
-  max-width:92%;max-height:92%;width:auto;height:auto;
-  object-fit:contain;
-  filter:drop-shadow(0 4px 6px rgba(0,0,0,0.22));
-  transition:transform .3s ease;
-}
-.p-card:hover .p-img-box img{transform:scale(1.08)}
-
-.card-brand-tag{
-  position:absolute;top:6px;left:6px;background:rgba(255,255,255,.95);
-  border:1px solid var(--line-steel);border-radius:6px;padding:2px 5px;font-size:9px;z-index:3;
-}
-.card-type-tag{
-  position:absolute;top:6px;right:6px;background:rgba(15,23,42,.85);color:#fff;
-  border-radius:4px;padding:2px 5px;font-size:8.5px;font-weight:800;z-index:3;
-}
-
-.p-title{font-size:13px;font-weight:900;margin-bottom:6px;line-height:1.35;color:var(--tx)}
-.p-specs{display:flex;flex-direction:column;gap:2px;margin-bottom:10px}
-.spec-item{display:flex;justify-content:space-between;font-size:10.5px;color:var(--tx-soft);border-bottom:1px dashed var(--line-steel);padding-bottom:2px}
-.spec-item span:last-child{color:var(--tx);font-weight:800}
-
-.p-price-row{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;padding-top:6px}
-.p-price-block{display:flex;flex-direction:column;gap:2px}
-.p-price{font-size:16.5px;font-weight:900;color:var(--green);line-height:1}
-
-.stock-light-row{
-  display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:800;letter-spacing:0.02em;margin-top:2px;
-}
-.stock-dot{width:7.5px;height:7.5px;border-radius:50%;flex:none}
-.stock-light-row.green{color:#065f46}
-.stock-light-row.green .stock-dot{background:#10b981;box-shadow:0 0 6px #10b981}
-.stock-light-row.yellow{color:#854d0e}
-.stock-light-row.yellow .stock-dot{background:#f59e0b;box-shadow:0 0 6px #f59e0b;animation:pulseWarn 1.6s infinite}
-.stock-light-row.red{color:#991b1b}
-.stock-light-row.red .stock-dot{background:#ef4444;box-shadow:0 0 6px #ef4444}
-
-@keyframes pulseWarn {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.35); opacity: 0.55; }
-}
-
-.p-actions{display:flex;gap:4px}
-.p-actions .btn{padding:6px 10px;font-size:11px}
+.catalog-category-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+.catalog-category-card{position:relative;isolation:isolate;display:flex;min-height:190px;overflow:hidden;align-items:flex-end;padding:18px;border:1px solid rgba(255,255,255,.38);border-radius:16px;background:#172033;box-shadow:0 12px 28px rgba(0,0,0,.25);color:#fff}
+.catalog-category-card::before{position:absolute;inset:0;z-index:-2;content:"";background-image:linear-gradient(180deg,rgba(13,20,45,.12),rgba(13,20,45,.83)),var(--category-image);background-position:center;background-size:cover;transition:filter .3s,transform .4s}
+.catalog-category-card::after{position:absolute;inset:0;z-index:-1;content:"";background:rgba(12,18,42,.18);transition:backdrop-filter .3s,background .3s}
+.catalog-category-card:hover::before,.catalog-category-card:focus-visible::before{filter:blur(4px) brightness(.7);transform:scale(1.07)}
+.catalog-category-card:hover::after,.catalog-category-card:focus-visible::after{backdrop-filter:blur(3px);background:rgba(12,18,42,.42)}
+.catalog-category-title{font-size:clamp(15px,1.35vw,19px);font-weight:900;line-height:1.2;text-shadow:0 2px 8px rgba(0,0,0,.65);transition:transform .3s}
+.catalog-category-cta{position:absolute;inset:0;display:grid;place-items:center;padding:18px;text-align:center;font-size:15px;font-weight:900;letter-spacing:.04em;text-shadow:0 2px 8px rgba(0,0,0,.75);opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s}
+.catalog-category-card:hover .catalog-category-cta,.catalog-category-card:focus-visible .catalog-category-cta{opacity:1;transform:translateY(0)}
+.catalog-category-card:hover .catalog-category-title,.catalog-category-card:focus-visible .catalog-category-title{transform:translateY(-20px)}
+@media(max-width:1000px){.catalog-category-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.catalog-section{padding:30px 16px 48px}.catalog-category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.catalog-category-card{min-height:150px;padding:13px}.catalog-category-cta{opacity:1;transform:none;font-size:13px}.catalog-category-title{font-size:15px}}
 
 /* LOGOLAR */
 .logo-hikvision{font-family:'Arial Black', Impact, sans-serif;font-weight:900;letter-spacing:-0.5px;text-transform:uppercase}
@@ -560,7 +423,7 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
   <!-- MASAÜSTÜ ARAMA -->
   <div class="header-search-wrap">
     <span>🔍</span>
-    <input type="text" id="headerSearchInput" class="header-search-input" placeholder="Model search..." oninput="handleSearch(this.value)">
+    <input type="text" id="headerSearchInput" class="header-search-input" placeholder="Model search..." onkeydown="if(event.key === 'Enter') goToCatalogSearch(this.value)">
   </div>
 
   <nav>
@@ -599,7 +462,7 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
 <!-- MOBİL ARAMA ÇEKMECESİ -->
 <div class="mobile-search-drawer" id="mobileSearchDrawer">
   <span>🔍</span>
-  <input type="text" id="mobileSearchInput" placeholder="Model search..." oninput="handleSearch(this.value)">
+  <input type="text" id="mobileSearchInput" placeholder="Model search..." onkeydown="if(event.key === 'Enter') goToCatalogSearch(this.value)">
   <button class="btn" style="padding:6px 10px;background:#64748b" onclick="toggleMobileSearch()">✕</button>
 </div>
 
@@ -702,60 +565,42 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
   </div>
 </section>
 
-<!-- KATALOG -->
+<!-- KATALOG KATEGORİLERİ -->
 <section class="catalog-section" id="catalog">
   <div class="sec-head">
-    <span class="sec-tag" id="secTagCatalog">EKİPMAN TERMİNALİ</span>
-    <h2 class="sec-title" id="secTitleCatalog">Marka ve Donanım Seçim Paneli</h2>
-    <p class="sec-desc" id="secDescCatalog">Markanızı, donanım kategorinizi ve megapiksel/kanal sayısını filtreleyerek anında listeleyin.</p>
+    <span class="sec-tag" id="secTagCatalog">ÜRÜN KATEGORİLERİ</span>
+    <h2 class="sec-title" id="secTitleCatalog">Ürün Gruplarımız</h2>
+    <p class="sec-desc" id="secDescCatalog">İhtiyacınız olan ürün grubunu seçip katalogdaki modellere göz atın.</p>
   </div>
-
-  <div class="unified-filter-panel">
-    <div class="filter-row-label">
-      <span>1. ADIM</span> <span id="lblStep1">MARKA SEÇİMİ</span>
-    </div>
-    <div class="brand-selector-grid">
-      <div class="b-btn active" onclick="setBrand('all', this)">
-        <b style="font-size:13px" id="lblBrandAll">TÜMÜ</b>
-        <span class="b-subtext" id="lblBrandAllSub">Tüm Markalar</span>
-      </div>
-      <div class="b-btn" onclick="setBrand('hikvision', this)">
-        <span class="logo-hikvision" style="font-size:13px"><span class="h">HIK</span><span class="v">VISION</span></span>
-        <span class="b-subtext">CCTV, PoE, Alarm</span>
-      </div>
-      <div class="b-btn" onclick="setBrand('microtik', this)">
-        <span class="logo-microtik" style="font-size:13px">Mikro<span>Tik</span></span>
-        <span class="b-subtext">Router, PoE, Wi-Fi</span>
-      </div>
-      <div class="b-btn" onclick="setBrand('prolook', this)">
-        <span class="logo-prolook" style="font-size:13px">PRO<b>LOOK</b></span>
-        <span class="b-subtext">Metal Kasa CCTV</span>
-      </div>
-      <div class="b-btn" onclick="setBrand('tvt', this)">
-        <span class="logo-tvt" style="font-size:13px">TVT</span>
-        <span class="b-subtext">AI Smart CCTV</span>
-      </div>
-    </div>
-
-    <div class="filter-row-label">
-      <span>2. ADIM</span> <span id="lblStep2">DONANIM KATEGORİSİ</span>
-    </div>
-    <div class="segment-pills-row" id="segmentPills"></div>
-
-    <div class="filter-row-label" id="rowLabelStep3" style="display:none">
-      <span>3. ADIM</span> <span id="lblStep3">DETAYLI ÖZELLİK SEÇİMİ</span>
-    </div>
-    <div class="subfilter-row" id="subfilterRow" style="display:none"></div>
-  </div>
-
-  <div class="catalog-window">
-    <div class="window-topbar">
-      <div style="display:flex;align-items:center;gap:8px">
-        <span class="status-pill"><span id="lblFilterTxt">Filtre:</span> <b id="lblCurrentFilter">Tümü</b></span>
-        <span class="status-pill"><span id="lblCountTxt">Ürün:</span> <b id="lblItemCount">0</b></span>
-      </div>
-    </div>
-    <div class="window-scrollable-body" id="catalogCards"></div>
+  <div class="catalog-category-grid">
+    <a class="catalog-category-card" href="catalog.html?category=cam_ip" style="--category-image:url('https://images.pexels.com/photos/5966513/pexels-photo-5966513.jpeg?auto=compress&cs=tinysrgb&w=900')">
+      <h3 class="catalog-category-title">IP Kameralar</h3>
+      <span class="catalog-category-cta">Kataloğa git →</span>
+    </a>
+    <a class="catalog-category-card" href="catalog.html?category=cam_ahd" style="--category-image:url('https://images.pexels.com/photos/430208/pexels-photo-430208.jpeg?auto=compress&cs=tinysrgb&w=900')">
+      <h3 class="catalog-category-title">Analog Kameralar</h3>
+      <span class="catalog-category-cta">Kataloğa git →</span>
+    </a>
+    <a class="catalog-category-card" href="catalog.html?category=alarm" style="--category-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80')">
+      <h3 class="catalog-category-title">Alarm Sistemleri</h3>
+      <span class="catalog-category-cta">Kataloğa git →</span>
+    </a>
+    <a class="catalog-category-card" href="catalog.html?category=wifi" style="--category-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80')">
+      <h3 class="catalog-category-title">Wi-Fi Sistemleri</h3>
+      <span class="catalog-category-cta">Kataloğa git →</span>
+    </a>
+    <a class="catalog-category-card" href="catalog.html?category=switch" style="--category-image:url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80')">
+      <h3 class="catalog-category-title">Network Switch'ler</h3>
+      <span class="catalog-category-cta">Kataloğa git →</span>
+    </a>
+    <a class="catalog-category-card" href="catalog.html?category=nvr" style="--category-image:url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=900&q=80')">
+      <h3 class="catalog-category-title">NVR Kayıt Cihazları</h3>
+      <span class="catalog-category-cta">Kataloğa git →</span>
+    </a>
+    <a class="catalog-category-card" href="catalog.html?category=others" style="--category-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80')">
+      <h3 class="catalog-category-title">Diğer Ürünler</h3>
+      <span class="catalog-category-cta">Kataloğa git →</span>
+    </a>
   </div>
 </section>
 
@@ -914,7 +759,8 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
           <div class="admin-form-grid">
             <div class="form-group" style="grid-column:1/-1">
               <label>Ürün / Model Adı</label>
-              <input type="text" id="admName" placeholder="Örn: Hikvision DS-2CD1043G0E-I 4MP Bullet">
+              <input type="text" id="admName" list="admModelSuggestions" placeholder="Model seçin veya yazın (örn. DS-2CD1043G0E-I)" autocomplete="off">
+              <datalist id="admModelSuggestions"></datalist>
             </div>
             <div class="form-group">
               <label>Marka</label>
@@ -927,26 +773,19 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
             </div>
             <div class="form-group">
               <label>Kategori</label>
-              <select id="admSeg" onchange="handleSegChange(this.value)">
+              <select id="admSeg">
                 <option value="cam_ip">📹 IP Kamera</option>
                 <option value="cam_ahd">📽️ Analog Kamera (Turbo HD)</option>
                 <option value="nvr">📼 NVR Kayıt Cihazı</option>
                 <option value="switch">🔌 PoE Switch</option>
                 <option value="wifi">📶 Wi-Fi Sistemi</option>
                 <option value="alarm">🚨 Alarm Sistemi</option>
+                <option value="others">📦 Diğerleri</option>
               </select>
             </div>
-            <div class="form-group" id="groupKasaTipi">
-              <label>Kasa Tipi</label>
-              <select id="admKasa">
-                <option value="Bullet">Bullet (Silindirik)</option>
-                <option value="Dome">Dome (Kubbe)</option>
-                <option value="PTZ">PTZ (Hareketli)</option>
-              </select>
-            </div>
-            <div class="form-group" id="groupSubSpec">
-              <label id="lblSubSpec">Çözünürlük (Megapiksel)</label>
-              <select id="admSubSpec"></select>
+            <div class="form-group" style="grid-column:1/-1">
+              <label>Ürün özellikleri (her satıra bir madde)</label>
+              <textarea id="admDetails" rows="4" placeholder="4 MP çözünürlük&#10;PoE bağlantı&#10;IP67 koruma"></textarea>
             </div>
             <div class="form-group">
               <label>Stok Sayısı (Sadece Sen Görürsün)</label>
@@ -989,7 +828,7 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
                 <input type="file" id="productCsvInput" accept=".csv,text/csv" style="display:none" onchange="importProductsCsv(this)">
               </div>
             </div>
-            <p style="font-size:11px;color:var(--tx-soft);margin-bottom:8px">CSV sütunları: id, name, brand, category, case, resolution, channels, ports, stock, price, image, hardware, interface, extra. Kategori: cam_ip/cam_ahd/nvr/switch/wifi/alarm; marka: hikvision/prolook/microtik/tvt; çözünürlük: 2mp/4mp/5mp/8mp; kanal: 4ch/8ch/16ch/32ch; port: 4p/8p/16p/24p. Yeni üründe id boş bırakılabilir. Sayılarda ondalık ayırıcı olarak nokta kullanın.</p>
+            <p style="font-size:11px;color:var(--tx-soft);margin-bottom:8px">CSV sütunları: id, name, brand, category, case, resolution, channels, ports, stock, price, image, hardware, interface, extra, details. Kategori: cam_ip/cam_ahd/nvr/switch/wifi/alarm/others; marka: hikvision/prolook/microtik/tvt. details alanına özellikleri noktalı virgülle ayırarak yazın. Yeni üründe id boş bırakılabilir. Sayılarda ondalık ayırıcı olarak nokta kullanın.</p>
             <div class="inventory-table-wrap">
               <table class="inventory-table">
                 <thead><tr><th>Model</th><th>Kategori</th><th>Fiyat</th><th>Stok</th><th>Düzenle / Kaldır</th></tr></thead>
@@ -1182,8 +1021,8 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
   const tr = {
     navServices: "Hizmet Alanlarımız", navCatalog: "Katalog", navPartners: "Partnerler",
     navProjects: "Projelerimiz", navContact: "İletişim", searchPlaceholder: "Model ara...",
-    secTagCatalog: "EKİPMAN TERMİNALİ", secTitleCatalog: "Marka ve Donanım Seçim Paneli",
-    secDescCatalog: "Markanızı, donanım kategorinizi ve megapiksel/kanal sayısını filtreleyerek anında listeleyin.",
+    secTagCatalog: "ÜRÜN KATEGORİLERİ", secTitleCatalog: "Ürün Gruplarımız",
+    secDescCatalog: "İhtiyacınız olan ürün grubunu seçip katalogdaki modellere göz atın.",
     step1: "MARKA SEÇİMİ", step2: "DONANIM KATEGORİSİ", step3: "DETAYLI ÖZELLİK SEÇİMİ",
     brandAll: "TÜMÜ", brandAllSub: "Tüm Markalar", filterTxt: "Filtre:", countTxt: "Ürün:",
     stockIn: "Stokta", stockLow: "Son ürünler", stockOut: "Stokta yok", btnSelected: "SEÇİLDİ",
@@ -1204,7 +1043,7 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
   };
   window.I18N = {
     tr,
-    en: { ...tr, navServices: "Services", navCatalog: "Catalog", navPartners: "Partners", navProjects: "Projects", navContact: "Contact", searchPlaceholder: "Search models...", brandAll: "ALL", brandAllSub: "All Brands", filterTxt: "Filter:", countTxt: "Products:", stockIn: "In stock", stockLow: "Low stock", stockOut: "Out of stock", btnSelected: "SELECTED", btnAdd: "Add to Cart", btnAsk: "Ask Us", allCat: "All Categories", catIp: "IP Cameras", catAhd: "AHD Cameras", catNvr: "NVR Recorders", catSw: "PoE Switches", catWifi: "Wi-Fi", catAlarm: "Alarm Systems", selCountText: "products selected", toastSelectedAdded: "Selected products added to cart.", toastAdded: "Product added to cart.", cartEmpty: "Your cart is empty." },
+    en: { ...tr, navServices: "Services", navCatalog: "Catalog", navPartners: "Partners", navProjects: "Projects", navContact: "Contact", searchPlaceholder: "Search models...", secTagCatalog: "PRODUCT CATEGORIES", secTitleCatalog: "Our Product Groups", secDescCatalog: "Choose a product group to explore the models in our catalog.", brandAll: "ALL", brandAllSub: "All Brands", filterTxt: "Filter:", countTxt: "Products:", stockIn: "In stock", stockLow: "Low stock", stockOut: "Out of stock", btnSelected: "SELECTED", btnAdd: "Add to Cart", btnAsk: "Ask Us", allCat: "All Categories", catIp: "IP Cameras", catAhd: "AHD Cameras", catNvr: "NVR Recorders", catSw: "PoE Switches", catWifi: "Wi-Fi", catAlarm: "Alarm Systems", selCountText: "products selected", toastSelectedAdded: "Selected products added to cart.", toastAdded: "Product added to cart.", cartEmpty: "Your cart is empty." },
     ge: { ...tr, navServices: "სერვისები", navCatalog: "კატალოგი", navPartners: "პარტნიორები", navProjects: "პროექტები", navContact: "კონტაქტი", searchPlaceholder: "მოდელის ძიება...", brandAll: "ყველა", brandAllSub: "ყველა ბრენდი", filterTxt: "ფილტრი:", countTxt: "პროდუქტი:", stockIn: "მარაგშია", stockOut: "არ არის მარაგში", btnAdd: "კალათაში დამატება", btnAsk: "კითხვა", cartEmpty: "კალათა ცარიელია." },
     az: { ...tr, navServices: "Xidmətlər", navCatalog: "Kataloq", navPartners: "Tərəfdaşlar", navProjects: "Layihələr", navContact: "Əlaqə", searchPlaceholder: "Model axtar...", brandAll: "HAMISI", brandAllSub: "Bütün markalar", filterTxt: "Filtr:", countTxt: "Məhsullar:", stockIn: "Stokda", stockOut: "Stokda yoxdur", btnAdd: "Səbətə əlavə et", btnAsk: "Soruş", cartEmpty: "Səbət boşdur." },
     ru: { ...tr, navServices: "Услуги", navCatalog: "Каталог", navPartners: "Партнёры", navProjects: "Проекты", navContact: "Контакты", searchPlaceholder: "Поиск модели...", brandAll: "ВСЕ", brandAllSub: "Все бренды", filterTxt: "Фильтр:", countTxt: "Товары:", stockIn: "В наличии", stockOut: "Нет в наличии", btnAdd: "В корзину", btnAsk: "Спросить", cartEmpty: "Корзина пуста." }
@@ -1458,14 +1297,6 @@ function selectLang(code){
   $("secTagCatalog").textContent = t.secTagCatalog;
   $("secTitleCatalog").textContent = t.secTitleCatalog;
   $("secDescCatalog").textContent = t.secDescCatalog;
-  $("lblStep1").textContent = t.step1;
-  $("lblStep2").textContent = t.step2;
-  $("lblStep3").textContent = t.step3;
-  $("lblBrandAll").textContent = t.brandAll;
-  $("lblBrandAllSub").textContent = t.brandAllSub;
-  $("lblFilterTxt").textContent = t.filterTxt;
-  $("lblCountTxt").textContent = t.countTxt;
-
   renderSegmentPills();
   renderSubFilters();
   renderCatalogCards();
@@ -1779,9 +1610,9 @@ function delPartner(idx){
 
 /* ÜRÜN CMS */
 let editingProductId = null;
-const PRODUCT_CSV_HEADERS = ['id', 'name', 'brand', 'category', 'case', 'resolution', 'channels', 'ports', 'stock', 'price', 'image', 'hardware', 'interface', 'extra'];
+const PRODUCT_CSV_HEADERS = ['id', 'name', 'brand', 'category', 'case', 'resolution', 'channels', 'ports', 'stock', 'price', 'image', 'hardware', 'interface', 'extra', 'details'];
 const PRODUCT_BRANDS = ['hikvision', 'prolook', 'microtik', 'tvt'];
-const PRODUCT_CATEGORIES = ['cam_ip', 'cam_ahd', 'nvr', 'switch', 'wifi', 'alarm'];
+const PRODUCT_CATEGORIES = ['cam_ip', 'cam_ahd', 'nvr', 'switch', 'wifi', 'alarm', 'others'];
 const DEFAULT_PRODUCT_IMAGE = "https://images.pexels.com/photos/27658186/pexels-photo-27658186.jpeg?auto=compress&cs=tinysrgb&w=600";
 
 function escapeHtml(value){
@@ -1800,47 +1631,23 @@ function getBrandBadge(brand){
   return badges[brand] || escapeHtml(brand || '');
 }
 
-function handleSegChange(seg){
-  const kasaGroup = $("groupKasaTipi");
-  const subGroup = $("groupSubSpec");
-  const subSelect = $("admSubSpec");
-  const lblSub = $("lblSubSpec");
-
-  if(seg === 'cam_ip' || seg === 'cam_ahd'){
-    kasaGroup.style.display = 'flex'; subGroup.style.display = 'flex';
-    lblSub.textContent = "Çözünürlük (Megapiksel)";
-    subSelect.innerHTML = `<option value="2mp">2MP (1080p FHD)</option><option value="4mp">4MP (2K QHD)</option><option value="5mp">5MP (Super HD)</option><option value="8mp">8MP (4K Ultra)</option>`;
-  } else if(seg === 'nvr'){
-    kasaGroup.style.display = 'none'; subGroup.style.display = 'flex';
-    lblSub.textContent = "Kanal Kapasitesi & PoE";
-    subSelect.innerHTML = `<option value="4ch">4-Channel NVR</option><option value="8ch">8-Channel 4K PoE</option><option value="16ch">16-Channel 4K Server</option><option value="32ch">32-Channel Enterprise</option>`;
-  } else if(seg === 'switch'){
-    kasaGroup.style.display = 'none'; subGroup.style.display = 'flex';
-    lblSub.textContent = "Port Sayısı & PoE Bütçesi";
-    subSelect.innerHTML = `<option value="4p">4-Port PoE (60W)</option><option value="8p">8-Port Gigabit PoE (110W)</option><option value="16p">16-Port Gigabit PoE+ (240W)</option><option value="24p">24-Port Gigabit SFP (370W)</option>`;
-  } else if(seg === 'wifi'){
-    kasaGroup.style.display = 'none'; subGroup.style.display = 'flex';
-    lblSub.textContent = "Wi-Fi Standardı & Portlar";
-    subSelect.innerHTML = `<option value="wf5">Wi-Fi 5 AC1200 · Dual Gigabit</option><option value="wf6">Wi-Fi 6 AX1800 · Gigabit PoE</option><option value="wf6_pro">Wi-Fi 6 AX3000 · 2.5G Port</option><option value="wf7">Wi-Fi 7 Enterprise AP</option>`;
-  } else if(seg === 'alarm'){
-    kasaGroup.style.display = 'none'; subGroup.style.display = 'flex';
-    lblSub.textContent = "Kablosuz Zon Kapasitesi";
-    subSelect.innerHTML = `<option value="32z">32-Zone Wireless Panel</option><option value="64z">64-Zone AX PRO Panel</option><option value="96z">96-Zone Tri-X 868MHz</option>`;
-  }
+function updateModelSuggestions(){
+  const brand = $("admBrand").value;
+  const models = [...new Set(PRODUCTS.filter(product => product.brand === brand).map(product => product.name).filter(Boolean))];
+  $("admModelSuggestions").innerHTML = models.map(name => `<option value="${escapeHtml(name)}"></option>`).join("");
 }
 
 function saveNewProduct(){
   const name = $("admName").value.trim();
   const brand = $("admBrand").value;
   const seg = $("admSeg").value;
-  const kasa = (seg === 'cam_ip' || seg === 'cam_ahd') ? $("admKasa").value : '';
-  const subSpec = $("admSubSpec").value;
   const stock = Number($("admStock").value);
   const price = Number($("admPrice").value);
   let img = $("admImg").value.trim();
-  const hw = $("admHw").value.trim() || `${brand.toUpperCase()} Hardware`;
-  const port = $("admPort").value.trim() || 'Standard Interface';
-  const extra = $("admExtra").value.trim() || 'Genuine Security Grade';
+  const hw = $("admHw").value.trim();
+  const port = $("admPort").value.trim();
+  const extra = $("admExtra").value.trim();
+  const details = $("admDetails").value.split(/\r?\n/).map(value => value.trim()).filter(Boolean);
 
   if(!name){ alert("Lütfen ürün adını yazınız!"); $("admName").focus(); return; }
   if(!PRODUCT_BRANDS.includes(brand)){ alert("Geçerli bir marka seçiniz."); $("admBrand").focus(); return; }
@@ -1853,11 +1660,9 @@ function saveNewProduct(){
   const existingProduct = editingProductId ? PRODUCTS.find(p => p.id === editingProductId) : null;
   const product = {
     ...(existingProduct || {}),
-    id: editingProductId || 'prod_' + Date.now(), brand: brand, seg: seg, kasa: kasa,
-    mp: (seg === 'cam_ip' || seg === 'cam_ahd') ? subSpec : undefined,
-    ch: (seg === 'nvr') ? subSpec : undefined,
-    ports: (seg === 'switch') ? subSpec : undefined,
-    stock: stock, img: img, name: name, spec: `${hw} · ${port}`, hw: hw, port: port, extra: extra, price: price
+    id: editingProductId || 'prod_' + Date.now(), brand: brand, seg: seg,
+    stock: stock, img: img, name: name, spec: [hw, port].filter(Boolean).join(" · "),
+    hw: hw, port: port, extra: extra, details: details.length ? details : [hw, port, extra].filter(Boolean), price: price
   };
   if(editingProductId){
     const index = PRODUCTS.findIndex(p => p.id === editingProductId);
@@ -1901,18 +1706,16 @@ function editProduct(idx){
   if(!product){ alert("Düzenlenecek ürün bulunamadı."); return; }
   editingProductId = product.id;
   $("admName").value = product.name || '';
-  $("admBrand").value = PRODUCT_BRANDS.includes(product.brand) ? product.brand : 'hikvision';
+  $("admBrand").value = PRODUCT_BRANDS.includes(product.brand) ? product.brand : product.brand === 'mikrotik' ? 'microtik' : 'hikvision';
+  updateModelSuggestions();
   $("admSeg").value = PRODUCT_CATEGORIES.includes(product.seg) ? product.seg : 'cam_ip';
-  handleSegChange($("admSeg").value);
-  $("admKasa").value = product.kasa || 'Bullet';
-  const subValue = product.mp || product.ch || product.ports || '';
-  if(subValue && [...$("admSubSpec").options].some(option => option.value === subValue)) $("admSubSpec").value = subValue;
   $("admStock").value = Number.isInteger(Number(product.stock)) ? Number(product.stock) : 0;
   $("admPrice").value = product.price ?? '';
   $("admImg").value = product.img || '';
   $("admHw").value = product.hw || '';
   $("admPort").value = product.port || '';
   $("admExtra").value = product.extra || '';
+  $("admDetails").value = Array.isArray(product.details) ? product.details.join("\n") : '';
   $("saveProductBtn").textContent = "Değişiklikleri Kaydet ✓";
   $("cancelProductEditBtn").style.display = "inline-flex";
   $("admName").scrollIntoView({ behavior: "smooth", block: "center" });
@@ -1921,12 +1724,11 @@ function editProduct(idx){
 
 function cancelProductEdit(){
   editingProductId = null;
-  ["admName", "admPrice", "admImg", "admHw", "admPort", "admExtra"].forEach(id => $(id).value = "");
+  ["admName", "admPrice", "admImg", "admHw", "admPort", "admExtra", "admDetails"].forEach(id => $(id).value = "");
   $("admBrand").value = "hikvision";
+  updateModelSuggestions();
   $("admSeg").value = "cam_ip";
   $("admStock").value = "10";
-  $("admKasa").value = "Bullet";
-  handleSegChange("cam_ip");
   $("saveProductBtn").textContent = "Ürünü Kataloğa Ekle 🚀";
   $("cancelProductEditBtn").style.display = "none";
 }
@@ -1952,7 +1754,8 @@ function productToCsvRow(product){
   return [
     product.id, product.name, product.brand, product.seg, product.kasa,
     product.mp, product.ch, product.ports, product.stock, product.price,
-    product.img, product.hw, product.port, product.extra
+    product.img, product.hw, product.port, product.extra,
+    Array.isArray(product.details) ? product.details.join('; ') : ''
   ].map(csvEscape).join(',');
 }
 
@@ -1986,7 +1789,7 @@ function parseProductsCsv(text){
   if(row.some(value => value.trim() !== '')) rows.push(row);
   if(rows.length < 2) throw new Error("CSV dosyasında başlık ve en az bir ürün satırı bulunmalı.");
   const headers = rows.shift().map((header, index) => header.trim().replace(/^\uFEFF/, '').toLowerCase());
-  const missingHeaders = PRODUCT_CSV_HEADERS.filter(header => !headers.includes(header));
+  const missingHeaders = PRODUCT_CSV_HEADERS.filter(header => header !== 'details' && !headers.includes(header));
   if(missingHeaders.length) throw new Error("Eksik CSV sütunları: " + missingHeaders.join(', '));
   return rows.map((values, index) => ({
     line: index + 2,
@@ -2005,7 +1808,8 @@ function importProductsCsv(input){
       let imported = 0, updated = 0;
       rows.forEach(({line, values}) => {
         const name = values.name;
-        const brand = values.brand.toLowerCase();
+        const importedBrand = values.brand.toLowerCase();
+        const brand = importedBrand === 'mikrotik' ? 'microtik' : importedBrand;
         const seg = values.category.toLowerCase();
         const stock = Number(values.stock);
         const price = Number(values.price);
@@ -2025,10 +1829,12 @@ function importProductsCsv(input){
           ch: values.channels || undefined,
           ports: values.ports || undefined,
           stock, price, img: values.image || DEFAULT_PRODUCT_IMAGE,
-          hw: values.hardware || `${brand.toUpperCase()} Hardware`,
-          port: values.interface || 'Standard Interface',
-          extra: values.extra || 'Genuine Security Grade',
-          spec: `${values.hardware || `${brand.toUpperCase()} Hardware`} · ${values.interface || 'Standard Interface'}`
+          hw: values.hardware || '',
+          port: values.interface || '',
+          extra: values.extra || '',
+          details: values.details ? values.details.split(/\r?\n|;/).map(value => value.trim()).filter(Boolean) :
+            [values.hardware, values.interface, values.extra].filter(Boolean),
+          spec: [values.hardware, values.interface].filter(Boolean).join(' · ')
         };
         if(existingIndex >= 0){ PRODUCTS[existingIndex] = product; updated++; }
         else { PRODUCTS.push(product); imported++; }
@@ -2096,6 +1902,7 @@ function delProject(idx){
 
 /* KATALOG FİLTRELERİ */
 function renderCatalogCards(){
+  if(!$("catalogCards")) return;
   const t = I18N[currentLang] || I18N['tr'];
   let list = PRODUCTS;
 
@@ -2179,6 +1986,7 @@ function renderCatalogCards(){
 }
 
 function renderSegmentPills(){
+  if(!$("segmentPills")) return;
   const t = I18N[currentLang] || I18N['tr'];
   const SEGMENTS = [
     {id:'all', label: t.allCat, icon:'⚡'},
@@ -2215,6 +2023,7 @@ function renderSegmentPills(){
 function renderSubFilters(){
   const row = $("subfilterRow");
   const label = $("rowLabelStep3");
+  if(!row || !label) return;
   const t = I18N[currentLang] || I18N['tr'];
 
   if(currentSeg === 'cam_ip' || currentSeg === 'cam_ahd'){
@@ -2268,6 +2077,11 @@ function setSubFilter(val, el){
 function handleSearch(val){
   searchKeyword = val.toLowerCase().trim();
   renderCatalogCards();
+}
+
+function goToCatalogSearch(value){
+  const query = value.trim();
+  window.location.href = `catalog.html${query ? `?search=${encodeURIComponent(query)}` : ""}`;
 }
 
 /* DİGOMİ MODAL */
@@ -2423,7 +2237,8 @@ window.addEventListener("DOMContentLoaded", async () => {
   renderPartnersFrontend();
   renderProjectsTrack();
   selectLang(currentLang);
-  handleSegChange($("admSeg").value);
+  $("admBrand").addEventListener("change", updateModelSuggestions);
+  updateModelSuggestions();
   if(window.location.hash === '#admin') openAdminModal();
 });
 </script>
