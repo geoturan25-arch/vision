@@ -205,9 +205,10 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .sec-desc{color:#e2e8f0;font-size:13.5px;font-weight:700}
 .catalog-category-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
 .catalog-category-card{position:relative;isolation:isolate;display:flex;min-height:190px;overflow:hidden;align-items:flex-end;padding:18px;border:1px solid rgba(255,255,255,.38);border-radius:16px;background:#172033;box-shadow:0 12px 28px rgba(0,0,0,.25);color:#fff}
-.catalog-category-card::before{position:absolute;inset:0;z-index:-2;content:"";background-image:linear-gradient(180deg,rgba(13,20,45,.12),rgba(13,20,45,.83)),var(--category-image);background-position:center;background-size:cover;transition:filter .3s,transform .4s}
+.catalog-category-card img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;transition:filter .3s,transform .4s}
+.catalog-category-card::before{position:absolute;inset:0;z-index:-1;content:"";background:linear-gradient(180deg,rgba(13,20,45,.12),rgba(13,20,45,.83));transition:background .3s}
 .catalog-category-card::after{position:absolute;inset:0;z-index:-1;content:"";background:rgba(12,18,42,.18);transition:backdrop-filter .3s,background .3s}
-.catalog-category-card:hover::before,.catalog-category-card:focus-visible::before{filter:blur(4px) brightness(.7);transform:scale(1.07)}
+.catalog-category-card:hover img,.catalog-category-card:focus-visible img{filter:blur(4px) brightness(.7);transform:scale(1.07)}
 .catalog-category-card:hover::after,.catalog-category-card:focus-visible::after{backdrop-filter:blur(3px);background:rgba(12,18,42,.42)}
 .catalog-category-title{font-size:clamp(15px,1.35vw,19px);font-weight:900;line-height:1.2;text-shadow:0 2px 8px rgba(0,0,0,.65);transition:transform .3s}
 .catalog-category-cta{position:absolute;inset:0;display:grid;place-items:center;padding:18px;text-align:center;font-size:15px;font-weight:900;letter-spacing:.04em;text-shadow:0 2px 8px rgba(0,0,0,.75);opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s}
@@ -278,6 +279,11 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .project-tasks li::marker{color:#000}
 .project-tasks li+li{margin-top:3px}
 .project-task-row{display:flex;align-items:center;gap:6px}
+.service-detail-row{display:flex;align-items:center;gap:6px}
+.service-detail-row input{flex:1;min-width:0;background:#fff;border:1.5px solid var(--line-steel);padding:7px 10px;border-radius:6px;font-size:12px;color:#0b0f17}
+.service-compact-details{margin:2px 0 0;padding-left:17px;list-style:disc;color:#111827;font-size:11px;line-height:1.5}
+.service-compact-details li::marker{color:#000}
+.service-compact-details li+li{margin-top:3px}
 .project-task-row input{flex:1;min-width:0;background:#fff;border:1.5px solid var(--line-steel);padding:7px 10px;border-radius:6px;font-size:12px;color:#0b0f17}
 .project-task-remove{border:0;background:none;color:var(--red);font-size:18px;font-weight:900;line-height:1}
 .project-footer-row{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
@@ -687,36 +693,7 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
     <h2 class="sec-title" id="secTitleCatalog">Ürün Gruplarımız</h2>
     <p class="sec-desc" id="secDescCatalog">İhtiyacınız olan ürün grubunu seçip katalogdaki modellere göz atın.</p>
   </div>
-  <div class="catalog-category-grid">
-    <a class="catalog-category-card" href="catalog.html?category=cam_ip" style="--category-image:url('https://images.pexels.com/photos/5966513/pexels-photo-5966513.jpeg?auto=compress&cs=tinysrgb&w=900')">
-      <h3 class="catalog-category-title">IP Kameralar</h3>
-      <span class="catalog-category-cta">Kataloğa git →</span>
-    </a>
-    <a class="catalog-category-card" href="catalog.html?category=cam_ahd" style="--category-image:url('https://images.pexels.com/photos/430208/pexels-photo-430208.jpeg?auto=compress&cs=tinysrgb&w=900')">
-      <h3 class="catalog-category-title">Analog Kameralar</h3>
-      <span class="catalog-category-cta">Kataloğa git →</span>
-    </a>
-    <a class="catalog-category-card" href="catalog.html?category=alarm" style="--category-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80')">
-      <h3 class="catalog-category-title">Alarm Sistemleri</h3>
-      <span class="catalog-category-cta">Kataloğa git →</span>
-    </a>
-    <a class="catalog-category-card" href="catalog.html?category=wifi" style="--category-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80')">
-      <h3 class="catalog-category-title">Wi-Fi Sistemleri</h3>
-      <span class="catalog-category-cta">Kataloğa git →</span>
-    </a>
-    <a class="catalog-category-card" href="catalog.html?category=switch" style="--category-image:url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80')">
-      <h3 class="catalog-category-title">Network Switch'ler</h3>
-      <span class="catalog-category-cta">Kataloğa git →</span>
-    </a>
-    <a class="catalog-category-card" href="catalog.html?category=nvr" style="--category-image:url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=900&q=80')">
-      <h3 class="catalog-category-title">NVR Kayıt Cihazları</h3>
-      <span class="catalog-category-cta">Kataloğa git →</span>
-    </a>
-    <a class="catalog-category-card" href="catalog.html?category=others" style="--category-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80')">
-      <h3 class="catalog-category-title">Diğer Ürünler</h3>
-      <span class="catalog-category-cta">Kataloğa git →</span>
-    </a>
-  </div>
+  <div class="catalog-category-grid" id="catalogCategoryGrid"></div>
 </section>
 
 <!-- 3.3 PARTNER VE ÇÖZÜM ORTAKLARIMIZ BÖLÜMÜ -->
@@ -828,6 +805,7 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
       <div class="admin-tabs-bar">
         <button class="admin-tab-btn active" onclick="switchAdminTab('hero', this)">🖥️ Giriş & TV Ekranı</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('products', this)">📦 Donanım Kataloğu</button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('groups', this)">🗂️ Ürün Grupları</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('services', this)">🏢 Hizmet Alanları</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('partners', this)">🤝 Partner Firmalar</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('projects', this)">🏗️ Projelerimiz</button>
@@ -967,6 +945,49 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
           </div>
         </div>
 
+        <div id="tabContent_groups" style="display:none;flex-direction:column;gap:16px">
+          <h4 style="font-size:13.5px;font-weight:900;color:var(--tx)">🗂️ Ana Sayfa Ürün Gruplarını Düzenle</h4>
+          <p style="font-size:12px;color:var(--tx-soft)">Her ürün grubu için kategori, görsel ve beş dilde başlık girin. “Diğer Ürünler” kartı yalnızca buradan eklenip yayımlanır.</p>
+          <div class="admin-form-grid">
+            <div class="form-group">
+              <label for="admGroupCategory">Katalog kategorisi</label>
+              <select id="admGroupCategory" onchange="switchCatalogGroupCategory()">
+                <option value="cam_ip">IP Kamera</option><option value="cam_ahd">Analog Kamera</option>
+                <option value="alarm">Alarm Sistemi</option><option value="wifi">Wi-Fi Sistemi</option>
+                <option value="switch">Network Switch</option><option value="nvr">NVR Kayıt Cihazı</option>
+                <option value="others">Diğer Ürünler</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="admGroupLang">Metin dili</label>
+              <select id="admGroupLang" onchange="switchCatalogGroupLanguage()">
+                <option value="tr">Türkçe</option><option value="en">English</option><option value="ge">ქართული</option><option value="az">Azərbaycanca</option><option value="ru">Русский</option>
+              </select>
+            </div>
+            <div class="form-group" style="grid-column:1/-1">
+              <label for="admGroupTitle">Bu dilde görünen başlık</label>
+              <input type="text" id="admGroupTitle" placeholder="Örn: Diğer Ürünler">
+            </div>
+            <div class="form-group" style="grid-column:1/-1">
+              <label for="admGroupImage">Görsel bağlantısı veya seçilen fotoğraf</label>
+              <input type="text" id="admGroupImage" placeholder="https://.../foto.jpg veya bilgisayardan görsel seçin" oninput="updateCatalogGroupImagePreview()">
+              <input type="file" id="admGroupImageFile" accept="image/*" onchange="uploadCatalogGroupImage(this)" style="margin-top:8px">
+              <img id="admGroupImagePreview" alt="Ürün grubu görsel önizlemesi" style="display:none;max-width:260px;max-height:150px;object-fit:cover;border-radius:8px;margin-top:8px">
+              <small style="color:var(--tx-soft)">Fotoğraf bilgisayardan seçildiğinde web için küçültülerek kaydedilir.</small>
+            </div>
+            <div style="grid-column:1/-1;display:flex;justify-content:flex-end;gap:8px">
+              <button class="btn" id="cancelGroupEditBtn" style="display:none;background:#64748b;padding:10px 18px" onclick="cancelCatalogGroupEdit()">İptal</button>
+              <button class="btn green" id="saveGroupBtn" style="padding:10px 24px" onclick="saveCatalogGroup()">Grubu Kaydet ✓</button>
+            </div>
+          </div>
+          <div class="inventory-table-wrap">
+            <table class="inventory-table">
+              <thead><tr><th>Ürün Grubu</th><th>Kategori</th><th>İşlem</th></tr></thead>
+              <tbody id="admCatalogGroupsList"></tbody>
+            </table>
+          </div>
+        </div>
+
         <!-- 3.2 SEKME: HİZMET ALANLARI CMS -->
         <div id="tabContent_services" style="display:none;flex-direction:column;gap:16px">
           <h4 style="font-size:13.5px;font-weight:900;color:var(--tx)">➕ Yeni Kompakt Hizmet Alanı Ekle</h4>
@@ -975,7 +996,7 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
             <select id="admSrvLang" onchange="switchServiceEditLanguage()">
               <option value="tr">Türkçe</option><option value="en">English</option><option value="ge">ქართული</option><option value="az">Azərbaycanca</option><option value="ru">Русский</option>
             </select>
-            <small style="color:var(--tx-soft)">Dilleri değiştirerek başlık, etiket ve açıklamayı her dilde girebilirsiniz.</small>
+            <small style="color:var(--tx-soft)">Her dil için başlık, etiket, açıklama ve detay maddelerini girin. Sayfa dili seçilen içerikle eşleşir.</small>
           </div>
           <div class="admin-form-grid">
             <div class="form-group">
@@ -993,6 +1014,16 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
             <div class="form-group" style="grid-column:1/-1">
               <label>Açıklama (Kısa & Öz)</label>
               <textarea id="admSrvDesc" rows="2" placeholder="Kasa üzeri kör noktasız zoom lens, mutfak yangın algılama ve Wi-Fi 6 altyapısı..."></textarea>
+            </div>
+            <div class="form-group" style="grid-column:1/-1">
+              <label>Hizmet detayları</label>
+              <div id="admSrvDetails" style="display:flex;flex-direction:column;gap:7px">
+                <div class="service-detail-row">
+                  <input type="text" class="adm-service-detail" placeholder="Örn: IP kamera sistemlerinin kurulumu">
+                  <button type="button" class="project-task-remove" aria-label="Detayı kaldır" onclick="removeServiceDetail(this)">×</button>
+                </div>
+              </div>
+              <button type="button" class="btn" style="align-self:flex-start;padding:6px 12px;font-size:11px" onclick="addServiceDetailInput()">+ Detay Ekle</button>
             </div>
             <div style="grid-column:1/-1;display:flex;justify-content:flex-end">
               <button class="btn green" id="saveServiceBtn" style="padding:10px 24px" onclick="saveNewService()">Hizmeti Ekle 🚀</button>
@@ -1253,6 +1284,14 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
     slides: []
   };
   window.DEFAULT_PRODUCTS = [];
+  window.DEFAULT_CATALOG_CATEGORIES = [
+    { category: "cam_ip", img: "https://images.pexels.com/photos/5966513/pexels-photo-5966513.jpeg?auto=compress&cs=tinysrgb&w=900", i18n: { tr: { title: "IP Kameralar" }, en: { title: "IP Cameras" }, ge: { title: "IP კამერები" }, az: { title: "IP kameralar" }, ru: { title: "IP-камеры" } } },
+    { category: "cam_ahd", img: "https://images.pexels.com/photos/430208/pexels-photo-430208.jpeg?auto=compress&cs=tinysrgb&w=900", i18n: { tr: { title: "Analog Kameralar" }, en: { title: "Analog Cameras" }, ge: { title: "ანალოგური კამერები" }, az: { title: "Analoq kameralar" }, ru: { title: "Аналоговые камеры" } } },
+    { category: "alarm", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80", i18n: { tr: { title: "Alarm Sistemleri" }, en: { title: "Alarm Systems" }, ge: { title: "სიგნალიზაციის სისტემები" }, az: { title: "Siqnalizasiya sistemləri" }, ru: { title: "Системы сигнализации" } } },
+    { category: "wifi", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80", i18n: { tr: { title: "Wi-Fi Sistemleri" }, en: { title: "Wi-Fi Systems" }, ge: { title: "Wi-Fi სისტემები" }, az: { title: "Wi-Fi sistemləri" }, ru: { title: "Системы Wi-Fi" } } },
+    { category: "switch", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80", i18n: { tr: { title: "Network Switch'ler" }, en: { title: "Network Switches" }, ge: { title: "ქსელური კომუტატორები" }, az: { title: "Şəbəkə kommutatorları" }, ru: { title: "Сетевые коммутаторы" } } },
+    { category: "nvr", img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=900&q=80", i18n: { tr: { title: "NVR Kayıt Cihazları" }, en: { title: "NVR Recorders" }, ge: { title: "NVR ჩამწერები" }, az: { title: "NVR qeydiyyat cihazları" }, ru: { title: "Видеорегистраторы NVR" } } }
+  ];
   window.DEFAULT_SERVICES = [
     { title: "Düğün & Etkinlik Salonları", tag: "360° Panoramik", desc: "Yüksek tavanlı geniş salonlarda kör noktasız izleme ve otopark plaka tanıma.", img: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" },
     { title: "Ofis ve İş Merkezleri", tag: "Wi-Fi 6 & Yüz Tanıma", desc: "Personel devam kontrol, turnike parmak izi/yüz tanıma, server odası izleme.", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" },
@@ -1304,6 +1343,19 @@ function getSafeArray(key, fallback){
   }
 }
 
+function getSafeCatalogCategories(){
+  try {
+    const raw = localStorage.getItem("vision_catalog_categories");
+    if(raw === null) return JSON.parse(JSON.stringify(DEFAULT_CATALOG_CATEGORIES));
+    const parsed = JSON.parse(raw);
+    if(Array.isArray(parsed)) return parsed;
+    console.error("Saved product-group content is invalid; using defaults.");
+  } catch(error) {
+    console.error("Saved product-group content could not be read:", error);
+  }
+  return JSON.parse(JSON.stringify(DEFAULT_CATALOG_CATEGORIES));
+}
+
 function getSafeContact(){
   try {
     const saved = JSON.parse(localStorage.getItem("vision_contact") || "null");
@@ -1334,6 +1386,7 @@ if(localStorage.getItem("vision_hero_pexels_slides_migrated") !== "1"){
 }
 
 let PRODUCTS = getSafeArray("vision_products", DEFAULT_PRODUCTS);
+let CATALOG_CATEGORIES = getSafeCatalogCategories();
 let SERVICES = getSafeArray("vision_services", DEFAULT_SERVICES);
 let PARTNERS = getSafeArray("vision_partners", DEFAULT_PARTNERS);
 let PROJECTS = getSafeArray("vision_projects", DEFAULT_PROJECTS);
@@ -1346,6 +1399,10 @@ let heroEditorLang = "tr";
 let serviceEditDraft = {};
 let serviceEditorLang = "tr";
 let editingServiceId = null;
+let catalogGroupEditDrafts = Object.create(null);
+let catalogGroupImageDrafts = Object.create(null);
+let catalogGroupEditorLang = "tr";
+let catalogGroupEditorCategory = "cam_ip";
 let projectEditDraft = {};
 let projectEditorLang = "tr";
 let editingProjectId = null;
@@ -1373,6 +1430,12 @@ function getLocalizedField(item, field, language){
   return typeof item?.[field] === "string" ? item[field] : "";
 }
 
+function getCatalogGroupTitle(category, language){
+  const translation = category && category.i18n && category.i18n[language] && category.i18n[language].title;
+  if(typeof translation === "string" && translation.trim()) return translation;
+  return category && category.i18n && category.i18n.tr && category.i18n.tr.title || "";
+}
+
 function getProjectTasks(project, language){
   const translated = project && project.i18n && project.i18n[language] && project.i18n[language].tasks;
   if(Array.isArray(translated) && translated.some(task => typeof task === "string" && task.trim())){
@@ -1386,8 +1449,18 @@ function getServiceLanguageValues(service, language){
   return {
     title: language === "tr" ? service.title || "" : service.i18n?.[language]?.title || "",
     tag: language === "tr" ? service.tag || "" : service.i18n?.[language]?.tag || "",
-    desc: language === "tr" ? service.desc || "" : service.i18n?.[language]?.desc || ""
+    desc: language === "tr" ? service.desc || "" : service.i18n?.[language]?.desc || "",
+    details: language === "tr" ? getServiceDetails(service, "tr") :
+      Array.isArray(service.i18n?.[language]?.details) ? service.i18n[language].details : []
   };
+}
+
+function getServiceDetails(service, language){
+  const translated = service && service.i18n && service.i18n[language] && service.i18n[language].details;
+  if(Array.isArray(translated) && translated.some(detail => typeof detail === "string" && detail.trim())){
+    return translated.filter(detail => typeof detail === "string" && detail.trim());
+  }
+  return Array.isArray(service.details) ? service.details.filter(detail => typeof detail === "string" && detail.trim()) : [];
 }
 
 function getProjectLanguageValues(project, language){
@@ -1414,6 +1487,7 @@ function getSharedContentSnapshot(){
   return {
     hero: HERO_DATA,
     products: PRODUCTS,
+    catalogCategories: CATALOG_CATEGORIES,
     services: SERVICES,
     partners: PARTNERS,
     projects: PROJECTS,
@@ -1425,6 +1499,7 @@ function applySharedContent(content){
   if(!content || typeof content !== "object") return;
   if(content.hero && typeof content.hero === "object") HERO_DATA = content.hero;
   if(Array.isArray(content.products)) PRODUCTS = content.products;
+  if(Array.isArray(content.catalogCategories)) CATALOG_CATEGORIES = content.catalogCategories;
   if(Array.isArray(content.services)) SERVICES = content.services;
   if(Array.isArray(content.partners)) PARTNERS = content.partners;
   if(Array.isArray(content.projects)) PROJECTS = content.projects;
@@ -1435,6 +1510,7 @@ function applySharedContent(content){
   }
   localStorage.setItem("vision_hero", JSON.stringify(HERO_DATA));
   localStorage.setItem("vision_products", JSON.stringify(PRODUCTS));
+  localStorage.setItem("vision_catalog_categories", JSON.stringify(CATALOG_CATEGORIES));
   localStorage.setItem("vision_services", JSON.stringify(SERVICES));
   localStorage.setItem("vision_partners", JSON.stringify(PARTNERS));
   localStorage.setItem("vision_projects", JSON.stringify(PROJECTS));
@@ -1462,11 +1538,13 @@ async function loadSharedContent(){
 function saveAllToStorage(){
   localStorage.setItem("vision_hero", JSON.stringify(HERO_DATA));
   localStorage.setItem("vision_products", JSON.stringify(PRODUCTS));
+  localStorage.setItem("vision_catalog_categories", JSON.stringify(CATALOG_CATEGORIES));
   localStorage.setItem("vision_services", JSON.stringify(SERVICES));
   localStorage.setItem("vision_partners", JSON.stringify(PARTNERS));
   localStorage.setItem("vision_projects", JSON.stringify(PROJECTS));
   localStorage.setItem("vision_contact", JSON.stringify(CONTACT_DATA));
   renderHeroFrontend();
+  renderCatalogCategories();
   renderCompactServicesFrontend();
   renderPartnersFrontend();
   renderContactFrontend();
@@ -1507,12 +1585,14 @@ function saveAllToStorage(){
 function resetDefaultProducts(){
   if(confirm("Tüm ürünler ve ayarlar fabrika varsayılanlarına sıfırlansın mı?")){
     localStorage.removeItem("vision_products");
+    localStorage.removeItem("vision_catalog_categories");
     localStorage.removeItem("vision_services");
     localStorage.removeItem("vision_partners");
     localStorage.removeItem("vision_projects");
     localStorage.removeItem("vision_contact");
     localStorage.removeItem("vision_hero");
     PRODUCTS = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
+    CATALOG_CATEGORIES = JSON.parse(JSON.stringify(DEFAULT_CATALOG_CATEGORIES));
     SERVICES = JSON.parse(JSON.stringify(DEFAULT_SERVICES));
     PARTNERS = JSON.parse(JSON.stringify(DEFAULT_PARTNERS));
     PROJECTS = JSON.parse(JSON.stringify(DEFAULT_PROJECTS));
@@ -1521,6 +1601,8 @@ function resetDefaultProducts(){
     HERO_DATA.slides = [...HERO_BACKGROUND_IMAGES];
     saveAllToStorage();
     renderInventoryTable();
+    renderAdminCatalogGroupsTable();
+    loadCatalogGroupEditor();
     showToast("Fabrika ayarlarına dönüldü!");
   }
 }
@@ -1565,6 +1647,7 @@ function selectLang(code){
   renderSegmentPills();
   renderSubFilters();
   renderCatalogCards();
+  renderCatalogCategories();
   renderHeroFrontend();
   renderCompactServicesFrontend();
   renderProjectsTrack();
@@ -1623,23 +1706,212 @@ function initTvSlideshow(){
 function renderCompactServicesFrontend(){
   const grid = $("servicesCompactGrid");
   if(!grid) return;
-  grid.innerHTML = SERVICES.map(srv => `
-    <div class="service-compact-card">
-      <div class="service-compact-img">
-        <img src="${escapeHtml(srv.img)}" onerror="this.src='https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80'" alt="${escapeHtml(getLocalizedField(srv, "title", currentLang))}">
-        <span class="service-compact-tag">${escapeHtml(getLocalizedField(srv, "tag", currentLang))}</span>
-      </div>
-      <div class="service-compact-body">
-        <h4>${escapeHtml(getLocalizedField(srv, "title", currentLang))}</h4>
-        <p>${escapeHtml(getLocalizedField(srv, "desc", currentLang))}</p>
-        <div class="service-compact-foot">
-          <span>✓ Anahtar Teslim</span>
-          <a href="services.html" style="color:var(--bl);text-decoration:underline">Detayları Gör ➔</a>
-          <a href="https://wa.me/995557030033?text=${encodeURIComponent('Hizmet hakkında bilgi almak istiyorum: ' + srv.title)}" target="_blank" rel="noopener noreferrer" style="color:var(--bl);text-decoration:underline">Teklif Al ➔</a>
+  grid.innerHTML = SERVICES.map(srv => {
+    const details = getServiceDetails(srv, currentLang);
+    return `
+      <div class="service-compact-card">
+        <div class="service-compact-img">
+          <img src="${escapeHtml(srv.img)}" onerror="this.src='https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80'" alt="${escapeHtml(getLocalizedField(srv, "title", currentLang))}">
+          <span class="service-compact-tag">${escapeHtml(getLocalizedField(srv, "tag", currentLang))}</span>
+        </div>
+        <div class="service-compact-body">
+          <h4>${escapeHtml(getLocalizedField(srv, "title", currentLang))}</h4>
+          <p>${escapeHtml(getLocalizedField(srv, "desc", currentLang))}</p>
+          ${details.length ? `<ul class="service-compact-details">${details.map(detail => `<li>${escapeHtml(detail)}</li>`).join("")}</ul>` : ""}
+          <div class="service-compact-foot">
+            <span>✓ Anahtar Teslim</span>
+            <a href="services.html" style="color:var(--bl);text-decoration:underline">Detayları Gör ➔</a>
+            <a href="https://wa.me/995557030033?text=${encodeURIComponent('Hizmet hakkında bilgi almak istiyorum: ' + getLocalizedField(srv, "title", currentLang))}" target="_blank" rel="noopener noreferrer" style="color:var(--bl);text-decoration:underline">Teklif Al ➔</a>
+          </div>
         </div>
       </div>
-    </div>
+    `;
+  }).join('');
+}
+
+function renderCatalogCategories(){
+  const grid = $("catalogCategoryGrid");
+  if(!grid) return;
+  const categoryNames = {
+    cam_ip: "IP Kamera", cam_ahd: "Analog Kamera", alarm: "Alarm Sistemi",
+    wifi: "Wi-Fi Sistemi", switch: "Network Switch", nvr: "NVR Kayıt Cihazı", others: "Diğer Ürünler"
+  };
+  const catalogLabels = {
+    tr: "Kataloğa git →", en: "Go to catalog →", ge: "კატალოგში გადასვლა →",
+    az: "Kataloqa keç →", ru: "Перейти в каталог →"
+  };
+  grid.innerHTML = CATALOG_CATEGORIES.filter(item => Object.prototype.hasOwnProperty.call(categoryNames, item.category) && item.img).map(item => `
+    <a class="catalog-category-card" href="catalog.html?category=${item.category}">
+      <img src="${escapeHtml(item.img)}" alt="${escapeHtml(getCatalogGroupTitle(item, currentLang))}" loading="lazy">
+      <h3 class="catalog-category-title">${escapeHtml(getCatalogGroupTitle(item, currentLang))}</h3>
+      <span class="catalog-category-cta">${catalogLabels[currentLang] || catalogLabels.tr}</span>
+    </a>
   `).join('');
+}
+
+function getCatalogCategoryData(category){
+  return CATALOG_CATEGORIES.find(item => item.category === category);
+}
+
+function ensureCatalogGroupDraft(category){
+  if(catalogGroupEditDrafts[category]) return;
+  const saved = getCatalogCategoryData(category);
+  catalogGroupEditDrafts[category] = Object.fromEntries(CONTENT_LANGUAGES.map(language => [
+    language, getCatalogGroupTitle(saved, language)
+  ]));
+  catalogGroupImageDrafts[category] = saved?.img || "";
+}
+
+function captureCatalogGroupLanguage(){
+  const category = catalogGroupEditorCategory;
+  ensureCatalogGroupDraft(category);
+  catalogGroupEditDrafts[category][catalogGroupEditorLang] = $("admGroupTitle").value.trim();
+  catalogGroupImageDrafts[category] = $("admGroupImage").value.trim();
+}
+
+function loadCatalogGroupEditor(){
+  catalogGroupEditorCategory = $("admGroupCategory").value;
+  catalogGroupEditorLang = $("admGroupLang").value || "tr";
+  ensureCatalogGroupDraft(catalogGroupEditorCategory);
+  $("admGroupTitle").value = catalogGroupEditDrafts[catalogGroupEditorCategory][catalogGroupEditorLang] || "";
+  $("admGroupImage").value = catalogGroupImageDrafts[catalogGroupEditorCategory] || "";
+  $("admGroupImageFile").value = "";
+  updateCatalogGroupImagePreview();
+  const exists = Boolean(getCatalogCategoryData(catalogGroupEditorCategory));
+  $("saveGroupBtn").textContent = exists ? "Değişiklikleri Kaydet ✓" : "Grubu Ekle ✓";
+  $("cancelGroupEditBtn").style.display = exists ? "inline-flex" : "none";
+}
+
+function switchCatalogGroupLanguage(){
+  captureCatalogGroupLanguage();
+  catalogGroupEditorLang = $("admGroupLang").value;
+  loadCatalogGroupEditor();
+}
+
+function switchCatalogGroupCategory(){
+  captureCatalogGroupLanguage();
+  catalogGroupEditorCategory = $("admGroupCategory").value;
+  loadCatalogGroupEditor();
+}
+
+function editCatalogGroup(category){
+  if(!["cam_ip", "cam_ahd", "alarm", "wifi", "switch", "nvr", "others"].includes(category)) return;
+  catalogGroupEditDrafts[category] = null;
+  catalogGroupImageDrafts[category] = null;
+  $("admGroupCategory").value = catalogGroupEditorCategory = category;
+  $("admGroupLang").value = catalogGroupEditorLang = "tr";
+  loadCatalogGroupEditor();
+  $("admGroupTitle").scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function cancelCatalogGroupEdit(){
+  delete catalogGroupEditDrafts[catalogGroupEditorCategory];
+  delete catalogGroupImageDrafts[catalogGroupEditorCategory];
+  loadCatalogGroupEditor();
+}
+
+function updateCatalogGroupImagePreview(){
+  const preview = $("admGroupImagePreview");
+  if(!preview) return;
+  const image = $("admGroupImage").value.trim();
+  preview.src = image;
+  preview.style.display = image ? "block" : "none";
+}
+
+async function uploadCatalogGroupImage(input){
+  const file = input.files && input.files[0];
+  if(!file) return;
+  try {
+    if(!file.type.startsWith("image/")) throw new Error("Lütfen bir görsel dosyası seçin.");
+    const objectUrl = URL.createObjectURL(file);
+    try {
+      const image = new Image();
+      await new Promise((resolve, reject) => {
+        image.onload = resolve;
+        image.onerror = () => reject(new Error("Seçilen görsel açılamadı."));
+        image.src = objectUrl;
+      });
+      const scale = Math.min(1, 900 / image.naturalWidth, 650 / image.naturalHeight);
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
+      canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
+      const context = canvas.getContext("2d");
+      if(!context) throw new Error("Görsel işleme başlatılamadı.");
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      let compressed = "";
+      for(const quality of [0.76, 0.64, 0.52, 0.4]){
+        compressed = canvas.toDataURL("image/jpeg", quality);
+        if(compressed.length <= 88 * 1024) break;
+      }
+      if(compressed.length > 88 * 1024) throw new Error("Görsel çok büyük. Daha küçük bir fotoğraf seçin veya görsel bağlantısı kullanın.");
+      $("admGroupImage").value = compressed;
+      updateCatalogGroupImagePreview();
+      catalogGroupImageDrafts[catalogGroupEditorCategory] = compressed;
+    } finally {
+      URL.revokeObjectURL(objectUrl);
+    }
+  } catch(error) {
+    console.error("Product-group image could not be prepared:", error);
+    alert(error.message);
+    input.value = "";
+  }
+}
+
+function renderAdminCatalogGroupsTable(){
+  const tbody = $("admCatalogGroupsList");
+  if(!tbody) return;
+  const labels = {
+    cam_ip: "IP Kamera", cam_ahd: "Analog Kamera", alarm: "Alarm Sistemi",
+    wifi: "Wi-Fi Sistemi", switch: "Network Switch", nvr: "NVR Kayıt Cihazı", others: "Diğer Ürünler"
+  };
+  tbody.innerHTML = CATALOG_CATEGORIES.map(item => `
+    <tr>
+      <td><b>${escapeHtml(getCatalogGroupTitle(item, "tr"))}</b></td>
+      <td>${escapeHtml(labels[item.category] || item.category)}</td>
+      <td><button style="border:none;background:none;color:#1d4ed8;cursor:pointer;font-weight:900" onclick="editCatalogGroup('${item.category}')">✏️</button><button style="border:none;background:none;color:#dc2626;cursor:pointer;font-weight:900" onclick="deleteCatalogGroup('${item.category}')">🗑️</button></td>
+    </tr>
+  `).join('');
+}
+
+function saveCatalogGroup(){
+  captureCatalogGroupLanguage();
+  const category = catalogGroupEditorCategory;
+  const titles = catalogGroupEditDrafts[category];
+  const missingLanguage = CONTENT_LANGUAGES.find(language => !titles[language]?.trim());
+  if(missingLanguage){
+    $("admGroupLang").value = catalogGroupEditorLang = missingLanguage;
+    loadCatalogGroupEditor();
+    alert(`Lütfen ${LANG_FLAGS[missingLanguage].code} dilindeki başlığı da girin.`);
+    $("admGroupTitle").focus();
+    return;
+  }
+  const img = (catalogGroupImageDrafts[category] || "").trim();
+  if(!img){ alert("Lütfen ürün grubu için bir görsel bağlantısı girin veya bilgisayarınızdan fotoğraf seçin."); return; }
+  const group = {
+    category, img,
+    i18n: Object.fromEntries(CONTENT_LANGUAGES.map(language => [language, { title: titles[language].trim() }]))
+  };
+  const existingIndex = CATALOG_CATEGORIES.findIndex(item => item.category === category);
+  if(existingIndex >= 0) CATALOG_CATEGORIES[existingIndex] = { ...CATALOG_CATEGORIES[existingIndex], ...group };
+  else CATALOG_CATEGORIES.push(group);
+  saveAllToStorage();
+  renderAdminCatalogGroupsTable();
+  delete catalogGroupEditDrafts[category];
+  delete catalogGroupImageDrafts[category];
+  loadCatalogGroupEditor();
+  showToast(existingIndex >= 0 ? "Ürün grubu güncellendi!" : "Ürün grubu eklendi!");
+}
+
+function deleteCatalogGroup(category){
+  const group = getCatalogCategoryData(category);
+  if(!group || !confirm(`"${getCatalogGroupTitle(group, "tr")}" ürün grubunu kaldırmak istiyor musunuz?`)) return;
+  CATALOG_CATEGORIES = CATALOG_CATEGORIES.filter(item => item.category !== category);
+  delete catalogGroupEditDrafts[category];
+  delete catalogGroupImageDrafts[category];
+  saveAllToStorage();
+  renderAdminCatalogGroupsTable();
+  if(catalogGroupEditorCategory === category) loadCatalogGroupEditor();
+  showToast("Ürün grubu kaldırıldı.");
 }
 
 /* 3.3 PARTNER LOGOLARI RENDER */
@@ -1723,6 +1995,8 @@ function openAdminModal(){
     loadAdminContactFields();
     renderInventoryTable();
     renderAdminServicesTable();
+    renderAdminCatalogGroupsTable();
+    loadCatalogGroupEditor();
     renderAdminPartnersTable();
     renderAdminProjectsTable();
   } else {
@@ -1763,6 +2037,8 @@ function verifyAdminPin(){
     loadAdminContactFields();
     renderInventoryTable();
     renderAdminServicesTable();
+    renderAdminCatalogGroupsTable();
+    loadCatalogGroupEditor();
     renderAdminPartnersTable();
     renderAdminProjectsTable();
   }).catch(error => {
@@ -1804,6 +2080,7 @@ function switchAdminTab(tabName, btn){
   btn.classList.add('active');
   $('tabContent_hero').style.display = tabName === 'hero' ? 'flex' : 'none';
   $('tabContent_products').style.display = tabName === 'products' ? 'flex' : 'none';
+  $('tabContent_groups').style.display = tabName === 'groups' ? 'flex' : 'none';
   $('tabContent_services').style.display = tabName === 'services' ? 'flex' : 'none';
   $('tabContent_partners').style.display = tabName === 'partners' ? 'flex' : 'none';
   $('tabContent_projects').style.display = tabName === 'projects' ? 'flex' : 'none';
@@ -1927,7 +2204,9 @@ function captureServiceEditorLanguage(){
   serviceEditDraft[serviceEditorLang] = {
     title: $("admSrvTitle").value.trim(),
     tag: $("admSrvTag").value.trim(),
-    desc: $("admSrvDesc").value.trim()
+    desc: $("admSrvDesc").value.trim(),
+    details: [...document.querySelectorAll("#admSrvDetails .adm-service-detail")]
+      .map(input => input.value.trim()).filter(Boolean)
   };
 }
 
@@ -1937,6 +2216,45 @@ function loadServiceEditorLanguage(language){
   $("admSrvTitle").value = values.title || "";
   $("admSrvTag").value = values.tag || "";
   $("admSrvDesc").value = values.desc || "";
+  renderServiceDetailInputs(values.details || []);
+}
+
+function renderServiceDetailInputs(details){
+  const container = $("admSrvDetails");
+  container.innerHTML = "";
+  (details.length ? details : [""]).forEach(detail => {
+    const row = document.createElement("div");
+    row.className = "service-detail-row";
+    const input = document.createElement("input");
+    input.type = "text";
+    input.className = "adm-service-detail";
+    input.placeholder = "Örn: IP kamera sistemlerinin kurulumu";
+    input.value = detail;
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "project-task-remove";
+    button.setAttribute("aria-label", "Detayı kaldır");
+    button.textContent = "×";
+    button.onclick = () => removeServiceDetail(button);
+    row.append(input, button);
+    container.appendChild(row);
+  });
+}
+
+function addServiceDetailInput(){
+  const rows = [...document.querySelectorAll("#admSrvDetails .adm-service-detail")].map(input => input.value.trim()).filter(Boolean);
+  rows.push("");
+  renderServiceDetailInputs(rows);
+  $("admSrvDetails").querySelector(".service-detail-row:last-child .adm-service-detail")?.focus();
+}
+
+function removeServiceDetail(button){
+  const rows = $("admSrvDetails").querySelectorAll(".service-detail-row");
+  if(rows.length === 1){
+    rows[0].querySelector("input").value = "";
+    return;
+  }
+  button.closest(".service-detail-row").remove();
 }
 
 function switchServiceEditLanguage(){
@@ -1960,7 +2278,8 @@ function saveNewService(){
   CONTENT_LANGUAGES.forEach(language => {
     if(serviceEditDraft[language]) i18n[language] = { ...serviceEditDraft[language] };
   });
-  const updatedService = { id: editingServiceId || 'srv_' + Date.now(), img, title, tag, desc, i18n };
+  const details = serviceEditDraft[primaryLanguage]?.details || [];
+  const updatedService = { id: editingServiceId || 'srv_' + Date.now(), img, title, tag, desc, details, i18n };
   const existingIndex = SERVICES.findIndex(service => service.id === editingServiceId);
   if(existingIndex >= 0) SERVICES[existingIndex] = { ...SERVICES[existingIndex], ...updatedService };
   else SERVICES.push(updatedService);
@@ -2006,6 +2325,7 @@ function cancelServiceEdit(){
   $("admSrvImg").value = "";
   $("admSrvTag").value = "";
   $("admSrvDesc").value = "";
+  renderServiceDetailInputs([]);
   $("saveServiceBtn").textContent = "Hizmeti Ekle 🚀";
   $("cancelServiceEditBtn").style.display = "none";
 }
@@ -2779,6 +3099,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   selectLang(currentLang);
   await loadSharedContent();
   renderHeroFrontend();
+  renderCatalogCategories();
   renderCompactServicesFrontend();
   renderPartnersFrontend();
   renderContactFrontend();
