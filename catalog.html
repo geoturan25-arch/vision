@@ -45,9 +45,10 @@ h1{margin-top:8px;font-size:clamp(34px,5vw,54px);line-height:1.08;letter-spacing
 .product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
 .product-card{display:flex;flex-direction:column;min-width:0;padding:12px;border:1px solid #505156;border-radius:14px;background:linear-gradient(165deg,#fff 0%,#d8d9de 40%,#b2b3b8 100%);color:var(--ink);box-shadow:0 8px 22px rgba(0,0,0,.2);transition:transform .2s,border-color .2s}
 .product-card:hover{transform:translateY(-3px);border-color:#5635b7}
-.product-image{height:160px;display:grid;place-items:center;position:relative;overflow:hidden;margin-bottom:12px;padding:10px;border:1px solid #8a8d95;border-radius:9px;background:linear-gradient(145deg,#fff,#e8ebf0 55%,#d1d6de)}
-.product-image img{max-width:92%;max-height:92%;object-fit:contain;filter:drop-shadow(0 4px 6px rgba(0,0,0,.18))}
-.product-brand,.product-type{position:absolute;top:7px;border-radius:6px;padding:3px 7px;font-size:9px;font-weight:900}
+.alternative-heading{grid-column:1/-1;margin:8px 0 0;color:#fff;font-size:17px;font-weight:900}
+.product-image{height:160px;flex:0 0 160px;display:grid;grid-template-rows:minmax(0,1fr);place-items:center;position:relative;isolation:isolate;overflow:hidden;margin-bottom:12px;padding:10px;border:1px solid #8a8d95;border-radius:9px;background:#fff}
+.product-image img{position:relative;z-index:0;display:block;width:80%;height:80%;min-width:0;min-height:0;max-width:80%;max-height:80%;padding:0;object-fit:contain;filter:drop-shadow(0 4px 6px rgba(0,0,0,.18))}
+.product-brand,.product-type{position:absolute;z-index:1;top:7px;border-radius:6px;padding:3px 7px;font-size:9px;font-weight:900}
 .product-brand{left:7px;background:#fff;border:1px solid #9ca3af}
 .product-type{right:7px;background:#172033;color:#fff}
 .product-name{font-size:14px;font-weight:900;line-height:1.35}
@@ -70,7 +71,7 @@ footer{padding:20px;text-align:center;border-top:1px solid rgba(255,255,255,.16)
   .language-switch{gap:1px;padding:3px}.language-switch button{padding:5px 4px;font-size:10px}
   main{padding:38px 14px 58px}.catalog-controls{padding:14px}.search-row{align-items:stretch;flex-direction:column}
   .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.product-card{padding:9px}
-  .product-image{height:115px}.product-specs{font-size:9px}.product-bottom{align-items:flex-start;flex-direction:column}
+  .product-image{height:115px;flex-basis:115px}.product-specs{font-size:9px}.product-bottom{align-items:flex-start;flex-direction:column}
   .product-actions{width:100%;justify-content:stretch}.action-button{flex:1}
 }
 </style>
@@ -116,7 +117,7 @@ footer{padding:20px;text-align:center;border-top:1px solid rgba(255,255,255,.16)
 </main>
 <footer>© Vision Electronics · Tiflis, Gürcistan</footer>
 
-<script src="vision-i18n.js?v=20261110"></script>
+<script src="vision-i18n.js?v=20261111"></script>
 <script src="vision-cloud-config.js"></script>
 <script src="vision-cloud.js"></script>
 <script>
@@ -148,6 +149,20 @@ footer{padding:20px;text-align:center;border-top:1px solid rgba(255,255,255,.16)
   };
   const categoryOrder = ["cam_ip", "cam_ahd", "nvr", "switch", "wifi", "alarm", "others"];
   const brandOrder = ["hikvision", "prolook", "microtik", "tvt"];
+  const categorySearchTerms = {
+    cam_ip: ["ip kamera", "ip camera", "ip cam", "camera ip", "cctv"],
+    cam_ahd: ["analog kamera", "analog camera", "ahd"],
+    nvr: ["nvr", "kayıt cihazı", "kayit cihazi", "recorder"],
+    switch: ["switch", "poe"],
+    wifi: ["wi-fi", "wifi", "wireless", "kablosuz"],
+    alarm: ["alarm"]
+  };
+  const brandSearchTerms = {
+    hikvision: ["hikvision"],
+    prolook: ["prolook", "pro look"],
+    microtik: ["mikrotik", "microtik"],
+    tvt: ["tvt"]
+  };
   let language = localStorage.getItem("v_lang") || "tr";
   let products = [];
   let selectedBrand = "all";
@@ -184,6 +199,53 @@ footer{padding:20px;text-align:center;border-top:1px solid rgba(255,255,255,.16)
     }
   }
 
+  function normalizedBrand(product) {
+    return product.brand === "mikrotik" ? "microtik" : product.brand;
+  }
+
+  function productSearchText(product, includeBrand) {
+    return [
+      product.name, includeBrand ? product.brand : "", product.seg, product.kasa,
+      product.hw, product.port, product.extra, product.spec,
+      product.mp, product.ch, product.ports,
+      ...(Array.isArray(product.details) ? product.details : [])
+    ].filter(Boolean).join(" ").toLocaleLowerCase();
+  }
+
+  function findAlternativeGroups(query) {
+    let targetCategories = selectedCategory !== "all" ? [selectedCategory] :
+      Object.entries(categorySearchTerms)
+        .filter(([, terms]) => terms.some(term => query.includes(term)))
+        .map(([category]) => category);
+    const matchedBrand = selectedBrand !== "all" ? selectedBrand :
+      Object.entries(brandSearchTerms).find(([, terms]) => terms.some(term => query.includes(term)))?.[0];
+
+    if (!targetCategories.length && query) {
+      const brandTerms = Object.values(brandSearchTerms).flat();
+      const productQuery = brandTerms.reduce((remaining, term) =>
+        remaining.replaceAll(term, " "), query).replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+      if (productQuery) {
+        targetCategories = [...new Set(products
+          .filter(product => productSearchText(product, false).includes(productQuery))
+          .map(product => product.seg)
+          .filter(category => categoryOrder.includes(category)))];
+      }
+    }
+
+    if (!targetCategories.length && matchedBrand) {
+      targetCategories = [...new Set(products
+        .filter(product => normalizedBrand(product) === matchedBrand)
+        .map(product => product.seg)
+        .filter(category => categoryOrder.includes(category)))];
+    }
+
+    return targetCategories.map(category => ({
+      category,
+      products: products.filter(product =>
+        product.seg === category && (!matchedBrand || normalizedBrand(product) !== matchedBrand))
+    })).filter(group => group.products.length);
+  }
+
   function updateBrandFilters() {
     const availableBrands = [...brandOrder];
     products.forEach(product => {
@@ -214,15 +276,10 @@ footer{padding:20px;text-align:center;border-top:1px solid rgba(255,255,255,.16)
   function renderProducts() {
     const query = searchInput.value.trim().toLocaleLowerCase();
     const filtered = products.filter(product => {
-      const productBrand = product.brand === "mikrotik" ? "microtik" : product.brand;
+      const productBrand = normalizedBrand(product);
       if (selectedBrand !== "all" && productBrand !== selectedBrand) return false;
       if (selectedCategory !== "all" && product.seg !== selectedCategory) return false;
-      const searchable = [
-        product.name, product.brand, product.seg, product.kasa,
-        product.hw, product.port, product.extra, product.spec,
-        product.mp, product.ch, product.ports,
-        ...(Array.isArray(product.details) ? product.details : [])
-      ].filter(Boolean).join(" ").toLocaleLowerCase();
+      const searchable = productSearchText(product, true);
       return !query || searchable.includes(query);
     });
 
@@ -230,45 +287,51 @@ footer{padding:20px;text-align:center;border-top:1px solid rgba(255,255,255,.16)
     activeFilter.textContent = selectedBrand === "all" ? text("Tüm markalar") :
       (knownBrands[selectedBrand] || selectedBrand);
     if (!filtered.length) {
-      productGrid.innerHTML = `<div class="empty-state">${text("Ürün bulunamadı.")}</div>`;
+      const alternativeGroups = findAlternativeGroups(query);
+      productGrid.innerHTML = alternativeGroups.length ? alternativeGroups.map(group => `
+        <h2 class="alternative-heading">${text("Bu kategorideki alternatif ürünler")}: ${text(categoryLabels[group.category])}</h2>
+        ${group.products.map(renderProductCard).join("")}
+      `).join("") : `<div class="empty-state">${text("Ürün bulunamadı.")}</div>`;
       return;
     }
 
-    productGrid.innerHTML = filtered.map(product => {
-      const productBrand = product.brand === "mikrotik" ? "microtik" : product.brand;
-      const stock = product.stock === undefined ? 10 : Number(product.stock);
-      const stockClass = stock <= 0 ? "out" : stock <= 3 ? "low" : "";
-      const stockLabel = stock <= 0 ? "Stokta yok" : stock <= 3 ? "Son ürünler" : "Stokta";
-      const modelSpec = [product.kasa, product.mp, product.ch, product.ports].filter(Boolean).join(" · ");
-      const info = (Array.isArray(product.details) && product.details.length
-        ? product.details
-        : [product.hw, product.port, product.extra]).filter(value => typeof value === "string" && value.trim());
-      const message = encodeURIComponent("Hello Vision Electronics, info about: " + (product.name || ""));
-      return `
-        <article class="product-card">
-          <div class="product-image">
-            <span class="product-brand">${escapeHtml(knownBrands[productBrand] || product.brand || "")}</span>
-            ${modelSpec ? `<span class="product-type">${escapeHtml(modelSpec)}</span>` : ""}
-            <img src="${escapeHtml(product.img || "https://images.pexels.com/photos/27658186/pexels-photo-27658186.jpeg?auto=compress&cs=tinysrgb&w=600")}"
-              alt="${escapeHtml(product.name || "")}" loading="lazy"
-              onerror="this.src='https://images.pexels.com/photos/27658186/pexels-photo-27658186.jpeg?auto=compress&cs=tinysrgb&w=600'">
+    productGrid.innerHTML = filtered.map(renderProductCard).join("");
+  }
+
+  function renderProductCard(product) {
+    const productBrand = normalizedBrand(product);
+    const stock = product.stock === undefined ? 10 : Number(product.stock);
+    const stockClass = stock <= 0 ? "out" : stock <= 3 ? "low" : "";
+    const stockLabel = stock <= 0 ? "Stokta yok" : stock <= 3 ? "Son ürünler" : "Stokta";
+    const modelSpec = [product.kasa, product.mp, product.ch, product.ports].filter(Boolean).join(" · ");
+    const info = (Array.isArray(product.details) && product.details.length
+      ? product.details
+      : [product.hw, product.port, product.extra]).filter(value => typeof value === "string" && value.trim());
+    const message = encodeURIComponent("Hello Vision Electronics, info about: " + (product.name || ""));
+    return `
+      <article class="product-card">
+        <div class="product-image">
+          <span class="product-brand">${escapeHtml(knownBrands[productBrand] || product.brand || "")}</span>
+          ${modelSpec ? `<span class="product-type">${escapeHtml(modelSpec)}</span>` : ""}
+          <img src="${escapeHtml(product.img || "https://images.pexels.com/photos/27658186/pexels-photo-27658186.jpeg?auto=compress&cs=tinysrgb&w=600")}"
+            alt="${escapeHtml(product.name || "")}" loading="lazy"
+            onerror="this.src='https://images.pexels.com/photos/27658186/pexels-photo-27658186.jpeg?auto=compress&cs=tinysrgb&w=600'">
+        </div>
+        <h2 class="product-name">${escapeHtml(product.name || "")}</h2>
+        ${info.length ? `<ul class="product-specs">${info.map(value => `<li>${escapeHtml(value)}</li>`).join("")}</ul>` : ""}
+        <div class="product-bottom">
+          <div>
+            <div class="product-price">${escapeHtml(product.price)} GEL</div>
+            <div class="stock ${stockClass}"><span class="stock-dot"></span>${text(stockLabel)}</div>
           </div>
-          <h2 class="product-name">${escapeHtml(product.name || "")}</h2>
-          ${info.length ? `<ul class="product-specs">${info.map(value => `<li>${escapeHtml(value)}</li>`).join("")}</ul>` : ""}
-          <div class="product-bottom">
-            <div>
-              <div class="product-price">${escapeHtml(product.price)} GEL</div>
-              <div class="stock ${stockClass}"><span class="stock-dot"></span>${text(stockLabel)}</div>
-            </div>
-            <div class="product-actions">
-              ${stock > 0 ? `<button type="button" class="action-button" data-add="${escapeHtml(product.id)}">${text("Sepete ekle")}</button>` : ""}
-              <a class="action-button ask" href="https://wa.me/995557030033?text=${message}"
-                target="_blank" rel="noopener noreferrer">${text("Bilgi al")}</a>
-            </div>
+          <div class="product-actions">
+            ${stock > 0 ? `<button type="button" class="action-button" data-add="${escapeHtml(product.id)}">${text("Sepete ekle")}</button>` : ""}
+            <a class="action-button ask" href="https://wa.me/995557030033?text=${message}"
+              target="_blank" rel="noopener noreferrer">${text("Bilgi al")}</a>
           </div>
-        </article>
-      `;
-    }).join("");
+        </div>
+      </article>
+    `;
   }
 
   function render() {
