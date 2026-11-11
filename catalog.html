@@ -232,9 +232,9 @@ footer{padding:20px;text-align:center;border-top:1px solid rgba(255,255,255,.16)
       }
     }
 
-    if (!targetCategories.length && matchedBrand) {
+    if (!targetCategories.length && matchedBrand && selectedCategory === "all") {
       targetCategories = [...new Set(products
-        .filter(product => normalizedBrand(product) === matchedBrand)
+        .filter(product => normalizedBrand(product) !== matchedBrand)
         .map(product => product.seg)
         .filter(category => categoryOrder.includes(category)))];
     }

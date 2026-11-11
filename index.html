@@ -252,7 +252,7 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
   overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
 }
 .project-card{
-  width:320px;height:380px;
+  width:320px;height:auto;min-height:380px;
   background: var(--card-metal);
   border: 2px solid var(--line-steel);
   border-radius:16px;overflow:hidden;display:flex;flex-direction:column;
@@ -267,9 +267,28 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .project-body{padding:14px;display:flex;flex-direction:column;flex:1}
 .project-body h3{font-size:14.5px;font-weight:900;margin-bottom:4px;color:var(--tx)}
 .project-body p{font-size:11.5px;color:var(--tx-soft);line-height:1.5;margin-bottom:auto}
+.project-tasks{margin:4px 0 0;padding-left:18px;list-style:disc;color:#111827;font-size:11px;line-height:1.5}
+.project-tasks li::marker{color:#000}
+.project-tasks li+li{margin-top:3px}
+.project-task-row{display:flex;align-items:center;gap:6px}
+.project-task-row input{flex:1;min-width:0;background:#fff;border:1.5px solid var(--line-steel);padding:7px 10px;border-radius:6px;font-size:12px;color:#0b0f17}
+.project-task-remove{border:0;background:none;color:var(--red);font-size:18px;font-weight:900;line-height:1}
 .project-footer-row{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
 .project-loc{font-size:10.5px;font-weight:800;color:var(--cyan)}
 .project-view-btn{font-size:11px;color:var(--bl);font-weight:800}
+.contact-section{scroll-margin-top:78px;padding:38px 24px;background:linear-gradient(180deg,#202951 0%,#171d3d 100%);border-top:2px solid rgba(196,181,253,.4)}
+.contact-container{max-width:1200px;margin:0 auto}
+.contact-heading{text-align:center;margin-bottom:18px}
+.contact-heading .sec-title{color:#fff}
+.contact-details{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+.contact-item{
+  min-width:min(100%,210px);max-width:100%;padding:12px 16px;border:1px solid rgba(255,255,255,.24);
+  border-radius:10px;background:rgba(255,255,255,.08);color:#fff;text-align:center;
+}
+.contact-item-label{display:block;color:#c4b5fd;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.contact-item-value{display:block;margin-top:3px;font-size:13px;font-weight:800;overflow-wrap:anywhere}
+.contact-item a:hover{color:#c4b5fd;text-decoration:underline}
+.contact-empty{color:#e2e8f0;font-size:13px}
 
 /* ADMIN MODAL */
 .admin-modal{
@@ -505,7 +524,7 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
     <a href="catalog.html" id="navCatalog">Katalog</a>
     <a href="#partnersSec" id="navPartners">Partnerler</a>
     <a href="#projects" id="navProjects">Projelerimiz</a>
-    <a href="tel:+995557030033" id="navContact">İletişim</a>
+    <a href="#contact" id="navContact">İletişim</a>
   </nav>
 
   <!-- MOBİL ARAMA TETİKLEYİCİSİ -->
@@ -566,7 +585,6 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
     <p id="heroP">Hikvision, MikroTik, Pro Look ve TVT orijinal IP/Analog kameralar, NVR sunucuları ve anahtar teslim mühendislik işçiliği.</p>
     <div class="hero-btns">
       <a class="btn" href="catalog.html" id="btnHeroCatalog">Katalog</a>
-      <a class="btn green" href="https://wa.me/995557030033" target="_blank" id="btnHeroWhatsapp">WhatsApp Mühendis Hattı</a>
     </div>
   </div>
 </div>
@@ -777,13 +795,14 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
 
     <!-- ADMIN PANEL İÇERİĞİ -->
     <div id="adminPanelScreen" style="display:none;flex-direction:column;flex:1;overflow:hidden">
-      <!-- 5 YÖNETİM SEKMESİ -->
+      <!-- YÖNETİM SEKMELERİ -->
       <div class="admin-tabs-bar">
         <button class="admin-tab-btn active" onclick="switchAdminTab('hero', this)">🖥️ Giriş & TV Ekranı</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('products', this)">📦 Donanım Kataloğu</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('services', this)">🏢 Hizmet Alanları</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('partners', this)">🤝 Partner Firmalar</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('projects', this)">🏗️ Projelerimiz</button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('contact', this)">📞 İletişim</button>
         <button class="btn" style="margin-left:auto;background:#dc2626;padding:4px 10px;font-size:10px" onclick="logoutAdmin()">Çıkış ✕</button>
       </div>
 
@@ -794,6 +813,13 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
         <!-- 2.1 SEKME: GİRİŞ & TV SLIDESHOW YÖNETİMİ -->
         <div id="tabContent_hero" style="display:flex;flex-direction:column;gap:16px">
           <h4 style="font-size:13.5px;font-weight:900;color:var(--tx)">🖥️ Hero Başlıkları ve TV Ekranı Fotoğrafları</h4>
+          <div class="form-group">
+            <label for="admHeroLang">Düzenlenecek dil</label>
+            <select id="admHeroLang" onchange="switchHeroEditLanguage()">
+              <option value="tr">Türkçe</option><option value="en">English</option><option value="ge">ქართული</option><option value="az">Azərbaycanca</option><option value="ru">Русский</option>
+            </select>
+            <small style="color:var(--tx-soft)">Dilleri sırayla seçip her biri için metinleri girin, ardından kaydedin.</small>
+          </div>
           <div class="admin-form-grid">
             <div class="form-group" style="grid-column:1/-1">
               <label>Hero Rozet Metni (Tagline)</label>
@@ -915,6 +941,13 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
         <!-- 3.2 SEKME: HİZMET ALANLARI CMS -->
         <div id="tabContent_services" style="display:none;flex-direction:column;gap:16px">
           <h4 style="font-size:13.5px;font-weight:900;color:var(--tx)">➕ Yeni Kompakt Hizmet Alanı Ekle</h4>
+          <div class="form-group">
+            <label for="admSrvLang">Metin dili</label>
+            <select id="admSrvLang" onchange="switchServiceEditLanguage()">
+              <option value="tr">Türkçe</option><option value="en">English</option><option value="ge">ქართული</option><option value="az">Azərbaycanca</option><option value="ru">Русский</option>
+            </select>
+            <small style="color:var(--tx-soft)">Dilleri değiştirerek başlık, etiket ve açıklamayı her dilde girebilirsiniz.</small>
+          </div>
           <div class="admin-form-grid">
             <div class="form-group">
               <label>Hizmet Başlığı</label>
@@ -933,7 +966,8 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
               <textarea id="admSrvDesc" rows="2" placeholder="Kasa üzeri kör noktasız zoom lens, mutfak yangın algılama ve Wi-Fi 6 altyapısı..."></textarea>
             </div>
             <div style="grid-column:1/-1;display:flex;justify-content:flex-end">
-              <button class="btn green" style="padding:10px 24px" onclick="saveNewService()">Hizmeti Ekle 🚀</button>
+              <button class="btn green" id="saveServiceBtn" style="padding:10px 24px" onclick="saveNewService()">Hizmeti Ekle 🚀</button>
+              <button class="btn" id="cancelServiceEditBtn" style="display:none;background:#64748b;padding:10px 18px" onclick="cancelServiceEdit()">Düzenlemeyi İptal Et</button>
             </div>
           </div>
 
@@ -941,7 +975,7 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
             <h4 style="font-size:13px;font-weight:900;color:var(--tx);margin-bottom:8px">📋 Mevcut Hizmet Kartları</h4>
             <div class="inventory-table-wrap">
               <table class="inventory-table">
-                <thead><tr><th>Hizmet Başlığı</th><th>Segment</th><th>Kaldır</th></tr></thead>
+                <thead><tr><th>Hizmet Başlığı</th><th>Segment</th><th>İşlem</th></tr></thead>
                 <tbody id="admServicesList"></tbody>
               </table>
             </div>
@@ -979,6 +1013,13 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
         <!-- SEKME: PROJELERİMİZ YÖNETİMİ -->
         <div id="tabContent_projects" style="display:none;flex-direction:column;gap:16px">
           <h4 style="font-size:13.5px;font-weight:900;color:var(--tx)">➕ Yeni Referans Proje Ekle</h4>
+          <div class="form-group">
+            <label for="admProjLang">Metin dili</label>
+            <select id="admProjLang" onchange="switchProjectEditLanguage()">
+              <option value="tr">Türkçe</option><option value="en">English</option><option value="ge">ქართული</option><option value="az">Azərbaycanca</option><option value="ru">Русский</option>
+            </select>
+            <small style="color:var(--tx-soft)">Proje bilgilerini ve yapılan işler listesini her dil için ayrı girin.</small>
+          </div>
           <div class="admin-form-grid">
             <div class="form-group" style="grid-column:1/-1">
               <label>Proje / Tesis Adı</label>
@@ -997,11 +1038,18 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
               <input type="url" id="admProjImg" placeholder="https://... veya resim.jpg">
             </div>
             <div class="form-group" style="grid-column:1/-1">
-              <label>Proje Açıklaması</label>
-              <textarea id="admProjDesc" rows="2" placeholder="Turnike geçişleri, çevre güvenliği ve fiber omurga kurulumu..."></textarea>
+              <label>Yapılan İşler</label>
+              <div id="admProjTasks" style="display:flex;flex-direction:column;gap:7px">
+                <div class="project-task-row">
+                  <input type="text" class="adm-project-task" placeholder="Örn: 28 IP kameranın kurulumu">
+                  <button type="button" class="project-task-remove" aria-label="İşi kaldır" onclick="removeProjectTask(this)">×</button>
+                </div>
+              </div>
+              <button type="button" class="btn" style="align-self:flex-start;padding:6px 12px;font-size:11px" onclick="addProjectTaskInput()">+ İş Ekle</button>
             </div>
             <div style="grid-column:1/-1;display:flex;justify-content:flex-end">
-              <button class="btn green" style="padding:10px 24px" onclick="saveNewProject()">Projeyi Ekle 🚀</button>
+              <button class="btn green" id="saveProjectBtn" style="padding:10px 24px" onclick="saveNewProject()">Projeyi Ekle 🚀</button>
+              <button class="btn" id="cancelProjectEditBtn" style="display:none;background:#64748b;padding:10px 18px" onclick="cancelProjectEdit()">Düzenlemeyi İptal Et</button>
             </div>
           </div>
 
@@ -1009,9 +1057,39 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
             <h4 style="font-size:13px;font-weight:900;color:var(--tx);margin-bottom:8px">📋 Mevcut Projeler</h4>
             <div class="inventory-table-wrap">
               <table class="inventory-table">
-                <thead><tr><th>Proje Adı</th><th>Konum</th><th>Kaldır</th></tr></thead>
+                <thead><tr><th>Proje Adı</th><th>Konum</th><th>İşlem</th></tr></thead>
                 <tbody id="admProjectsList"></tbody>
               </table>
+            </div>
+          </div>
+        </div>
+
+        <div id="tabContent_contact" style="display:none;flex-direction:column;gap:16px">
+          <h4 style="font-size:13.5px;font-weight:900;color:var(--tx)">📞 Ana Sayfa İletişim Bilgileri</h4>
+          <p style="font-size:12px;color:var(--tx-soft)">Buraya girdiğiniz bilgiler ana sayfanın altındaki İletişim bölümünde gösterilir.</p>
+          <div class="admin-form-grid">
+            <div class="form-group">
+              <label for="admContactPhone">Telefon numarası</label>
+              <input type="tel" id="admContactPhone" autocomplete="tel" placeholder="+995 557 03 00 33">
+            </div>
+            <div class="form-group">
+              <label for="admContactEmail">E-posta adresi</label>
+              <input type="email" id="admContactEmail" autocomplete="email" placeholder="info@example.com">
+            </div>
+            <div class="form-group">
+              <label for="admContactWhatsapp">WhatsApp numarası</label>
+              <input type="tel" id="admContactWhatsapp" placeholder="995557030033">
+            </div>
+            <div class="form-group">
+              <label for="admContactAddress">Adres / şehir</label>
+              <input type="text" id="admContactAddress" autocomplete="street-address" placeholder="Tiflis, Gürcistan">
+            </div>
+            <div class="form-group" style="grid-column:1/-1">
+              <label for="admContactHours">Çalışma saatleri</label>
+              <input type="text" id="admContactHours" placeholder="Pazartesi–Cuma, 09:00–18:00">
+            </div>
+            <div style="grid-column:1/-1;display:flex;justify-content:flex-end">
+              <button class="btn green" style="padding:10px 24px" onclick="saveContactDetails()">İletişim Bilgilerini Kaydet ✓</button>
             </div>
           </div>
         </div>
@@ -1083,6 +1161,16 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
   </div>
 </div>
 
+<section class="contact-section" id="contact" aria-labelledby="contactTitle">
+  <div class="contact-container">
+    <div class="contact-heading">
+      <span class="sec-tag">VISION ELECTRONICS</span>
+      <h2 class="sec-title" id="contactTitle">İletişim</h2>
+    </div>
+    <div class="contact-details" id="contactDetails"></div>
+  </div>
+</section>
+
 <footer>
   © Vision Electronics · Profesyonel Güvenlik ve Ağ Donanımları · Tiflis, Gürcistan
 </footer>
@@ -1153,6 +1241,13 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
     { id: "logistics", title: "Tiflis Lojistik Merkezi", loc: "📍 Tiflis / Gürcistan", tag: "CCTV & PoE Ağı", img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=700&q=80", desc: "64 Kanal Hikvision 4K IP kamera, MikroTik fiber omurga ve 360 derece çevre güvenlik analitiği." },
     { id: "hotel", title: "Batum 5 Yıldızlı Otel", loc: "📍 Batum / Gürcistan", tag: "Wi-Fi 6 & IP Kamera", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80", desc: "MikroTik cAP ax tavan tipi Wi-Fi altyapısı ve 120 adet IK10 vandal-proof dome kamera entegrasyonu." }
   ];
+  window.DEFAULT_CONTACT = {
+    phone: "+995 557 03 00 33",
+    email: "",
+    whatsapp: "995557030033",
+    address: "Tiflis, Gürcistan",
+    hours: ""
+  };
 })();
 </script>
 <script>
@@ -1180,6 +1275,19 @@ function getSafeArray(key, fallback){
   }
 }
 
+function getSafeContact(){
+  try {
+    const saved = JSON.parse(localStorage.getItem("vision_contact") || "null");
+    if(!saved || typeof saved !== "object" || Array.isArray(saved)) return { ...DEFAULT_CONTACT };
+    return Object.fromEntries(Object.keys(DEFAULT_CONTACT).map(key => [
+      key, typeof saved[key] === "string" ? saved[key] : DEFAULT_CONTACT[key]
+    ]));
+  } catch(error) {
+    console.error("Saved contact information is invalid:", error);
+    return { ...DEFAULT_CONTACT };
+  }
+}
+
 let HERO_DATA = DEFAULT_HERO;
 try {
   const hRaw = localStorage.getItem("vision_hero");
@@ -1200,8 +1308,18 @@ let PRODUCTS = getSafeArray("vision_products", DEFAULT_PRODUCTS);
 let SERVICES = getSafeArray("vision_services", DEFAULT_SERVICES);
 let PARTNERS = getSafeArray("vision_partners", DEFAULT_PARTNERS);
 let PROJECTS = getSafeArray("vision_projects", DEFAULT_PROJECTS);
+let CONTACT_DATA = getSafeContact();
 
 let currentLang = localStorage.getItem("v_lang") || 'tr';
+const CONTENT_LANGUAGES = ["tr", "en", "ge", "az", "ru"];
+let heroEditDraft = {};
+let heroEditorLang = "tr";
+let serviceEditDraft = {};
+let serviceEditorLang = "tr";
+let editingServiceId = null;
+let projectEditDraft = {};
+let projectEditorLang = "tr";
+let editingProjectId = null;
 let currentBrand = 'all';
 let currentSeg = 'all';
 let currentSubFilter = 'all';
@@ -1220,6 +1338,39 @@ let sharedContentLoadFailed = false;
 let cloudSaveSequence = 0;
 const cloudSaveState = { pending: false, queuedToast: "", queue: Promise.resolve() };
 
+function getLocalizedField(item, field, language){
+  const translated = item && item.i18n && item.i18n[language] && item.i18n[language][field];
+  if(typeof translated === "string" && translated.trim()) return translated;
+  return typeof item?.[field] === "string" ? item[field] : "";
+}
+
+function getProjectTasks(project, language){
+  const translated = project && project.i18n && project.i18n[language] && project.i18n[language].tasks;
+  if(Array.isArray(translated) && translated.some(task => typeof task === "string" && task.trim())){
+    return translated.filter(task => typeof task === "string" && task.trim());
+  }
+  return Array.isArray(project.tasks) ? project.tasks.filter(task => typeof task === "string" && task.trim()) :
+    String(project.desc || "").split(/\r?\n/).map(task => task.trim()).filter(Boolean);
+}
+
+function getServiceLanguageValues(service, language){
+  return {
+    title: language === "tr" ? service.title || "" : service.i18n?.[language]?.title || "",
+    tag: language === "tr" ? service.tag || "" : service.i18n?.[language]?.tag || "",
+    desc: language === "tr" ? service.desc || "" : service.i18n?.[language]?.desc || ""
+  };
+}
+
+function getProjectLanguageValues(project, language){
+  return {
+    title: language === "tr" ? project.title || "" : project.i18n?.[language]?.title || "",
+    loc: language === "tr" ? project.loc || "" : project.i18n?.[language]?.loc || "",
+    tag: language === "tr" ? project.tag || "" : project.i18n?.[language]?.tag || "",
+    tasks: language === "tr" ? getProjectTasks(project, "tr") :
+      Array.isArray(project.i18n?.[language]?.tasks) ? project.i18n[language].tasks : []
+  };
+}
+
 function setAdminCloudStatus(message, state){
   message = window.VisionTranslations.translateText(message, currentLang);
   ["adminCloudStatus", "adminCloudSaveStatus"].forEach(id => {
@@ -1236,7 +1387,8 @@ function getSharedContentSnapshot(){
     products: PRODUCTS,
     services: SERVICES,
     partners: PARTNERS,
-    projects: PROJECTS
+    projects: PROJECTS,
+    contact: CONTACT_DATA
   };
 }
 
@@ -1247,11 +1399,17 @@ function applySharedContent(content){
   if(Array.isArray(content.services)) SERVICES = content.services;
   if(Array.isArray(content.partners)) PARTNERS = content.partners;
   if(Array.isArray(content.projects)) PROJECTS = content.projects;
+  if(content.contact && typeof content.contact === "object" && !Array.isArray(content.contact)){
+    CONTACT_DATA = Object.fromEntries(Object.keys(DEFAULT_CONTACT).map(key => [
+      key, typeof content.contact[key] === "string" ? content.contact[key] : DEFAULT_CONTACT[key]
+    ]));
+  }
   localStorage.setItem("vision_hero", JSON.stringify(HERO_DATA));
   localStorage.setItem("vision_products", JSON.stringify(PRODUCTS));
   localStorage.setItem("vision_services", JSON.stringify(SERVICES));
   localStorage.setItem("vision_partners", JSON.stringify(PARTNERS));
   localStorage.setItem("vision_projects", JSON.stringify(PROJECTS));
+  localStorage.setItem("vision_contact", JSON.stringify(CONTACT_DATA));
 }
 
 async function loadSharedContent(){
@@ -1278,9 +1436,11 @@ function saveAllToStorage(){
   localStorage.setItem("vision_services", JSON.stringify(SERVICES));
   localStorage.setItem("vision_partners", JSON.stringify(PARTNERS));
   localStorage.setItem("vision_projects", JSON.stringify(PROJECTS));
+  localStorage.setItem("vision_contact", JSON.stringify(CONTACT_DATA));
   renderHeroFrontend();
   renderCompactServicesFrontend();
   renderPartnersFrontend();
+  renderContactFrontend();
   renderSegmentPills();
   renderSubFilters();
   renderCatalogCards();
@@ -1321,11 +1481,13 @@ function resetDefaultProducts(){
     localStorage.removeItem("vision_services");
     localStorage.removeItem("vision_partners");
     localStorage.removeItem("vision_projects");
+    localStorage.removeItem("vision_contact");
     localStorage.removeItem("vision_hero");
     PRODUCTS = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
     SERVICES = JSON.parse(JSON.stringify(DEFAULT_SERVICES));
     PARTNERS = JSON.parse(JSON.stringify(DEFAULT_PARTNERS));
     PROJECTS = JSON.parse(JSON.stringify(DEFAULT_PROJECTS));
+    CONTACT_DATA = { ...DEFAULT_CONTACT };
     HERO_DATA = JSON.parse(JSON.stringify(DEFAULT_HERO));
     HERO_DATA.slides = [...HERO_BACKGROUND_IMAGES];
     saveAllToStorage();
@@ -1374,9 +1536,13 @@ function selectLang(code){
   renderSegmentPills();
   renderSubFilters();
   renderCatalogCards();
+  renderHeroFrontend();
+  renderCompactServicesFrontend();
+  renderProjectsTrack();
   updateSelectionBar();
   updateCartUI();
   window.VisionTranslations.apply(document, code);
+  renderContactFrontend();
 }
 
 /* MOBİL ARAMA */
@@ -1391,9 +1557,9 @@ function renderHeroFrontend(){
   if(HERO_DATA.tag === "CCTV · NETWORK POE · WI-FI · ALARM"){
     HERO_DATA.tag = "CCTV · IP CAMERA · WI-FI · ALARM";
   }
-  $("heroTagText").textContent = HERO_DATA.tag;
-  $("heroH1").textContent = HERO_DATA.h1;
-  $("heroP").textContent = HERO_DATA.p;
+  $("heroTagText").textContent = getLocalizedField(HERO_DATA, "tag", currentLang);
+  $("heroH1").textContent = getLocalizedField(HERO_DATA, "h1", currentLang);
+  $("heroP").textContent = getLocalizedField(HERO_DATA, "p", currentLang);
 
   const container = $("tvSlidesContainer");
   if(!container) return;
@@ -1423,12 +1589,12 @@ function renderCompactServicesFrontend(){
   grid.innerHTML = SERVICES.map(srv => `
     <div class="service-compact-card">
       <div class="service-compact-img">
-        <img src="${escapeHtml(srv.img)}" onerror="this.src='https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80'" alt="${escapeHtml(srv.title)}">
-        <span class="service-compact-tag">${escapeHtml(srv.tag)}</span>
+        <img src="${escapeHtml(srv.img)}" onerror="this.src='https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80'" alt="${escapeHtml(getLocalizedField(srv, "title", currentLang))}">
+        <span class="service-compact-tag">${escapeHtml(getLocalizedField(srv, "tag", currentLang))}</span>
       </div>
       <div class="service-compact-body">
-        <h4>${escapeHtml(srv.title)}</h4>
-        <p>${escapeHtml(srv.desc)}</p>
+        <h4>${escapeHtml(getLocalizedField(srv, "title", currentLang))}</h4>
+        <p>${escapeHtml(getLocalizedField(srv, "desc", currentLang))}</p>
         <div class="service-compact-foot">
           <span>✓ Anahtar Teslim</span>
           <a href="services.html" style="color:var(--bl);text-decoration:underline">Detayları Gör ➔</a>
@@ -1451,27 +1617,62 @@ function renderPartnersFrontend(){
   `).join('');
 }
 
+function renderContactFrontend(){
+  const container = $("contactDetails");
+  if(!container) return;
+  const items = [];
+  const phone = CONTACT_DATA.phone.trim();
+  const email = CONTACT_DATA.email.trim();
+  const whatsapp = CONTACT_DATA.whatsapp.replace(/\D/g, "");
+  const address = CONTACT_DATA.address.trim();
+  const hours = CONTACT_DATA.hours.trim();
+
+  if(phone){
+    const phoneHref = phone.replace(/[^\d+]/g, "");
+    items.push(`<div class="contact-item"><span class="contact-item-label">${window.VisionTranslations.translateText("Telefon", currentLang)}</span><a class="contact-item-value" href="tel:${escapeHtml(phoneHref)}">${escapeHtml(phone)}</a></div>`);
+  }
+  if(email){
+    items.push(`<div class="contact-item"><span class="contact-item-label">${window.VisionTranslations.translateText("E-posta", currentLang)}</span><a class="contact-item-value" href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></div>`);
+  }
+  if(whatsapp){
+    items.push(`<div class="contact-item"><span class="contact-item-label">${window.VisionTranslations.translateText("WhatsApp", currentLang)}</span><a class="contact-item-value" href="https://wa.me/${escapeHtml(whatsapp)}" target="_blank" rel="noopener noreferrer">${escapeHtml(CONTACT_DATA.whatsapp.trim())}</a></div>`);
+  }
+  if(address){
+    items.push(`<div class="contact-item"><span class="contact-item-label">${window.VisionTranslations.translateText("Adres", currentLang)}</span><span class="contact-item-value">${escapeHtml(address)}</span></div>`);
+  }
+  if(hours){
+    items.push(`<div class="contact-item"><span class="contact-item-label">${window.VisionTranslations.translateText("Çalışma saatleri", currentLang)}</span><span class="contact-item-value">${escapeHtml(hours)}</span></div>`);
+  }
+  container.innerHTML = items.join("") || `<p class="contact-empty">${window.VisionTranslations.translateText("İletişim bilgisi yakında eklenecek.", currentLang)}</p>`;
+}
+
 /* PROJELER RENDER */
 function renderProjectsTrack(){
   const track = $("projectsTrack");
   if(!track) return;
-  track.innerHTML = PROJECTS.map(proj => `
-    <div class="project-card" onclick="${proj.isDigomi ? 'openDigomiGallery()' : ''}">
-      <span class="project-badge-corner">★ CANLI SAHA</span>
-      <div class="project-img">
-        <img src="${escapeHtml(proj.img)}" onerror="this.src='https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=700&q=80'" alt="${escapeHtml(proj.title)}">
-        <span class="project-tag">${escapeHtml(proj.tag)}</span>
-      </div>
-      <div class="project-body">
-        <h3>${escapeHtml(proj.title)}</h3>
-        <p>${escapeHtml(proj.desc)}</p>
-        <div class="project-footer-row">
-          <span class="project-loc">${escapeHtml(proj.loc)}</span>
-          <span class="project-view-btn">${proj.isDigomi ? '5 Fotoğrafı Gör 🔍' : 'Detay'}</span>
+  track.innerHTML = PROJECTS.map(proj => {
+    const tasks = getProjectTasks(proj, currentLang);
+    const title = getLocalizedField(proj, "title", currentLang);
+    const tag = getLocalizedField(proj, "tag", currentLang);
+    const loc = getLocalizedField(proj, "loc", currentLang);
+    return `
+      <div class="project-card" onclick="${proj.isDigomi ? 'openDigomiGallery()' : ''}">
+        <span class="project-badge-corner">★ CANLI SAHA</span>
+        <div class="project-img">
+          <img src="${escapeHtml(proj.img)}" onerror="this.src='https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=700&q=80'" alt="${escapeHtml(title)}">
+          <span class="project-tag">${escapeHtml(tag)}</span>
+        </div>
+        <div class="project-body">
+          <h3>${escapeHtml(title)}</h3>
+          ${tasks.length ? `<ul class="project-tasks">${tasks.map(task => `<li>${escapeHtml(task)}</li>`).join("")}</ul>` : ""}
+          <div class="project-footer-row">
+            <span class="project-loc">${escapeHtml(loc)}</span>
+            <span class="project-view-btn">${proj.isDigomi ? '5 Fotoğrafı Gör 🔍' : 'Detay'}</span>
+          </div>
         </div>
       </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 /* GİZLİ ADMIN GİRİŞİ */
@@ -1482,6 +1683,7 @@ function openAdminModal(){
     $("adminAuthScreen").style.display = "none";
     $("adminPanelScreen").style.display = "flex";
     loadAdminHeroFields();
+    loadAdminContactFields();
     renderInventoryTable();
     renderAdminServicesTable();
     renderAdminPartnersTable();
@@ -1521,6 +1723,7 @@ function verifyAdminPin(){
     $("adminAuthScreen").style.display = "none";
     $("adminPanelScreen").style.display = "flex";
     loadAdminHeroFields();
+    loadAdminContactFields();
     renderInventoryTable();
     renderAdminServicesTable();
     renderAdminPartnersTable();
@@ -1567,20 +1770,87 @@ function switchAdminTab(tabName, btn){
   $('tabContent_services').style.display = tabName === 'services' ? 'flex' : 'none';
   $('tabContent_partners').style.display = tabName === 'partners' ? 'flex' : 'none';
   $('tabContent_projects').style.display = tabName === 'projects' ? 'flex' : 'none';
+  $('tabContent_contact').style.display = tabName === 'contact' ? 'flex' : 'none';
 }
 
 /* HERO ADMIN */
 function loadAdminHeroFields(){
-  $("admHeroTag").value = HERO_DATA.tag;
-  $("admHeroH1").value = HERO_DATA.h1;
-  $("admHeroP").value = HERO_DATA.p;
+  heroEditDraft = {};
+  heroEditorLang = $("admHeroLang").value || "tr";
+  loadHeroEditorLanguage(heroEditorLang);
   renderAdminTvSlidesTable();
 }
 
+function captureHeroEditorLanguage(){
+  heroEditDraft[heroEditorLang] = {
+    tag: $("admHeroTag").value.trim(),
+    h1: $("admHeroH1").value.trim(),
+    p: $("admHeroP").value.trim()
+  };
+}
+
+function loadHeroEditorLanguage(language){
+  const saved = heroEditDraft[language] || (language === "tr" ? {
+    tag: HERO_DATA.tag || "", h1: HERO_DATA.h1 || "", p: HERO_DATA.p || ""
+  } : HERO_DATA.i18n?.[language] || { tag: "", h1: "", p: "" });
+  $("admHeroTag").value = saved.tag || "";
+  $("admHeroH1").value = saved.h1 || "";
+  $("admHeroP").value = saved.p || "";
+}
+
+function switchHeroEditLanguage(){
+  captureHeroEditorLanguage();
+  heroEditorLang = $("admHeroLang").value;
+  loadHeroEditorLanguage(heroEditorLang);
+}
+
+function loadAdminContactFields(){
+  $("admContactPhone").value = CONTACT_DATA.phone;
+  $("admContactEmail").value = CONTACT_DATA.email;
+  $("admContactWhatsapp").value = CONTACT_DATA.whatsapp;
+  $("admContactAddress").value = CONTACT_DATA.address;
+  $("admContactHours").value = CONTACT_DATA.hours;
+}
+
+function saveContactDetails(){
+  const emailInput = $("admContactEmail");
+  const email = emailInput.value.trim();
+  if(email && !emailInput.validity.valid){
+    alert("Lütfen geçerli bir e-posta adresi giriniz.");
+    emailInput.focus();
+    return;
+  }
+  const whatsapp = $("admContactWhatsapp").value.trim();
+  const whatsappDigits = whatsapp.replace(/\D/g, "");
+  if(whatsapp && (whatsappDigits.length < 8 || whatsappDigits.length > 15)){
+    alert("WhatsApp numarası ülke koduyla birlikte 8–15 rakam içermelidir.");
+    $("admContactWhatsapp").focus();
+    return;
+  }
+
+  CONTACT_DATA = {
+    phone: $("admContactPhone").value.trim(),
+    email,
+    whatsapp,
+    address: $("admContactAddress").value.trim(),
+    hours: $("admContactHours").value.trim()
+  };
+  saveAllToStorage();
+  showToast("İletişim bilgileri kaydedildi.");
+}
+
 function saveHeroTexts(){
-  HERO_DATA.tag = $("admHeroTag").value.trim();
-  HERO_DATA.h1 = $("admHeroH1").value.trim();
-  HERO_DATA.p = $("admHeroP").value.trim();
+  captureHeroEditorLanguage();
+  HERO_DATA.i18n = HERO_DATA.i18n || {};
+  CONTENT_LANGUAGES.forEach(language => {
+    if(!heroEditDraft[language]) return;
+    HERO_DATA.i18n[language] = { ...HERO_DATA.i18n[language], ...heroEditDraft[language] };
+  });
+  if(heroEditDraft.tr){
+    HERO_DATA.tag = heroEditDraft.tr.tag;
+    HERO_DATA.h1 = heroEditDraft.tr.h1;
+    HERO_DATA.p = heroEditDraft.tr.p;
+  }
   saveAllToStorage();
   showToast("Giriş metinleri kaydedildi!");
 }
@@ -1616,20 +1886,51 @@ function renderAdminTvSlidesTable(){
 }
 
 /* HİZMET CMS */
+function captureServiceEditorLanguage(){
+  serviceEditDraft[serviceEditorLang] = {
+    title: $("admSrvTitle").value.trim(),
+    tag: $("admSrvTag").value.trim(),
+    desc: $("admSrvDesc").value.trim()
+  };
+}
+
+function loadServiceEditorLanguage(language){
+  const service = editingServiceId ? SERVICES.find(item => item.id === editingServiceId) : null;
+  const values = serviceEditDraft[language] || (service ? getServiceLanguageValues(service, language) : {});
+  $("admSrvTitle").value = values.title || "";
+  $("admSrvTag").value = values.tag || "";
+  $("admSrvDesc").value = values.desc || "";
+}
+
+function switchServiceEditLanguage(){
+  captureServiceEditorLanguage();
+  serviceEditorLang = $("admSrvLang").value;
+  loadServiceEditorLanguage(serviceEditorLang);
+}
+
 function saveNewService(){
-  const title = $("admSrvTitle").value.trim();
+  captureServiceEditorLanguage();
+  const primaryLanguage = serviceEditDraft.tr?.title ? "tr" : serviceEditorLang;
+  const primary = serviceEditDraft[primaryLanguage] || {};
+  const title = primary.title || "";
   const img = $("admSrvImg").value.trim() || 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80';
-  const tag = $("admSrvTag").value.trim() || 'Özel Kurulum';
-  const desc = $("admSrvDesc").value.trim();
+  const tag = primary.tag || 'Özel Kurulum';
+  const desc = primary.desc || 'Mühendislik ve montaj güvencesi.';
 
   if(!title){ alert("Lütfen hizmet başlığını yazınız!"); return; }
 
-  SERVICES.push({ id:'srv_' + Date.now(), img: img, title: title, tag: tag, desc: desc || 'Mühendislik ve montaj güvencesi.' });
+  const i18n = {};
+  CONTENT_LANGUAGES.forEach(language => {
+    if(serviceEditDraft[language]) i18n[language] = { ...serviceEditDraft[language] };
+  });
+  const updatedService = { id: editingServiceId || 'srv_' + Date.now(), img, title, tag, desc, i18n };
+  const existingIndex = SERVICES.findIndex(service => service.id === editingServiceId);
+  if(existingIndex >= 0) SERVICES[existingIndex] = { ...SERVICES[existingIndex], ...updatedService };
+  else SERVICES.push(updatedService);
   saveAllToStorage();
   renderAdminServicesTable();
-  showToast("Hizmet alanı eklendi!");
-
-  $("admSrvTitle").value = ''; $("admSrvImg").value = ''; $("admSrvTag").value = ''; $("admSrvDesc").value = '';
+  showToast(existingIndex >= 0 ? "Hizmet güncellendi!" : "Hizmet alanı eklendi!");
+  cancelServiceEdit();
 }
 
 function renderAdminServicesTable(){
@@ -1637,11 +1938,39 @@ function renderAdminServicesTable(){
   if(!tbody) return;
   tbody.innerHTML = SERVICES.map((srv, idx) => `
     <tr>
-      <td><b>${srv.title}</b></td>
-      <td>${srv.tag}</td>
-      <td><button style="border:none;background:none;color:#dc2626;cursor:pointer;font-weight:900" onclick="delService(${idx})">🗑️</button></td>
+      <td><b>${escapeHtml(srv.title)}</b></td>
+      <td>${escapeHtml(srv.tag)}</td>
+      <td><button style="border:none;background:none;color:#1d4ed8;cursor:pointer;font-weight:900" onclick="editService(${idx})">✏️</button><button style="border:none;background:none;color:#dc2626;cursor:pointer;font-weight:900" onclick="delService(${idx})">🗑️</button></td>
     </tr>
   `).join('');
+}
+
+function editService(idx){
+  const service = SERVICES[idx];
+  if(!service){ alert("Düzenlenecek hizmet bulunamadı."); return; }
+  if(!service.id) service.id = 'srv_' + Date.now() + '_' + idx;
+  editingServiceId = service.id;
+  serviceEditDraft = {};
+  CONTENT_LANGUAGES.forEach(language => serviceEditDraft[language] = getServiceLanguageValues(service, language));
+  $("admSrvLang").value = serviceEditorLang = currentLang;
+  $("admSrvImg").value = service.img || "";
+  $("saveServiceBtn").textContent = "Değişiklikleri Kaydet ✓";
+  $("cancelServiceEditBtn").style.display = "inline-flex";
+  loadServiceEditorLanguage(serviceEditorLang);
+  $("admSrvTitle").scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function cancelServiceEdit(){
+  editingServiceId = null;
+  serviceEditDraft = {};
+  serviceEditorLang = "tr";
+  $("admSrvLang").value = "tr";
+  $("admSrvTitle").value = "";
+  $("admSrvImg").value = "";
+  $("admSrvTag").value = "";
+  $("admSrvDesc").value = "";
+  $("saveServiceBtn").textContent = "Hizmeti Ekle 🚀";
+  $("cancelServiceEditBtn").style.display = "none";
 }
 
 function delService(idx){
@@ -1945,28 +2274,134 @@ function delProduct(idx){
 }
 
 /* PROJE CMS */
+function captureProjectEditorLanguage(){
+  projectEditDraft[projectEditorLang] = {
+    title: $("admProjTitle").value.trim(),
+    loc: $("admProjLoc").value.trim(),
+    tag: $("admProjTag").value.trim(),
+    tasks: [...document.querySelectorAll("#admProjTasks .adm-project-task")]
+      .map(input => input.value.trim()).filter(Boolean)
+  };
+}
+
+function renderProjectTaskInputs(tasks){
+  const container = $("admProjTasks");
+  container.innerHTML = "";
+  (tasks.length ? tasks : [""]).forEach(task => {
+    const row = document.createElement("div");
+    row.className = "project-task-row";
+    const input = document.createElement("input");
+    input.type = "text";
+    input.className = "adm-project-task";
+    input.placeholder = "Örn: 28 IP kameranın kurulumu";
+    input.value = task;
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "project-task-remove";
+    button.setAttribute("aria-label", "İşi kaldır");
+    button.textContent = "×";
+    button.onclick = () => removeProjectTask(button);
+    row.append(input, button);
+    container.appendChild(row);
+  });
+}
+
+function loadProjectEditorLanguage(language){
+  const project = editingProjectId ? PROJECTS.find(item => item.id === editingProjectId) : null;
+  const values = projectEditDraft[language] || (project ? getProjectLanguageValues(project, language) : {});
+  $("admProjTitle").value = values.title || "";
+  $("admProjLoc").value = values.loc || "";
+  $("admProjTag").value = values.tag || "";
+  renderProjectTaskInputs(values.tasks || []);
+}
+
+function switchProjectEditLanguage(){
+  captureProjectEditorLanguage();
+  projectEditorLang = $("admProjLang").value;
+  loadProjectEditorLanguage(projectEditorLang);
+}
+
 function saveNewProject(){
-  const title = $("admProjTitle").value.trim();
-  const loc = $("admProjLoc").value.trim() || '📍 Tiflis / Gürcistan';
-  const tag = $("admProjTag").value.trim() || 'CCTV & Ağ';
+  captureProjectEditorLanguage();
+  const primaryLanguage = projectEditDraft.tr?.title ? "tr" : projectEditorLang;
+  const primary = projectEditDraft[primaryLanguage] || {};
+  const title = primary.title || "";
+  const loc = primary.loc || '📍 Tiflis / Gürcistan';
+  const tag = primary.tag || 'CCTV & Ağ';
   const img = $("admProjImg").value.trim() || 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=700&q=80';
-  const desc = $("admProjDesc").value.trim();
   if(!title){ alert("Proje adını yazınız!"); return; }
 
-  PROJECTS.push({ id:'proj_' + Date.now(), isDigomi:false, title:title, loc:loc, tag:tag, img:img, desc:desc || 'Anahtar teslim montaj.' });
-  saveAllToStorage(); renderAdminProjectsTable(); showToast("Proje eklendi!");
-  $("admProjTitle").value = ''; $("admProjLoc").value = ''; $("admProjTag").value = ''; $("admProjImg").value = ''; $("admProjDesc").value = '';
+  const i18n = {};
+  CONTENT_LANGUAGES.forEach(language => {
+    if(projectEditDraft[language]) i18n[language] = { ...projectEditDraft[language] };
+  });
+  const tasks = primary.tasks || [];
+  const existingIndex = PROJECTS.findIndex(project => project.id === editingProjectId);
+  const existing = existingIndex >= 0 ? PROJECTS[existingIndex] : {};
+  const updatedProject = {
+    ...existing, id: editingProjectId || 'proj_' + Date.now(),
+    isDigomi: Boolean(existing.isDigomi), title, loc, tag, img, desc: tasks.join("\n"), tasks, i18n
+  };
+  if(existingIndex >= 0) PROJECTS[existingIndex] = updatedProject;
+  else PROJECTS.push(updatedProject);
+  saveAllToStorage();
+  renderAdminProjectsTable();
+  showToast(existingIndex >= 0 ? "Proje güncellendi!" : "Proje eklendi!");
+  cancelProjectEdit();
+}
+function addProjectTaskInput(){
+  const row = document.createElement("div");
+  row.className = "project-task-row";
+  row.innerHTML = '<input type="text" class="adm-project-task" placeholder="Örn: 28 IP kameranın kurulumu"><button type="button" class="project-task-remove" aria-label="İşi kaldır" onclick="removeProjectTask(this)">×</button>';
+  $("admProjTasks").appendChild(row);
+  row.querySelector("input").focus();
+}
+function removeProjectTask(button){
+  const rows = $("admProjTasks").querySelectorAll(".project-task-row");
+  if(rows.length === 1){
+    rows[0].querySelector("input").value = "";
+    return;
+  }
+  button.closest(".project-task-row").remove();
 }
 function renderAdminProjectsTable(){
   const tbody = $("admProjectsList");
   if(!tbody) return;
   tbody.innerHTML = PROJECTS.map((proj, idx) => `
     <tr>
-      <td><b>${proj.title}</b></td>
-      <td>${proj.loc}</td>
-      <td><button style="border:none;background:none;color:#dc2626;cursor:pointer;font-weight:900" onclick="delProject(${idx})">🗑️</button></td>
+      <td><b>${escapeHtml(proj.title)}</b></td>
+      <td>${escapeHtml(proj.loc)}</td>
+      <td><button style="border:none;background:none;color:#1d4ed8;cursor:pointer;font-weight:900" onclick="editProject(${idx})">✏️</button><button style="border:none;background:none;color:#dc2626;cursor:pointer;font-weight:900" onclick="delProject(${idx})">🗑️</button></td>
     </tr>
   `).join('');
+}
+function editProject(idx){
+  const project = PROJECTS[idx];
+  if(!project){ alert("Düzenlenecek proje bulunamadı."); return; }
+  if(!project.id) project.id = 'proj_' + Date.now() + '_' + idx;
+  editingProjectId = project.id;
+  projectEditDraft = {};
+  CONTENT_LANGUAGES.forEach(language => projectEditDraft[language] = getProjectLanguageValues(project, language));
+  projectEditorLang = currentLang;
+  $("admProjLang").value = projectEditorLang;
+  $("admProjImg").value = project.img || "";
+  $("saveProjectBtn").textContent = "Değişiklikleri Kaydet ✓";
+  $("cancelProjectEditBtn").style.display = "inline-flex";
+  loadProjectEditorLanguage(projectEditorLang);
+  $("admProjTitle").scrollIntoView({ behavior: "smooth", block: "center" });
+}
+function cancelProjectEdit(){
+  editingProjectId = null;
+  projectEditDraft = {};
+  projectEditorLang = "tr";
+  $("admProjLang").value = "tr";
+  $("admProjTitle").value = "";
+  $("admProjLoc").value = "";
+  $("admProjTag").value = "";
+  $("admProjImg").value = "";
+  renderProjectTaskInputs([]);
+  $("saveProjectBtn").textContent = "Projeyi Ekle 🚀";
+  $("cancelProjectEditBtn").style.display = "none";
 }
 function delProject(idx){
   if(confirm(`"${PROJECTS[idx].title}" projesini silmek istiyor musunuz?`)){
@@ -2309,6 +2744,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   renderHeroFrontend();
   renderCompactServicesFrontend();
   renderPartnersFrontend();
+  renderContactFrontend();
   renderProjectsTrack();
   selectLang(currentLang);
   $("admBrand").addEventListener("change", updateModelSuggestions);
