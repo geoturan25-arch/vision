@@ -174,14 +174,21 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 
 /* 3.2 KOMPAKT HİZMET ALANLARIMIZ */
 .services-compact-sec{padding:40px 24px;max-width:1300px;margin:0 auto}
-.service-compact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.services-compact-head,.projects-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+.services-compact-head .sec-head{margin-bottom:0}
+.horizontal-scroll-controls{display:flex;gap:8px;flex:none}
+.horizontal-scroll-btn{width:38px;height:38px;border:1px solid rgba(255,255,255,.55);border-radius:50%;background:rgba(15,23,42,.65);color:#fff;font-size:22px;line-height:1;display:grid;place-items:center;transition:background .2s,transform .2s}
+.horizontal-scroll-btn:hover{background:var(--bl);transform:scale(1.06)}
+.horizontal-scroll-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.service-compact-grid{display:flex;gap:16px;margin-top:16px;padding:10px 0 20px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#b2b3b8 transparent}
 .service-compact-card{
+  width:320px;min-height:380px;flex:0 0 320px;scroll-snap-align:start;
   background: var(--card-metal);border: 1.5px solid var(--line-steel);border-radius:12px;
   overflow:hidden;display:flex;flex-direction:column;box-shadow:0 4px 15px rgba(0,0,0,0.15);
   transition:all .2s ease;
 }
 .service-compact-card:hover{transform:translateY(-3px);border-color:var(--bl);box-shadow:0 8px 24px rgba(29,78,216,0.25)}
-.service-compact-img{aspect-ratio:1/1;position:relative;background:#000;overflow:hidden;flex:none}
+.service-compact-img{height:180px;position:relative;background:#000;overflow:hidden;flex:none}
 .service-compact-img img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
 .service-compact-card:hover .service-compact-img img{transform:scale(1.08)}
 .service-compact-tag{position:absolute;top:6px;left:6px;background:rgba(15,23,42,.85);color:#fff;font-size:8.5px;font-weight:900;padding:2px 6px;border-radius:4px}
@@ -208,7 +215,6 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .catalog-category-card:hover .catalog-category-title,.catalog-category-card:focus-visible .catalog-category-title{transform:translateY(-20px)}
 @media(max-width:1000px){.catalog-category-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:600px){.catalog-section{padding:30px 16px 48px}.catalog-category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.catalog-category-card{min-height:150px;padding:13px}.catalog-category-cta{opacity:1;transform:none;font-size:13px}.catalog-category-title{font-size:15px}}
-
 /* LOGOLAR */
 .logo-hikvision{font-family:'Arial Black', Impact, sans-serif;font-weight:900;letter-spacing:-0.5px;text-transform:uppercase}
 .logo-hikvision .h{color:var(--tx)}.logo-hikvision .v{color:var(--hik-red)}
@@ -247,9 +253,10 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
   background: linear-gradient(180deg, #595a5e 0%, #45464a 100%);
 }
 .projects-head{max-width:1300px;margin:0 auto 16px;padding:0 24px}
+.projects-head > div:first-child{flex:1}
 .projects-touch-track{
   display:flex;gap:16px;padding:10px 24px 20px;
-  overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#b2b3b8 transparent;
 }
 .project-card{
   width:320px;height:auto;min-height:380px;
@@ -276,6 +283,16 @@ h1{font-size:clamp(28px,3.8vw,44px);line-height:1.2;margin-bottom:12px;font-weig
 .project-footer-row{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
 .project-loc{font-size:10.5px;font-weight:800;color:var(--cyan)}
 .project-view-btn{font-size:11px;color:var(--bl);font-weight:800}
+@media(max-width:600px){
+  .services-compact-sec{padding:30px 16px}
+  .services-compact-head,.projects-head{align-items:flex-end;gap:8px}
+  .sec-title{font-size:23px}
+  .horizontal-scroll-controls{gap:5px}
+  .horizontal-scroll-btn{width:32px;height:32px;font-size:19px}
+  .service-compact-card,.project-card{width:78vw;min-width:0;flex-basis:78vw}
+  .projects-head{padding:0 16px}
+  .projects-touch-track{padding-left:16px;padding-right:16px}
+}
 .contact-section{scroll-margin-top:78px;padding:38px 24px;background:linear-gradient(180deg,#202951 0%,#171d3d 100%);border-top:2px solid rgba(196,181,253,.4)}
 .contact-container{max-width:1200px;margin:0 auto}
 .contact-heading{text-align:center;margin-bottom:18px}
@@ -593,10 +610,16 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
    3.2 SEGMENTLİ & FOTOĞRAFLI KOMPAKT HİZMET ALANLARIMIZ
    ========================================================= -->
 <section class="services-compact-sec" id="servicesSec">
-  <div class="sec-head">
-    <span class="sec-tag">UZMANLIK ALANLARIMIZ</span>
-    <h2 class="sec-title" id="secTitleServices">Sektörel Hizmet Alanlarımız</h2>
-    <p class="sec-desc">Tiflis, Batum ve tüm Gürcistan'da anahtar teslim projelendirme, kablolama ve 2 yıl garantili montaj.</p>
+  <div class="services-compact-head">
+    <div class="sec-head">
+      <span class="sec-tag">UZMANLIK ALANLARIMIZ</span>
+      <h2 class="sec-title" id="secTitleServices">Sektörel Hizmet Alanlarımız</h2>
+      <p class="sec-desc">Tiflis, Batum ve tüm Gürcistan'da anahtar teslim projelendirme, kablolama ve 2 yıl garantili montaj.</p>
+    </div>
+    <div class="horizontal-scroll-controls" aria-label="Hizmetleri kaydır">
+      <button class="horizontal-scroll-btn" type="button" aria-label="Hizmetlerde sola kaydır" onclick="scrollCardTrack('servicesCompactGrid', -1)">‹</button>
+      <button class="horizontal-scroll-btn" type="button" aria-label="Hizmetlerde sağa kaydır" onclick="scrollCardTrack('servicesCompactGrid', 1)">›</button>
+    </div>
   </div>
   <div class="service-compact-grid" id="servicesCompactGrid">
     <div class="service-compact-card">
@@ -718,9 +741,15 @@ footer{border-top:2px solid var(--line-steel);padding:18px 22px;text-align:cente
 <!-- PROJELERİMİZ -->
 <section class="projects-section" id="projects">
   <div class="projects-head">
-    <span class="sec-tag" style="color:#60a5fa">REFERANSLARIMIZ & SAHA UYGULAMALARI</span>
-    <h2 style="font-size:26px;font-weight:900;margin-bottom:4px;color:#ffffff">Tamamlanan Örnek Projelerimiz</h2>
-    <p style="color:#cbd5e1;font-size:13px">Parmağınızla sağa-sola kaydırarak projeleri ve Digomi Project'in 28 kameralı canlı görüntülerini inceleyin.</p>
+    <div>
+      <span class="sec-tag" style="color:#60a5fa">REFERANSLARIMIZ & SAHA UYGULAMALARI</span>
+      <h2 style="font-size:26px;font-weight:900;margin-bottom:4px;color:#ffffff">Tamamlanan Örnek Projelerimiz</h2>
+      <p style="color:#cbd5e1;font-size:13px">Parmağınızla sağa-sola kaydırarak projeleri ve Digomi Project'in 28 kameralı canlı görüntülerini inceleyin.</p>
+    </div>
+    <div class="horizontal-scroll-controls" aria-label="Projeleri kaydır">
+      <button class="horizontal-scroll-btn" type="button" aria-label="Projelerde sola kaydır" onclick="scrollCardTrack('projectsTrack', -1)">‹</button>
+      <button class="horizontal-scroll-btn" type="button" aria-label="Projelerde sağa kaydır" onclick="scrollCardTrack('projectsTrack', 1)">›</button>
+    </div>
   </div>
   <div class="projects-touch-track" id="projectsTrack">
     <div class="project-card" onclick="openDigomiGallery()">
@@ -1543,6 +1572,14 @@ function selectLang(code){
   updateCartUI();
   window.VisionTranslations.apply(document, code);
   renderContactFrontend();
+}
+
+function scrollCardTrack(trackId, direction){
+  const track = $(trackId);
+  if(!track) return;
+  const card = track.querySelector(":scope > *");
+  const distance = card ? card.getBoundingClientRect().width + 16 : track.clientWidth * 0.8;
+  track.scrollBy({ left: direction * distance, behavior: "smooth" });
 }
 
 /* MOBİL ARAMA */
